@@ -1,13 +1,13 @@
-import React from 'react';
-import CommonLayout from 'app/containers/AppLayout/CommonLayout';
+import React, { memo } from 'react';
+import Title from 'app/components/Title';
 import { StyledDashboard } from './styles';
 
-const Dashboard = props => {
+const Dashboard = memo(() => {
   return (
-    <CommonLayout>
-      <StyledDashboard>Hello World!</StyledDashboard>
-    </CommonLayout>
+    <StyledDashboard>
+      <Title>Hello World !</Title>
+    </StyledDashboard>
   );
-};
+});
 
-export default Dashboard;
+export default memo(Dashboard);
