@@ -34,6 +34,20 @@ export const Register = memo(() => {
         onFinishFailed={onFinishFailed}
       >
         <Title className="register-form-title">{t('Register.title')}</Title>
+        <Form.Item
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: t('Register.messageEmptyName'),
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined />}
+            placeholder={t('Register.labelName')}
+          />
+        </Form.Item>
 
         <Form.Item
           name="email"
@@ -69,6 +83,35 @@ export const Register = memo(() => {
             prefix={<LockOutlined />}
             type="password"
             placeholder={t('Register.labelPassword')}
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="confirm"
+          dependencies={['password']}
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: t('Register.messageEmptyConfirmPassword'),
+            },
+            ({ getFieldValue }) => ({
+              validator(rule, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+
+                return Promise.reject(
+                  t('Register.messageInvalidConfirmPassword'),
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password
+            prefix={<CheckSquareOutlined />}
+            type="password"
+            placeholder={t('Register.labelConfirmPassword')}
           />
         </Form.Item>
 

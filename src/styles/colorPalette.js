@@ -6,6 +6,4 @@ export const COLOR = {
   GOOGLE: '#C75340',
   WHITE: '#fff',
   GRAY: '#ccc',
-  GRAY_D: '#ddd',
-  GRAY_5: '#555',
 };
