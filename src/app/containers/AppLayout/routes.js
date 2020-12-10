@@ -1,16 +1,16 @@
-import { Dashboard } from 'app/containers/Dashboard/Loadable';
-import { Login } from 'app/containers/Authentication/Loadable';
+import { Home } from 'app/containers/Home/Loadable';
+import { Login } from 'app/containers/Login/Loadable';
 import { Register } from 'app/containers/Register/Loadable';
 
-export const routes = [
+export const privateRoutes = [
   {
-    path: '/dashboard',
-    component: Dashboard,
-    key: 'dashboard',
+    path: '/',
+    component: Home,
+    key: 'home',
   },
 ];
 
-export const authRoutes = [
+export const publicRoutes = [
   {
     path: '/login',
     component: Login,

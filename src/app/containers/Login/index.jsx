@@ -1,26 +1,23 @@
-import React, { memo } from 'react';
-import { useInjectSaga } from 'utils/reduxInjectors';
-import saga from './saga';
-import useHooks from './hooks';
-import { sliceKey } from './slice';
-import { Link } from 'react-router-dom';
-import { ACTION_STATUS } from 'utils/constants';
-import {
-  StyledLogin,
-  StyledGoogleButton,
-  StyledFacebookButton,
-} from './styles';
-import Form from 'app/components/Form';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import Button from 'app/components/Button';
+import Form from 'app/components/Form';
 import Input from 'app/components/Input';
 import Title from 'app/components/Title';
-import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import GoogleLogin from 'react-google-login';
+import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
+import React, { memo } from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import GoogleLogin from 'react-google-login';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { ACTION_STATUS } from 'utils/constants';
+import useHooks from './hooks';
+import {
+  StyledFacebookButton,
+  StyledGoogleButton,
+  StyledLogin,
+} from './styles';
 
 export const Login = memo(() => {
-  useInjectSaga({ key: sliceKey, saga });
   const { handlers, selectors } = useHooks();
   const { onFinish, onFinishFailed, handleLoginService } = handlers;
   const { status } = selectors;
@@ -65,7 +62,7 @@ export const Login = memo(() => {
           />
         </Form.Item>
         <Form.Item className="login-form-forgot">
-          <a href="">{t('Login.forgotPassword')}</a>
+          <Link to="/forgot-password"> {t('Login.forgotPassword')} </Link>
         </Form.Item>
         <Form.Item className="login-form-button login-form-button-local">
           <Button
@@ -77,7 +74,7 @@ export const Login = memo(() => {
           </Button>
         </Form.Item>
         <GoogleLogin
-          clientId="518404312823-ibh4ph48o4p3ad7b6f4jd4eoiv6m4o7l.apps.googleusercontent.com"
+          clientId={GOOGLE_ID}
           render={renderProps => (
             <StyledGoogleButton
               className="login-form-button"
@@ -94,11 +91,10 @@ export const Login = memo(() => {
               data: receivedData && receivedData.accessToken,
             })
           }
-          onFailure={res => console.log(res)}
           cookiePolicy={'single_host_origin'}
         />
         <FacebookLogin
-          appId="703530593917463"
+          appId={FACEBOOK_ID}
           fields="name,email,picture"
           callback={receivedData =>
             handleLoginService({

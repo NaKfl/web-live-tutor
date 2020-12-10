@@ -1,17 +1,17 @@
 import { notification } from 'antd';
 
-export function notifyError(message) {
+export const notifyError = message => {
   notification.error({
     message: message,
     placement: 'topRight',
     top: 90,
   });
-}
+};
 
-export function notifySuccess(message) {
+export const notifySuccess = message => {
   notification.success({
     message: message,
     placement: 'topRight',
     top: 90,
   });
-}
+};

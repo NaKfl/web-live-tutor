@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledDashboard = styled.div`
+export const StyledHome = styled.div`
   .list {
     & > * {
       width: 50%;

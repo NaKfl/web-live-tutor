@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { StyledHeader } from './styles';
+import { StyledHeader } from '../styles';
 
-export const AuthHeader = () => {
+export const PublicHeader = () => {
   return (
     <StyledHeader>
       <div className="logo" />
@@ -9,4 +9,4 @@ export const AuthHeader = () => {
   );
 };
 
-export default memo(AuthHeader);
+export default memo(PublicHeader);

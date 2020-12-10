@@ -1,6 +1,6 @@
 import moment from 'moment';
 import isNil from 'lodash/fp/isNil';
-const AUTH_INFO_KEY = 'AuthenticationInfo';
+import { AUTH_INFO_KEY } from './constants';
 
 export const storeAuthInfo = authInfo => {
   localStorage.setItem(AUTH_INFO_KEY, JSON.stringify(authInfo));

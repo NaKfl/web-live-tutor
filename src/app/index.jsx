@@ -1,8 +1,8 @@
+import AppLayout from 'app/containers/AppLayout';
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { GlobalStyle } from 'styles/globalStyles';
-import AppLayout from 'app/containers/AppLayout';
 
 export const App = () => {
   return (
