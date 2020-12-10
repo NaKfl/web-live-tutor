@@ -1,3 +1,3 @@
-import { Menu } from 'antd';
-
-export default Menu;
+import { StyledMenu, StyledItem } from './styles';
+StyledMenu.Item = StyledItem;
+export default StyledMenu;

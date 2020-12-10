@@ -7,7 +7,7 @@ html,body{
 }
 
 body{
-  font-family:'Lato',sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #root{

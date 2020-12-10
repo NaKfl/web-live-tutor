@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Layout from 'app/components/Layout';
+import { COLOR } from 'styles/colorPalette';
 const { Content, Header, Footer } = Layout;
 
 export const StyledLayout = styled(Layout)`
@@ -11,6 +12,7 @@ export const StyledHeader = styled(Header)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${COLOR.WHITE};
   .logo {
     width: 120px;
     height: 31px;
@@ -25,6 +27,7 @@ export const StyledHeader = styled(Header)`
 
 export const StyledContent = styled(Content)`
   padding: 50px;
+  background-color: ${COLOR.WHITE};
 `;
 
 export const StyledFooter = styled(Footer)`

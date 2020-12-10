@@ -1,3 +1,3 @@
-import { Input } from 'antd';
+import { StyledInput } from './styles';
 
-export default Input;
+export default StyledInput;

@@ -18,7 +18,7 @@ export const Header = () => {
     <StyledHeader>
       <div className="left">
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
             <Link to="/dashboard">Dashboard</Link>
           </Menu.Item>

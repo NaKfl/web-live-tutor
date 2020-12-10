@@ -1,16 +1,16 @@
 import React, { memo } from 'react';
-import { StyledLayout, StyledContent } from './styles';
+import { StyledContent } from './styles';
+import Layout from 'app/components/Layout';
 import AuthHeader from './AuthHeader';
 import Header from './Header';
-import Footer from './Footer';
 import { isAuthenticated } from 'utils/localStorageUtils';
 
 export const AuthLayout = ({ children }) => (
-  <StyledLayout>
+  <Layout>
     {isAuthenticated() ? <Header /> : <AuthHeader />}
     <StyledContent>{children}</StyledContent>
-    <Footer />
-  </StyledLayout>
+    <Layout.StyledFooter>Design by anh em 1 nha</Layout.StyledFooter>
+  </Layout>
 );
 
 export default memo(AuthLayout);

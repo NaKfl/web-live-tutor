@@ -1,47 +1,15 @@
 import styled from 'styled-components';
 import Button from 'app/components/Button';
-import { COLOR } from 'styles/colorPalette';
 
-export const StyledGoogleButton = styled(Button)`
-  background-color: ${COLOR.GOOGLE};
-  color: ${COLOR.WHITE};
-  border: none;
+export const StyledGoogleButton = styled(Button)``;
 
-  &:hover {
-    background-color: ${COLOR.GOOGLE};
-    color: ${COLOR.WHITE};
-    opacity: 0.8;
-  }
-
-  &:focus {
-    background-color: ${COLOR.GOOGLE};
-    color: ${COLOR.WHITE};
-    opacity: 0.8;
-  }
-`;
-
-export const StyledFacebookButton = styled(Button)`
-  background-color: ${COLOR.FACEBOOK};
-  color: ${COLOR.WHITE};
-  border: none;
-
-  &:hover {
-    background-color: ${COLOR.FACEBOOK};
-    color: ${COLOR.WHITE};
-    opacity: 0.8;
-  }
-
-  &:focus {
-    background-color: ${COLOR.FACEBOOK};
-    color: ${COLOR.WHITE};
-    opacity: 0.8;
-  }
-`;
+export const StyledFacebookButton = styled(Button)``;
 
 export const StyledLogin = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 50px;
 
   .login-form {
@@ -49,32 +17,8 @@ export const StyledLogin = styled.div`
     display: flex;
     flex-direction: column;
 
-    &-title {
-      align-self: center;
+    .login-form-title {
       margin-bottom: 24px;
-    }
-
-    &-forgot {
-      align-self: flex-end;
-      margin-bottom: 5px;
-      margin-top: -19px;
-    }
-
-    &-button {
-      margin-bottom: 10px;
-      button {
-        width: 100%;
-      }
-
-      &-local {
-        padding-bottom: 25px;
-        margin-bottom: 25px;
-        border-bottom: solid 1px ${COLOR.GRAY};
-      }
-    }
-
-    &-register {
-      align-self: center;
     }
   }
 `;
