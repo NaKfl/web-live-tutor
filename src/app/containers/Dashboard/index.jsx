@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import Title from 'app/components/Title';
 import { StyledDashboard } from './styles';
 
-const Dashboard = memo(() => {
+export const Dashboard = memo(() => {
   return (
     <StyledDashboard>
       <Title>Hello World !</Title>
@@ -10,4 +10,4 @@ const Dashboard = memo(() => {
   );
 });
 
-export default memo(Dashboard);
+export default Dashboard;
