@@ -1,37 +1,27 @@
 import styled from 'styled-components';
-import { COLOR } from 'styles/colorPalette';
+import Button from 'app/components/Button';
+
+export const StyledGoogleButton = styled(Button)``;
+
+export const StyledFacebookButton = styled(Button)``;
 
 export const StyledRegister = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 50px;
-
-  .register-form {
+  .ant-image-img {
+    width: 500px;
+    margin-right: 20px;
+  }
+  .login-form {
     width: 300px;
     display: flex;
     flex-direction: column;
 
-    &-title {
-      align-self: center;
+    .login-form-title {
       margin-bottom: 24px;
-    }
-
-    &-button {
-      margin-bottom: 10px;
-      button {
-        width: 100%;
-      }
-
-      &-local {
-        padding-bottom: 25px;
-        margin-bottom: 25px;
-        border-bottom: solid 1px ${COLOR.GRAY};
-      }
-    }
-
-    &-login {
-      align-self: center;
     }
   }
 `;
