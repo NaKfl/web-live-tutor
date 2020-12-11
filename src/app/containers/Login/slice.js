@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import set from 'lodash/fp/set';
 import flow from 'lodash/fp/flow';
+import set from 'lodash/fp/set';
 import { ACTION_STATUS } from 'utils/constants';
 export const initialState = {
   isAuthenticated: false,

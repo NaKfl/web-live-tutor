@@ -28,10 +28,6 @@ const registerSlice = createSlice({
         set('status', ACTION_STATUS.FAILED),
       )(state);
     },
-
-    reset(state) {
-      return flow(set('error', null), set('status', ''))(state);
-    },
   },
 });
 

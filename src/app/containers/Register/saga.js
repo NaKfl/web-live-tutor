@@ -11,10 +11,10 @@ function* registerTask(action) {
   const { response, error } = yield call(registerAPI, action.payload);
   if (response) {
     yield put(actions.registerSuccess());
-    notifySuccess(i18n.t('Register.notifySuccess'));
+    notifySuccess(i18n.t('Common.notifySuccess'));
   } else {
     yield put(actions.registerFailed(error.data));
-    notifyError(i18n.t('Register.notifyFailed'));
+    notifyError(i18n.t('Common.notifyFail'));
   }
 }
 

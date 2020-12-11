@@ -124,7 +124,7 @@ export const Register = memo(() => {
           </Form.Item>
           <span className="login-form-register">
             <Title level={5}>
-              Already have an account ?
+              {t('Register.suggestLogin')}
               <Link to="/login"> {t('Register.linkLogin')} </Link>
             </Title>
           </span>

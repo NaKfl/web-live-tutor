@@ -1,4 +1,10 @@
 {
+  "Header": {
+    "linkHome": "Home",
+    "linkProfile": "Profile",
+    "linkLogout": "Logout"
+  },
+
   "Login": {
     "title": "Welcome back to Etutor",
     "messageInvalidEmail": "The input is not valid E-mail!",
@@ -14,6 +20,7 @@
     "suggestRegister": "New to Etutor ?",
     "divider": "Or"
   },
+
   "Register": {
     "title": "Start learning English with Etutor",
     "labelName": "Name",
@@ -33,6 +40,7 @@
     "linkLogin": "Login",
     "btnRegisterFacebook": "Facebook",
     "btnRegisterGoogle": "Google",
-    "divider": "Or sign up with"
+    "divider": "Or sign up with",
+    "suggestLogin": "Already have an account ?"
   }
 }

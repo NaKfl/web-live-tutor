@@ -8,18 +8,14 @@ import { ACTION_STATUS } from 'utils/constants';
 
 export const useHooks = () => {
   const history = useHistory();
-  const { register, reset } = useActions(
-    { register: actions.register, reset: actions.reset },
-    [actions],
-  );
+  const { register } = useActions({ register: actions.register }, [actions]);
   const status = useSelector(makeSelectRegisterStatus);
 
   useEffect(() => {
     if (status === ACTION_STATUS.SUCCESS) {
       history.push('/login');
-      reset();
     }
-  }, [status, reset, history]);
+  }, [status, history]);
 
   const onFinish = useCallback(
     values => {

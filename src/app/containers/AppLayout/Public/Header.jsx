@@ -1,11 +1,12 @@
 import React, { memo } from 'react';
-import Layout from 'app/components/Layout';
+import { StyledHeader } from 'app/components/Layout';
 import Menu from 'app/components/Menu';
 import Space from 'app/components/Space';
 import Button from 'app/components/Button';
-export const AuthHeader = () => {
+
+export const PublicHeader = () => {
   return (
-    <Layout.StyledHeader>
+    <StyledHeader>
       <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
         <Menu.Item key="1">For organizations</Menu.Item>
         <Menu.Item key="2">For kids</Menu.Item>
@@ -17,8 +18,8 @@ export const AuthHeader = () => {
           SIGN UP
         </Button>
       </Space>
-    </Layout.StyledHeader>
+    </StyledHeader>
   );
 };
 
-export default memo(AuthHeader);
+export default memo(PublicHeader);
