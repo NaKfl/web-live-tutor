@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-
+import { COLOR } from './colorPalette';
 export const GlobalStyle = createGlobalStyle`
 html,body{
   height:100%;
@@ -7,12 +7,13 @@ html,body{
 }
 
 body{
-  font-family:'Lato',sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 #root{
   min-height:100%;
   min-width:100%;
+  --antd-wave-shadow-color:${COLOR.CORNFLOWER}
 }
 
 p,

@@ -6,19 +6,23 @@
   },
 
   "Login": {
-    "title": "Login",
+    "title": "Welcome back to Etutor",
     "messageInvalidEmail": "The input is not valid E-mail!",
     "messageEmptyEmail": "Please input your Email!",
     "messageEmptyPassword": "Please input your Password!",
     "forgotPassword": "Forgot password ?",
     "btnLogin": "Login",
-    "btnLoginFacebook": "Google Login",
-    "btnLoginGoogle": "Facebook Login",
-    "linkRegister": "Register"
+    "btnLoginFacebook": "Facebook",
+    "btnLoginGoogle": "Google",
+    "linkRegister": "Register",
+    "notifySuccess": "Login successful",
+    "notifyFailed": "Login failed",
+    "suggestRegister": "New to Etutor ?",
+    "divider": "Or"
   },
 
   "Register": {
-    "title": "Register",
+    "title": "Start learning English with Etutor",
     "labelName": "Name",
     "labelEmail": "Email",
     "labelPassword": "Password",
@@ -30,12 +34,13 @@
     "messageEmptyConfirmPassword": "Please confirm your Password!",
     "messageInvalidConfirmPassword": "Passwords do not match!",
     "messageMinPassword": "Must be minimum 6 characters!",
-    "btnRegister": "Register",
-    "linkLogin": "Login"
-  },
-
-  "Common": {
-    "notifySuccess": "Successed",
-    "notifyFail": "Failed"
+    "notifySuccess": "Register successful",
+    "notifyFailed": "Register failed",
+    "btnRegister": "Create account",
+    "linkLogin": "Login",
+    "btnRegisterFacebook": "Facebook",
+    "btnRegisterGoogle": "Google",
+    "divider": "Or sign up with",
+    "suggestLogin": "Already have an account ?"
   }
 }
