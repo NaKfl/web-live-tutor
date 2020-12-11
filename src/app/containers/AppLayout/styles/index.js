@@ -26,7 +26,7 @@ export const StyledHeader = styled(Header)`
 `;
 
 export const StyledContent = styled(Content)`
-  padding: 50px;
+  padding: 35px 50px;
   background-color: ${COLOR.WHITE};
 `;
 

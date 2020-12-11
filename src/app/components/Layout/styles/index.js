@@ -15,4 +15,7 @@ export const StyledFooter = styled(Layout.Footer)`
   text-align: center;
   background-color: ${COLOR.WHITE};
   color: ${COLOR.VIOLET};
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;

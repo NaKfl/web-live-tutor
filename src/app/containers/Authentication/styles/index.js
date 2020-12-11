@@ -9,7 +9,7 @@ export const StyledLogin = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 50px;
 
   .login-form {

@@ -89,4 +89,5 @@ export const StyledButton = styled(Button)`
     ${props => configActive(props)}
   }
   height: 100%;
+  display: flex;
 `;

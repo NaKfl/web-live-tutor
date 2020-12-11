@@ -7,9 +7,10 @@ export const StyledFacebookButton = styled(Button)``;
 
 export const StyledRegister = styled.div`
   height: 100%;
+  max-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start !important;
   margin-top: 50px;
   .ant-image-img {
     width: 500px;
