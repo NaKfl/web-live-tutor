@@ -1,5 +1,6 @@
 import moment from 'moment';
 import isNil from 'lodash/fp/isNil';
+import get from 'lodash/fp/get';
 import { AUTH_INFO_KEY } from './constants';
 
 export const storeAuthInfo = authInfo => {
@@ -7,8 +8,8 @@ export const storeAuthInfo = authInfo => {
 };
 
 export const isValidAuthInfo = authInfo => {
-  const { expiresIn } = authInfo.token;
-  return moment(expiresIn) >= moment();
+  const expires = get('tokens.access.expires', authInfo);
+  return moment(expires) >= moment().utc();
 };
 
 export const getAuthInfo = () => {
@@ -26,17 +27,17 @@ export const getAuthInfo = () => {
 
 export const getAccessToken = () => {
   const authInfo = getAuthInfo();
-  return !isNil(authInfo) ? authInfo.token.accessToken : '';
+  return get('tokens.access.token', authInfo);
 };
 
 export const getRefreshToken = () => {
   const authInfo = getAuthInfo();
-  return !isNil(authInfo) ? authInfo.token.refreshToken : '';
+  return get('tokens.refresh.token', authInfo);
 };
 
-export const getEmailUser = () => {
+export const getUser = () => {
   const authInfo = getAuthInfo();
-  return !isNil(authInfo) ? authInfo.user.email : '';
+  return get('user', authInfo);
 };
 
 export const isAuthenticated = () => {

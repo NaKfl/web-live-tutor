@@ -18,7 +18,10 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import { useTranslation } from 'react-i18next';
 import { Row, Col } from 'app/components/Grid';
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
+import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
+
 const { Title } = Typography;
+
 export const Login = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   const { handlers, selectors } = useHooks();
@@ -93,7 +96,7 @@ export const Login = memo(() => {
           <Form.Item>
             <Space.StyledSpace size="large">
               <GoogleLogin
-                clientId="518404312823-ibh4ph48o4p3ad7b6f4jd4eoiv6m4o7l.apps.googleusercontent.com"
+                clientId={GOOGLE_ID}
                 render={renderProps => (
                   <Button
                     className="login-form-button"
@@ -115,7 +118,7 @@ export const Login = memo(() => {
                 cookiePolicy={'single_host_origin'}
               />
               <FacebookLogin
-                appId="703530593917463"
+                appId={FACEBOOK_ID}
                 fields="name,email,picture"
                 callback={receivedData =>
                   handleLoginService({
