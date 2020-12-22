@@ -1,4 +1,6 @@
 {
+  "Common": { "notifySuccess": "Successful", "notifyFail": "Failure" },
+
   "Header": {
     "linkHome": "Home",
     "linkProfile": "Profile",
@@ -42,5 +44,14 @@
     "btnRegisterGoogle": "Google",
     "divider": "Or sign up with",
     "suggestLogin": "Already have an account ?"
+  },
+
+  "Profile": {
+    "notifyEditSuccess": "Edit successful",
+    "requiredName": "Please input your name!",
+    "requiredEmail": "Please input your email!",
+    "invalidEmail": "The input is not valid email!",
+    "requiredCountry": "Please input your country!",
+    "requiredPhone": "Please input your phone!"
   }
 }

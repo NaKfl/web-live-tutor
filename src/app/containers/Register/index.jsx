@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from './saga';
-import useHooks from './hooks';
+import useHooks, { useUnmount } from './hooks';
 import { sliceKey, reducer } from './slice';
 import { Link } from 'react-router-dom';
 import Form from 'app/components/Form';
@@ -23,6 +23,7 @@ export const Register = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
+  useUnmount();
   const { onFinish, onFinishFailed } = handlers;
   const { status } = selectors;
   const { t } = useTranslation();

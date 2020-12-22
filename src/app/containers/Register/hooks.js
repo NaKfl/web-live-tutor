@@ -35,4 +35,11 @@ export const useHooks = () => {
   };
 };
 
+export const useUnmount = () => {
+  const { resetState } = useActions({ resetState: actions.resetState }, [
+    actions,
+  ]);
+  useEffect(() => () => resetState(), [resetState]);
+};
+
 export default useHooks;
