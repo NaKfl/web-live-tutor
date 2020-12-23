@@ -8,4 +8,5 @@ export const StyledMenu = styled(Menu)`
 export const StyledItem = styled(Menu.Item)`
   border-bottom: 0px !important;
   outline: none;
+  margin: 0px 20px 0px 0px !important;
 `;

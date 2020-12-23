@@ -31,7 +31,7 @@ export const Login = memo(() => {
       <Col.RightCenter span={12}>
         <Image alt="banner" src={banner} />
       </Col.RightCenter>
-      <Col span={8}>
+      <Col span={12}>
         <Form
           className="login-form"
           onFinish={onFinish}
@@ -74,9 +74,12 @@ export const Login = memo(() => {
           >
             <Input type="password" placeholder="Password" />
           </Form.Item>
-          <Form.Item>
-            <Link to="/forgot-password"> {t('Login.forgotPassword')} </Link>
-          </Form.Item>
+          <Link
+            to="/forgot-password"
+            style={{ display: 'block', marginBottom: '10px' }}
+          >
+            {t('Login.forgotPassword')}
+          </Link>
           <Form.Item className="login-form-button login-form-button-local">
             <Button
               type="accent"
