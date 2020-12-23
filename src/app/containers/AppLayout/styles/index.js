@@ -5,7 +5,7 @@ const { Content, Header, Footer } = Layout;
 
 export const StyledLayout = styled(Layout)`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const StyledHeader = styled(Header)`
@@ -23,13 +23,20 @@ export const StyledHeader = styled(Header)`
   .left {
     flex: 1;
   }
+  box-shadow: 0px 12px 19px -12px rgba(0, 0, 0, 0.75);
 `;
 
 export const StyledContent = styled(Content)`
   padding: 35px 50px;
   background-color: ${COLOR.WHITE};
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  position: relative;
 `;
 
 export const StyledFooter = styled(Footer)`
+  background-color: ${COLOR.WHITE};
   text-align: center;
 `;

@@ -18,10 +18,7 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import { useTranslation } from 'react-i18next';
 import { Row, Col } from 'app/components/Grid';
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
-import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
-
 const { Title } = Typography;
-
 export const Login = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   const { handlers, selectors } = useHooks();
@@ -34,7 +31,7 @@ export const Login = memo(() => {
       <Col.RightCenter span={12}>
         <Image alt="banner" src={banner} />
       </Col.RightCenter>
-      <Col span={8}>
+      <Col span={12}>
         <Form
           className="login-form"
           onFinish={onFinish}
@@ -77,9 +74,12 @@ export const Login = memo(() => {
           >
             <Input type="password" placeholder="Password" />
           </Form.Item>
-          <Form.Item>
-            <Link to="/forgot-password"> {t('Login.forgotPassword')} </Link>
-          </Form.Item>
+          <Link
+            to="/forgot-password"
+            style={{ display: 'block', marginBottom: '10px' }}
+          >
+            {t('Login.forgotPassword')}
+          </Link>
           <Form.Item className="login-form-button login-form-button-local">
             <Button
               type="accent"
@@ -96,7 +96,7 @@ export const Login = memo(() => {
           <Form.Item>
             <Space.StyledSpace size="large">
               <GoogleLogin
-                clientId={GOOGLE_ID}
+                clientId="518404312823-ibh4ph48o4p3ad7b6f4jd4eoiv6m4o7l.apps.googleusercontent.com"
                 render={renderProps => (
                   <Button
                     className="login-form-button"
@@ -118,7 +118,7 @@ export const Login = memo(() => {
                 cookiePolicy={'single_host_origin'}
               />
               <FacebookLogin
-                appId={FACEBOOK_ID}
+                appId="703530593917463"
                 fields="name,email,picture"
                 callback={receivedData =>
                   handleLoginService({

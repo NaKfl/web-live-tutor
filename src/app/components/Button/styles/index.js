@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { COLOR } from '../../../../styles/colorPalette';
+import PropTypes from 'prop-types';
+
 const primaryStyle = {
   'background-color': COLOR.HELIOTROPE,
   color: COLOR.WHITE,
@@ -90,4 +92,8 @@ export const StyledButton = styled(Button)`
   }
   height: 100%;
   display: flex;
+  align-items: center;
 `;
+StyledButton.propTypes = {
+  type: PropTypes.arrayOf(['primary', 'accent', 'default']),
+};
