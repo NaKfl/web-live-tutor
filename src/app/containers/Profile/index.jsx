@@ -33,7 +33,7 @@ export const Profile = () => {
       >
         <Form.Item>
           <Row>
-            <Col flex={0.1}>
+            <Col flex={0.3}>
               <StyledAvatar>
                 <Avatar
                   size={130}
