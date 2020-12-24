@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { COLOR } from './colorPalette';
+
 export const GlobalStyle = createGlobalStyle`
 html,body{
   height:100%;

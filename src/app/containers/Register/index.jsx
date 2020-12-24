@@ -33,7 +33,7 @@ export const Register = memo(() => {
       <Col.RightCenter span={12}>
         <Image alt="banner" src={banner} />
       </Col.RightCenter>
-      <Col span={8}>
+      <Col span={12}>
         <Form
           className="login-form"
           onFinish={onFinish}
@@ -74,7 +74,7 @@ export const Register = memo(() => {
               },
             ]}
           >
-            <Input type="password" placeholder="Password" />
+            <Input.Password type="password" placeholder="Password" />
           </Form.Item>
 
           <Form.Item className="login-form-button login-form-button-local">

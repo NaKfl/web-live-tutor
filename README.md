@@ -1,7 +1,10 @@
-# BASIC APP
+## LIVE TUTOR
 
-# Checkout this repo
+### How to run
 
-# Run yarn
+- Checkout this repo
+- run `yarn`
+- run `copy .env.example .env` and config your environment
+- run `yarn start`
 
-# Run yarn start
+### Happy hacking !

@@ -18,12 +18,14 @@ export const StyledProfile = styled.div`
     }
   }
 `;
+
 export const StyledEditIcon = styled(EditIcon)`
   display: inline-table;
   position: absolute;
   bottom: 0;
   right: 0;
 `;
+
 export const StyledAvatar = styled.div`
   display: inline-flex;
   position: relative;

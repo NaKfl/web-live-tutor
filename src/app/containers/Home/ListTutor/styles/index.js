@@ -1,13 +1,13 @@
 import styled from 'styled-components';
+import { Row } from 'antd';
+
 export const StyledTutorCard = styled.div`
   display: flex;
   flex-flow: column;
   background-color: #fff;
   position: relative;
-  width: 30%;
   height: 275px;
-  padding: 16px;
-  margin-bottom: 25px;
+  padding: 25px;
   .w-100 {
     width: 100%;
   }
@@ -66,12 +66,9 @@ export const StyledMain = styled.div`
     }
   }
 `;
-export const LayoutListTutor = styled.div`
+export const LayoutListTutor = styled(Row)`
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
 `;
 export const InfoText = styled.p`
   margin-bottom: 0.5em;

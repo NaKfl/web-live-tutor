@@ -17,7 +17,7 @@ export const PublicHeader = () => {
         <Link to="/login">
           <Button size="medium">LOG IN</Button>
         </Link>
-        <Link to="/signup">
+        <Link to="/register">
           <Button size="medium" type="accent">
             SIGN UP
           </Button>

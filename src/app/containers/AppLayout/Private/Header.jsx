@@ -1,28 +1,29 @@
 import Avatar from 'app/components/Avatar';
 import Dropdown from 'app/components/Dropdown';
+import Space from 'app/components/Space';
+import Button from 'app/components/Button';
 import Menu from 'app/components/Menu';
 import { useLogout } from 'app/containers/Login/hooks';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { StyledHeader } from '../styles';
+import { StyledHeader } from 'app/components/Layout';
+import { getUser } from 'utils/localStorageUtils';
 
 export const Header = () => {
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
+  const { avatar } = getUser();
 
   return (
     <StyledHeader>
-      <div className="left">
-        <div className="logo" />
-        <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">
-            <Link to="/">{t('Header.linkHome')}</Link>
-          </Menu.Item>
-        </Menu>
-      </div>
-      <div className="right">
+      <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
+        <Menu.Item key="1">Tutors</Menu.Item>
+        <Menu.Item key="2">Courses</Menu.Item>
+        <Menu.Item key="3">Progress</Menu.Item>
+      </Menu>
+      <Space>
         <Dropdown
           trigger={['click']}
           overlay={
@@ -34,9 +35,9 @@ export const Header = () => {
             </Menu>
           }
         >
-          <Avatar />
+          <Avatar src={avatar} />
         </Dropdown>
-      </div>
+      </Space>
     </StyledHeader>
   );
 };

@@ -72,7 +72,7 @@ export const Login = memo(() => {
               },
             ]}
           >
-            <Input type="password" placeholder="Password" />
+            <Input.Password type="password" placeholder="Password" />
           </Form.Item>
           <Link
             to="/forgot-password"
