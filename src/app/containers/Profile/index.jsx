@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import Button from 'app/components/Button';
 import Form from 'app/components/Form';
 import Input from 'app/components/Input';
+import DatePicker from 'app/components/DatePicker';
 import { Avatar } from 'antd';
 import { Row, Col } from 'app/components/Grid';
 import useHooks from './hooks';
@@ -21,6 +22,7 @@ export const Profile = () => {
   const { onFinish } = handlers;
   const { info, form, loading } = selectors;
   const { t } = useTranslation();
+
   return (
     <StyledProfile>
       <Form
@@ -31,23 +33,18 @@ export const Profile = () => {
         initialValues={info ?? {}}
         layout="vertical"
       >
-        <Form.Item>
-          <Row>
-            <Col flex={0.3}>
-              <StyledAvatar>
-                <Avatar
-                  size={130}
-                  src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.0-9/101246073_2205512612927928_6217134185102966784_o.jpg?_nc_cat=100&ccb=2&_nc_sid=09cbfe&_nc_ohc=mkddOjsBU6wAX-UaYxD&_nc_oc=AQkhBbgwpO9fIvmBqLED98tgzrAhnurd_At_Pfhw52l8KxzucoVDmpDJYnvVRa_r_MEIKguicahL-TEI3aRgu5T2&_nc_ht=scontent.fsgn5-5.fna&oh=bc8f6b6140f6c54d340f76a25928bf4a&oe=6007CFCF"
-                />
-                <StyledEditIcon />
-              </StyledAvatar>
-            </Col>
-            <Col className="group-info">
-              <Title level={3}>{info?.name}</Title>
-              <Title level={5}>{info?.country}</Title>
-            </Col>
-          </Row>
-        </Form.Item>
+        <Row className="mb-4">
+          <Col flex={0.05}>
+            <StyledAvatar>
+              <Avatar size={130} src={info?.avatar} />
+              <StyledEditIcon />
+            </StyledAvatar>
+          </Col>
+          <Col className="group-info">
+            <Title level={3}>{info?.name}</Title>
+            <Title level={5}>{info?.country}</Title>
+          </Col>
+        </Row>
 
         <Row gutter={[24, 0]}>
           <Col span={12}>
@@ -61,7 +58,7 @@ export const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="Name" />
+              <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
@@ -79,70 +76,34 @@ export const Profile = () => {
                 },
               ]}
             >
-              <Input placeholder="Email" />
+              <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item
-              label="Phone number"
-              name="phone"
-              rules={[
-                {
-                  required: true,
-                  message: t('Profile.requiredPhone'),
-                },
-              ]}
-            >
+            <Form.Item label="Phone number" name="phone">
               <Input placeholder="Phone" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item
-              label="Location"
-              name="country"
-              rules={[
-                {
-                  required: true,
-                  message: t('Profile.requiredCountry'),
-                },
-              ]}
-            >
-              <Input placeholder="Country" />
+            <Form.Item label="Country" name="country">
+              <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item
-              label="Language"
-              name="country"
-              rules={[
-                {
-                  required: true,
-                  message: t('Profile.requiredCountry'),
-                },
-              ]}
-            >
-              <Input placeholder="Country" />
+            <Form.Item label="Language" name="language">
+              <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item
-              label="Postal code"
-              name="country"
-              rules={[
-                {
-                  required: true,
-                  message: t('Profile.requiredCountry'),
-                },
-              ]}
-            >
-              <Input placeholder="Country" />
+            <Form.Item label="Birthday" name="birthday">
+              <DatePicker />
             </Form.Item>
           </Col>
         </Row>
 
         <Form.Item>
           <Button type="accent" htmlType="submit" loading={loading}>
-            Submit
+            {t('Profile.btnSave')}
           </Button>
         </Form.Item>
       </Form>

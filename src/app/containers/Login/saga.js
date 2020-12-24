@@ -2,6 +2,7 @@ import { call, put, all, fork, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 import { login, google, facebook } from 'fetchers/authFetcher';
 import { storeAuthInfo, removeAuthInfo } from 'utils/localStorageUtils';
+import { notifyError } from 'utils/notify';
 
 function* loginWatcher() {
   yield takeLatest(actions.login, loginTask);
@@ -14,6 +15,7 @@ function* loginTask(action) {
     yield put(actions.loginSuccess());
   } else {
     yield put(actions.loginFailed(error.data));
+    notifyError(error?.data?.message);
   }
 }
 

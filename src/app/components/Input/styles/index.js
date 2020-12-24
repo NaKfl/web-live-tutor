@@ -1,7 +1,14 @@
 import { Input } from 'antd';
 import styled from 'styled-components';
 
-export const StyledInput = styled(Input)`
+const StyledInput = styled(Input)`
   padding: 10px;
   border-radius: 6px;
 `;
+
+StyledInput.Password = styled(Input.Password)`
+  padding: 10px;
+  border-radius: 6px;
+`;
+
+export { StyledInput };

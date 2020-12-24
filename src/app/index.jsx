@@ -3,11 +3,12 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { GlobalStyle } from 'styles/globalStyles';
+import 'styles/core.css';
 
 export const App = () => {
   return (
     <BrowserRouter>
-      <Helmet titleTemplate="%s - BSA" defaultTitle="Basic App">
+      <Helmet titleTemplate="%s - LT" defaultTitle="Live tutor">
         <meta name="description" content="A React application" />
       </Helmet>
       <Switch>
