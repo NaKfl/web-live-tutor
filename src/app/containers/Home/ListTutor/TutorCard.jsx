@@ -6,7 +6,7 @@ import Rate from 'app/components/Rate';
 import PropTypes from 'prop-types';
 import Skeleton from 'app/components/Skeleton';
 import Button from 'app/components/Button';
-import { PhoneOutlined } from '@ant-design/icons';
+import { PhoneOutlined, HeartOutlined } from '@ant-design/icons';
 export const TutorCard = memo(props => {
   return (
     <StyledTutorCard>
@@ -36,6 +36,15 @@ export const TutorCard = memo(props => {
           <Button disabled size="small">
             Certificate
           </Button>
+        </div>
+        <div className="love">
+          <HeartOutlined
+            style={{
+              fontSize: '24px',
+              color: `${props.isFavorite ? 'red' : 'black'}`,
+            }}
+            onClick={() => props.onClickHeart(props.userId)}
+          ></HeartOutlined>
         </div>
       </StyledHeader>
       <StyledMain>
@@ -75,8 +84,9 @@ TutorCard.propTypes = {
   email: PropTypes.string,
   country: PropTypes.string,
   phone: PropTypes.string,
-  isActivated: PropTypes.string,
+  isActivated: PropTypes.bool,
   video: PropTypes.string,
   name: PropTypes.string,
   rate: PropTypes.number,
+  onClickHeart: PropTypes.func,
 };

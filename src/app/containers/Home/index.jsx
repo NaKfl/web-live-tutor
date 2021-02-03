@@ -8,11 +8,16 @@ import ListTutor from './ListTutor';
 export const Home = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
-  const { selectors } = useHooks();
-  const { listTutor } = selectors;
+  const { selectors, handlers } = useHooks();
+  const { listTutor, listFavorite } = selectors;
+  const { onClickHeart } = handlers;
   return (
     <StyledHome>
-      <ListTutor listTutor={listTutor}></ListTutor>
+      <ListTutor
+        listTutor={listTutor}
+        onClickHeart={onClickHeart}
+        listFavorite={listFavorite}
+      ></ListTutor>
     </StyledHome>
   );
 });

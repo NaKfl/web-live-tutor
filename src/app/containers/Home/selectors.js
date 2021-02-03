@@ -8,3 +8,8 @@ export const makeSelectListTutor = createSelector(selectHomeState, home =>
 export const makeSelectStatus = createSelector(selectHomeState, home =>
   get('status', home),
 );
+
+export const makeSelectListFavorite = createSelector(
+  selectHomeState,
+  listFavorite => get('listFavorite', listFavorite),
+);

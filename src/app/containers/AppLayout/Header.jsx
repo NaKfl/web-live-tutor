@@ -11,6 +11,7 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { StyledHeader } from 'app/components/Layout';
+import FavoriteTutor from 'app/containers/AppLayout/Private/FavoriteTutor';
 
 export const Header = () => {
   const user = useGetUserInfoAuthenticate();
@@ -27,6 +28,7 @@ export const Header = () => {
       </Menu>
       {(user && (
         <Space>
+          <FavoriteTutor></FavoriteTutor>
           <Dropdown
             trigger={['click']}
             overlay={
