@@ -7,6 +7,7 @@ export const initialState = {
   listTutor: [],
   error: null,
   status: '',
+  listFavorite: [],
 };
 const homeSlice = createSlice({
   name: 'home',
@@ -32,6 +33,29 @@ const homeSlice = createSlice({
     },
     getList(state, action) {
       return flow(set('listTutor', action.payload))(state);
+    },
+
+    manageFavoriteTutor(state, action) {
+      return flow(set('error', null))(state);
+    },
+
+    fetchFavoriteList(state) {
+      return flow(
+        set('error', null),
+        set('status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+    fetchFavoriteListSuccess(state, action) {
+      return flow(
+        set('listFavorite', action.payload),
+        set('status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+    fetchFavoriteListFailed(state, action) {
+      return flow(
+        set('error', action.payload),
+        set('status', ACTION_STATUS.FAILED),
+      )(state);
     },
   },
 });

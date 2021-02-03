@@ -1,7 +1,6 @@
 import Avatar from 'app/components/Avatar';
 import Dropdown from 'app/components/Dropdown';
 import Space from 'app/components/Space';
-import Button from 'app/components/Button';
 import Menu from 'app/components/Menu';
 import { useLogout } from 'app/containers/Login/hooks';
 import React, { memo } from 'react';
@@ -9,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { StyledHeader } from 'app/components/Layout';
 import { getUser } from 'utils/localStorageUtils';
+import FavoriteTutor from './FavoriteTutor';
 
 export const Header = () => {
   const { t } = useTranslation();
@@ -24,6 +24,7 @@ export const Header = () => {
         <Menu.Item key="3">Progress</Menu.Item>
       </Menu>
       <Space>
+        <FavoriteTutor></FavoriteTutor>
         <Dropdown
           trigger={['click']}
           overlay={

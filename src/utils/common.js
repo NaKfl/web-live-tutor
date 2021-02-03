@@ -16,3 +16,7 @@ export const toBase64 = file => {
     reader.onerror = error => reject(error);
   });
 };
+
+export const checkIsFavorite = (data, id) => {
+  return data.findIndex(f => f?.secondInfo?.id === id) !== -1;
+};
