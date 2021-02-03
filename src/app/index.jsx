@@ -9,7 +9,7 @@ export const App = () => {
   return (
     <BrowserRouter>
       <Helmet titleTemplate="%s - LT" defaultTitle="Live tutor">
-        <meta name="description" content="A React application" />
+        <meta name="description" content="Live tutor" />
       </Helmet>
       <Switch>
         <Route component={AppLayout} />
