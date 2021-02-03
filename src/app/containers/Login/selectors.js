@@ -1,25 +1,24 @@
 import { createSelector } from 'reselect';
 import get from 'lodash/fp/get';
 
-const selectAuthenticationState = state => state.authentication;
+export const selectAuthenticationState = state => state.authentication;
 
-const makeSelectIsAuthenticated = createSelector(
+export const makeSelectIsAuthenticated = createSelector(
   selectAuthenticationState,
   authentication => get('isAuthenticated', authentication),
 );
 
-const makeSelectAuthenticationStatus = createSelector(
+export const selectUserInfoAuthenticate = createSelector(
+  selectAuthenticationState,
+  authentication => get('info', authentication),
+);
+
+export const makeSelectAuthenticationStatus = createSelector(
   selectAuthenticationState,
   authentication => get('status', authentication),
 );
 
-const makeSelectAuthenticationError = createSelector(
+export const makeSelectAuthenticationError = createSelector(
   selectAuthenticationState,
   authentication => get('error', authentication),
 );
-
-export {
-  makeSelectIsAuthenticated,
-  makeSelectAuthenticationError,
-  makeSelectAuthenticationStatus,
-};

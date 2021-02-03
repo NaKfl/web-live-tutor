@@ -2,6 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 import { COLOR } from './colorPalette';
 
 export const GlobalStyle = createGlobalStyle`
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 html,body{
   height:100%;
   width:100%;

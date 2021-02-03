@@ -1,7 +1,7 @@
 import { getProfile, editProfile } from 'fetchers/profileFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
-import { notifyError, notifySuccess } from 'utils/notify';
+import { notifySuccess } from 'utils/notify';
 import i18n from 'locales/i18n';
 
 function* getProfileWatcher() {
@@ -14,7 +14,6 @@ function* getProfileTask() {
     yield put(actions.getProfileSuccess(response));
   } else {
     yield put(actions.getProfileFailed(error.data));
-    notifyError(error?.data?.message);
   }
 }
 
@@ -33,7 +32,6 @@ function* editProfileTask(action) {
     notifySuccess(i18n.t('Profile.notifyEditSuccess'));
   } else {
     yield put(actions.editProfileFailed(error.data));
-    notifyError(error?.data?.message);
   }
 }
 
