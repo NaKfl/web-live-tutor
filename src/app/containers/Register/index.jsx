@@ -14,10 +14,12 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import Image from 'app/components/Image';
 import banner from 'assets/2.png';
+import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
 import { ACTION_STATUS } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 import { Row, Col } from 'app/components/Grid';
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
+import loginHooks from 'app/containers/Login/hooks';
 
 export const Register = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -25,13 +27,15 @@ export const Register = memo(() => {
   const { handlers, selectors } = useHooks();
   useUnmount();
   const { onFinish, onFinishFailed } = handlers;
+  const { handlers: loginHandlers } = loginHooks();
+  const { handleLoginService } = loginHandlers;
   const { status } = selectors;
   const { t } = useTranslation();
 
   return (
     <Row gutter={[48, 48]}>
       <Col.RightCenter span={12}>
-        <Image alt="banner" src={banner} />
+        <Image preview={false} alt="banner" src={banner} />
       </Col.RightCenter>
       <Col span={12}>
         <Form
@@ -93,24 +97,34 @@ export const Register = memo(() => {
           <Form.Item>
             <Space.StyledSpace size="large">
               <GoogleLogin
-                clientId="518404312823-ibh4ph48o4p3ad7b6f4jd4eoiv6m4o7l.apps.googleusercontent.com"
+                clientId={GOOGLE_ID}
                 render={renderProps => (
                   <Button
                     className="login-form-button"
                     onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
                     icon={<GoogleOutlined />}
                   >
                     {t('Register.btnRegisterGoogle')}
                   </Button>
                 )}
-                buttonText="Google Register"
-                onFailure={res => console.log(res)}
+                buttonText="Google Login"
+                onSuccess={receivedData =>
+                  handleLoginService({
+                    service: 'google',
+                    data: receivedData && receivedData.accessToken,
+                  })
+                }
                 cookiePolicy={'single_host_origin'}
               />
               <FacebookLogin
-                appId="703530593917463"
+                appId={FACEBOOK_ID}
                 fields="name,email,picture"
+                callback={receivedData =>
+                  handleLoginService({
+                    service: 'facebook',
+                    data: receivedData && receivedData.accessToken,
+                  })
+                }
                 render={renderProps => (
                   <Button
                     className="login-form-button"
