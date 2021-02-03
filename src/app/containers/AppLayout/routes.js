@@ -9,14 +9,14 @@ export const privateRoutes = [
     component: Profile,
     key: 'profile',
   },
-];
-
-export const publicRoutes = [
   {
     path: '/',
     component: Home,
     key: 'home',
   },
+];
+
+export const publicRoutes = [
   {
     path: '/login',
     component: Login,
