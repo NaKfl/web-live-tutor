@@ -5,11 +5,6 @@ import { Profile } from 'app/containers/Profile/Loadable';
 
 export const privateRoutes = [
   {
-    path: '/',
-    component: Home,
-    key: 'home',
-  },
-  {
     path: '/profile',
     component: Profile,
     key: 'profile',
@@ -17,6 +12,11 @@ export const privateRoutes = [
 ];
 
 export const publicRoutes = [
+  {
+    path: '/',
+    component: Home,
+    key: 'home',
+  },
   {
     path: '/login',
     component: Login,

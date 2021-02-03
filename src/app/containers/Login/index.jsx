@@ -15,6 +15,7 @@ import banner from 'assets/1.png';
 import Typography from 'app/components/Typography';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
 import { useTranslation } from 'react-i18next';
 import { Row, Col } from 'app/components/Grid';
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
@@ -29,7 +30,7 @@ export const Login = memo(() => {
   return (
     <Row gutter={[48, 48]}>
       <Col.RightCenter span={12}>
-        <Image alt="banner" src={banner} />
+        <Image preview={false} alt="banner" src={banner} />
       </Col.RightCenter>
       <Col span={12}>
         <Form
@@ -96,12 +97,11 @@ export const Login = memo(() => {
           <Form.Item>
             <Space.StyledSpace size="large">
               <GoogleLogin
-                clientId="518404312823-ibh4ph48o4p3ad7b6f4jd4eoiv6m4o7l.apps.googleusercontent.com"
+                clientId={GOOGLE_ID}
                 render={renderProps => (
                   <Button
                     className="login-form-button"
                     onClick={renderProps.onClick}
-                    disabled={renderProps.disabled}
                     icon={<GoogleOutlined />}
                   >
                     {t('Login.btnLoginGoogle')}
@@ -114,11 +114,10 @@ export const Login = memo(() => {
                     data: receivedData && receivedData.accessToken,
                   })
                 }
-                onFailure={res => console.log(res)}
                 cookiePolicy={'single_host_origin'}
               />
               <FacebookLogin
-                appId="703530593917463"
+                appId={FACEBOOK_ID}
                 fields="name,email,picture"
                 callback={receivedData =>
                   handleLoginService({
