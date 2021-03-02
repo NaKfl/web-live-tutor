@@ -9,6 +9,15 @@ export const StyledModal = styled(Modal)`
 export const StyledProfile = styled.div`
   display: flex;
   justify-content: center;
+  h3,
+  h4,
+  h5 {
+    font-weight: normal;
+  }
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
   .profile-form {
     width: 100%;
   }
@@ -68,8 +77,6 @@ export const StyledTutorContent = styled.div`
   .video-tutor {
     width: 100%;
     object-fit: contain;
-    padding-top: 20px;
-    border-top: 1px ${COLOR.BOULDER} solid;
   }
 `;
 

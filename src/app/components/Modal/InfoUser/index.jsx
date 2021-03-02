@@ -9,6 +9,7 @@ import {
   StyledGroupIcon,
 } from '../styles';
 import Button from 'app/components/Button';
+import TextHighlight from 'app/components/TextHighlight';
 import Form from 'app/components/Form';
 import {
   CloseOutlined,
@@ -85,7 +86,7 @@ const Confirm = memo(props => {
                   />
                 </StyledAvatar>
               </Col>
-              <Col className="group-info d-flex">
+              <Col className="group-info d-flex justify-content-center">
                 <Title level={3}>Will Harriman</Title>
                 <Row className="country">
                   <Image
@@ -103,6 +104,7 @@ const Confirm = memo(props => {
             </Row>
           </StyledTutorTitle>
           <StyledTutorContent {...rest}>
+            <hr></hr>
             <Row className="mb-4 intro-video-section">
               <video
                 className="video-tutor"
@@ -115,8 +117,54 @@ const Confirm = memo(props => {
               <Rate disabled defaultValue={5} className="rate mb-2" />
             </Row>
             <Row className="intro-section">
-              If you're looking for en experience ESL instructor? That's me!
-              I've had over ten years experience in teaching at all levels!"
+              <Title level={5}>
+                If you're looking for en experience ESL instructor? That's me!
+                I've had over ten years experience in teaching at all levels!"
+              </Title>
+            </Row>
+            <hr></hr>
+            <Row className="intro-about flex-column">
+              <Title level={4}>About Me</Title>
+              <Row>
+                <Title level={5}>Languages</Title>
+              </Row>
+              <Row className="mb-1">
+                <TextHighlight content={'English'} />
+                <TextHighlight content={'English'} />
+                <TextHighlight content={'English'} />
+              </Row>
+              <Row>
+                <Title level={5}>Languages</Title>
+              </Row>
+              <Row className="mb-1">
+                <TextHighlight content={'Business English'} />
+                <TextHighlight content={'Business English'} />
+                <TextHighlight content={'Business English'} />
+              </Row>
+              <Row>
+                <Title level={5}>Interests</Title>
+              </Row>
+              <Row>
+                <Title level={5}>
+                  I have traveled a major part of the USA and parts of Eastern
+                  Europe, Russia, the Philippines, and Chile. I now live in a
+                  small town in South Carolina in the USA
+                </Title>
+              </Row>
+            </Row>
+            <hr></hr>
+            <Row className="intro-about flex-column">
+              <Title level={4}>Resume</Title>
+              <Row>
+                <Title level={5}>Teaching Experience</Title>
+              </Row>
+              <Row>
+                <Title level={5}>
+                  I have traveled a major part of the USA and parts of Eastern
+                  Europe, Russia, the Philippines, and Chile. I now live in a
+                  small town in South Carolina in the USA
+                </Title>
+              </Row>
             </Row>
           </StyledTutorContent>
         </Form>
