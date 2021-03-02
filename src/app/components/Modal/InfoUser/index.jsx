@@ -1,0 +1,128 @@
+import React, { memo } from 'react';
+import {
+  StyledModal,
+  StyledProfile,
+  StyledTutorTitle,
+  StyledAvatar,
+  StyledTutorContent,
+  StyledGroupIconRight,
+  StyledGroupIcon,
+} from '../styles';
+import Button from 'app/components/Button';
+import Form from 'app/components/Form';
+import {
+  CloseOutlined,
+  HeartOutlined,
+  DashOutlined,
+  MailOutlined,
+} from '@ant-design/icons';
+import Image from 'app/components/Image';
+import Rate from 'app/components/Rate';
+import { Row, Col, Avatar } from 'antd';
+import { sliceKey, reducer } from './slice';
+import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
+import saga from './saga';
+import useHooks from './hooks';
+import { Typography } from 'antd';
+const { Title } = Typography;
+
+const Confirm = memo(props => {
+  useInjectSaga({ key: sliceKey, saga });
+  useInjectReducer({ key: sliceKey, reducer });
+  // const { selectors } = useHooks(props);
+  // const { userInfo } = selectors;
+  const { visible, onCancel, user, ...rest } = props;
+  // const { status } = user;
+  // const {
+  //   name,
+  //   email,
+  //   avatar,
+  //   point,
+  //   createdAt,
+  //   totalMatches,
+  //   winMatches,
+  // } = userInfo;
+
+  return (
+    <StyledModal
+      centered
+      closable={false}
+      visible={visible}
+      onCancel={onCancel}
+      footer={[
+        <Button key="cancel" onClick={onCancel}>
+          Return
+        </Button>,
+      ]}
+      {...rest}
+    >
+      <StyledProfile>
+        <Form
+          className="profile-form"
+          requiredMark={false}
+          // initialValues={userInfo}
+          layout="vertical"
+        >
+          <StyledTutorTitle {...rest}>
+            <StyledGroupIcon>
+              <CloseOutlined />
+              <StyledGroupIconRight>
+                <HeartOutlined />
+                <MailOutlined />
+                <DashOutlined />
+              </StyledGroupIconRight>
+            </StyledGroupIcon>
+            <Row className="tutor-info">
+              <Col flex={0.1}>
+                <StyledAvatar>
+                  <Avatar
+                    src={
+                      'https://www.alliancerehabmed.com/wp-content/uploads/icon-avatar-default.png'
+                    }
+                    shape="circle"
+                    size={90}
+                    className="avatar"
+                  />
+                </StyledAvatar>
+              </Col>
+              <Col className="group-info d-flex">
+                <Title level={3}>Will Harriman</Title>
+                <Row className="country">
+                  <Image
+                    preview={false}
+                    src={
+                      'https://www.cambly.com/static/images/country-flag-icons/US.png'
+                    }
+                  />
+                  <Title level={5}>London, England, UK</Title>
+                </Row>
+              </Col>
+            </Row>
+            <Row className="tutor-info d-flex">
+              <Button type="accent">CALL NOW</Button>
+            </Row>
+          </StyledTutorTitle>
+          <StyledTutorContent {...rest}>
+            <Row className="mb-4 intro-video-section">
+              <video
+                className="video-tutor"
+                src="https://d1z2nqdm9ph1g6.cloudfront.net/602d01a80e7f57fcd520e92a/602d01a80e7f57fcd520e92a?Expires=1614700263&Signature=QrkPwKB9RWyGVW0qVytEN1PTauJ1Zlmcuej3IznW8jj0hCLx9LHqJQmYwBEcaaLam9k15PK3KnOSORcGYAauWd4S1H3oMgeME3TjzCKqSDYFctvJmtpPnmmWI4m-zd8S0ji-ScEqQa~jMsFZQOMJjMaeMFKCeIPQFFWHkd40F0M5r~-9o85A9ofkcrdY3Hv8RpGMbab-xACCwvd86U87VJT8jTovkcPdRnz6ORti5U1yVtwyaIeh~Gz0FkPfIy3AbS9rKYHADM5lkL1ZBCtxame3IeLc0lwhvYfxWArFq7qcXz66vULe4yrsraCTIoMJ7p8PWs-vDK4tJx6EeXJlnQ__&Key-Pair-Id=APKAIKYVFETQQHXNXQ5Q"
+                controlslist="nodownload"
+                controls
+              ></video>
+            </Row>
+            <Row className="intro-badge">
+              <Rate disabled defaultValue={5} className="rate mb-2" />
+            </Row>
+            <Row className="intro-section">
+              If you're looking for en experience ESL instructor? That's me!
+              I've had over ten years experience in teaching at all levels!"
+            </Row>
+          </StyledTutorContent>
+        </Form>
+      </StyledProfile>
+    </StyledModal>
+  );
+});
+
+export default Confirm;
