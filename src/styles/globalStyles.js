@@ -15,6 +15,7 @@ html,body{
 
 body{
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: auto !important;
 }
 
 #root{

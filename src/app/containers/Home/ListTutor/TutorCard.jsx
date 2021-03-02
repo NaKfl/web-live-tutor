@@ -7,7 +7,11 @@ import PropTypes from 'prop-types';
 import Skeleton from 'app/components/Skeleton';
 import Button from 'app/components/Button';
 import { PhoneOutlined, HeartOutlined } from '@ant-design/icons';
+import useHooks from './hooks';
+
 export const TutorCard = memo(props => {
+  const { handlers } = useHooks(props);
+  const { showInfoUser } = handlers;
   return (
     <StyledTutorCard>
       <StyledHeader>
@@ -19,6 +23,7 @@ export const TutorCard = memo(props => {
             shape="circle"
             size={90}
             className="avatar"
+            onClick={() => showInfoUser()}
           />
         )}
         <div className="info">
