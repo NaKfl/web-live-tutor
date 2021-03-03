@@ -33,7 +33,7 @@ export const Register = memo(() => {
   const { t } = useTranslation();
 
   return (
-    <Row gutter={[48, 48]}>
+    <Row gutter={[48, 48]} justify="center" align="middle">
       <Col.RightCenter span={12}>
         <Image preview={false} alt="banner" src={banner} />
       </Col.RightCenter>

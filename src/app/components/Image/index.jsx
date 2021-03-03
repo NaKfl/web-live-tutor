@@ -1,3 +1,8 @@
 import { StyledImage } from './styles';
+import { memo } from 'react';
 
-export default StyledImage;
+const Image = ({ ...rest }) => {
+  return <StyledImage preview={false} {...rest} />;
+};
+
+export default memo(Image);

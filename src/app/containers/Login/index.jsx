@@ -19,6 +19,7 @@ import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
 import { useTranslation } from 'react-i18next';
 import { Row, Col } from 'app/components/Grid';
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
+
 const { Title } = Typography;
 export const Login = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -28,7 +29,7 @@ export const Login = memo(() => {
   const { t } = useTranslation();
 
   return (
-    <Row gutter={[48, 48]}>
+    <Row gutter={[48, 48]} justify="center" align="middle">
       <Col.RightCenter span={12}>
         <Image preview={false} alt="banner" src={banner} />
       </Col.RightCenter>

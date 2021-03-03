@@ -11,4 +11,9 @@ StyledInput.Password = styled(Input.Password)`
   border-radius: 6px;
 `;
 
+StyledInput.TextArea = styled(Input.TextArea)`
+  padding: 10px;
+  border-radius: 6px;
+`;
+
 export { StyledInput };

@@ -32,7 +32,6 @@ export const StyledContent = styled(Content)`
   width: 100%;
   justify-content: center;
   display: flex;
-  align-items: center;
   position: relative;
 `;
 
