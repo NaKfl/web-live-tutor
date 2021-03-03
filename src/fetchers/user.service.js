@@ -1,6 +1,5 @@
 import { WEB_API } from 'configs';
 import request, { handleGeneralError } from './index';
-
 export const manageFavoriteTutor = tutorId => {
   return request(WEB_API, {
     url: 'user/manageFavoriteTutor',
@@ -22,6 +21,28 @@ export const getFavoriteTutorList = () => {
     .then(res => res.data)
     .then(data => {
       return { response: data };
+    })
+    .catch(handleGeneralError);
+};
+
+export const uploadAvatar = file => {
+  const form = new FormData();
+  form.set('avatar', file);
+  return request(
+    WEB_API,
+    {
+      url: 'user/uploadAvatar',
+      method: 'POST',
+      data: form,
+    },
+    1,
+  )
+    .then(res => {
+      return res.data;
+    })
+    .then(data => {
+      console.log(data);
+      return { response: 'ok' };
     })
     .catch(handleGeneralError);
 };

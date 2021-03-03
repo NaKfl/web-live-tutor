@@ -9,18 +9,23 @@ import useHooks from './hooks';
 import saga from './saga';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import { reducer, sliceKey } from './slice';
-import { StyledAvatar, StyledEditIcon, StyledProfile } from './styles';
+import {
+  StyledAvatar,
+  StyledProfile,
+  StyledEditIcon,
+  StyledIconEdit,
+} from './styles';
 import { useTranslation } from 'react-i18next';
 import { Typography } from 'antd';
-
+import UploadAvatar from './UploadAva';
 const { Title } = Typography;
 
 export const Profile = () => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
-  const { onFinish } = handlers;
-  const { info, form, loading } = selectors;
+  const { onFinish, openModal, modalControl } = handlers;
+  const { info, form, loading, avatarUploadVisible, loadingUpload } = selectors;
   const { t } = useTranslation();
 
   return (
@@ -37,7 +42,14 @@ export const Profile = () => {
           <Col flex={0.05}>
             <StyledAvatar>
               <Avatar size={130} src={info?.avatar} />
-              <StyledEditIcon />
+              <StyledIconEdit onClick={openModal}>
+                <StyledEditIcon />
+              </StyledIconEdit>
+              <UploadAvatar
+                visible={avatarUploadVisible}
+                loading={loadingUpload}
+                {...modalControl}
+              ></UploadAvatar>
             </StyledAvatar>
           </Col>
           <Col className="group-info">

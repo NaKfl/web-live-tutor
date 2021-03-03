@@ -51,6 +51,7 @@
     "requiredName": "Please input your name!",
     "requiredEmail": "Please input your email!",
     "invalidEmail": "The input is not valid email!",
-    "btnSave": "Save changes"
+    "btnSave": "Save changes",
+    "uploadAvatarSuccess": "Upload avatar sucesss!"
   }
 }

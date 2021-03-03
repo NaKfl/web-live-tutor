@@ -30,3 +30,24 @@ export const StyledAvatar = styled.div`
   display: inline-flex;
   position: relative;
 `;
+
+export const StyledIconEdit = styled.div`
+  display: inline-table;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
+
+export const StyledDragImage = styled.div`
+  width: 100%;
+  height: 280px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  transition: 'border .24s ease-in-out';
+  border: 2px dashed #eee;
+  border-radius: 2px;
+  color: #bdbdbd;
+`;

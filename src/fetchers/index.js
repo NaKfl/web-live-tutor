@@ -4,19 +4,31 @@ import get from 'lodash/fp/get';
 import { getAccessToken } from 'utils/localStorageUtils';
 import { notifyError } from 'utils/notify';
 
-const createClient = baseURL =>
-  axios.create({
-    baseURL,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: getAccessToken() ? `Bearer ${getAccessToken()}` : '',
-    },
-  });
+const createClient = (baseURL, isMultipart = 0) => {
+  if (!isMultipart) {
+    return axios.create({
+      baseURL,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: getAccessToken() ? `Bearer ${getAccessToken()}` : '',
+      },
+    });
+  } else {
+    return axios.create({
+      baseURL,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: getAccessToken() ? `Bearer ${getAccessToken()}` : '',
+      },
+    });
+  }
+};
 
-const request = (baseURL, options) => {
+const request = (baseURL, options, isMultipart) => {
   const onSuccess = response => response;
   const onError = error => Promise.reject(error.response || error.message);
-  const client = createClient(baseURL);
+  const client = createClient(baseURL, isMultipart);
   return client(options).then(onSuccess).catch(onError);
 };
 

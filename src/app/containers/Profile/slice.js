@@ -13,6 +13,12 @@ const initialState = {
     status: '',
     error: null,
   },
+  upload: {
+    status: '',
+    error: '',
+    visibleModal: false,
+    loading: false,
+  },
 };
 
 const profileSlice = createSlice({
@@ -61,6 +67,24 @@ const profileSlice = createSlice({
         set('info', user),
         set('edit.status', ACTION_STATUS.SUCCESS),
       )(state);
+    },
+    hideModal(state) {
+      return flow(set('upload.visibleModal', false))(state);
+    },
+    showModal(state) {
+      return flow(set('upload.visibleModal', true))(state);
+    },
+    uploadAvatar(state) {
+      return flow(set('upload.loading', true))(state);
+    },
+    uploadAvatarSuccess(state) {
+      return flow(
+        set('upload.loading', false),
+        set('upload.visibleModal', false),
+      )(state);
+    },
+    uploadAvatarFailed(state, action) {
+      return flow(set('upload.error', action.payload))(state);
     },
   },
 });
