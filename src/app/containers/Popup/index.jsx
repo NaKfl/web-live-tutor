@@ -29,7 +29,7 @@ export const Popup = memo(() => {
             );
           }
 
-          case POPUP_TYPE.INFO_USER: {
+          case POPUP_TYPE.INFO_TUTOR: {
             return (
               <InfoUser
                 key={popup.key}

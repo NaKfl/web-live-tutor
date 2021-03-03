@@ -5,7 +5,6 @@ import { selectInfoUserData } from './selectors';
 import { actions } from './slice';
 
 export const useHooks = props => {
-  const { user } = props;
   const [isSelectDate, setIsSelectDate] = useState(false);
   const onSelectDate = useCallback(value => {
     setIsSelectDate(true);

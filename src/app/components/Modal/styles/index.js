@@ -3,12 +3,20 @@ import { Modal } from 'antd';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledModal = styled(Modal)`
-  max-height: calc(100% - 40px);
+  .ant-modal-content {
+    border-radius: 10px;
+  }
+  .ant-modal-body {
+    height: 85vh;
+    padding: 24px 0px 24px 24px;
+  }
 `;
 
 export const StyledProfile = styled.div`
   display: flex;
   justify-content: center;
+  overflow-y: scroll;
+  height: 100%;
   h3,
   h4,
   h5 {
@@ -20,6 +28,7 @@ export const StyledProfile = styled.div`
   }
   .profile-form {
     width: 100%;
+    padding-right: 24px;
   }
 `;
 

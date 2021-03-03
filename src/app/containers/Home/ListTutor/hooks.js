@@ -8,12 +8,12 @@ export const useHooks = props => {
     popupActions,
   ]);
 
-  const showInfoUser = useCallback(
-    user => {
+  const showInfoTutor = useCallback(
+    tutor => {
       openPopup({
-        key: 'showInfoUser',
-        type: POPUP_TYPE.INFO_USER,
-        user,
+        key: 'showInfoTutor',
+        type: POPUP_TYPE.INFO_TUTOR,
+        tutor,
       });
     },
     [openPopup],
@@ -21,7 +21,7 @@ export const useHooks = props => {
 
   return {
     selectors: {},
-    handlers: { showInfoUser },
+    handlers: { showInfoTutor },
     states: {},
   };
 };

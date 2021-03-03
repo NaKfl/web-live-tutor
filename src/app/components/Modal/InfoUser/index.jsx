@@ -30,23 +30,23 @@ import useHooks from './hooks';
 import { Typography } from 'antd';
 const { Title } = Typography;
 
-const Confirm = memo(props => {
+const TutorModal = memo(props => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks(props);
   const { onSelectDate, handleBackSelectDate } = handlers;
   const { isSelectDate } = selectors;
-  const { visible, onCancel, user, ...rest } = props;
-  // const { status } = user;
-  // const {
-  //   name,
-  //   email,
-  //   avatar,
-  //   point,
-  //   createdAt,
-  //   totalMatches,
-  //   winMatches,
-  // } = userInfo;
+  const { visible, onCancel, tutor, ...rest } = props;
+  const {
+    avatar,
+    bio,
+    country,
+    languages,
+    name,
+    resume,
+    specialties,
+    video,
+  } = tutor;
 
   return (
     <StyledModal
@@ -54,11 +54,7 @@ const Confirm = memo(props => {
       closable={false}
       visible={visible}
       onCancel={onCancel}
-      footer={[
-        <Button key="cancel" onClick={onCancel}>
-          Return
-        </Button>,
-      ]}
+      footer={[]}
       {...rest}
     >
       <StyledProfile>
@@ -70,7 +66,7 @@ const Confirm = memo(props => {
         >
           <StyledTutorTitle {...rest}>
             <StyledGroupIcon>
-              <CloseOutlined />
+              <CloseOutlined onClick={onCancel} />
               <StyledGroupIconRight>
                 <HeartOutlined />
                 <MailOutlined />
@@ -81,9 +77,7 @@ const Confirm = memo(props => {
               <Col flex={0.1}>
                 <StyledAvatar>
                   <Avatar
-                    src={
-                      'https://www.alliancerehabmed.com/wp-content/uploads/icon-avatar-default.png'
-                    }
+                    src={avatar}
                     shape="circle"
                     size={90}
                     className="avatar"
@@ -91,7 +85,7 @@ const Confirm = memo(props => {
                 </StyledAvatar>
               </Col>
               <Col className="group-info d-flex justify-content-center">
-                <Title level={3}>Will Harriman</Title>
+                <Title level={3}>{name}</Title>
                 <Row className="country">
                   <Image
                     preview={false}
@@ -100,7 +94,7 @@ const Confirm = memo(props => {
                     }
                   />
                   <Title level={5} className="d-flex align-items-center">
-                    London, England, UK
+                    {country}
                   </Title>
                 </Row>
               </Col>
@@ -114,8 +108,8 @@ const Confirm = memo(props => {
             <Row className="mb-4 intro-video-section">
               <video
                 className="video-tutor"
-                src="https://d1z2nqdm9ph1g6.cloudfront.net/602d01a80e7f57fcd520e92a/602d01a80e7f57fcd520e92a?Expires=1614700263&Signature=QrkPwKB9RWyGVW0qVytEN1PTauJ1Zlmcuej3IznW8jj0hCLx9LHqJQmYwBEcaaLam9k15PK3KnOSORcGYAauWd4S1H3oMgeME3TjzCKqSDYFctvJmtpPnmmWI4m-zd8S0ji-ScEqQa~jMsFZQOMJjMaeMFKCeIPQFFWHkd40F0M5r~-9o85A9ofkcrdY3Hv8RpGMbab-xACCwvd86U87VJT8jTovkcPdRnz6ORti5U1yVtwyaIeh~Gz0FkPfIy3AbS9rKYHADM5lkL1ZBCtxame3IeLc0lwhvYfxWArFq7qcXz66vULe4yrsraCTIoMJ7p8PWs-vDK4tJx6EeXJlnQ__&Key-Pair-Id=APKAIKYVFETQQHXNXQ5Q"
-                controlslist="nodownload"
+                src={video}
+                controlsList="nodownload"
                 controls
               ></video>
             </Row>
@@ -123,10 +117,7 @@ const Confirm = memo(props => {
               <Rate disabled defaultValue={5} className="rate mb-2" />
             </Row>
             <Row className="intro-section">
-              <Title level={5}>
-                If you're looking for en experience ESL instructor? That's me!
-                I've had over ten years experience in teaching at all levels!"
-              </Title>
+              <Title level={5}>{bio}</Title>
             </Row>
             <hr></hr>
             <Row className="intro-about flex-column">
@@ -135,17 +126,17 @@ const Confirm = memo(props => {
                 <Title level={5}>Languages</Title>
               </Row>
               <Row className="mb-1">
-                <TextHighlight content={'English'} />
-                <TextHighlight content={'English'} />
-                <TextHighlight content={'English'} />
+                {languages.map(content => (
+                  <TextHighlight content={content} />
+                ))}
               </Row>
               <Row>
-                <Title level={5}>Languages</Title>
+                <Title level={5}>Specialties</Title>
               </Row>
               <Row className="mb-1">
-                <TextHighlight content={'Business English'} />
-                <TextHighlight content={'Business English'} />
-                <TextHighlight content={'Business English'} />
+                {specialties.map(content => (
+                  <TextHighlight content={content} />
+                ))}
               </Row>
               <Row>
                 <Title level={5}>Interests</Title>
@@ -165,11 +156,7 @@ const Confirm = memo(props => {
                 <Title level={5}>Teaching Experience</Title>
               </Row>
               <Row>
-                <Title level={5}>
-                  I have traveled a major part of the USA and parts of Eastern
-                  Europe, Russia, the Philippines, and Chile. I now live in a
-                  small town in South Carolina in the USA
-                </Title>
+                <Title level={5}>{resume}</Title>
               </Row>
             </Row>
             <hr></hr>
@@ -191,7 +178,7 @@ const Confirm = memo(props => {
                     <Row className="flex-column w-100 p-4">
                       <DatePicker
                         className="w-50 mb-4"
-                        defaultValue={moment('2015/01/01', 'YYYY/MM/DD')}
+                        defaultValue={moment(moment(), 'YYYY/MM/DD')}
                         format={'YYYY/MM/DD'}
                       />
                       <TimeSelect
@@ -217,4 +204,4 @@ const Confirm = memo(props => {
   );
 });
 
-export default Confirm;
+export default TutorModal;
