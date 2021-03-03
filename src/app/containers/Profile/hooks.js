@@ -47,7 +47,6 @@ const useHooks = () => {
 
   const onFinish = useCallback(
     values => {
-      console.log('values', values.birthday);
       editProfile({
         ...values,
         birthday: values?.birthday
