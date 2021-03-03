@@ -1,0 +1,4 @@
+export const POPUP_TYPE = {
+  CONFIRM: 'CONFIRM',
+  INFO_TUTOR: 'INFO_TUTOR',
+};
