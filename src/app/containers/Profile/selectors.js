@@ -16,3 +16,12 @@ export const selectGetProfileStatus = createSelector(
   selectProfileState,
   profile => get('get.status', profile),
 );
+
+export const selectVisibleModal = createSelector(selectProfileState, visible =>
+  get('upload.visibleModal', visible),
+);
+
+export const selectLoadingUpload = createSelector(
+  selectProfileState,
+  loadingUpload => get('upload.loading', loadingUpload),
+);

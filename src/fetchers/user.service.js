@@ -25,3 +25,25 @@ export const getFavoriteTutorList = () => {
     })
     .catch(handleGeneralError);
 };
+
+export const uploadAvatar = file => {
+  const form = new FormData();
+  form.set('avatar', file);
+  return request(
+    WEB_API,
+    {
+      url: 'user/uploadAvatar',
+      method: 'POST',
+      data: form,
+    },
+    1,
+  )
+    .then(res => {
+      return res.data;
+    })
+    .then(data => {
+      console.log(data);
+      return { response: 'ok' };
+    })
+    .catch(handleGeneralError);
+};

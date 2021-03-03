@@ -1,3 +1,7 @@
+.ant-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
 .d-inline {
   display: inline !important;
 }

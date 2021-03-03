@@ -3,6 +3,7 @@ import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 import { notifySuccess } from 'utils/notify';
 import i18n from 'locales/i18n';
+import { uploadAvatar } from 'fetchers/user.service';
 
 function* getProfileWatcher() {
   yield takeLatest(actions.getProfile, getProfileTask);
@@ -39,6 +40,26 @@ function editProfileAPI(payload) {
   return editProfile(payload);
 }
 
+function* uploadAvatarWatcher() {
+  yield takeLatest(actions.uploadAvatar, uploadAvatarTask);
+}
+function* uploadAvatarTask(action) {
+  const { response, error } = yield call(uploadAvatarAPI, action.payload);
+  if (response) {
+    yield put(actions.getProfile());
+    yield put(actions.uploadAvatarSuccess());
+    notifySuccess(i18n.t('Profile.uploadAvatarSuccess'));
+  } else {
+    yield put(actions.uploadAvatarFailed(error));
+  }
+}
+function uploadAvatarAPI(payload) {
+  return uploadAvatar(payload);
+}
 export default function* defaultSaga() {
-  yield all([fork(getProfileWatcher), fork(editProfileWatcher)]);
+  yield all([
+    fork(getProfileWatcher),
+    fork(editProfileWatcher),
+    fork(uploadAvatarWatcher),
+  ]);
 }
