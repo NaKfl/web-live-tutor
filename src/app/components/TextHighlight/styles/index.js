@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Typography } from 'antd';
+import { COLOR } from 'styles/colorPalette';
 
 export const StyledText = styled.span`
   color: #fff;
@@ -10,7 +10,7 @@ export const StyledText = styled.span`
 export const StyledTextHighlight = styled.div`
   margin: 4px;
   padding-top: 0px;
-  background-color: #228891;
+  background-color: ${COLOR.CORNFLOWER};
   height: 24px;
   border-radius: 16px;
   display: flex;

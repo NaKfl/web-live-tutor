@@ -10,16 +10,19 @@ import {
 } from '../styles';
 import Button from 'app/components/Button';
 import TextHighlight from 'app/components/TextHighlight';
+import TimeSelect from 'app/components/TimeSelect';
 import Form from 'app/components/Form';
 import {
   CloseOutlined,
   HeartOutlined,
   DashOutlined,
   MailOutlined,
+  ArrowLeftOutlined,
 } from '@ant-design/icons';
 import Image from 'app/components/Image';
 import Rate from 'app/components/Rate';
-import { Row, Col, Avatar } from 'antd';
+import { Row, Col, Avatar, DatePicker, Calendar } from 'antd';
+import moment from 'moment';
 import { sliceKey, reducer } from './slice';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from './saga';
@@ -30,8 +33,9 @@ const { Title } = Typography;
 const Confirm = memo(props => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
-  // const { selectors } = useHooks(props);
-  // const { userInfo } = selectors;
+  const { handlers, selectors } = useHooks(props);
+  const { onSelectDate, handleBackSelectDate } = handlers;
+  const { isSelectDate } = selectors;
   const { visible, onCancel, user, ...rest } = props;
   // const { status } = user;
   // const {
@@ -95,7 +99,9 @@ const Confirm = memo(props => {
                       'https://www.cambly.com/static/images/country-flag-icons/US.png'
                     }
                   />
-                  <Title level={5}>London, England, UK</Title>
+                  <Title level={5} className="d-flex align-items-center">
+                    London, England, UK
+                  </Title>
                 </Row>
               </Col>
             </Row>
@@ -164,6 +170,44 @@ const Confirm = memo(props => {
                   Europe, Russia, the Philippines, and Chile. I now live in a
                   small town in South Carolina in the USA
                 </Title>
+              </Row>
+            </Row>
+            <hr></hr>
+            <Row className="intro-schedule flex-column">
+              <Title level={4}>Schedule</Title>
+              <Row>
+                {isSelectDate && <Title level={5}>Select time a slot</Title>}
+                {!isSelectDate && <Title level={5}>Select a day</Title>}
+              </Row>
+              <Row className="group-tutor-calender">
+                {isSelectDate && (
+                  <Row className="tutor-calender">
+                    <Row
+                      className="btn-back pointer align-items-center"
+                      onClick={handleBackSelectDate}
+                    >
+                      <ArrowLeftOutlined /> <span>Back</span>
+                    </Row>
+                    <Row className="flex-column w-100 p-4">
+                      <DatePicker
+                        className="w-50 mb-4"
+                        defaultValue={moment('2015/01/01', 'YYYY/MM/DD')}
+                        format={'YYYY/MM/DD'}
+                      />
+                      <TimeSelect
+                        time={'2:00 AM - 4:00 AM'}
+                        disabled
+                      ></TimeSelect>
+                      <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
+                      <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
+                    </Row>
+                  </Row>
+                )}
+                {!isSelectDate && (
+                  <Row className="tutor-calender">
+                    <Calendar onSelect={onSelectDate} />
+                  </Row>
+                )}
               </Row>
             </Row>
           </StyledTutorContent>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Badge, Modal } from 'antd';
+import { Modal } from 'antd';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledModal = styled(Modal)`
@@ -78,11 +78,29 @@ export const StyledTutorContent = styled.div`
     width: 100%;
     object-fit: contain;
   }
-`;
-
-export const StyledPart = styled.div`
-  display: flex;
-  align-items: center;
+  .intro-schedule {
+    .group-tutor-calender {
+      position: relative;
+      .btn-back {
+        position: absolute;
+        font-size: 15px;
+        opacity: 0.9;
+        top: 10px;
+        left: 10px;
+        > span {
+          margin-right: 10px;
+        }
+      }
+    }
+    .tutor-calender {
+      width: 100%;
+      border: 1px #d9d9d9 solid;
+      padding: 20px;
+      .ant-picker-calendar-date {
+        height: 50px;
+      }
+    }
+  }
 `;
 
 export const StyledAvatar = styled.div`

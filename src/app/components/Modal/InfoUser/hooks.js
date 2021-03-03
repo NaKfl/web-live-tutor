@@ -1,32 +1,23 @@
 import useActions from 'hooks/useActions';
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { selectInfoUserData } from './selectors';
 import { actions } from './slice';
 
 export const useHooks = props => {
   const { user } = props;
-  // const userInfo = useSelector(selectInfoUserData);
-  // const { fetchInfoUser, resetState } = useActions(
-  //   {
-  //     fetchInfoUser: actions.fetchInfoUser,
-  //     resetState: actions.resetState,
-  //   },
-  //   [actions],
-  // );
+  const [isSelectDate, setIsSelectDate] = useState(false);
+  const onSelectDate = useCallback(value => {
+    setIsSelectDate(true);
+  }, []);
+  const handleBackSelectDate = useCallback(() => {
+    setIsSelectDate(false);
+  }, []);
 
-  // useEffect(() => {
-  //   fetchInfoUser(user.id);
-  // }, [fetchInfoUser, user.id]);
-
-  // useEffect(() => {
-  //   return () => resetState();
-  // }, [resetState]);
-
-  // return {
-  //   handlers: {},
-  //   selectors: { userInfo },
-  // };
+  return {
+    handlers: { onSelectDate, handleBackSelectDate },
+    selectors: { isSelectDate },
+  };
 };
 
 export default useHooks;
