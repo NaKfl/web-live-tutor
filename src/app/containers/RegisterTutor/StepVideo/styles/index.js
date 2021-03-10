@@ -20,3 +20,10 @@ export const VideoUpload = styled.div`
   border: 1px solid rgb(221, 221, 221);
   margin: 10px 0;
 `;
+
+export const StyledVideoUpload = styled.div`
+  width: 500px;
+  height: 293px;
+  border: 1px solid rgb(221, 221, 221);
+  margin: 10px 0;
+`;

@@ -1,0 +1,52 @@
+import { memo, useState, useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { StyledVideoUpload } from './styles';
+import Button from 'app/components/Button';
+export const VideoUpload = ({ selectVideo }) => {
+  const [preview, setPreview] = useState();
+  const onDrop = useCallback(
+    acceptFiles => {
+      if (!!acceptFiles) {
+        selectVideo(acceptFiles[0]);
+        const value = URL.createObjectURL(acceptFiles[0]);
+        setPreview(value);
+      }
+    },
+    [selectVideo],
+  );
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: 'video/*',
+  });
+  return (
+    <>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Button
+          {...getRootProps()}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '150px',
+            marginBottom: '20px',
+          }}
+        >
+          <input {...getInputProps()} />
+          {!!preview ? 'Change video' : 'Choose video'}
+        </Button>
+        {!!preview && (
+          <video width="500" height="300" controls src={preview}></video>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default VideoUpload;

@@ -1,5 +1,5 @@
 import ProfileTutor from 'assets/tutor-profile.png';
-import { Introduction, Content, ImageUpload } from './styles';
+import { Introduction, Content } from './styles';
 import Divider from 'app/components/Divider';
 import Form from 'app/components/Form';
 import Alert from 'app/components/Alert';
@@ -9,7 +9,7 @@ import Select from 'app/components/Select';
 import Radio from 'app/components/Radio';
 import Checkbox from 'app/components/Checkbox';
 import DatePicker from 'app/components/DatePicker';
-
+import ImageUpload from './ImageUpload';
 const accents = [
   'North America',
   'Canada',
@@ -32,6 +32,8 @@ export const StepProfile = ({
   formProfile,
   tutorFormValues,
   onChangeNextStep,
+  selectAvatar,
+  avatar,
 }) => {
   return (
     <>
@@ -63,7 +65,7 @@ export const StepProfile = ({
           <Divider orientation="left">Basic info</Divider>
           <Row gutter={16}>
             <Col span={8}>
-              <ImageUpload />
+              <ImageUpload selectAvatar={selectAvatar} />
               <p>Click to edit</p>
               <Alert
                 message="Please upload a professional photo. see guidelines"
@@ -219,7 +221,7 @@ export const StepProfile = ({
                 },
               ]}
             >
-              <Select defaultValue={accents.length > 0 && accents[0]}>
+              <Select>
                 {accents.map(item => (
                   <Select.Option value={item}>{item}</Select.Option>
                 ))}
