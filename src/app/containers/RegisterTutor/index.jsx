@@ -17,7 +17,7 @@ export const RegisterTutor = memo(() => {
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
   useUnmount();
-  const { prevStep, nextStep, onFinish } = handlers;
+  const { prevStep, nextStep, onFinish, selectAvatar, selectVideo } = handlers;
   const { tutorFormValues, currentStep, formProfile } = selectors;
   const { t } = useTranslation();
 
@@ -28,12 +28,13 @@ export const RegisterTutor = memo(() => {
         <StepProfile
           formProfile={formProfile}
           tutorFormValues={tutorFormValues}
+          selectAvatar={selectAvatar}
         />
       ),
     },
     {
       title: 'Video introduction',
-      content: <StepVideo />,
+      content: <StepVideo selectVideo={selectVideo} />,
     },
   ];
 

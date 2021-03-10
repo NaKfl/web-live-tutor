@@ -1,7 +1,7 @@
 import { Content } from './styles';
-import { VideoUpload } from './styles';
+import { VideoUpload } from './VideoUpload';
 
-export const StepVideo = () => {
+export const StepVideo = ({ selectVideo }) => {
   return (
     <>
       <Content>
@@ -21,7 +21,7 @@ export const StepVideo = () => {
           <li>Speak for 1-3 minutes</li>
           <li>Brand yourself and have fun!</li>
         </ol>
-        <VideoUpload />
+        <VideoUpload selectVideo={selectVideo} />
       </Content>
     </>
   );

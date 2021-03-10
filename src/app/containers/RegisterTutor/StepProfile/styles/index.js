@@ -20,9 +20,24 @@ export const Content = styled.div`
   }
 `;
 
-export const ImageUpload = styled.div`
+// export const ImageUpload = styled.div`
+//   width: 222.66px;
+//   height: 222.66px;
+//   border: 1px solid rgb(221, 221, 221);
+//   margin-bottom: 5px;
+// `;
+
+export const StyledImageUpload = styled.div`
   width: 222.66px;
   height: 222.66px;
-  border: 1px solid rgb(221, 221, 221);
-  margin-bottom: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fafafa;
+  transition: 'border .24s ease-in-out';
+  border: 2px dashed rgb(221, 221, 221);
+  border-radius: 2px;
+  color: #aaaaaa;
+  margin-bottom: 2px;
 `;

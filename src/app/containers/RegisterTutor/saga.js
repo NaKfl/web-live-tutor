@@ -12,7 +12,7 @@ function* registerTutorTask(action) {
   const { response, error } = yield call(registerTutorAPI, action.payload);
   if (response) {
     yield put(actions.registerTutorSuccess());
-    notifySuccess(i18n.t('RegisterTutor.notifySuccess'));
+    notifySuccess('Register successful');
   } else {
     yield put(actions.registerTutorFailed(error.data));
   }
