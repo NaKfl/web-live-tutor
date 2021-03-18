@@ -3,6 +3,7 @@ import { Login } from 'app/containers/Login/Loadable';
 import { Register } from 'app/containers/Register/Loadable';
 import { Profile } from 'app/containers/Profile/Loadable';
 import { RegisterTutor } from 'app/containers/RegisterTutor/Loadable';
+import { JitsiMeetPage } from 'app/containers/JitsiMeetPage/Loadable';
 
 export const privateRoutes = [
   {
@@ -37,5 +38,10 @@ export const publicRoutes = [
     path: '/register',
     component: Register,
     key: 'register',
+  },
+  {
+    path: '/call/:id',
+    component: JitsiMeetPage,
+    key: 'jitsi-meet-page',
   },
 ];
