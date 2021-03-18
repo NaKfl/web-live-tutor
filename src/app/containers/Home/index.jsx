@@ -5,6 +5,7 @@ import saga from './saga';
 import { StyledHome } from './styles';
 import { useHooks } from './hooks';
 import ListTutor from './ListTutor';
+
 export const Home = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });

@@ -6,16 +6,22 @@ import { actions } from './slice';
 
 export const useHooks = props => {
   const [isSelectDate, setIsSelectDate] = useState(false);
+  const [isShowMessage, setIsShowMessage] = useState(false);
   const onSelectDate = useCallback(value => {
     setIsSelectDate(true);
   }, []);
+
   const handleBackSelectDate = useCallback(() => {
     setIsSelectDate(false);
   }, []);
 
+  const toggleMessage = useCallback(() => {
+    setIsShowMessage(prevState => !prevState);
+  }, []);
+
   return {
-    handlers: { onSelectDate, handleBackSelectDate },
-    selectors: { isSelectDate },
+    handlers: { onSelectDate, handleBackSelectDate, toggleMessage },
+    selectors: { isSelectDate, isShowMessage },
   };
 };
 

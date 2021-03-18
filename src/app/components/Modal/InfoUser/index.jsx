@@ -11,6 +11,7 @@ import {
 import Button from 'app/components/Button';
 import TextHighlight from 'app/components/TextHighlight';
 import TimeSelect from 'app/components/TimeSelect';
+import { ChatRoom } from 'app/containers/Chat';
 import Form from 'app/components/Form';
 import {
   CloseOutlined,
@@ -29,6 +30,7 @@ import saga from './saga';
 import useHooks from './hooks';
 import { Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
+import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 const { Title } = Typography;
 
 const TutorModal = memo(props => {
@@ -36,8 +38,8 @@ const TutorModal = memo(props => {
   useInjectReducer({ key: sliceKey, reducer });
   const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
-  const { onSelectDate, handleBackSelectDate } = handlers;
-  const { isSelectDate } = selectors;
+  const { onSelectDate, handleBackSelectDate, toggleMessage } = handlers;
+  const { isSelectDate, isShowMessage } = selectors;
   const { visible, onCancel, tutor, ...rest } = props;
   const {
     avatar,
@@ -47,8 +49,11 @@ const TutorModal = memo(props => {
     name,
     resume,
     specialties,
+    interests,
     video,
   } = tutor;
+
+  const user = getUserFromStorage();
 
   return (
     <StyledModal
@@ -71,7 +76,7 @@ const TutorModal = memo(props => {
               <CloseOutlined onClick={onCancel} />
               <StyledGroupIconRight>
                 <HeartOutlined />
-                <MailOutlined />
+                <MailOutlined onClick={toggleMessage} />
                 <DashOutlined />
               </StyledGroupIconRight>
             </StyledGroupIcon>
@@ -105,105 +110,108 @@ const TutorModal = memo(props => {
               <Button type="accent">{t('Common.callNow')}</Button>
             </Row>
           </StyledTutorTitle>
-          <StyledTutorContent {...rest}>
-            <hr></hr>
-            <Row className="mb-4 intro-video-section">
-              <video
-                className="video-tutor"
-                src={video}
-                controlsList="nodownload"
-                controls
-              ></video>
-            </Row>
-            <Row className="intro-badge">
-              <Rate disabled defaultValue={5} className="rate mb-2" />
-            </Row>
-            <Row className="intro-section">
-              <Title level={5}>{bio}</Title>
-            </Row>
-            <hr></hr>
-            <Row className="intro-about flex-column">
-              <Title level={4}>{t('Profile.about')}</Title>
-              <Row>
-                <Title level={5}>{t('Profile.languages')}</Title>
+          {(isShowMessage && (
+            <StyledTutorContent {...rest}>
+              <hr></hr>
+              <ChatRoom fromId={user?.id} toId={tutor?.userId} height={400} />
+            </StyledTutorContent>
+          )) || (
+            <StyledTutorContent {...rest}>
+              <hr></hr>
+              <Row className="mb-4 intro-video-section">
+                <video
+                  className="video-tutor"
+                  src={video}
+                  controlsList="nodownload"
+                  controls
+                ></video>
               </Row>
-              <Row className="mb-1">
-                {languages.map(content => (
-                  <TextHighlight content={content} />
-                ))}
+              <Row className="intro-badge">
+                <Rate disabled defaultValue={5} className="rate mb-2" />
               </Row>
-              <Row>
-                <Title level={5}>{t('Profile.specialties')}</Title>
+              <Row className="intro-section">
+                <Title level={5}>{bio}</Title>
               </Row>
-              <Row className="mb-1">
-                {specialties.map(content => (
-                  <TextHighlight content={content} />
-                ))}
+              <hr></hr>
+              <Row className="intro-about flex-column">
+                <Title level={4}>{t('Profile.about')}</Title>
+                <Row>
+                  <Title level={5}>{t('Profile.languages')}</Title>
+                </Row>
+                <Row className="mb-1">
+                  {languages.map(content => (
+                    <TextHighlight content={content} />
+                  ))}
+                </Row>
+                <Row>
+                  <Title level={5}>{t('Profile.specialties')}</Title>
+                </Row>
+                <Row className="mb-1">
+                  {specialties.map(content => (
+                    <TextHighlight content={content} />
+                  ))}
+                </Row>
+                <Row>
+                  <Title level={5}>{t('Profile.interests')}</Title>
+                </Row>
+                <Row>
+                  <Title level={5}>{interests}</Title>
+                </Row>
               </Row>
-              <Row>
-                <Title level={5}>{t('Profile.interests')}</Title>
+              <hr></hr>
+              <Row className="intro-about flex-column">
+                <Title level={4}>{t('Profile.resume')}</Title>
+                <Row>
+                  <Title level={5}>{t('Profile.teachExperience')}</Title>
+                </Row>
+                <Row>
+                  <Title level={5}>{resume}</Title>
+                </Row>
               </Row>
-              <Row>
-                <Title level={5}>
-                  I have traveled a major part of the USA and parts of Eastern
-                  Europe, Russia, the Philippines, and Chile. I now live in a
-                  small town in South Carolina in the USA
-                </Title>
-              </Row>
-            </Row>
-            <hr></hr>
-            <Row className="intro-about flex-column">
-              <Title level={4}>{t('Profile.resume')}</Title>
-              <Row>
-                <Title level={5}>{t('Profile.teachExperience')}</Title>
-              </Row>
-              <Row>
-                <Title level={5}>{resume}</Title>
-              </Row>
-            </Row>
-            <hr></hr>
-            <Row className="intro-schedule flex-column">
-              <Title level={4}>{t('Profile.schedule')}</Title>
-              <Row>
-                {isSelectDate && (
-                  <Title level={5}>{t('Common.selectTimeALot')}</Title>
-                )}
-                {!isSelectDate && (
-                  <Title level={5}>{t('Common.selectDay')}</Title>
-                )}
-              </Row>
-              <Row className="group-tutor-calender">
-                {isSelectDate && (
-                  <Row className="tutor-calender">
-                    <Row
-                      className="btn-back pointer align-items-center"
-                      onClick={handleBackSelectDate}
-                    >
-                      <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
+              <hr></hr>
+              <Row className="intro-schedule flex-column">
+                <Title level={4}>{t('Profile.schedule')}</Title>
+                <Row>
+                  {isSelectDate && (
+                    <Title level={5}>{t('Common.selectTimeALot')}</Title>
+                  )}
+                  {!isSelectDate && (
+                    <Title level={5}>{t('Common.selectDay')}</Title>
+                  )}
+                </Row>
+                <Row className="group-tutor-calender">
+                  {isSelectDate && (
+                    <Row className="tutor-calender">
+                      <Row
+                        className="btn-back pointer align-items-center"
+                        onClick={handleBackSelectDate}
+                      >
+                        <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
+                      </Row>
+                      <Row className="flex-column w-100 p-4">
+                        <DatePicker
+                          className="w-50 mb-4"
+                          defaultValue={moment(moment(), 'YYYY/MM/DD')}
+                          format={'YYYY/MM/DD'}
+                        />
+                        <TimeSelect
+                          time={'2:00 AM - 4:00 AM'}
+                          disabled
+                        ></TimeSelect>
+                        <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
+                        <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
+                      </Row>
                     </Row>
-                    <Row className="flex-column w-100 p-4">
-                      <DatePicker
-                        className="w-50 mb-4"
-                        defaultValue={moment(moment(), 'YYYY/MM/DD')}
-                        format={'YYYY/MM/DD'}
-                      />
-                      <TimeSelect
-                        time={'2:00 AM - 4:00 AM'}
-                        disabled
-                      ></TimeSelect>
-                      <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
-                      <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
+                  )}
+                  {!isSelectDate && (
+                    <Row className="tutor-calender">
+                      <Calendar onSelect={onSelectDate} />
                     </Row>
-                  </Row>
-                )}
-                {!isSelectDate && (
-                  <Row className="tutor-calender">
-                    <Calendar onSelect={onSelectDate} />
-                  </Row>
-                )}
+                  )}
+                </Row>
               </Row>
-            </Row>
-          </StyledTutorContent>
+            </StyledTutorContent>
+          )}
         </Form>
       </StyledProfile>
     </StyledModal>

@@ -25,11 +25,6 @@ export const privateRoutes = [
 
 export const publicRoutes = [
   {
-    path: '/',
-    component: Home,
-    key: 'home',
-  },
-  {
     path: '/login',
     component: Login,
     key: 'login',
