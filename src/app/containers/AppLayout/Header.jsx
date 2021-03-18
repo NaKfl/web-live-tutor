@@ -3,18 +3,16 @@ import Dropdown from 'app/components/Dropdown';
 import Space from 'app/components/Space';
 import Menu from 'app/components/Menu';
 import Button from 'app/components/Button';
-import {
-  useLogout,
-  useGetUserInfoAuthenticate,
-} from 'app/containers/Login/hooks';
+import { useLogout } from 'app/containers/Login/hooks';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { StyledHeader } from 'app/components/Layout';
 import FavoriteTutor from 'app/containers/AppLayout/Private/FavoriteTutor';
+import { getUser } from 'utils/localStorageUtils';
 
 export const Header = () => {
-  const user = useGetUserInfoAuthenticate();
+  const user = getUser();
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
