@@ -7,17 +7,19 @@ import { useInjectSaga } from 'utils/reduxInjectors';
 import Menu from 'app/components/Menu';
 import Dropdown from 'app/components/Dropdown';
 import { FavoriteChild } from './FavoriteChild';
+import { useTranslation } from 'react-i18next';
 
 export const FavoriteTutor = () => {
   useInjectSaga({ key: sliceKey, saga });
   const { handlers, selectors } = useForFavortiteList();
   const { listFavorite } = selectors;
   const { showFavoriteTutorList } = handlers;
+  const { t } = useTranslation();
 
   const OverLay = () => {
     return (
       <Menu>
-        <Menu.ItemGroup title="Favorite Tutor">
+        <Menu.ItemGroup title={t('Favorite.title')}>
           {listFavorite.length > 0 ? (
             listFavorite.map((data, i) => (
               <Menu.Item key={i}>
@@ -25,7 +27,7 @@ export const FavoriteTutor = () => {
               </Menu.Item>
             ))
           ) : (
-            <Menu.Item>No one</Menu.Item>
+            <Menu.Item>{t('Favorite.noOne')}</Menu.Item>
           )}
         </Menu.ItemGroup>
       </Menu>

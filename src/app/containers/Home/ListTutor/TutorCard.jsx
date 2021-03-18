@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 import Skeleton from 'app/components/Skeleton';
 import Button from 'app/components/Button';
 import { PhoneOutlined, HeartOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 export const TutorCard = memo(props => {
   const { showInfoTutor } = props;
+  const { t } = useTranslation();
   return (
     <StyledTutorCard>
       <StyledHeader>
@@ -39,7 +41,7 @@ export const TutorCard = memo(props => {
           </Title>
           <Rate disabled defaultValue={5} className="rate mb-2" />
           <Button disabled size="small">
-            Certificate
+            {t('Common.certificate')}
           </Button>
         </div>
         <div className="love">
@@ -69,9 +71,9 @@ export const TutorCard = memo(props => {
         </div>
         <div className="control-layout">
           <div className="control">
-            <Button>Profile</Button>
+            <Button>{t('Profile.title')}</Button>
             <Button type="accent" icon={<PhoneOutlined />}>
-              Call
+              {t('Common.call')}
             </Button>
           </div>
         </div>

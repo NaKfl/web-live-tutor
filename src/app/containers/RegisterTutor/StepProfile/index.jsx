@@ -10,6 +10,8 @@ import Radio from 'app/components/Radio';
 import Checkbox from 'app/components/Checkbox';
 import DatePicker from 'app/components/DatePicker';
 import ImageUpload from './ImageUpload';
+import { useTranslation } from 'react-i18next';
+
 const accents = [
   'North America',
   'Canada',
@@ -35,22 +37,16 @@ export const StepProfile = ({
   selectAvatar,
   avatar,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Introduction>
         <img className="intro-image" src={ProfileTutor} alt="intro-profile" />
         <div className="intro-content">
-          <h2>Set up your tutor profile</h2>
-          <p>
-            Your tutor profile is your chance to market yourself to students on
-            Live Tutor. You can make edits later on your profile settings page.
-          </p>
-          <p>
-            New students may browse tutor profiles to find a tutor that fits
-            their learning goals and personality. Returning students may use the
-            tutor profiles to find tutors they've had great experiences with
-            already.
-          </p>
+          <h2>{t('Register.Tutor.profile.setup')}</h2>
+          <p>{t('Register.Tutor.profile.intro1')}</p>
+          <p>{t('Register.Tutor.profile.intro2')}</p>
         </div>
       </Introduction>
       <Content>
@@ -62,25 +58,28 @@ export const StepProfile = ({
           requiredMark={false}
           layout="vertical"
         >
-          <Divider orientation="left">Basic info</Divider>
+          {/*PROFILE  */}
+          <Divider orientation="left">
+            {t('Register.Tutor.profile.title')}
+          </Divider>
           <Row gutter={16}>
             <Col span={8}>
               <ImageUpload selectAvatar={selectAvatar} />
-              <p>Click to edit</p>
+              <p>{t('Register.Tutor.profile.btnClickEdit')}</p>
               <Alert
-                message="Please upload a professional photo. see guidelines"
+                message={t('Register.Tutor.profile.alertUploadMessage')}
                 type="info"
               />
             </Col>
             <Col span={16}>
               <Col span={24}>
                 <Form.Item
-                  label="Tutoring name"
+                  label={t('Register.Tutor.profile.lable.name')}
                   name="name"
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your name!',
+                      message: t('Register.Tutor.profile.rule.name'),
                     },
                   ]}
                 >
@@ -89,12 +88,12 @@ export const StepProfile = ({
               </Col>
               <Col span={24}>
                 <Form.Item
-                  label="I'm from"
+                  label={t('Register.Tutor.profile.lable.country')}
                   name="country"
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your country!',
+                      message: t('Register.Tutor.profile.rule.country'),
                     },
                   ]}
                 >
@@ -103,12 +102,12 @@ export const StepProfile = ({
               </Col>
               <Col span={24}>
                 <Form.Item
-                  label="Date of Birth"
+                  label={t('Register.Tutor.profile.lable.birthday')}
                   name="birthday"
                   rules={[
                     {
                       required: true,
-                      message: 'Please input your birthday!',
+                      message: t('Register.Tutor.profile.rule.birthday'),
                     },
                   ]}
                 >
@@ -117,61 +116,55 @@ export const StepProfile = ({
               </Col>
             </Col>
           </Row>
-
+          {/*CV  */}
           <Divider orientation="left" className="mt-5">
-            CV
+            {t('Register.Tutor.cv.title')}
           </Divider>
-          <p>
-            Students will view this information on your profile to decide if
-            you're a good fit for them.
-          </p>
-          <Alert
-            message="In order to protect your privacy, please do not share your personal information (email, phone number, social email, skype, etc) in your profile."
-            type="info"
-          />
+          <p>{t('Register.Tutor.cv.info')}</p>
+          <Alert message={t('Register.Tutor.cv.alertMessage')} type="info" />
           <Row className="mt-3">
             <Form.Item
-              label="Interests"
+              label={t('Register.Tutor.cv.lable.interests')}
               name="interests"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your interests!',
+                  message: t('Register.Tutor.cv.rule.interest'),
                 },
               ]}
             >
               <Input.TextArea
-                placeholder={`Interests, hobbies, memorable life experiences, or anything else you'd like to share!`}
+                placeholder={t('Register.Tutor.cv.placeholder.interest')}
               />
             </Form.Item>
           </Row>
           <Row className="">
             <Form.Item
-              label="Education"
+              label={t('Register.Tutor.cv.lable.education')}
               name="education"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your education!',
+                  message: t('Register.Tutor.cv.rule.education'),
                 },
               ]}
             >
               <Input.TextArea
-                placeholder={`Example: "Bachelor of Arts in English from Cambly University; Certified yoga instructor, Second Language Acquisition and Teaching  (SLAT) certificate from Cambly University"`}
+                placeholder={t('Register.Tutor.cv.placeholder.education')}
               />
             </Form.Item>
           </Row>
           <Row>
             <Form.Item
-              label="Experience"
+              label={t('Register.Tutor.cv.lable.experience')}
               name="experience"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your experience!',
+                  message: t('Register.Tutor.cv.rule.experience'),
                 },
               ]}
             >
@@ -180,44 +173,51 @@ export const StepProfile = ({
           </Row>
           <Row>
             <Form.Item
-              label="Current or Previous Profession"
+              label={t('Register.Tutor.cv.lable.profession')}
               name="profession"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your profession!',
+                  message: t('Register.Tutor.cv.rule.profession'),
                 },
               ]}
             >
               <Input.TextArea />
             </Form.Item>
           </Row>
-          <Divider orientation="left">Languages I speak</Divider>
+          {/*LANGUAGES  */}
+          <Divider orientation="left">
+            {t('Register.Tutor.languages.title')}
+          </Divider>
           <Row>
             <Form.Item
-              label="Languages"
+              label={t('Register.Tutor.languages.lable.languages')}
               name="languages"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your languages!',
+                  message: t('Register.Tutor.languages.rule.languages'),
                 },
               ]}
             >
-              <Input.TextArea placeholder="Example: English, Vietnamese, Chinese, Korean" />
+              <Input.TextArea
+                placeholder={t(
+                  'Register.Tutor.languages.placeholder.languages',
+                )}
+              />
             </Form.Item>
           </Row>
           <Row>
             <Form.Item
-              label="English Dialect/Accent"
+              label={t('Register.Tutor.languages.lable.accent')}
               name="accent"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your accent!',
+                  message: t('Register.Tutor.languages.rule.accent'),
                 },
               ]}
             >
@@ -228,55 +228,61 @@ export const StepProfile = ({
               </Select>
             </Form.Item>
           </Row>
-          <Divider orientation="left">Who I teach</Divider>
-          <Alert
-            message="This is the first thing students will see when looking for tutors."
-            type="info"
-          />
+          {/*TEACH  */}
+          <Divider orientation="left">
+            {t('Register.Tutor.teach.title')}
+          </Divider>
+          <Alert message={t('Register.Tutor.teach.alertMessage')} type="info" />
           <Row className="mt-3">
             <Form.Item
-              label="Introduction"
+              label={t('Register.Tutor.teach.lable.introduction')}
               name="bio"
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your introduction!',
+                  message: t('Register.Tutor.teach.rule.introduction'),
                 },
               ]}
             >
               <Input.TextArea
-                placeholder={`Example: "I was a doctor for 35 years and can help you practice business or medical English. I also enjoy teaching beginners as I am very patient and always speak slowly and clearly. "`}
+                placeholder={t('Register.Tutor.teach.placeholder.introduction')}
               />
             </Form.Item>
           </Row>
           <Row>
             <Form.Item
               name="targetStudent"
-              label="I am best at teaching students who are"
+              label={t('Register.Tutor.teach.lable.target')}
               rules={[
                 {
                   required: true,
-                  message: 'Please input your target student!',
+                  message: t('Register.Tutor.teach.rule.target'),
                 },
               ]}
             >
               <Radio.Group>
-                <Radio value="Beginner">Beginner</Radio>
-                <Radio value="Intermediate">Intermediate</Radio>
-                <Radio value="Advanced">Advanced</Radio>
+                <Radio value="Beginner">
+                  {t('Register.Tutor.teach.level.beginner')}
+                </Radio>
+                <Radio value="Intermediate">
+                  {t('Register.Tutor.teach.level.imtermediate')}
+                </Radio>
+                <Radio value="Advanced">
+                  {t('Register.Tutor.teach.level.advanced')}
+                </Radio>
               </Radio.Group>
             </Form.Item>
           </Row>
           <Row>
             <Form.Item
               name="specialties"
-              label="My specialties are"
+              label={t('Register.Tutor.teach.lable.specialties')}
               className="full-width"
               rules={[
                 {
                   required: true,
-                  message: 'Please input your target specialties!',
+                  message: t('Register.Tutor.teach.rule.specialties'),
                 },
               ]}
             >
@@ -284,59 +290,63 @@ export const StepProfile = ({
                 <Row className="justify-content-between mb-2">
                   <Col>
                     <Checkbox value="Friendly conversation">
-                      Friendly conversation
+                      {t('Register.Tutor.teach.specialties.category.fc')}
                     </Checkbox>
                   </Col>
                   <Col>
                     <Checkbox value="Business English">
-                      Business English
+                      {t('Register.Tutor.teach.specialties.category.be')}
                     </Checkbox>
                   </Col>
                   <Col>
-                    <Checkbox value="Public speaking">Public speaking</Checkbox>
+                    <Checkbox value="Public speaking">
+                      {t('Register.Tutor.teach.specialties.category.ps')}
+                    </Checkbox>
                   </Col>
                 </Row>
                 <Row className="justify-content-between mb-2">
                   <Col>
                     <Checkbox value="Test prep (IELTS, TOEFL, etc.)">
-                      Test prep (IELTS, TOEFL, etc.)
+                      {t('Register.Tutor.teach.specialties.category.tp')}
                     </Checkbox>
                   </Col>
                   <Col>
                     <Checkbox value="Grammar instruction">
-                      Grammar instruction
+                      {t('Register.Tutor.teach.specialties.category.gi')}
                     </Checkbox>
                   </Col>
                   <Col>
-                    <Checkbox value="Accent coaching">Accent coaching</Checkbox>
+                    <Checkbox value="Accent coaching">
+                      {t('Register.Tutor.teach.specialties.category.ac')}
+                    </Checkbox>
                   </Col>
                 </Row>
                 <Row className="justify-content-between mb-2">
                   <Col>
                     <Checkbox value="Correcting speech">
-                      Correcting speech
+                      {t('Register.Tutor.teach.specialties.category.cs')}
                     </Checkbox>
                   </Col>
                   <Col>
                     <Checkbox value="Discussing current events">
-                      Discussing current events
+                      {t('Register.Tutor.teach.specialties.category.dce')}
                     </Checkbox>
                   </Col>
                   <Col>
                     <Checkbox value="Vocational lessons">
-                      Vocational lessons
+                      {t('Register.Tutor.teach.specialties.category.vl')}
                     </Checkbox>
                   </Col>
                 </Row>
                 <Row className="justify-content-between mb-2">
                   <Col>
                     <Checkbox value="Culture (i.e. manners, customs)">
-                      Culture (i.e. manners, customs)
+                      {t('Register.Tutor.teach.specialties.category.c')}
                     </Checkbox>
                   </Col>
                   <Col>
                     <Checkbox value="Teaching idioms and slang">
-                      Teaching idioms and slang
+                      {t('Register.Tutor.teach.specialties.category.tias')}
                     </Checkbox>
                   </Col>
                 </Row>

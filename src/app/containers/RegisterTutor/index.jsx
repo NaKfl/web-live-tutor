@@ -23,7 +23,7 @@ export const RegisterTutor = memo(() => {
 
   const steps = [
     {
-      title: 'Complete profile',
+      title: t('Register.Tutor.completeProfile'),
       content: (
         <StepProfile
           formProfile={formProfile}
@@ -33,7 +33,7 @@ export const RegisterTutor = memo(() => {
       ),
     },
     {
-      title: 'Video introduction',
+      title: t('Register.Tutor.videoIntroduction'),
       content: <StepVideo selectVideo={selectVideo} />,
     },
   ];

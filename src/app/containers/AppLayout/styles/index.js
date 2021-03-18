@@ -37,5 +37,23 @@ export const StyledContent = styled(Content)`
 
 export const StyledFooter = styled(Footer)`
   background-color: ${COLOR.WHITE};
+  width: 100%;
   text-align: center;
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+export const StyledText = styled.div`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+`;
+
+export const ButtonNoOutline = styled.button`
+  outline: none;
+  border: none;
+  background-color: #fff;
 `;

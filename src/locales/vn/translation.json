@@ -1,0 +1,209 @@
+{
+  "Common": {
+    "notifySuccess": "Thành công",
+    "notifyFail": "Thất bại",
+    "certificate": "Chứng nhận",
+    "call": "Gọi",
+    "vn": "Tiếng Việt",
+    "en": "Tiếng Anh",
+    "default": "Tiếng Việt",
+    "brand": "Live tutor",
+    "callNow": "Gọi ngay",
+    "back": "Trở lại",
+    "selectDay": "Chọn một ngày",
+    "selectTimeALot": "Chọn thời điểm"
+  },
+  "Category": {
+    "tutor": "Gia sư",
+    "courses": "Khoá học",
+    "progress": "Đang phát triển"
+  },
+  "Header": {
+    "linkHome": "Trang chủ",
+    "linkProfile": "Hồ sơ",
+    "linkLogout": "Đăng xuất"
+  },
+
+  "Login": {
+    "title": "Chào mừng trở lại với Etutor",
+    "messageInvalidEmail": "Email không phù hợp",
+    "messageEmptyEmail": "Vui lòng nhập Email",
+    "messageEmptyPassword": "Vui lòng nhập mật khẩu",
+    "forgotPassword": "Quên mật khẩu ?",
+    "btnLogin": "Đăng nhập",
+    "btnLoginFacebook": "Facebook",
+    "btnLoginGoogle": "Google",
+    "linkRegister": "Đăng ký",
+    "notifySuccess": "Đăng nhập thành công",
+    "notifyFailed": "Đăng nhập thất bại",
+    "suggestRegister": "Lần đầu đến với Etutor ?",
+    "divider": "Hoặc đăng nhập với",
+    "btnCap": "ĐĂNG NHẬP",
+    "labelEmail": "Email",
+    "labelPassword": "Mật khẩu"
+  },
+
+  "Register": {
+    "title": "Nào cùng bắt đầu với Etutor",
+    "labelName": "Tên",
+    "labelEmail": "Email",
+    "labelPassword": "Mật khẩu",
+    "labelConfirmPassword": "Nhập lại mật khẩu",
+    "messageInvalidEmail": "Email bạn nhập không phù hợp",
+    "messageEmptyEmail": "Vui lòng nhập Email!",
+    "messageEmptyName": "Vui lòng nhập tên của bạn!",
+    "messageEmptyPassword": "Vui lòng nhập mật khẩu!",
+    "messageEmptyConfirmPassword": "Nhập lại mật khẩu của bạn!",
+    "messageInvalidConfirmPassword": "Mật khẩu không trùng khớp!",
+    "messageMinPassword": "Độ dài mật khẩu ít nhất 6 kí tự!",
+    "notifySuccess": "Đăng ký thành công",
+    "notifyFailed": "Đăng ký thất bại",
+    "btnRegister": "Tạo tài khoản",
+    "linkLogin": "Đăng nhập",
+    "btnCap": "ĐĂNG KÝ",
+    "btnRegisterFacebook": "Facebook",
+    "btnRegisterGoogle": "Google",
+    "divider": "Hoặc đăng ký với",
+    "suggestLogin": "Đã có tài khoản ?",
+    "Tutor": {
+      "completeProfile": "Hoàn thành hồ sơ",
+      "videoIntroduction": "Video giới thiệu",
+      "profile": {
+        "title": "Thông tin cơ bản",
+        "setup": "Thiết lập hồ sơ gia sư của bạn",
+        "intro1": "Hồ sơ gia sư của bạn là cơ hội tiếp cận với học viên trên Live Tutor. Bạn có thể sửa lại sau tại trang hồ sơ cá nhân.",
+        "intro2": "Học viên mới có thể duyệt qua hồ sơ gia sư để tìm một gia sư phù hợp với mục tiêu học tập và tính cách của họ. Khi một học viên quay trở lại họ có thể tìm từ hồ sơ của gia sư người mà sẵn sàng cho họ những trải nghiệm tuyệt vời.",
+        "btnClickEdit": "Chọn để sửa",
+        "alertUploadMessage": "Vui lòng tải lên một bức ảnh đại diện. Xem hướng dẫn.",
+        "rule": {
+          "name": "Vui lòng nhập tên của bạn!",
+          "country": "Vui lòng nhập quốc gia!",
+          "birthday": "Vui lòng nhập ngày sinh!"
+        },
+        "lable": {
+          "name": "Tên gia sư",
+          "country": "Tôi đến từ",
+          "birthday": "Ngày sinh"
+        }
+      },
+      "cv": {
+        "title": "CV",
+        "info": "Học viên sẽ xem thông tin từ hồ sơ của bạn để quyết định nếu bạn phù hợp với nhu cầu của họ.",
+        "alertMessage": "Để bảo mật quyền riêng tư của bạn, vui lòng không chia sẻ bất cứ thông tin các nhân như email, số điện thoại, skype,... Trong hồ sơ của bạn.",
+        "placeholder": {
+          "interest": "Những điều thú vị, sở thích, những trải nghiệm đáng nhớ hoặc bất cứ điều gì mà bạn muốn chia sẻ.",
+          "education": "Ví dụ: \"Bằng cử nghệ thuật của đại học Cambly; Chứng nhận huấn luyện viên Yoga, Chứng chỉ Tiếp thu và Giảng dạy Ngôn ngữ Thứ hai (SLAT) của Đại học Cambly\"",
+          "languages": "Ví dụ: Tiếng Anh, Tiếng Việt, Tiếng Trung, Tiếng Hàn"
+        },
+        "rule": {
+          "interest": "Vui lòng nhập sở thích!",
+          "education": "Vui lòng nhập trình độ học vấn!",
+          "experience": "Vui lòng nhập kinh nghiệm!",
+          "profession": "Vui lòng nhập nghề nghiệp!",
+          "languages": "Vui lòng nhập ngôn ngữ đang sử dụng!",
+          "accent": "Vui lòng nhập giọng!"
+        },
+        "lable": {
+          "interests": "Sở thích",
+          "education": "Học vấn",
+          "experience": "Kinh nghiệm",
+          "profession": "Nghề nghiệp hiện tại hoặc trước đây"
+        }
+      },
+      "languages": {
+        "title": "Về ngôn ngữ",
+        "rule": {
+          "languages": "Vui lòng nhập ngôn ngữ!",
+          "accent": "Vui lòng nhập giọng!"
+        },
+        "placeholder": {
+          "languages": "Ví dụ: Tiếng Anh, Tiếng Việt, Tiếng Trung, Tiếng Hàn"
+        },
+        "lable": {
+          "languages": "Ngôn ngữ",
+          "accent": "Phương ngữ/Giọng tiếng Anh"
+        }
+      },
+      "teach": {
+        "alertMessage": "Đây là điều đầu tiên mà học viên nhìn thấy khi tìm kiếm gia sư.",
+        "title": "Về việc dạy",
+        "lable": {
+          "introduction": "Giới thiệu",
+          "target": "Tôi giỏi nhất trong việc dạy những học viên",
+          "specialties": "Điểm đặc biệt của tôi là"
+        },
+        "rule": {
+          "introduction": "Vui lòng nhập thông tin giới thiệu!",
+          "target": "Vui lòng nhập mục tiêu học viên bạn nhắm tới!",
+          "specialties": "Vui lòng nhập các chuyên ngành mục tiêu của bạn!"
+        },
+        "placeholder": {
+          "introduction": "Ví dụ: \"Tôi là bác sĩ, năm nay 35 tuổi và có thể giúp bạn thực hành tiếng Anh thương mại và y tế. Tôi cũng thích dạy cho người mới bắt đầu vì có tính kiên nhẫn và luôn nói chậm, rõ ràng. \""
+        },
+        "level": {
+          "beginner": "Người mới bắt đầu",
+          "imtermediate": "Trung cấp",
+          "advanced": "Trình độ cao"
+        },
+        "specialties": {
+          "category": {
+            "fc": "Trò chuyện thân thiện.",
+            "be": "Tiếng Anh thương mại.",
+            "ps": "Nói trước công chúng.",
+            "tp": "Chuẩn bị trước khi kiểm tra (IELTS, TOEFL,...)",
+            "gi": "Hướng dẫn ngữ pháp",
+            "ac": "Luyện trọng âm",
+            "cs": "Chỉnh sửa bài phát biểu",
+            "dce": "Thảo luận về các sự kiện",
+            "vl": "Bài học đào tạo nghề",
+            "c": "Văn hoá (tác phong, phong tục tập quán,...)",
+            "tias": "Thành ngữ và tiếng lóng"
+          }
+        }
+      },
+      "video": {
+        "intro": "Giới thiệu bản thân",
+        "detail": "Hãy để học viên biết những gì họ có thể mong đợi từ khoá học của bạn bằng việc quay lại video điểm nhấn về việc dạy, chuyên môn và tính cách của bạn. Học viên có thể lo lắng khi nói chuyện với người bản xứ, vì vậy sẽ thực sự hữu ích khi có một video thân thiện giới thiệu bản thân và mời học viên gọi điện cho bạn.",
+        "tip": {
+          "title": "Một số mẹo hữu dụng:",
+          "t1": "Tìm một không gian trong lành và yên tĩnh",
+          "t2": "Cười thật tự nhiên, nhìn vào camera",
+          "t3": "Ăn mặc lịch sự",
+          "t4": "Nói trong 1-3 phút",
+          "t5": "Brand yourself and have fun!"
+        }
+      }
+    }
+  },
+
+  "Profile": {
+    "title": "Hồ sơ",
+    "notifyEditSuccess": "Chỉnh sửa hồ sơ thành công",
+    "requiredName": "Vui lòng nhập tên!",
+    "requiredEmail": "Vui lòng nhập email!",
+    "invalidEmail": "Email nhập vào không hợp lệ!",
+    "btnSave": "Lưu thay đổi",
+    "uploadAvatarSuccess": "Tải lên ảnh đại diện thành công!",
+    "name": "Tên",
+    "email": "Email",
+    "phone": "Số điện thoại",
+    "country": "Quốc gia",
+    "language": "Ngôn ngữ",
+    "birthday": "Ngày sinh",
+    "specialties": "Đặc điểm riêng biệt",
+    "languages": "Ngôn ngữ",
+    "about": "Về bản thân",
+    "interests": "Sở thích",
+    "resume": "Sơ yếu lý lịch",
+    "teachExperience": "Kinh nghiệm giảng dạy",
+    "schedule": "Lịch trình"
+  },
+  "Favorite": {
+    "title": "Gia sư yêu thích",
+    "noOne": "Chưa thêm ai"
+  },
+  "Upload": {
+    "avatar": "Tải ảnh đại diện lên ...",
+    "video": "Chọn video"
+  }
+}

@@ -1,8 +1,9 @@
-import { memo, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { StyledVideoUpload } from './styles';
 import Button from 'app/components/Button';
+import { useTranslation } from 'react-i18next';
 export const VideoUpload = ({ selectVideo }) => {
+  const { t } = useTranslation();
   const [preview, setPreview] = useState();
   const onDrop = useCallback(
     acceptFiles => {
@@ -39,7 +40,7 @@ export const VideoUpload = ({ selectVideo }) => {
           }}
         >
           <input {...getInputProps()} />
-          {!!preview ? 'Change video' : 'Choose video'}
+          {t('Upload.video')}
         </Button>
         {!!preview && (
           <video width="500" height="300" controls src={preview}></video>

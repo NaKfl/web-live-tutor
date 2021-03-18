@@ -28,11 +28,13 @@ import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from './saga';
 import useHooks from './hooks';
 import { Typography } from 'antd';
+import { useTranslation } from 'react-i18next';
 const { Title } = Typography;
 
 const TutorModal = memo(props => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
+  const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
   const { onSelectDate, handleBackSelectDate } = handlers;
   const { isSelectDate } = selectors;
@@ -100,7 +102,7 @@ const TutorModal = memo(props => {
               </Col>
             </Row>
             <Row className="tutor-info d-flex">
-              <Button type="accent">CALL NOW</Button>
+              <Button type="accent">{t('Common.callNow')}</Button>
             </Row>
           </StyledTutorTitle>
           <StyledTutorContent {...rest}>
@@ -121,9 +123,9 @@ const TutorModal = memo(props => {
             </Row>
             <hr></hr>
             <Row className="intro-about flex-column">
-              <Title level={4}>About Me</Title>
+              <Title level={4}>{t('Profile.about')}</Title>
               <Row>
-                <Title level={5}>Languages</Title>
+                <Title level={5}>{t('Profile.languages')}</Title>
               </Row>
               <Row className="mb-1">
                 {languages.map(content => (
@@ -131,7 +133,7 @@ const TutorModal = memo(props => {
                 ))}
               </Row>
               <Row>
-                <Title level={5}>Specialties</Title>
+                <Title level={5}>{t('Profile.specialties')}</Title>
               </Row>
               <Row className="mb-1">
                 {specialties.map(content => (
@@ -139,7 +141,7 @@ const TutorModal = memo(props => {
                 ))}
               </Row>
               <Row>
-                <Title level={5}>Interests</Title>
+                <Title level={5}>{t('Profile.interests')}</Title>
               </Row>
               <Row>
                 <Title level={5}>
@@ -151,9 +153,9 @@ const TutorModal = memo(props => {
             </Row>
             <hr></hr>
             <Row className="intro-about flex-column">
-              <Title level={4}>Resume</Title>
+              <Title level={4}>{t('Profile.resume')}</Title>
               <Row>
-                <Title level={5}>Teaching Experience</Title>
+                <Title level={5}>{t('Profile.teachExperience')}</Title>
               </Row>
               <Row>
                 <Title level={5}>{resume}</Title>
@@ -161,10 +163,14 @@ const TutorModal = memo(props => {
             </Row>
             <hr></hr>
             <Row className="intro-schedule flex-column">
-              <Title level={4}>Schedule</Title>
+              <Title level={4}>{t('Profile.schedule')}</Title>
               <Row>
-                {isSelectDate && <Title level={5}>Select time a slot</Title>}
-                {!isSelectDate && <Title level={5}>Select a day</Title>}
+                {isSelectDate && (
+                  <Title level={5}>{t('Common.selectTimeALot')}</Title>
+                )}
+                {!isSelectDate && (
+                  <Title level={5}>{t('Common.selectDay')}</Title>
+                )}
               </Row>
               <Row className="group-tutor-calender">
                 {isSelectDate && (
@@ -173,7 +179,7 @@ const TutorModal = memo(props => {
                       className="btn-back pointer align-items-center"
                       onClick={handleBackSelectDate}
                     >
-                      <ArrowLeftOutlined /> <span>Back</span>
+                      <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
                     </Row>
                     <Row className="flex-column w-100 p-4">
                       <DatePicker
