@@ -46,3 +46,5 @@ export const isAuthenticated = () => {
 };
 
 export const removeAuthInfo = () => localStorage.removeItem(AUTH_INFO_KEY);
+
+export const getDefaultLanguages = () => localStorage.getItem('i18nextLng');

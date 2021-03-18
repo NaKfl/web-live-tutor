@@ -1,25 +1,20 @@
 import { Content } from './styles';
 import { VideoUpload } from './VideoUpload';
-
+import { useTranslation } from 'react-i18next';
 export const StepVideo = ({ selectVideo }) => {
+  const { t } = useTranslation();
   return (
     <>
       <Content>
-        <h2>Introduce yourself</h2>
-        <p>
-          Let students know what they can expect from a lesson with you by
-          recording a video highlighting your teaching style, expertise and
-          personality. Students can be nervous to speak with a foreigner, so it
-          really helps to have a friendly video that introduces yourself and
-          invites students to call you.
-        </p>
-        <span>A few helpful tips:</span>
+        <h2>{t('Register.Tutor.video.intro')}</h2>
+        <p>{t('Register.Tutor.video.detail')}</p>
+        <span>{t('Register.Tutor.video.tip.title')}</span>
         <ol>
-          <li>Find a clean and quiet space</li>
-          <li>Smile and look at the camera</li>
-          <li>Dress smart</li>
-          <li>Speak for 1-3 minutes</li>
-          <li>Brand yourself and have fun!</li>
+          <li>{t('Register.Tutor.video.tip.t1')}</li>
+          <li>{t('Register.Tutor.video.tip.t2')}</li>
+          <li>{t('Register.Tutor.video.tip.t3')}</li>
+          <li>{t('Register.Tutor.video.tip.t4')}</li>
+          <li>{t('Register.Tutor.video.tip.t5')}</li>
         </ol>
         <VideoUpload selectVideo={selectVideo} />
       </Content>

@@ -1,6 +1,23 @@
 {
-  "Common": { "notifySuccess": "Successful", "notifyFail": "Failure" },
-
+  "Common": {
+    "notifySuccess": "Successful",
+    "notifyFail": "Failure",
+    "certificate": "Certificate",
+    "call": "Call",
+    "vn": "Vietnamese",
+    "en": "English",
+    "default": "English",
+    "brand": "Live tutor",
+    "callNow": "Call now",
+    "back": "Back",
+    "selectDay": "Select a day",
+    "selectTimeALot": "Select time a lot"
+  },
+  "Category": {
+    "tutor": "Tutor",
+    "courses": "Courses",
+    "progress": "Progress"
+  },
   "Header": {
     "linkHome": "Home",
     "linkProfile": "Profile",
@@ -20,7 +37,10 @@
     "notifySuccess": "Login successful",
     "notifyFailed": "Login failed",
     "suggestRegister": "New to Etutor ?",
-    "divider": "Or login with"
+    "divider": "Or login with",
+    "btnCap": "LOG IN",
+    "labelEmail": "Email",
+    "labelPassword": "Mật khẩu"
   },
 
   "Register": {
@@ -40,18 +60,152 @@
     "notifyFailed": "Register failed",
     "btnRegister": "Create account",
     "linkLogin": "Login",
+    "btnCap": "SIGN UP",
     "btnRegisterFacebook": "Facebook",
     "btnRegisterGoogle": "Google",
     "divider": "Or register with",
-    "suggestLogin": "Already have an account ?"
+    "suggestLogin": "Already have an account ?",
+    "Tutor": {
+      "completeProfile": "Complete profile",
+      "videoIntroduction": "Video introduction",
+      "profile": {
+        "title": "Basic info",
+        "setup": "Set up your tutor profile",
+        "intro1": "Your tutor profile is your chance to market yourself to students on Live Tutor. You can make edits later on your profile settings page.",
+        "intro2": "New students may browse tutor profiles to find a tutor that fits their learning goals and personality. Returning students may use the tutor profiles to find tutors they've had great experiences with already.",
+        "btnClickEdit": "Click to edit",
+        "alertUploadMessage": "Please upload a professional photo. See guidelines",
+        "rule": {
+          "name": "Please input your name!",
+          "country": "Please input your country!",
+          "birthday": "Please input your birthday!"
+        },
+        "lable": {
+          "name": "Tutoring name",
+          "country": "I'm from",
+          "birthday": "Date of Birth"
+        }
+      },
+      "cv": {
+        "title": "CV",
+        "info": "Students will view this information on your profile to decide if you're a good fit for them.",
+        "alertMessage": "In order to protect your privacy, please do not share your personal information (email, phone number, social email, skype, etc) in your profile.",
+        "placeholder": {
+          "interest": "Interests, hobbies, memorable life experiences, or anything else you'd like to share!",
+          "education": "Example: \"Bachelor of Arts in English from Cambly University; Certified yoga instructor, Second Language Acquisition and Teaching  (SLAT) certificate from Cambly University\"",
+          "languages": "Example: English, Vietnamese, Chinese, Korean"
+        },
+        "rule": {
+          "interest": "Please input your interests!",
+          "education": "Please input your education!",
+          "experience": "Please input your experience!",
+          "profession": "Please input your profession!",
+          "languages": "Please input your languages!",
+          "accent": "Please input your accent!"
+        },
+        "lable": {
+          "interests": "Interests",
+          "education": "Education",
+          "experience": "Experience",
+          "profession": "Current or Previous Profession"
+        }
+      },
+      "languages": {
+        "title": "Languages I speak",
+        "rule": {
+          "languages": "Please input your languages!",
+          "accent": "Please input your accent!"
+        },
+        "placeholder": {
+          "languages": "Example: English, Vietnamese, Chinese, Korean"
+        },
+        "lable": {
+          "languages": "Languages",
+          "accent": "English Dialect/Accent"
+        }
+      },
+      "teach": {
+        "alertMessage": "This is the first thing students will see when looking for tutors.",
+        "title": "Who I teach",
+        "introductionWarn": "Please input your introduction!",
+        "introduction": "Example: \"I was a doctor for 35 years and can help you practice business or medical English. I also enjoy teaching beginners as I am very patient and always speak slowly and clearly. \"",
+        "lable": {
+          "introduction": "Introduction",
+          "target": "I am best at teaching students who are",
+          "specialties": "My specialties are"
+        },
+        "rule": {
+          "introduction": "Please input your introduction!",
+          "target": "Please input your target student!",
+          "specialties": "Please input your target specialties!"
+        },
+        "placeholder": {
+          "introduction": "Example: \"I was a doctor for 35 years and can help you practice business or medical English. I also enjoy teaching beginners as I am very patient and always speak slowly and clearly. \""
+        },
+        "level": {
+          "beginner": "Beginner",
+          "imtermediate": "Intermediate",
+          "advanced": "Advanced"
+        },
+        "specialties": {
+          "category": {
+            "fc": "Friendly conversation",
+            "be": "Business English",
+            "ps": "Public speaking",
+            "tp": "Test prep (IELTS, TOEFL, etc.)",
+            "gi": "Grammar instruction",
+            "ac": "Accent coaching",
+            "cs": "Correcting speech",
+            "dce": "Discussing current events",
+            "vl": "Vocational lessons",
+            "c": "Culture (i.e. manners, customs)",
+            "tias": "Teaching idioms and slang"
+          }
+        }
+      },
+      "video": {
+        "intro": "Introduce yourself",
+        "detail": "Let students know what they can expect from a lesson with you by recording a video highlighting your teaching style, expertise and personality. Students can be nervous to speak with a foreigner, so it really helps to have a friendly video that introduces yourself and invites students to call you.",
+        "tip": {
+          "title": "A few helpful tips:",
+          "t1": "Find a clean and quiet space",
+          "t2": "Smile and look at the camera",
+          "t3": "Dress smart",
+          "t4": "Speak for 1-3 minutes",
+          "t5": "Brand yourself and have fun!"
+        }
+      }
+    }
   },
 
   "Profile": {
+    "title": "Profile",
     "notifyEditSuccess": "Edit profile successful",
     "requiredName": "Please input your name!",
     "requiredEmail": "Please input your email!",
     "invalidEmail": "The input is not valid email!",
     "btnSave": "Save changes",
-    "uploadAvatarSuccess": "Upload avatar sucesss!"
+    "uploadAvatarSuccess": "Upload avatar sucesss!",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "country": "Country",
+    "language": "Language",
+    "birthday": "Birthday",
+    "specialties": "Specialties",
+    "languages": "Languages",
+    "about": "About me",
+    "interests": "Interests",
+    "resume": "Resume",
+    "teachExperience": "Teaching experience",
+    "schedule": "Schedule"
+  },
+  "Favorite": {
+    "title": "Favorite Tutor",
+    "noOne": "No one"
+  },
+  "Upload": {
+    "avatar": "Upload avatar here ...",
+    "video": "Choose video"
   }
 }

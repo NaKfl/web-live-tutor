@@ -61,7 +61,7 @@ export const Profile = () => {
         <Row gutter={[24, 0]}>
           <Col span={12}>
             <Form.Item
-              label="Name"
+              label={t('Profile.name')}
               name="name"
               rules={[
                 {
@@ -75,7 +75,7 @@ export const Profile = () => {
           </Col>
           <Col span={12}>
             <Form.Item
-              label="Email"
+              label={t('Profile.email')}
               name="email"
               rules={[
                 {
@@ -92,22 +92,22 @@ export const Profile = () => {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Phone number" name="phone">
+            <Form.Item label={t('Profile.phone')} name="phone">
               <Input placeholder="Phone" />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Country" name="country">
+            <Form.Item label={t('Profile.country')} name="country">
               <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Language" name="language">
+            <Form.Item label={t('Profile.language')} name="language">
               <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="Birthday" name="birthday">
+            <Form.Item label={t('Profile.birthday')} name="birthday">
               <DatePicker />
             </Form.Item>
           </Col>

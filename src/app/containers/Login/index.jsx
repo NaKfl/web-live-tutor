@@ -49,7 +49,7 @@ export const Login = memo(() => {
             {t('Login.title')}
           </Title>
           <Form.Item
-            label="Email"
+            label={t('Login.labelEmail')}
             name="email"
             rules={[
               {
@@ -65,7 +65,7 @@ export const Login = memo(() => {
             <Input placeholder="Email" />
           </Form.Item>
           <Form.Item
-            label="Password"
+            label={t('Login.labelPassword')}
             name="password"
             rules={[
               {

@@ -2,7 +2,10 @@ import { memo, useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { StyledImageUpload } from './styles';
 import { Image } from 'antd';
+import { useTranslation } from 'react-i18next';
+
 export const ImageUpload = memo(({ loading, selectAvatar }) => {
+  const { t } = useTranslation();
   const [preview, setPrivew] = useState();
   const onDrop = useCallback(
     acceptFiles => {
@@ -31,7 +34,7 @@ export const ImageUpload = memo(({ loading, selectAvatar }) => {
       {!!preview ? (
         <Image src={preview.preview} preview={false} />
       ) : (
-        <p>Upload avatar here ...</p>
+        <p>{t('Upload.avatar')}</p>
       )}
     </StyledImageUpload>
   );
