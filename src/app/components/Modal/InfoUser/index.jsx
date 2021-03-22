@@ -11,7 +11,7 @@ import {
 import Button from 'app/components/Button';
 import TextHighlight from 'app/components/TextHighlight';
 import TimeSelect from 'app/components/TimeSelect';
-import { ChatRoom } from 'app/containers/Chat';
+import Conversation from 'app/containers/Chat/Conversation';
 import Form from 'app/components/Form';
 import {
   CloseOutlined,
@@ -113,7 +113,11 @@ const TutorModal = memo(props => {
           {(isShowMessage && (
             <StyledTutorContent {...rest}>
               <hr></hr>
-              <ChatRoom fromId={user?.id} toId={tutor?.userId} height={400} />
+              <Conversation
+                fromId={user?.id}
+                toId={tutor?.userId}
+                height={400}
+              />
             </StyledTutorContent>
           )) || (
             <StyledTutorContent {...rest}>

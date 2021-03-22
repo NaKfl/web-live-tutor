@@ -2,10 +2,10 @@ import React, { memo } from 'react';
 import MessageList from 'app/components/MessageList';
 import ChatInput from 'app/components/ChatInput';
 
-import { StyledChat } from '../styles';
+import { StyledConversation } from './styles';
 import { useHooks } from './hooks';
 
-export const Chat = props => {
+export const Conversation = props => {
   const { height, isHideInput } = props;
   const { states, selectors, handlers } = useHooks(props);
   const { messages } = states;
@@ -13,7 +13,7 @@ export const Chat = props => {
   const { handleOnPressEnter } = handlers;
 
   return (
-    <StyledChat height={height}>
+    <StyledConversation height={height}>
       <MessageList ref={listRef} className="chat-list" messages={messages} />
       {!isHideInput && (
         <ChatInput
@@ -22,8 +22,8 @@ export const Chat = props => {
           onPressEnter={handleOnPressEnter}
         />
       )}
-    </StyledChat>
+    </StyledConversation>
   );
 };
 
-export default memo(Chat);
+export default memo(Conversation);

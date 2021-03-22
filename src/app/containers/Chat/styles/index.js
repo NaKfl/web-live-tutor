@@ -1,23 +1,42 @@
 import styled from 'styled-components';
+import Badge from 'app/components/Badge';
+import { COLOR } from 'styles/colorPalette';
 
-export const StyledChat = styled.div`
+export const StyledWrapper = styled.div`
+  background: transparent;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
   display: flex;
-  padding: 0 5px;
   flex-direction: column;
-  height: ${({ height }) =>
-    typeof height === 'string' && height.includes('%')
-      ? `${height}`
-      : height
-      ? `${height}px`
-      : `350px`};
-  width: 100%;
-  .chat-list {
-    display: inline-block;
-    height: 100%;
-    overflow-y: auto;
-  }
+  align-items: flex-end;
+`;
 
-  .chat-input {
-    margin-top: 10px;
+export const StyledBadge = styled(Badge)`
+  .ant-badge-count {
+    top: 4px;
+    right: 4px;
   }
+  .message-button {
+    background-color: ${COLOR.NICKEL};
+    border-color: ${COLOR.NICKEL};
+    box-shadow: 0px 4px 16px ${COLOR.SHADOW_BLACK};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 26px;
+    .message-icon {
+      transform: translateY(-1.75px);
+      font-size: 34px;
+    }
+  }
+`;
+
+export const StyledChatList = styled.div`
+  transform: translate(-35px, 15px);
+  box-shadow: 0px 4px 16px ${COLOR.SHADOW_BLACK};
+  background-color: ${COLOR.WHITE};
+  padding: 15px;
+  border-radius: 6px;
 `;
