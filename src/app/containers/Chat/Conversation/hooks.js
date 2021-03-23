@@ -25,6 +25,7 @@ export const useHooks = props => {
           createdAt: moment(message.createdAt).format('LT'),
         };
       });
+      socket.off('chat:returnMessages');
       setMessages(list);
     });
   }, [user]);

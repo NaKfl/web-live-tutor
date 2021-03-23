@@ -1,51 +1,48 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledChatList = styled.div`
+  display: flex;
   width: 600px;
   height: 400px;
   transform: translate(-28px, 27px);
   box-shadow: 0px 4px 16px ${COLOR.SHADOW_BLACK};
   background-color: ${COLOR.WHITE};
   border-radius: 6px;
-  .ant-tabs-ink-bar {
-    display: none;
-  }
-  .ant-tabs-nav {
-    height: 400px;
-    .ant-tabs-nav-more {
-      display: none;
-    }
-    .ant-tabs-tab {
-      border-radius: 6px;
-      transition: ease 0.2s;
-    }
-  }
-  .ant-tabs-tab:hover {
-    background-color: ${COLOR.LIGHT_NICKEL};
-  }
-  .ant-tabs-nav-list {
-    .ant-tabs-tab:hover,
-    .ant-tabs-tab-btn:focus,
-    .ant-tabs-tab-remove:focus,
-    .ant-tabs-tab-btn:active,
-    .ant-tabs-tab-remove:active {
-      color: unset;
-    }
-    .ant-tabs-tab-active {
-      background-color: ${COLOR.NICKEL};
-      .ant-tabs-tab-btn {
-        color: ${COLOR.WHITE};
-      }
-    }
+  .chat-window {
+    flex: 1;
   }
 `;
 
+export const StyledNav = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  overflow-y: scroll;
+`;
+
 export const StyledNavItem = styled.div`
-  padding: 2px 0;
+  padding: 9px 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  border-radius: 6px;
+  transition: ease 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${COLOR.LIGHT_NICKEL};
+  }
+
+  ${({ active }) =>
+    active &&
+    css`
+      background-color: ${COLOR.NICKEL};
+      color: ${COLOR.WHITE};
+      &:hover {
+        background-color: ${COLOR.NICKEL};
+      }
+    `}
 
   .partner-avatar {
     margin-right: 10px;
@@ -53,7 +50,7 @@ export const StyledNavItem = styled.div`
 
   .partner-name,
   .last-content {
-    max-width: 150px;
+    width: 140px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

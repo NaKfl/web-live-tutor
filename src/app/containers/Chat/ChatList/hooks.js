@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import socket from 'utils/socket';
 
 const useHooks = () => {
-  const [togglePopup, setTogglePopup] = useState(false);
   const [recentList, setRecentList] = useState([]);
+  const [activatedConversation, setActivatedConversation] = useState({});
 
   useEffect(() => {
     socket.emit('chat:getRecentList');
@@ -12,18 +12,19 @@ const useHooks = () => {
   useEffect(() => {
     socket.on('chat:returnRecentList', ({ recentList }) => {
       setRecentList(recentList);
+      setActivatedConversation(recentList[0]);
     });
   }, []);
 
-  const handleShowHidePopup = useCallback(() => {
-    setTogglePopup(prevState => !prevState);
+  const handleChangeConversation = useCallback(conversation => {
+    setActivatedConversation(conversation);
   }, []);
 
   return {
-    handlers: { handleShowHidePopup },
+    handlers: { handleChangeConversation },
     selectors: {
-      togglePopup,
       recentList,
+      activatedConversation,
     },
   };
 };

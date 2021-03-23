@@ -6,14 +6,14 @@ import { StyledConversation } from './styles';
 import { useHooks } from './hooks';
 
 export const Conversation = props => {
-  const { height, isHideInput } = props;
+  const { height, isHideInput, ...rest } = props;
   const { states, selectors, handlers } = useHooks(props);
   const { messages } = states;
   const { inputRef, listRef } = selectors;
   const { handleOnPressEnter } = handlers;
 
   return (
-    <StyledConversation height={height}>
+    <StyledConversation height={height} {...rest}>
       <MessageList ref={listRef} className="chat-list" messages={messages} />
       {!isHideInput && (
         <ChatInput
