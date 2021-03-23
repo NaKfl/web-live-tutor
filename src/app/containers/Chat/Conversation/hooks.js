@@ -12,16 +12,16 @@ export const useHooks = props => {
   const listRef = useRef();
 
   useEffect(() => {
-    socket.emit('chat:getInitiatedMessages', { fromId, toId });
+    socket.emit('chat:getMessages', { fromId, toId });
   }, [fromId, toId]);
 
   useEffect(() => {
-    socket.on('chat:returnInitiatedMessages', ({ messages }) => {
+    socket.on('chat:returnMessages', ({ messages }) => {
       const list = messages.map(message => {
         return {
           ...message,
-          direction: message.fromId === user.id ? 'right' : 'left',
-          name: message.from?.name ?? 'Anonymous',
+          direction: message.fromId === user?.id ? 'right' : 'left',
+          name: message.fromInfo?.name ?? 'Anonymous',
           createdAt: moment(message.createdAt).format('LT'),
         };
       });

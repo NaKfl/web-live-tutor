@@ -13,6 +13,7 @@ export const COLOR = {
   VIOLET: '#1A051D',
   WHISPER: '#ECE9F1',
   SHADOW_GRAY: 'rgba(0, 0, 0, 0.08)',
+  SHADOW_BLACK: 'rgba(0, 0, 0, .3)',
   NICKEL: '#808080',
 
   BLACK_20: 'rgba(0, 0, 0, 0.2)',

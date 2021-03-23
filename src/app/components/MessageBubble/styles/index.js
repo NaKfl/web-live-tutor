@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledMessageBubble = styled.div`
+  min-width: 60px;
   position: relative;
   border-radius: 0.4em;
   padding: 10px;
