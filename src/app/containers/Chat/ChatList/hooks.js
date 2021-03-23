@@ -1,17 +1,19 @@
-import useActions from 'hooks/useActions';
 import { useCallback, useEffect, useState } from 'react';
-import { actions } from './slice';
+import socket from 'utils/socket';
 
 const useHooks = () => {
   const [togglePopup, setTogglePopup] = useState(false);
-  const { getRecentList } = useActions(
-    {
-      getRecentList: actions.getRecentList,
-    },
-    [actions],
-  );
+  const [recentList, setRecentList] = useState([]);
 
-  useEffect(() => getRecentList(), [getRecentList]);
+  useEffect(() => {
+    socket.emit('chat:getRecentList');
+  }, []);
+
+  useEffect(() => {
+    socket.on('chat:returnRecentList', ({ recentList }) => {
+      setRecentList(recentList);
+    });
+  }, []);
 
   const handleShowHidePopup = useCallback(() => {
     setTogglePopup(prevState => !prevState);
@@ -21,6 +23,7 @@ const useHooks = () => {
     handlers: { handleShowHidePopup },
     selectors: {
       togglePopup,
+      recentList,
     },
   };
 };

@@ -20,7 +20,7 @@ export const useHooks = props => {
       const list = messages.map(message => {
         return {
           ...message,
-          direction: message.fromId === user?.id ? 'right' : 'left',
+          direction: message.fromInfo?.id === user?.id ? 'right' : 'left',
           name: message.fromInfo?.name ?? 'Anonymous',
           createdAt: moment(message.createdAt).format('LT'),
         };

@@ -15,6 +15,7 @@ export const COLOR = {
   SHADOW_GRAY: 'rgba(0, 0, 0, 0.08)',
   SHADOW_BLACK: 'rgba(0, 0, 0, .3)',
   NICKEL: '#808080',
+  LIGHT_NICKEL: '#c9c9c9',
 
   BLACK_20: 'rgba(0, 0, 0, 0.2)',
   BLACK_12: 'rgba(0, 0, 0, 0.12)',
