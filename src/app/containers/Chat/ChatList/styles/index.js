@@ -16,10 +16,11 @@ export const StyledChatList = styled.div`
 `;
 
 export const StyledNav = styled.div`
+  min-width: 210px;
   display: flex;
   flex-direction: column;
   height: 400px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const StyledNavItem = styled.div`
@@ -51,18 +52,20 @@ export const StyledNavItem = styled.div`
 
   .partner-name,
   .last-content {
-    width: 140px;
+    max-width: 120px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: ${({ isBold }) => isBold && 600};
   }
   .last-content {
     margin-bottom: 0;
     font-style: italic;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .partner-info {
+    font-size: 13px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

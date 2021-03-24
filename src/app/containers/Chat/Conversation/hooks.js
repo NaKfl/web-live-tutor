@@ -57,9 +57,15 @@ export const useHooks = props => {
     [fromId, toId],
   );
 
+  const handleOnFocus = useCallback(() => {
+    socket.emit('chat:readMessage', {
+      conversation: messages[messages.length - 1],
+    });
+  }, [messages]);
+
   return {
     selectors: { inputRef, listRef },
-    handlers: { handleOnPressEnter },
+    handlers: { handleOnPressEnter, handleOnFocus },
     states: { messages },
   };
 };
