@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledConversation = styled.div`
   display: flex;
-  padding: 0 5px;
   flex-direction: column;
   height: ${({ height }) =>
     typeof height === 'string' && height.includes('%')
@@ -10,7 +9,6 @@ export const StyledConversation = styled.div`
       : height
       ? `${height}px`
       : `350px`};
-  width: 100%;
   .chat-list {
     display: inline-block;
     height: 100%;
@@ -18,6 +16,6 @@ export const StyledConversation = styled.div`
   }
 
   .chat-input {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 `;

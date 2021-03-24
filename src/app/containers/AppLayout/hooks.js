@@ -2,7 +2,7 @@ import { makeSelectIsAuthenticated } from 'app/containers/Login/selectors';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { emitIdentity, emitLogout } from './socket';
+import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { getUser as getUserInfoFromStorage } from 'utils/localStorageUtils';
 
 export const useHooks = () => {
@@ -32,9 +32,9 @@ export const useAuthenticatedRedirect = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      emitIdentity(user);
+      emitConnectionLogin(user);
     } else {
-      emitLogout();
+      emitDisconnectionLogout();
     }
   }, [isAuthenticated, user]);
 };

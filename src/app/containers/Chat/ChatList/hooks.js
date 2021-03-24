@@ -1,26 +1,39 @@
-import useActions from 'hooks/useActions';
 import { useCallback, useEffect, useState } from 'react';
-import { actions } from './slice';
+import socket from 'utils/socket';
 
 const useHooks = () => {
-  const [togglePopup, setTogglePopup] = useState(false);
-  const { getRecentList } = useActions(
-    {
-      getRecentList: actions.getRecentList,
-    },
-    [actions],
-  );
+  const [recentList, setRecentList] = useState([]);
+  const [activatedConversation, setActivatedConversation] = useState(null);
 
-  useEffect(() => getRecentList(), [getRecentList]);
+  useEffect(() => {
+    socket.emit('chat:getRecentList');
+  }, []);
 
-  const handleShowHidePopup = useCallback(() => {
-    setTogglePopup(prevState => !prevState);
+  useEffect(() => {
+    socket.on('chat:returnRecentList', ({ recentList }) => {
+      setRecentList(recentList);
+      setActivatedConversation(prevState => {
+        if (prevState === null) return recentList[0];
+        return prevState;
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('chat:joinOrLeave', () => {
+      socket.emit('chat:getRecentList');
+    });
+  }, []);
+
+  const handleChangeConversation = useCallback(conversation => {
+    setActivatedConversation(conversation);
   }, []);
 
   return {
-    handlers: { handleShowHidePopup },
+    handlers: { handleChangeConversation },
     selectors: {
-      togglePopup,
+      recentList,
+      activatedConversation,
     },
   };
 };

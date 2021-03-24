@@ -1,9 +1,9 @@
 import socket from 'utils/socket';
 
-export const emitIdentity = user => {
-  socket.emit('identity', { user });
+export const emitConnectionLogin = user => {
+  socket.emit('connection:login', { user });
 };
 
-export const emitLogout = () => {
-  socket.emit('logout');
+export const emitDisconnectionLogout = () => {
+  socket.emit('disconnection:logout');
 };
