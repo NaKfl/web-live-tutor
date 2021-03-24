@@ -10,7 +10,7 @@ export const Conversation = props => {
   const { states, selectors, handlers } = useHooks(props);
   const { messages } = states;
   const { inputRef, listRef } = selectors;
-  const { handleOnPressEnter } = handlers;
+  const { handleOnPressEnter, handleOnFocus } = handlers;
 
   return (
     <StyledConversation height={height} {...rest}>
@@ -19,6 +19,7 @@ export const Conversation = props => {
         <ChatInput
           ref={inputRef}
           className="chat-input"
+          onFocus={handleOnFocus}
           onPressEnter={handleOnPressEnter}
         />
       )}

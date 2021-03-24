@@ -2,7 +2,6 @@ import { WEB_API } from 'configs';
 import request, { handleGeneralError } from './index';
 
 export const registerTutor = payload => {
-  console.log('🚀 ~ file: registerTutor.js ~ line 5 ~ payload', payload);
   return request(
     WEB_API,
     {

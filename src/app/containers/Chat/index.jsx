@@ -9,13 +9,13 @@ import { StyledBadge, StyledWrapper } from './styles';
 export const Chat = () => {
   const { handlers, selectors } = useHooks();
   const { handleShowHidePopup } = handlers;
-  const { togglePopup } = selectors;
+  const { togglePopup, unreadCount } = selectors;
   const { t } = useTranslation();
 
   return (
     <StyledWrapper>
       {togglePopup && <ChatList />}
-      <StyledBadge count={0} overflowCount={10}>
+      <StyledBadge count={unreadCount} overflowCount={10}>
         <AntdButton
           className="message-button"
           type="primary"

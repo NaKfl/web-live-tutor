@@ -8,6 +8,13 @@ import { getUser as getUserInfoFromStorage } from 'utils/localStorageUtils';
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
 
+  const user = getUserInfoFromStorage();
+  if (isAuthenticated) {
+    emitConnectionLogin(user);
+  } else {
+    emitDisconnectionLogout();
+  }
+
   return {
     selectors: {
       isAuthenticated,
@@ -22,21 +29,12 @@ export const useAuthenticatedRedirect = () => {
   const isRedirect = ['/login', '/register'].includes(location.pathname);
   const { from } = location.state || { from: { pathname: '/' } };
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
-  const user = getUserInfoFromStorage();
 
   useEffect(() => {
     if (isAuthenticated && isRedirect) {
       history.replace(from);
     }
   }, [isAuthenticated, history, from, isRedirect]);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      emitConnectionLogin(user);
-    } else {
-      emitDisconnectionLogout();
-    }
-  }, [isAuthenticated, user]);
 };
 
 export default useHooks;

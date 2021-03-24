@@ -27,7 +27,6 @@ export const getFavoriteTutorList = () => {
 };
 
 export const uploadAvatar = file => {
-  console.log('🚀 ~ file: user.service.js ~ line 30 ~ file', file);
   const form = new FormData();
   form.set('avatar', file);
   return request(
@@ -43,7 +42,6 @@ export const uploadAvatar = file => {
       return res.data;
     })
     .then(data => {
-      console.log(data);
       return { response: 'ok' };
     })
     .catch(handleGeneralError);

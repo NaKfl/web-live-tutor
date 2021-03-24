@@ -27,6 +27,7 @@ const useHooks = () => {
 
   const handleChangeConversation = useCallback(conversation => {
     setActivatedConversation(conversation);
+    socket.emit('chat:readMessage', { conversation });
   }, []);
 
   return {

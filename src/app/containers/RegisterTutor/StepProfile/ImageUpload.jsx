@@ -10,7 +10,6 @@ export const ImageUpload = memo(({ loading, selectAvatar }) => {
   const onDrop = useCallback(
     acceptFiles => {
       if (!!acceptFiles) {
-        console.log({ acceptFiles });
         selectAvatar(acceptFiles[0]);
         setPrivew(() => {
           const a = acceptFiles.map(file =>

@@ -30,18 +30,21 @@ export const ChatList = () => {
       />
       <StyledNav>
         {recentList.map(item => {
-          const { partner } = item;
+          const { partner, isRead, toInfo } = item;
           return (
             <StyledNavItem
               active={partner?.id === activatedConversation?.partner?.id}
               onClick={() => handleChangeConversation(item)}
+              isBold={!isRead && toInfo?.id === user?.id}
             >
               <StyledAvatar className="partner-avatar">
                 <Avatar size={40} src={partner?.avatar} />
                 <StyledBadge color={partner?.isOnline && 'green'} />
               </StyledAvatar>
               <div className="partner-info">
-                <span className="partner-name">{partner?.name}</span>
+                <span className="partner-name">
+                  {partner?.name ?? 'Anonymous'}
+                </span>
                 <p className="last-content">{item?.content}</p>
               </div>
             </StyledNavItem>
