@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Badge from 'app/components/Badge';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledChatList = styled.div`
@@ -65,5 +66,20 @@ export const StyledNavItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+`;
+
+export const StyledAvatar = styled.div`
+  position: relative;
+`;
+
+export const StyledBadge = styled(Badge)`
+  position: absolute;
+  right: -9px;
+  bottom: -2px;
+  .ant-badge-status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
   }
 `;

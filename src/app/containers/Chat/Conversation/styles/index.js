@@ -16,6 +16,6 @@ export const StyledConversation = styled.div`
   }
 
   .chat-input {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 `;

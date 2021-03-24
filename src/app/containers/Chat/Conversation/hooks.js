@@ -4,7 +4,7 @@ import socket from 'utils/socket';
 import moment from 'moment';
 
 export const useHooks = props => {
-  const { fromId, toId } = props;
+  const { fromId, toId, activatedConversation } = props;
   const user = getUserFromStorage();
   const [messages, setMessages] = useState([]);
 
@@ -26,9 +26,14 @@ export const useHooks = props => {
         };
       });
       socket.off('chat:returnMessages');
-      setMessages(list);
+      const lastMessage = messages[messages.length - 1];
+      if (
+        lastMessage?.fromInfo?.id === activatedConversation?.partner?.id ||
+        lastMessage?.toInfo?.id === activatedConversation?.partner?.id
+      )
+        setMessages(list);
     });
-  }, [user]);
+  }, [activatedConversation?.partner?.id, user]);
 
   useEffect(() => {
     if (listRef) {

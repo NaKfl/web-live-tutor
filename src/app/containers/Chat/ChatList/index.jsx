@@ -1,7 +1,13 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import useHooks from './hooks';
-import { StyledChatList, StyledNav, StyledNavItem } from './styles';
+import {
+  StyledChatList,
+  StyledNav,
+  StyledNavItem,
+  StyledAvatar,
+  StyledBadge,
+} from './styles';
 import Avatar from 'app/components/Avatar';
 import Conversation from '../Conversation';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
@@ -19,6 +25,7 @@ export const ChatList = () => {
         className="chat-window"
         fromId={user?.id}
         toId={activatedConversation?.partner?.id}
+        activatedConversation={activatedConversation}
         height={400}
       />
       <StyledNav>
@@ -26,14 +33,13 @@ export const ChatList = () => {
           const { partner } = item;
           return (
             <StyledNavItem
-              active={item.id === activatedConversation?.id}
+              active={partner?.id === activatedConversation?.partner?.id}
               onClick={() => handleChangeConversation(item)}
             >
-              <Avatar
-                size="large"
-                className="partner-avatar"
-                src={partner?.avatar}
-              />
+              <StyledAvatar className="partner-avatar">
+                <Avatar size={40} src={partner?.avatar} />
+                <StyledBadge color={partner?.isOnline && 'green'} />
+              </StyledAvatar>
               <div className="partner-info">
                 <span className="partner-name">{partner?.name}</span>
                 <p className="last-content">{item?.content}</p>

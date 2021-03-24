@@ -3,7 +3,7 @@ import socket from 'utils/socket';
 
 const useHooks = () => {
   const [recentList, setRecentList] = useState([]);
-  const [activatedConversation, setActivatedConversation] = useState({});
+  const [activatedConversation, setActivatedConversation] = useState(null);
 
   useEffect(() => {
     socket.emit('chat:getRecentList');
@@ -12,7 +12,16 @@ const useHooks = () => {
   useEffect(() => {
     socket.on('chat:returnRecentList', ({ recentList }) => {
       setRecentList(recentList);
-      setActivatedConversation(recentList[0]);
+      setActivatedConversation(prevState => {
+        if (prevState === null) return recentList[0];
+        return prevState;
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('chat:joinOrLeave', () => {
+      socket.emit('chat:getRecentList');
     });
   }, []);
 
