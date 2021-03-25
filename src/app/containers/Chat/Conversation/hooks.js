@@ -28,6 +28,7 @@ export const useHooks = props => {
       socket.off('chat:returnMessages');
       const lastMessage = messages[messages.length - 1];
       if (
+        messages.length === 0 ||
         lastMessage?.fromInfo?.id === activatedConversation?.partner?.id ||
         lastMessage?.toInfo?.id === activatedConversation?.partner?.id
       )

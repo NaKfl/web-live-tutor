@@ -15,6 +15,7 @@
   },
   "Category": {
     "tutor": "Tutor",
+    "registerTutor": "Register tutor",
     "courses": "Courses",
     "progress": "Progress"
   },

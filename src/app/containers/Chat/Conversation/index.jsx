@@ -6,7 +6,7 @@ import { StyledConversation } from './styles';
 import { useHooks } from './hooks';
 
 export const Conversation = props => {
-  const { height, isHideInput, ...rest } = props;
+  const { height, isHideInput, handleDeleteNewConversation, ...rest } = props;
   const { states, selectors, handlers } = useHooks(props);
   const { messages } = states;
   const { inputRef, listRef } = selectors;
@@ -20,7 +20,10 @@ export const Conversation = props => {
           ref={inputRef}
           className="chat-input"
           onFocus={handleOnFocus}
-          onPressEnter={handleOnPressEnter}
+          onPressEnter={e => {
+            handleOnPressEnter(e);
+            handleDeleteNewConversation();
+          }}
         />
       )}
     </StyledConversation>

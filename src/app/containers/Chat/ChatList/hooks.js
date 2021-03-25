@@ -1,23 +1,26 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  selectRecentList,
+  selectActivatedConversation,
+  selectNewConversation,
+} from '../selectors';
+import useActions from 'hooks/useActions';
+import { actions } from '../slice';
 import socket from 'utils/socket';
 
 const useHooks = () => {
-  const [recentList, setRecentList] = useState([]);
-  const [activatedConversation, setActivatedConversation] = useState(null);
+  const recentList = useSelector(selectRecentList);
+  const activatedConversation = useSelector(selectActivatedConversation);
+  const newConversation = useSelector(selectNewConversation);
 
-  useEffect(() => {
-    socket.emit('chat:getRecentList');
-  }, []);
-
-  useEffect(() => {
-    socket.on('chat:returnRecentList', ({ recentList }) => {
-      setRecentList(recentList);
-      setActivatedConversation(prevState => {
-        if (prevState === null) return recentList[0];
-        return prevState;
-      });
-    });
-  }, []);
+  const { setActivatedConversation, deleteNewConversation } = useActions(
+    {
+      setActivatedConversation: actions.setActivatedConversation,
+      deleteNewConversation: actions.deleteNewConversation,
+    },
+    [actions],
+  );
 
   useEffect(() => {
     socket.on('chat:joinOrLeave', () => {
@@ -25,16 +28,30 @@ const useHooks = () => {
     });
   }, []);
 
-  const handleChangeConversation = useCallback(conversation => {
-    setActivatedConversation(conversation);
-    socket.emit('chat:readMessage', { conversation });
-  }, []);
+  const handleChangeConversation = useCallback(
+    conversation => {
+      setActivatedConversation(conversation);
+      deleteNewConversation();
+      socket.emit('chat:readMessage', { conversation });
+    },
+    [deleteNewConversation, setActivatedConversation],
+  );
+
+  const handleDeleteNewConversation = useCallback(
+    (isSetDefaultActiveConversation = false) => {
+      deleteNewConversation();
+      if (isSetDefaultActiveConversation)
+        setActivatedConversation(recentList[0]);
+    },
+    [deleteNewConversation, recentList, setActivatedConversation],
+  );
 
   return {
-    handlers: { handleChangeConversation },
+    handlers: { handleChangeConversation, handleDeleteNewConversation },
     selectors: {
       recentList,
       activatedConversation,
+      newConversation,
     },
   };
 };
