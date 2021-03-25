@@ -34,8 +34,11 @@ export const publicRoutes = [
     component: Register,
     key: 'register',
   },
+];
+
+export const meetingRoutes = [
   {
-    path: '/call/:id',
+    path: '/call',
     component: JitsiMeetPage,
     key: 'jitsi-meet-page',
   },

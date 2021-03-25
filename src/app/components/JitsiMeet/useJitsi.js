@@ -38,7 +38,15 @@ const useJitsi = props => {
 
     client.addEventListener('videoConferenceJoined', () => {
       password && client.executeCommand('password', password);
-      displayName && client.executeCommand('displayName', displayName);
+      setInterval(function () {
+        displayName && client.executeCommand('displayName', displayName);
+      }, 1000);
+    });
+
+    client.addEventListener('participantJoined', () => {
+      setInterval(function () {
+        displayName && client.executeCommand('displayName', displayName);
+      }, 1000);
     });
 
     client.addEventListener('passwordRequired', () => {

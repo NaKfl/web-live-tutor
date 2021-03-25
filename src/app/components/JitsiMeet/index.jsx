@@ -11,7 +11,7 @@ export const JitsiMeet = props => {
     jitsiContainerStyles,
   } = selectors;
   return (
-    <div style={{ ...{ width: '800px', height: '400px' }, ...containerStyles }}>
+    <div style={{ ...{ width: '100%', height: '100%' }, ...containerStyles }}>
       {error && (errorComponent || <p>{error}</p>)}
       {!error && loading && (loadingComponent || <p>Loading ...</p>)}
       <div

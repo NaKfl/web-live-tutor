@@ -5,6 +5,7 @@ import useHooks from './hooks';
 
 import Confirm from 'app/components/Modal/Confirm';
 import InfoUser from 'app/components/Modal/InfoUser';
+import CallModal from 'app/components/CallModal';
 
 import { POPUP_TYPE } from './constants';
 
@@ -32,6 +33,17 @@ export const Popup = memo(() => {
           case POPUP_TYPE.INFO_TUTOR: {
             return (
               <InfoUser
+                key={popup.key}
+                onCancel={handleClosePopup(popup)}
+                visible
+                {...popup}
+              />
+            );
+          }
+
+          case POPUP_TYPE.CALL_VIDEO: {
+            return (
+              <CallModal
                 key={popup.key}
                 onCancel={handleClosePopup(popup)}
                 visible

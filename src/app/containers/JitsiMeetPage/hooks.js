@@ -1,85 +1,35 @@
-// import moment from 'moment';
-// import useActions from 'hooks/useActions';
-// import { useCallback, useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import {
-//   selectProfileInfo,
-//   selectEditProfileStatus,
-//   selectVisibleModal,
-//   selectLoadingUpload,
-// } from './selectors';
-// import { actions } from './slice';
-// import Form from 'app/components/Form';
-// import { ACTION_STATUS } from 'utils/constants';
-// import { DATE_FORMAT } from 'utils/constants';
+import moment from 'moment';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from 'configs';
+import queryString from 'query-string';
+import socket from 'utils/socket';
 
-// const useHooks = () => {
-//   const [form] = Form.useForm();
-//   const info = useSelector(selectProfileInfo);
-//   const statusUpdate = useSelector(selectEditProfileStatus);
-//   const avatarUploadVisible = useSelector(selectVisibleModal);
-//   const loadingUpload = useSelector(selectLoadingUpload);
-//   const {
-//     getProfile,
-//     editProfile,
-//     uploadAvatar,
-//     hideModal,
-//     showModal,
-//   } = useActions(
-//     {
-//       getProfile: actions.getProfile,
-//       editProfile: actions.editProfile,
-//       uploadAvatar: actions.uploadAvatar,
-//       hideModal: actions.hideModal,
-//       showModal: actions.showModal,
-//     },
-//     [actions],
-//   );
+const useHooks = props => {
+  const { token } = queryString.parse(props.location.search);
 
-//   const processedInfo = {
-//     ...info,
-//     birthday: info?.birthday ? moment(info?.birthday) : undefined,
-//   };
+  const [roomInfo, setRoomInfo] = useState({});
 
-//   useEffect(() => getProfile(), [getProfile]);
+  useEffect(() => {
+    const { roomName, password, displayName, isTutor } = jwt.verify(
+      token,
+      JWT_SECRET,
+    );
+    console.log('roomName', roomName, password);
+    console.log('token', token);
+    setRoomInfo({
+      roomName,
+      password,
+      displayName,
+      isTutor,
+    });
+  }, []);
 
-//   useEffect(() => form.resetFields(), [info, form]);
+  return {
+    handlers: {},
+    selectors: { roomInfo },
+  };
+};
 
-//   const onFinish = useCallback(
-//     values => {
-//       editProfile({
-//         ...values,
-//         birthday: values?.birthday
-//           ? moment(values?.birthday).format(DATE_FORMAT)
-//           : null,
-//       });
-//     },
-//     [editProfile],
-//   );
-//   const openModal = useCallback(() => {
-//     showModal();
-//   }, [showModal]);
-//   const modalControl = {
-//     handleOk: useCallback(
-//       image => {
-//         uploadAvatar(image);
-//       },
-//       [uploadAvatar],
-//     ),
-//     handleCancel: useCallback(() => {
-//       hideModal();
-//     }, [hideModal]),
-//   };
-//   return {
-//     handlers: { onFinish, openModal, modalControl },
-//     selectors: {
-//       loading: statusUpdate === ACTION_STATUS.PENDING,
-//       info: processedInfo,
-//       form,
-//       avatarUploadVisible,
-//       loadingUpload,
-//     },
-//   };
-// };
-
-// export default useHooks;
+export default useHooks;

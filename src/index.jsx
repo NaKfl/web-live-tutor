@@ -8,7 +8,6 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { App } from 'app';
-import Popup from 'app/containers/Popup';
 import { HelmetProvider } from 'react-helmet-async';
 import { configureAppStore } from 'store/configureStore';
 
@@ -29,7 +28,6 @@ const ConnectedApp = ({ Component }) => (
     <HelmetProvider>
       <React.StrictMode>
         <Component />
-        <Popup />
       </React.StrictMode>
     </HelmetProvider>
   </Provider>
