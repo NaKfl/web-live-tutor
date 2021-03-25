@@ -16,7 +16,7 @@ export const StyledChatList = styled.div`
 `;
 
 export const StyledNav = styled.div`
-  min-width: 210px;
+  min-width: 220px;
   display: flex;
   flex-direction: column;
   height: 400px;
@@ -52,7 +52,7 @@ export const StyledNavItem = styled.div`
 
   .partner-name,
   .last-content {
-    max-width: 120px;
+    max-width: 115px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

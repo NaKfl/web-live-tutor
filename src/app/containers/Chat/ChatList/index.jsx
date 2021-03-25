@@ -8,7 +8,6 @@ import {
   StyledAvatar,
   StyledBadge,
 } from './styles';
-import { Empty } from 'antd';
 import Avatar from 'app/components/Avatar';
 import Conversation from '../Conversation';
 import { DeleteFilled } from '@ant-design/icons';
@@ -81,9 +80,6 @@ export const ChatList = () => {
               </StyledNavItem>
             );
           })}
-        {!newConversation && recentList.length <= 0 && (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-        )}
       </StyledNav>
     </StyledChatList>
   );
