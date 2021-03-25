@@ -12,7 +12,7 @@ import { useControlChatPopup } from 'app/containers/Chat/hooks';
 
 export const TutorCard = memo(props => {
   const { handleSetNewConversation } = useControlChatPopup();
-  const { showInfoTutor } = props;
+  const { showInfoTutor, handleCallTutor } = props;
   const { t } = useTranslation();
   return (
     <StyledTutorCard>
@@ -78,7 +78,11 @@ export const TutorCard = memo(props => {
         <div className="control-layout">
           <div className="control">
             <Button>{t('Profile.title')}</Button>
-            <Button type="accent" icon={<PhoneOutlined />}>
+            <Button
+              type="accent"
+              icon={<PhoneOutlined />}
+              onClick={() => handleCallTutor(props.userId)}
+            >
               {t('Common.call')}
             </Button>
           </div>

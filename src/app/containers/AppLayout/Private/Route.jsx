@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import Popup from 'app/containers/Popup';
 import useHooks from '../hooks';
 
 const PrivateRoute = ({ component, layout: Layout, ...rest }) => {
@@ -10,6 +11,7 @@ const PrivateRoute = ({ component, layout: Layout, ...rest }) => {
       return (
         <Layout>
           <Component {...props} />
+          <Popup />
         </Layout>
       );
     } else {

@@ -35,6 +35,10 @@ export const StyledContent = styled(Content)`
   position: relative;
 `;
 
+export const StyledMeeting = styled(Content)`
+  width: 100%;
+`;
+
 export const StyledFooter = styled(Footer)`
   background-color: ${COLOR.WHITE};
   width: 100%;
