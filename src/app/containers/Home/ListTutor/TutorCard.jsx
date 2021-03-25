@@ -6,10 +6,12 @@ import Rate from 'app/components/Rate';
 import PropTypes from 'prop-types';
 import Skeleton from 'app/components/Skeleton';
 import Button from 'app/components/Button';
-import { PhoneOutlined, HeartOutlined } from '@ant-design/icons';
+import { PhoneOutlined, HeartOutlined, MailOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import { useControlChatPopup } from 'app/containers/Chat/hooks';
 
 export const TutorCard = memo(props => {
+  const { handleSetNewConversation } = useControlChatPopup();
   const { showInfoTutor } = props;
   const { t } = useTranslation();
   return (
@@ -44,6 +46,10 @@ export const TutorCard = memo(props => {
             {t('Common.certificate')}
           </Button>
         </div>
+        <MailOutlined
+          className="mail-btn"
+          onClick={() => handleSetNewConversation(props)}
+        ></MailOutlined>
         <div className="love">
           <HeartOutlined
             style={{

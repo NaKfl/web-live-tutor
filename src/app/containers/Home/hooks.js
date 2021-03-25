@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import useActions from 'hooks/useActions';
 import { actions } from './slice';
 import { useSelector } from 'react-redux';

@@ -10,6 +10,22 @@ export const StyledHeader = styled(Layout.Header)`
   display: flex;
   justify-content: space-between;
   box-shadow: 0 -1px 13px 2px ${COLOR.BLACK_20};
+  .ant-menu-horizontal > {
+    .ant-menu-item a {
+      color: #7d7d7d;
+      font-size: 16px;
+      text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+      &:hover {
+        color: ${COLOR.CORNFLOWER};
+      }
+    }
+    .ant-menu-item-selected a {
+      color: ${COLOR.CORNFLOWER};
+    }
+    .ant-menu-item:hover {
+      border-color: ${COLOR.CORNFLOWER};
+    }
+  }
 `;
 
 export const StyledContent = styled(Layout.Content)`

@@ -36,8 +36,8 @@ export const StyledNavItem = styled.div`
     background-color: ${COLOR.LIGHT_NICKEL};
   }
 
-  ${({ active }) =>
-    active &&
+  ${({ isActive }) =>
+    isActive &&
     css`
       background-color: ${COLOR.NICKEL};
       color: ${COLOR.WHITE};
@@ -69,6 +69,16 @@ export const StyledNavItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .delete-btn {
+    font-size: 13px;
+    margin-left: auto;
+    opacity: 0.5;
+    transition: ease 0.2s;
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 

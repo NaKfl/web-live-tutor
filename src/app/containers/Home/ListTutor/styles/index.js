@@ -39,10 +39,16 @@ export const StyledHeader = styled.div`
     height: 30px;
     width: 100%;
   }
+  .mail-btn {
+    font-size: 24px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
   .love {
-    position: absolute;
-    top: 0;
-    right: 0;
     transition: all 0.3s ease;
     &:hover {
       transform: scale(1.1);

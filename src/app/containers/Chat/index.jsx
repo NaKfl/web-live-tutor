@@ -1,20 +1,21 @@
 import { MessageOutlined } from '@ant-design/icons';
 import { Button as AntdButton } from 'antd';
 import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
+import { sliceKey, reducer } from './slice';
+import { useInjectReducer } from 'utils/reduxInjectors';
 import ChatList from './ChatList';
 import useHooks from './hooks';
 import { StyledBadge, StyledWrapper } from './styles';
 
 export const Chat = () => {
+  useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
   const { handleShowHidePopup } = handlers;
-  const { togglePopup, unreadCount } = selectors;
-  const { t } = useTranslation();
+  const { isShow, unreadCount } = selectors;
 
   return (
     <StyledWrapper>
-      {togglePopup && <ChatList />}
+      {isShow && <ChatList />}
       <StyledBadge count={unreadCount} overflowCount={10}>
         <AntdButton
           className="message-button"

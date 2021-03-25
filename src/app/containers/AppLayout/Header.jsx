@@ -4,7 +4,7 @@ import Space from 'app/components/Space';
 import Menu from 'app/components/Menu';
 import Button from 'app/components/Button';
 import { useLogout } from 'app/containers/Login/hooks';
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { StyledHeader } from 'app/components/Layout';
@@ -16,12 +16,24 @@ export const Header = () => {
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
+  const [selectedKey, setSelectedKey] = useState(['1']);
 
   return (
     <StyledHeader>
-      <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
-        <Menu.Item key="1">{t('Category.tutor')}</Menu.Item>
-        <Menu.Item key="2">{t('Category.courses')}</Menu.Item>
+      <Menu
+        theme="light"
+        mode="horizontal"
+        selectedKeys={selectedKey}
+        onClick={e => {
+          if (e.key) setSelectedKey([e.key]);
+        }}
+      >
+        <Menu.Item key="1">
+          <Link to="/">{t('Category.tutor')}</Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to="/register-tutor">{t('Category.registerTutor')}</Link>
+        </Menu.Item>
         <Menu.Item key="3">{t('Category.progress')}</Menu.Item>
       </Menu>
       {(user && (
