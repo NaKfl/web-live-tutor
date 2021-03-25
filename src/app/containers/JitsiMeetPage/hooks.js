@@ -1,14 +1,13 @@
 import moment from 'moment';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from 'configs';
 import queryString from 'query-string';
-import socket from 'utils/socket';
+import { useHistory } from 'react-router-dom';
 
 const useHooks = props => {
   const { token } = queryString.parse(props.location.search);
-
+  const history = useHistory();
   const [roomInfo, setRoomInfo] = useState({});
 
   useEffect(() => {
@@ -16,8 +15,6 @@ const useHooks = props => {
       token,
       JWT_SECRET,
     );
-    console.log('roomName', roomName, password);
-    console.log('token', token);
     setRoomInfo({
       roomName,
       password,
@@ -26,8 +23,12 @@ const useHooks = props => {
     });
   }, []);
 
+  const handleSomeOneLeave = useCallback(() => {
+    history.push('/');
+  }, []);
+
   return {
-    handlers: {},
+    handlers: { handleSomeOneLeave },
     selectors: { roomInfo },
   };
 };

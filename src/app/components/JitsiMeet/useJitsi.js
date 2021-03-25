@@ -49,10 +49,14 @@ const useJitsi = props => {
       }, 1000);
     });
 
+    client.addEventListener('participantJoined', () => {
+      displayName && client.executeCommand('displayName', displayName);
+    });
+
     client.addEventListener('passwordRequired', () => {
       password && client.executeCommand('password', password);
     });
-    onMeetingEnd && client.addEventListener('readyToClose', onMeetingEnd);
+    onMeetingEnd && client.addEventListener('participantLeft', onMeetingEnd);
 
     return () => jitsi && jitsi.dispose();
   }, [window.JitsiMeetExternalAPI]);

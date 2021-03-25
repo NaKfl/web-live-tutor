@@ -21,6 +21,7 @@ export const useHooks = props => {
     );
     console.log('token', token);
     history.push(`/call/?token=${token}`);
+    props.onCancel();
   };
   const handleRejectCall = ({ userId }) => {};
   return {
