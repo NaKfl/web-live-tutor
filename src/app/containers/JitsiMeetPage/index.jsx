@@ -6,6 +6,7 @@ import { StyledMeetingPage } from './styles';
 export const JitsiMeetPage = props => {
   const { handlers, selectors } = useHooks(props);
   const { roomInfo } = selectors;
+  const { handleSomeOneLeave } = handlers;
   // const { t } = useTranslation();
 
   return (
@@ -16,7 +17,7 @@ export const JitsiMeetPage = props => {
           password={roomInfo.password}
           displayName={roomInfo.displayName}
           disableInviteFunctions={true}
-          onMeetingEnd={() => console.log('Meeting has ended')}
+          onMeetingEnd={handleSomeOneLeave}
           loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>}
         />
       )}

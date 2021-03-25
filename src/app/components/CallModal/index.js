@@ -47,7 +47,7 @@ const CallModal = memo(props => {
           </Row>
         </Row>
         <Row className="justify-content-end mt-3">
-          <Button className="me-2" key="cancel">
+          <Button className="me-2" key="cancel" onClick={onCancel}>
             Từ chối
           </Button>
           <Button

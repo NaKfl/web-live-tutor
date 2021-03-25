@@ -38,21 +38,17 @@ const useJitsi = props => {
 
     client.addEventListener('videoConferenceJoined', () => {
       password && client.executeCommand('password', password);
-      setInterval(function () {
-        displayName && client.executeCommand('displayName', displayName);
-      }, 1000);
+      displayName && client.executeCommand('displayName', displayName);
     });
 
     client.addEventListener('participantJoined', () => {
-      setInterval(function () {
-        displayName && client.executeCommand('displayName', displayName);
-      }, 1000);
+      displayName && client.executeCommand('displayName', displayName);
     });
 
     client.addEventListener('passwordRequired', () => {
       password && client.executeCommand('password', password);
     });
-    onMeetingEnd && client.addEventListener('readyToClose', onMeetingEnd);
+    onMeetingEnd && client.addEventListener('participantLeft', onMeetingEnd);
 
     return () => jitsi && jitsi.dispose();
   }, [window.JitsiMeetExternalAPI]);
