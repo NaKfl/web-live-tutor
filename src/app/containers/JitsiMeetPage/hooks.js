@@ -15,8 +15,6 @@ const useHooks = props => {
       token,
       JWT_SECRET,
     );
-    console.log('roomName', roomName, password);
-    console.log('token', token);
     setRoomInfo({
       roomName,
       password,
