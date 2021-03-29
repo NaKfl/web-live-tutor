@@ -35,6 +35,9 @@ export const Header = () => {
           <Link to="/register-tutor">{t('Category.registerTutor')}</Link>
         </Menu.Item>
         <Menu.Item key="3">{t('Category.progress')}</Menu.Item>
+        <Menu.Item key="4">
+          <Link to="/schedule-tutor">Schedule</Link>
+        </Menu.Item>
       </Menu>
       {(user && (
         <Space>
