@@ -11,7 +11,7 @@ const ScheduleModal = memo(props => {
   const { t } = useTranslation();
   const { handlers } = useHooks(props);
   const { handleAddDateSchedule } = handlers;
-  const { visible, onCancel, userCall, ...rest } = props;
+  const { visible, date, onCancel, ...rest } = props;
 
   return (
     <StyledModal
@@ -23,20 +23,17 @@ const ScheduleModal = memo(props => {
       {...rest}
     >
       <Row className="flex-column">
-        <Title level={4}>Register Schedule</Title>
+        <Title level={4}>Register Schedule: {date.date} </Title>
         <Row className="time-schedules flex-column p-2 mb-4 align-items-center">
-          <Row className="align-items-center">
-            <Badge status={'success'} text={'8:00 - 11:00'} />
-            <DeleteOutlined className="ms-5" />
-          </Row>
-          <Row className="align-items-center">
-            <Badge status={'success'} text={'8:00 - 11:00'} />
-            <DeleteOutlined className="ms-5" />
-          </Row>
-          <Row className="align-items-center">
-            <Badge status={'success'} text={'8:00 - 11:00'} />
-            <DeleteOutlined className="ms-5" />
-          </Row>
+          {date.freeTimes.map(time => (
+            <Row className="align-items-center">
+              <Badge
+                status={'success'}
+                text={`${time.startTime} - ${time.endTime}`}
+              />
+              <DeleteOutlined className="ms-5" />
+            </Row>
+          ))}
         </Row>
         <RangeTimePicker onAdd={handleAddDateSchedule} />
       </Row>
