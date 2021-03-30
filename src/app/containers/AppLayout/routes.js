@@ -4,6 +4,7 @@ import { Register } from 'app/containers/Register/Loadable';
 import { Profile } from 'app/containers/Profile/Loadable';
 import { RegisterTutor } from 'app/containers/RegisterTutor/Loadable';
 import { JitsiMeetPage } from 'app/containers/JitsiMeetPage/Loadable';
+import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
 
 export const privateRoutes = [
   {
@@ -20,6 +21,11 @@ export const privateRoutes = [
     path: '/register-tutor',
     component: RegisterTutor,
     key: 'register-tutor',
+  },
+  {
+    path: '/schedule-tutor',
+    component: ScheduleTutor,
+    key: 'schedule-tutor',
   },
 ];
 

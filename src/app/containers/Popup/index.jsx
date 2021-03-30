@@ -6,6 +6,7 @@ import useHooks from './hooks';
 import Confirm from 'app/components/Modal/Confirm';
 import InfoUser from 'app/components/Modal/InfoUser';
 import CallModal from 'app/components/CallModal';
+import ScheduleModal from 'app/components/ScheduleModal';
 
 import { POPUP_TYPE } from './constants';
 
@@ -44,6 +45,17 @@ export const Popup = memo(() => {
           case POPUP_TYPE.CALL_VIDEO: {
             return (
               <CallModal
+                key={popup.key}
+                onCancel={handleClosePopup(popup)}
+                visible
+                {...popup}
+              />
+            );
+          }
+
+          case POPUP_TYPE.SCHEDULE_REGISTER: {
+            return (
+              <ScheduleModal
                 key={popup.key}
                 onCancel={handleClosePopup(popup)}
                 visible
