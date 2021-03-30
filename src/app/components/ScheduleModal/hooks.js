@@ -1,5 +1,5 @@
 import useActions from 'hooks/useActions';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   selectRegisterSchedule,
@@ -30,14 +30,21 @@ export const useHooks = props => {
     [actions],
   );
 
+  const getFreeTimesOfDate = (data, date) => {
+    return data[date] || [];
+  };
+
   useEffect(() => {
-    console.log('aaa', date.date);
     getFreeScheduleByDate(date.date);
   }, []);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate.status === ACTION_STATUS.SUCCESS) {
-      setFreeTimes(selectorScheduleTutorByDate.data[date.date]);
+      const freeTimesSchedule = getFreeTimesOfDate(
+        selectorScheduleTutorByDate.data,
+        date.date,
+      );
+      setFreeTimes(freeTimesSchedule);
     } else {
       setFreeTimes([]);
     }
