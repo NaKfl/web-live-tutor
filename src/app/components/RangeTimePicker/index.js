@@ -10,7 +10,7 @@ const RangeTimePicker = props => {
   const { onAdd } = props;
   const { handlers, selectors } = useHooks(props);
   const { handleChangePickTime } = handlers;
-  const { startTime, endTime } = selectors;
+  const { startTimeSelect, endTimeSelect } = selectors;
   return (
     <StyledRangeTimePicker>
       <RangePicker
@@ -21,7 +21,11 @@ const RangeTimePicker = props => {
       />
       <Button
         className="mx-1"
-        onClick={() => startTime && endTime && onAdd({ startTime, endTime })}
+        onClick={() =>
+          startTimeSelect &&
+          endTimeSelect &&
+          onAdd({ startTimeSelect, endTimeSelect })
+        }
       >
         Add
       </Button>

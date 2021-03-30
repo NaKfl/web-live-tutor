@@ -9,8 +9,9 @@ const { Title } = Typography;
 
 const ScheduleModal = memo(props => {
   const { t } = useTranslation();
-  const { handlers } = useHooks(props);
-  const { handleAddDateSchedule } = handlers;
+  const { handlers, selectors } = useHooks(props);
+  const { handleAddDateSchedule, handleUnRegisterSchedule } = handlers;
+  const { freeTimes } = selectors;
   const { visible, date, onCancel, ...rest } = props;
 
   return (
@@ -25,13 +26,16 @@ const ScheduleModal = memo(props => {
       <Row className="flex-column">
         <Title level={4}>Register Schedule: {date.date} </Title>
         <Row className="time-schedules flex-column p-2 mb-4 align-items-center">
-          {date.freeTimes.map(time => (
+          {freeTimes.map(time => (
             <Row className="align-items-center">
               <Badge
                 status={'success'}
                 text={`${time.startTime} - ${time.endTime}`}
               />
-              <DeleteOutlined className="ms-5" />
+              <DeleteOutlined
+                className="ms-5"
+                onClick={() => handleUnRegisterSchedule(time.id)}
+              />
             </Row>
           ))}
         </Row>

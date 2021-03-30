@@ -8,8 +8,8 @@ export const TIME = {
 };
 
 export const useHooks = props => {
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const [startTimeSelect, setStartTime] = useState(null);
+  const [endTimeSelect, setEndTime] = useState(null);
 
   const handleChangePickTime = time => {
     if (time && time.length === TIME.total) {
@@ -23,7 +23,7 @@ export const useHooks = props => {
 
   return {
     handlers: { handleChangePickTime },
-    selectors: { startTime, endTime },
+    selectors: { startTimeSelect, endTimeSelect },
   };
 };
 
