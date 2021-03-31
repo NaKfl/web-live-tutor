@@ -15,6 +15,7 @@ export const useHooks = props => {
   );
 
   const [scheduleDatesTutor, setScheduleDatesTutor] = useState([]);
+  const [scheduleFreeTimesTutor, setScheduleFreeTimesTutor] = useState([]);
   const [isSelectDate, setIsSelectDate] = useState(false);
   const [isShowMessage, setIsShowMessage] = useState(false);
 
@@ -27,14 +28,14 @@ export const useHooks = props => {
       selectorScheduleTutor &&
       selectorScheduleTutor.status === ACTION_STATUS.SUCCESS
     ) {
-      const scheduleDates = Object.keys(selectorScheduleTutor.data);
-      setScheduleDatesTutor(scheduleDates);
+      setScheduleDatesTutor(selectorScheduleTutor.data);
     } else {
       setScheduleDatesTutor([]);
     }
   }, [selectorScheduleTutor]);
 
   const onSelectDate = useCallback(value => {
+    setScheduleFreeTimesTutor(scheduleDatesTutor[value] || []);
     setIsSelectDate(true);
   }, []);
 
@@ -48,7 +49,12 @@ export const useHooks = props => {
 
   return {
     handlers: { onSelectDate, handleBackSelectDate, toggleMessage },
-    selectors: { isSelectDate, isShowMessage, scheduleDatesTutor },
+    selectors: {
+      isSelectDate,
+      isShowMessage,
+      scheduleDatesTutor,
+      scheduleFreeTimesTutor,
+    },
   };
 };
 

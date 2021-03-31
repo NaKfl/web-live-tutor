@@ -39,7 +39,12 @@ const TutorModal = memo(props => {
   const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
   const { onSelectDate, handleBackSelectDate, toggleMessage } = handlers;
-  const { isSelectDate, isShowMessage, scheduleDatesTutor } = selectors;
+  const {
+    isSelectDate,
+    isShowMessage,
+    scheduleDatesTutor,
+    scheduleFreeTimesTutor,
+  } = selectors;
   const { visible, onCancel, tutor, ...rest } = props;
   const {
     avatar,
@@ -58,11 +63,11 @@ const TutorModal = memo(props => {
   function dateCellRender(value) {
     const dateOfCell = moment(value).format('YYYY-MM-DD');
     const dayOfDate = value.date();
-    const haveFreeTimes = scheduleDatesTutor.includes(dateOfCell);
+    const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
     return (
       <div className="ant-picker-cell-inner ant-picker-calendar-date background-free-time">
         <div
-          onClick={() => haveFreeTimes && onSelectDate(value)}
+          onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
           className={`ant-picker-calendar-date-value ${
             haveFreeTimes ? 'date-free-time' : 'date-disabled'
           }`}
@@ -212,12 +217,11 @@ const TutorModal = memo(props => {
                           defaultValue={moment(moment(), 'YYYY/MM/DD')}
                           format={'YYYY/MM/DD'}
                         />
-                        <TimeSelect
-                          time={'2:00 AM - 4:00 AM'}
-                          disabled
-                        ></TimeSelect>
-                        <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
-                        <TimeSelect time={'2:00 AM - 4:00 AM'}></TimeSelect>
+                        {scheduleFreeTimesTutor.map(time => (
+                          <TimeSelect
+                            time={`From  ${time.startTime}  to  ${time.endTime}`}
+                          ></TimeSelect>
+                        ))}
                       </Row>
                     </Row>
                   )}
