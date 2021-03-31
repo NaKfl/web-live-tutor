@@ -39,7 +39,7 @@ const TutorModal = memo(props => {
   const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
   const { onSelectDate, handleBackSelectDate, toggleMessage } = handlers;
-  const { isSelectDate, isShowMessage } = selectors;
+  const { isSelectDate, isShowMessage, scheduleDatesTutor } = selectors;
   const { visible, onCancel, tutor, ...rest } = props;
   const {
     avatar,
@@ -55,6 +55,25 @@ const TutorModal = memo(props => {
 
   const user = getUserFromStorage();
 
+  function dateCellRender(value) {
+    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    const dayOfDate = value.date();
+    const haveFreeTimes = scheduleDatesTutor.includes(dateOfCell);
+    return (
+      <div className="ant-picker-cell-inner ant-picker-calendar-date background-free-time">
+        <div
+          onClick={() => haveFreeTimes && onSelectDate(value)}
+          className={`ant-picker-calendar-date-value ${
+            haveFreeTimes ? 'date-free-time' : 'date-disabled'
+          }`}
+        >
+          {dayOfDate}
+        </div>
+        <div className="ant-picker-calendar-date-content"></div>
+      </div>
+    );
+  }
+
   return (
     <StyledModal
       centered
@@ -65,12 +84,7 @@ const TutorModal = memo(props => {
       {...rest}
     >
       <StyledProfile>
-        <Form
-          className="profile-form"
-          requiredMark={false}
-          // initialValues={userInfo}
-          layout="vertical"
-        >
+        <Form className="profile-form" requiredMark={false} layout="vertical">
           <StyledTutorTitle {...rest}>
             <StyledGroupIcon>
               <CloseOutlined onClick={onCancel} />
@@ -209,7 +223,10 @@ const TutorModal = memo(props => {
                   )}
                   {!isSelectDate && (
                     <Row className="tutor-calender">
-                      <Calendar onSelect={onSelectDate} />
+                      <Calendar
+                        dateFullCellRender={dateCellRender}
+                        mode="month"
+                      />
                     </Row>
                   )}
                 </Row>
