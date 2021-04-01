@@ -30,21 +30,13 @@ export const useHooks = props => {
     [actions],
   );
 
-  const getFreeTimesOfDate = (data, date) => {
-    return data[date] || [];
-  };
-
   useEffect(() => {
     getFreeScheduleByDate(date.date);
-  }, []);
+  }, [getFreeScheduleByDate, date]);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate.status === ACTION_STATUS.SUCCESS) {
-      const freeTimesSchedule = getFreeTimesOfDate(
-        selectorScheduleTutorByDate.data,
-        date.date,
-      );
-      setFreeTimes(freeTimesSchedule);
+      setFreeTimes(selectorScheduleTutorByDate.data);
     } else {
       setFreeTimes([]);
     }

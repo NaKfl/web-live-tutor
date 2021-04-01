@@ -14,7 +14,7 @@ const RangeTimePicker = props => {
   return (
     <StyledRangeTimePicker>
       <RangePicker
-        minuteStep={30}
+        minuteStep={15}
         format={'HH:mm'}
         showNow={false}
         onChange={handleChangePickTime}

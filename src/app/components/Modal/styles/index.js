@@ -105,6 +105,11 @@ export const StyledTutorContent = styled.div`
       width: 100%;
       border: 1px #d9d9d9 solid;
       padding: 20px;
+      .background-free-time {
+        .date-disabled {
+          color: rgba(0, 0, 0, 0.25) !important;
+        }
+      }
       .ant-picker-calendar-date {
         height: 50px;
       }
