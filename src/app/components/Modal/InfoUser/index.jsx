@@ -24,9 +24,9 @@ import Image from 'app/components/Image';
 import Rate from 'app/components/Rate';
 import { Row, Col, Avatar, DatePicker, Calendar } from 'antd';
 import moment from 'moment';
-import { sliceKey, reducer } from './slice';
+import { sliceKey, reducer } from 'app/containers/ScheduleTutor/slice';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
-import saga from './saga';
+import saga from 'app/containers/ScheduleTutor/saga';
 import useHooks from './hooks';
 import { Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,7 @@ const TutorModal = memo(props => {
     isSelectDate,
     isShowMessage,
     scheduleDatesTutor,
-    scheduleFreeTimesTutor,
+    dateSelected,
   } = selectors;
   const { visible, onCancel, tutor, ...rest } = props;
   const {
@@ -58,9 +58,27 @@ const TutorModal = memo(props => {
     video,
   } = tutor;
 
+  const style = {
+    color: 'green',
+    fontWeight: 'bold',
+    textDecoration: 'underline',
+  };
   const user = getUserFromStorage();
 
-  function dateCellRender(value) {
+  const disabledDate = value => {
+    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    return !Object.keys(scheduleDatesTutor).includes(dateOfCell);
+  };
+  const datePickerRender = value => {
+    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
+    return (
+      <div className="ant-picker-cell-inner" style={haveFreeTimes ? style : {}}>
+        {value.date()}
+      </div>
+    );
+  };
+  const dateCellRender = value => {
     const dateOfCell = moment(value).format('YYYY-MM-DD');
     const dayOfDate = value.date();
     const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
@@ -77,7 +95,7 @@ const TutorModal = memo(props => {
         <div className="ant-picker-calendar-date-content"></div>
       </div>
     );
-  }
+  };
 
   return (
     <StyledModal
@@ -158,38 +176,26 @@ const TutorModal = memo(props => {
               <hr></hr>
               <Row className="intro-about flex-column">
                 <Title level={4}>{t('Profile.about')}</Title>
-                <Row>
-                  <Title level={5}>{t('Profile.languages')}</Title>
-                </Row>
+                <Title level={5}>{t('Profile.languages')}</Title>
                 <Row className="mb-1">
                   {languages.map(content => (
                     <TextHighlight content={content} />
                   ))}
                 </Row>
-                <Row>
-                  <Title level={5}>{t('Profile.specialties')}</Title>
-                </Row>
+                <Title level={5}>{t('Profile.specialties')}</Title>
                 <Row className="mb-1">
                   {specialties.map(content => (
                     <TextHighlight content={content} />
                   ))}
                 </Row>
-                <Row>
-                  <Title level={5}>{t('Profile.interests')}</Title>
-                </Row>
-                <Row>
-                  <Title level={5}>{interests}</Title>
-                </Row>
+                <Title level={5}>{t('Profile.interests')}</Title>
+                <Title level={5}>{interests}</Title>
               </Row>
               <hr></hr>
               <Row className="intro-about flex-column">
                 <Title level={4}>{t('Profile.resume')}</Title>
-                <Row>
-                  <Title level={5}>{t('Profile.teachExperience')}</Title>
-                </Row>
-                <Row>
-                  <Title level={5}>{resume}</Title>
-                </Row>
+                <Title level={5}>{t('Profile.teachExperience')}</Title>
+                <Title level={5}>{resume}</Title>
               </Row>
               <hr></hr>
               <Row className="intro-schedule flex-column">
@@ -213,15 +219,19 @@ const TutorModal = memo(props => {
                       </Row>
                       <Row className="flex-column w-100 p-4">
                         <DatePicker
+                          mode="date"
                           className="w-50 mb-4"
-                          defaultValue={moment(moment(), 'YYYY/MM/DD')}
-                          format={'YYYY/MM/DD'}
+                          disabledDate={disabledDate}
+                          dateRender={datePickerRender}
+                          defaultValue={moment(dateSelected, 'YYYY-MM-DD')}
+                          format={'YYYY-MM-DD'}
                         />
-                        {scheduleFreeTimesTutor.map(time => (
-                          <TimeSelect
-                            time={`From  ${time.startTime}  to  ${time.endTime}`}
-                          ></TimeSelect>
-                        ))}
+                        {dateSelected &&
+                          scheduleDatesTutor[dateSelected].map(time => (
+                            <TimeSelect
+                              time={`From  ${time.startTime}  to  ${time.endTime}`}
+                            ></TimeSelect>
+                          ))}
                       </Row>
                     </Row>
                   )}

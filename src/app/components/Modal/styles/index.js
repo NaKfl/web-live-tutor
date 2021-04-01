@@ -110,11 +110,6 @@ export const StyledTutorContent = styled.div`
           color: rgba(0, 0, 0, 0.25) !important;
         }
       }
-      .date-free-time {
-        color: green;
-        font-weight: bold;
-        text-decoration: underline;
-      }
       .ant-picker-calendar-date {
         height: 50px;
       }
