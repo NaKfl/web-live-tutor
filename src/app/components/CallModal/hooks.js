@@ -19,7 +19,6 @@ export const useHooks = props => {
       },
       JWT_SECRET,
     );
-    console.log('token', token);
     history.push(`/call/?token=${token}`);
     props.onCancel();
   };

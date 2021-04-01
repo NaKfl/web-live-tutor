@@ -22,7 +22,6 @@ export const useHooks = props => {
 
   useEffect(() => {
     socket.on('call:acceptedCall', ({ userCall }) => {
-      console.log('userCall', userCall);
       const user = getUserFromStorage();
       const token = jwt.sign(
         {

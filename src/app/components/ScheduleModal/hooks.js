@@ -9,9 +9,11 @@ import {
 import { actions } from 'app/containers/ScheduleTutor/slice';
 import { ACTION_STATUS } from 'utils/constants';
 import moment from 'moment';
+import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 export const useHooks = props => {
-  const { date } = props;
+  const { data } = props;
+  const user = getUserFromStorage();
   const selectorRegisterSchedule = useSelector(selectRegisterSchedule);
   const selectorUnRegisterSchedule = useSelector(selectUnRegisterSchedule);
   const selectorScheduleTutorByDate = useSelector(selectScheduleTutorByDate);
@@ -21,9 +23,11 @@ export const useHooks = props => {
     registerSchedule,
     unRegisterSchedule,
     getFreeScheduleByDate,
+    getFreeSchedule,
   } = useActions(
     {
       registerSchedule: actions.registerSchedule,
+      getFreeSchedule: actions.getFreeSchedule,
       unRegisterSchedule: actions.unRegisterSchedule,
       getFreeScheduleByDate: actions.getFreeScheduleByDate,
     },
@@ -31,8 +35,11 @@ export const useHooks = props => {
   );
 
   useEffect(() => {
-    getFreeScheduleByDate(date.date);
-  }, [getFreeScheduleByDate, date]);
+    getFreeScheduleByDate({
+      date: data.date,
+      tutorId: user.id,
+    });
+  }, [getFreeScheduleByDate, data]);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate.status === ACTION_STATUS.SUCCESS) {
@@ -47,13 +54,14 @@ export const useHooks = props => {
       selectorRegisterSchedule.status === ACTION_STATUS.SUCCESS ||
       selectorUnRegisterSchedule.status === ACTION_STATUS.SUCCESS
     ) {
-      getFreeScheduleByDate(date.date);
+      getFreeSchedule();
     }
   }, [
     selectorRegisterSchedule,
     selectorUnRegisterSchedule,
-    date,
-    getFreeScheduleByDate,
+    data,
+    getFreeSchedule,
+    user.id,
   ]);
 
   const handleAddDateSchedule = ({ startTimeSelect, endTimeSelect }) => {
@@ -62,7 +70,7 @@ export const useHooks = props => {
     registerSchedule({
       startTime,
       endTime,
-      date: date.date,
+      date: data.date,
     });
   };
 
