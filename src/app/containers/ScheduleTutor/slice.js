@@ -9,6 +9,16 @@ const initialState = {
     error: null,
     data: [],
   },
+  getDetailSchedule: {
+    status: '',
+    error: null,
+    data: [],
+  },
+  scheduleTutorById: {
+    status: '',
+    error: null,
+    data: [],
+  },
   scheduleTutorByDate: {
     status: '',
     error: null,
@@ -19,6 +29,10 @@ const initialState = {
     status: '',
   },
   unRegisterSchedule: {
+    error: null,
+    status: '',
+  },
+  bookTimeSchedule: {
     error: null,
     status: '',
   },
@@ -46,6 +60,48 @@ const scheduleSlice = createSlice({
       return flow(
         set('scheduleTutor.error', action.payload),
         set('scheduleTutor.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    getFreeScheduleByTutorId(state) {
+      return flow(
+        set('scheduleTutorById.error', null),
+        set('scheduleTutorById.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getFreeScheduleByTutorIdSuccess(state, action) {
+      return flow(
+        set('scheduleTutorById.data', action.payload),
+        set('scheduleTutorById.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getFreeScheduleByTutorIdFailed(state, action) {
+      return flow(
+        set('scheduleTutorById.error', action.payload),
+        set('scheduleTutorById.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    getDetailSchedule(state) {
+      return flow(
+        set('getDetailSchedule.error', null),
+        set('getDetailSchedule.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getDetailScheduleSuccess(state, action) {
+      return flow(
+        set('getDetailSchedule.data', action.payload),
+        set('getDetailSchedule.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getDetailScheduleFailed(state, action) {
+      return flow(
+        set('getDetailSchedule.error', action.payload),
+        set('getDetailSchedule.status', ACTION_STATUS.FAILED),
       )(state);
     },
 
@@ -105,6 +161,24 @@ const scheduleSlice = createSlice({
       return flow(
         set('unRegisterSchedule.error', action.payload),
         set('unRegisterSchedule.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    bookTimeSchedule(state) {
+      return flow(
+        set('bookTimeSchedule.error', null),
+        set('bookTimeSchedule.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    bookTimeScheduleSuccess(state) {
+      return flow(set('bookTimeSchedule.status', ACTION_STATUS.SUCCESS))(state);
+    },
+
+    bookTimeScheduleFailed(state, action) {
+      return flow(
+        set('bookTimeSchedule.error', action.payload),
+        set('bookTimeSchedule.status', ACTION_STATUS.FAILED),
       )(state);
     },
   },

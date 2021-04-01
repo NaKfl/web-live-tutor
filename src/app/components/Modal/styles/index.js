@@ -105,10 +105,22 @@ export const StyledTutorContent = styled.div`
       width: 100%;
       border: 1px #d9d9d9 solid;
       padding: 20px;
+
+      .ant-picker-cell-today {
+        .background-free-time {
+          border-bottom: 1px black solid;
+        }
+      }
+
       .background-free-time {
         .date-disabled {
           color: rgba(0, 0, 0, 0.25) !important;
         }
+      }
+      .date-free-time {
+        color: green;
+        font-weight: bold;
+        text-decoration: underline;
       }
       .ant-picker-calendar-date {
         height: 50px;

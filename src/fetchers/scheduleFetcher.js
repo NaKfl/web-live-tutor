@@ -4,17 +4,31 @@ import request, { handleGeneralError } from './index';
 export const getSchedule = () => {
   return request(BASE_URL, {
     url: `/schedule`,
-    method: 'GET',
+    method: 'POST',
   })
     .then(response => response.data)
     .then(({ data }) => ({ response: data }))
     .catch(handleGeneralError);
 };
 
-export const getScheduleByDate = date => {
+export const getScheduleByTutorId = payload => {
   return request(BASE_URL, {
-    url: `/schedule?date=${date}`,
-    method: 'GET',
+    url: `/schedule`,
+    method: 'POST',
+    data: payload,
+  })
+    .then(response => response.data)
+    .then(({ data }) => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
+export const getScheduleByDate = payload => {
+  return request(BASE_URL, {
+    url: `/schedule?date=${payload.date}`,
+    method: 'POST',
+    data: {
+      tutorId: payload.tutorId,
+    },
   })
     .then(response => response.data)
     .then(({ data }) => ({ response: data }))
@@ -23,7 +37,18 @@ export const getScheduleByDate = date => {
 
 export const registerSchedule = payload => {
   return request(BASE_URL, {
-    url: '/schedule',
+    url: '/schedule/register',
+    method: 'POST',
+    data: payload,
+  })
+    .then(response => response.data)
+    .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
+export const bookTimeSchedule = payload => {
+  return request(BASE_URL, {
+    url: '/booking',
     method: 'POST',
     data: payload,
   })
@@ -39,5 +64,15 @@ export const unRegisterSchedule = id => {
   })
     .then(response => response.data)
     .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
+export const getDetailSchedule = id => {
+  return request(BASE_URL, {
+    url: `/schedule/${id}`,
+    method: 'GET',
+  })
+    .then(response => response.data)
+    .then(({ data }) => ({ response: data }))
     .catch(handleGeneralError);
 };

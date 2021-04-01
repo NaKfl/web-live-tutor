@@ -30,7 +30,6 @@ import saga from 'app/containers/ScheduleTutor/saga';
 import useHooks from './hooks';
 import { Typography } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 const { Title } = Typography;
 
 const TutorModal = memo(props => {
@@ -38,12 +37,19 @@ const TutorModal = memo(props => {
   useInjectReducer({ key: sliceKey, reducer });
   const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
-  const { onSelectDate, handleBackSelectDate, toggleMessage } = handlers;
+  const {
+    onSelectDate,
+    handleBackSelectDate,
+    toggleMessage,
+    handleSelectDatePicker,
+  } = handlers;
   const {
     isSelectDate,
     isShowMessage,
     scheduleDatesTutor,
     dateSelected,
+    user,
+    freeTimesTutor,
   } = selectors;
   const { visible, onCancel, tutor, ...rest } = props;
   const {
@@ -62,8 +68,8 @@ const TutorModal = memo(props => {
     color: 'green',
     fontWeight: 'bold',
     textDecoration: 'underline',
+    background: 'none',
   };
-  const user = getUserFromStorage();
 
   const disabledDate = value => {
     const dateOfCell = moment(value).format('YYYY-MM-DD');
@@ -73,7 +79,11 @@ const TutorModal = memo(props => {
     const dateOfCell = moment(value).format('YYYY-MM-DD');
     const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
     return (
-      <div className="ant-picker-cell-inner" style={haveFreeTimes ? style : {}}>
+      <div
+        className="ant-picker-cell-inner"
+        style={haveFreeTimes ? style : {}}
+        onClick={() => handleSelectDatePicker(dateOfCell)}
+      >
         {value.date()}
       </div>
     );
@@ -223,15 +233,15 @@ const TutorModal = memo(props => {
                           className="w-50 mb-4"
                           disabledDate={disabledDate}
                           dateRender={datePickerRender}
-                          defaultValue={moment(dateSelected, 'YYYY-MM-DD')}
+                          value={moment(dateSelected, 'YYYY-MM-DD')}
                           format={'YYYY-MM-DD'}
                         />
-                        {dateSelected &&
-                          scheduleDatesTutor[dateSelected].map(time => (
-                            <TimeSelect
-                              time={`From  ${time.startTime}  to  ${time.endTime}`}
-                            ></TimeSelect>
-                          ))}
+                        {(freeTimesTutor || []).map(time => (
+                          <TimeSelect
+                            time={`From  ${time.startTime}  to  ${time.endTime}`}
+                            scheduleId={time.id}
+                          ></TimeSelect>
+                        ))}
                       </Row>
                     </Row>
                   )}

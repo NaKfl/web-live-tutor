@@ -36,11 +36,11 @@ const useHooks = () => {
   }, [selectorScheduleTutor]);
 
   const handleSelectDate = useCallback(
-    date => {
+    data => {
       openPopup({
         key: 'registerSchedule',
         type: POPUP_TYPE.SCHEDULE_REGISTER,
-        date,
+        data,
       });
     },
     [openPopup],
