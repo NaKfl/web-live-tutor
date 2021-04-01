@@ -12,7 +12,7 @@ const ScheduleModal = memo(props => {
   const { handlers, selectors } = useHooks(props);
   const { handleAddDateSchedule, handleUnRegisterSchedule } = handlers;
   const { freeTimes } = selectors;
-  const { visible, date, onCancel, ...rest } = props;
+  const { visible, data, onCancel, ...rest } = props;
 
   return (
     <StyledModal
@@ -24,7 +24,7 @@ const ScheduleModal = memo(props => {
       {...rest}
     >
       <Row className="flex-column">
-        <Title level={4}>Register Schedule: {date.date} </Title>
+        <Title level={4}>Register Schedule: {data.date} </Title>
         <Row className="time-schedules flex-column p-2 mb-4 align-items-center">
           {freeTimes.map(time => (
             <Row className="align-items-center">
@@ -32,10 +32,12 @@ const ScheduleModal = memo(props => {
                 status={'success'}
                 text={`${time.startTime} - ${time.endTime}`}
               />
-              <DeleteOutlined
-                className="ms-5"
-                onClick={() => handleUnRegisterSchedule(time.id)}
-              />
+              {!time.isBooked && (
+                <DeleteOutlined
+                  className="ms-5"
+                  onClick={() => handleUnRegisterSchedule(time.id)}
+                />
+              )}
             </Row>
           ))}
         </Row>
