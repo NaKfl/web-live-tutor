@@ -30,15 +30,6 @@ export const useHooks = props => {
   const [isSelectDate, setIsSelectDate] = useState(false);
   const [isShowMessage, setIsShowMessage] = useState(false);
 
-  const handleFetchScheduleByDate = useCallback(() => {
-    if (dateSelected) {
-      getFreeScheduleByDate({
-        date: dateSelected,
-        tutorId: userId,
-      });
-    }
-  }, [dateSelected, getFreeScheduleByDate, userId]);
-
   useEffect(() => {
     getFreeScheduleByTutorId({
       tutorId: userId,
@@ -102,7 +93,6 @@ export const useHooks = props => {
       handleBackSelectDate,
       toggleMessage,
       handleSelectDatePicker,
-      handleFetchScheduleByDate,
     },
     selectors: {
       isSelectDate,
