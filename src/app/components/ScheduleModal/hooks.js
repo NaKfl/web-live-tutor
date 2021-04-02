@@ -55,6 +55,10 @@ export const useHooks = props => {
       selectorUnRegisterSchedule.status === ACTION_STATUS.SUCCESS
     ) {
       getFreeSchedule();
+      getFreeScheduleByDate({
+        date: data.date,
+        tutorId: user.id,
+      });
     }
   }, [
     selectorRegisterSchedule,
@@ -62,6 +66,7 @@ export const useHooks = props => {
     data,
     getFreeSchedule,
     user.id,
+    getFreeScheduleByDate,
   ]);
 
   const handleAddDateSchedule = ({ startTimeSelect, endTimeSelect }) => {
