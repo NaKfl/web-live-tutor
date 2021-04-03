@@ -580,3 +580,6 @@
 .w-50 {
   width: 50% !important;
 }
+.fw-nor {
+  font-weight: normal !important;
+}
