@@ -32,10 +32,13 @@ export const Header = () => {
           <Link to="/">{t('Category.tutor')}</Link>
         </Menu.Item>
         <Menu.Item key="2">
+          <Link to="/courses">Courses</Link>
+        </Menu.Item>
+        <Menu.Item key="3">
           <Link to="/register-tutor">{t('Category.registerTutor')}</Link>
         </Menu.Item>
-        <Menu.Item key="3">{t('Category.progress')}</Menu.Item>
-        <Menu.Item key="4">
+        <Menu.Item key="4">{t('Category.progress')}</Menu.Item>
+        <Menu.Item key="5">
           <Link to="/schedule-tutor">Schedule</Link>
         </Menu.Item>
       </Menu>
