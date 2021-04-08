@@ -12,16 +12,17 @@ export const CoursePage = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors, handlers } = useHooks();
+  const { onSelectCard } = handlers;
   const { coursesList } = selectors;
   return (
     <StyledCoursePage>
       <Title level={3} className="fw-nor">
         Discover Courses
       </Title>
-      <Title level={4} className="fw-nor">
+      <Title level={3} className="fw-nor">
         Fundamentals of English Fluency
       </Title>
-      <Title level={5} className="fw-nor">
+      <Title level={5} className="fw-nor mt-3 mb-4 fz-18">
         Gain confidence and fluency in conversational English. There is
         something for everyone, with courses for all skill levels covering
         everything from the basics of smalltalk to crafting well-formed opinions
@@ -30,10 +31,10 @@ export const CoursePage = memo(() => {
         skills. Effective cross-cultural communication, both verbal and
         non-verbal, is a powerful tool for career growth.
       </Title>
-      <Row gutter={[16, 24]}>
+      <Row gutter={[30, 30]}>
         {coursesList.map(course => (
           <Col key={course.id} className="gutter-row" span={6}>
-            <CourseCard course={course} />
+            <CourseCard course={course} onSelectCard={onSelectCard} />
           </Col>
         ))}
       </Row>

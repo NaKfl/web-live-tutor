@@ -1,5 +1,6 @@
 import useActions from 'hooks/useActions';
 import { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { useSelector } from 'react-redux';
 import { selectCoursesList } from './selectors';
@@ -8,6 +9,7 @@ import { actions } from './slice';
 
 const useHooks = () => {
   const selectorCoursesList = useSelector(selectCoursesList);
+  const history = useHistory();
   const { getCoursesList } = useActions(
     {
       getCoursesList: actions.getCoursesList,
@@ -31,8 +33,12 @@ const useHooks = () => {
     }
   }, [selectorCoursesList]);
 
+  const onSelectCard = id => {
+    history.push(`/courses/${id}`);
+  };
+
   return {
-    handlers: {},
+    handlers: { onSelectCard },
     selectors: { coursesList },
   };
 };
