@@ -6,6 +6,7 @@ import { RegisterTutor } from 'app/containers/RegisterTutor/Loadable';
 import { JitsiMeetPage } from 'app/containers/JitsiMeetPage/Loadable';
 import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
+import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 
 export const privateRoutes = [
   {
@@ -32,6 +33,11 @@ export const privateRoutes = [
     path: '/courses',
     component: CoursePage,
     key: 'coursePage',
+  },
+  {
+    path: '/courses/:id',
+    component: DetailCourse,
+    key: 'detailCourse',
   },
 ];
 
