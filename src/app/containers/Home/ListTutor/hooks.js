@@ -21,14 +21,16 @@ export const useHooks = props => {
   }, []);
 
   useEffect(() => {
-    socket.on('call:acceptedCall', ({ userCall }) => {
+    socket.on('call:acceptedCall', ({ userCall, userBeCalled, startTime }) => {
       const user = getUserFromStorage();
       const token = jwt.sign(
         {
+          participantId: userBeCalled.id,
           roomName: userCall.id,
           password: userCall.id,
           displayName: user.name,
           isTutor: true,
+          startTime,
         },
         JWT_SECRET,
       );
