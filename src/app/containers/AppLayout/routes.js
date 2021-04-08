@@ -7,6 +7,7 @@ import { JitsiMeetPage } from 'app/containers/JitsiMeetPage/Loadable';
 import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
+import { History } from 'app/containers/History/Loadable';
 
 export const privateRoutes = [
   {
@@ -38,6 +39,11 @@ export const privateRoutes = [
     path: '/courses/:id',
     component: DetailCourse,
     key: 'detailCourse',
+  },
+  {
+    path: '/history',
+    component: History,
+    key: 'history-call-session',
   },
 ];
 
