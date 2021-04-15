@@ -32,6 +32,7 @@ const SelectTimeModal = memo(props => {
             {(freeTimesTutor || []).map(time => (
               <Checkbox
                 value={time.id}
+                key={time.id}
                 checked={false}
                 disabled={time.isBooked}
               >{`${time.startPeriod} - ${time.endPeriod}`}</Checkbox>

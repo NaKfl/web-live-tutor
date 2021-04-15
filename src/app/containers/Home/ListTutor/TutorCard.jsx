@@ -46,11 +46,11 @@ export const TutorCard = memo(props => {
             {t('Common.certificate')}
           </Button>
         </div>
-        <MailOutlined
-          className="mail-btn"
-          onClick={() => handleSetNewConversation(props)}
-        ></MailOutlined>
         <div className="love">
+          <MailOutlined
+            className="mail-btn"
+            onClick={() => handleSetNewConversation(props)}
+          ></MailOutlined>
           <HeartOutlined
             style={{
               fontSize: '24px',

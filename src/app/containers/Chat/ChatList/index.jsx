@@ -63,6 +63,7 @@ export const ChatList = () => {
             const { partner, isRead, toInfo } = item;
             return (
               <StyledNavItem
+                key={partner?.id}
                 isActive={partner?.id === activatedConversation?.partner?.id}
                 onClick={() => handleChangeConversation(item)}
                 isBold={!isRead && toInfo?.id === user?.id}

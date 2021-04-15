@@ -189,13 +189,13 @@ const TutorModal = memo(props => {
                 <Title level={5}>{t('Profile.languages')}</Title>
                 <Row className="mb-1">
                   {languages.map(content => (
-                    <TextHighlight content={content} />
+                    <TextHighlight content={content} key={content} />
                   ))}
                 </Row>
                 <Title level={5}>{t('Profile.specialties')}</Title>
                 <Row className="mb-1">
                   {specialties.map(content => (
-                    <TextHighlight content={content} />
+                    <TextHighlight content={content} key={content} />
                   ))}
                 </Row>
                 <Title level={5}>{t('Profile.interests')}</Title>
@@ -248,6 +248,7 @@ const TutorModal = memo(props => {
                         <TimeSelect
                           time={`From  ${time.startTime}  to  ${time.endTime}`}
                           scheduleId={time.id}
+                          key={time.id}
                         ></TimeSelect>
                       ))}
                     </Row>
