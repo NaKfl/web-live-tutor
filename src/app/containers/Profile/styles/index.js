@@ -1,11 +1,20 @@
 import EditIcon from 'app/components/EditIcon';
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const StyledProfile = styled.div`
   display: flex;
   justify-content: center;
   .profile-form {
     max-width: 800px;
+
+    .group-avatar {
+      ${media.mobile`
+          padding: 16px; 
+          justify-content: center; 
+      `}
+    }
+
     .group-info {
       justify-content: center;
       display: flex;
