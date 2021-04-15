@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Layout from 'app/components/Layout';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 const { Content, Header, Footer } = Layout;
 
 export const StyledLayout = styled(Layout)`
@@ -33,6 +34,9 @@ export const StyledContent = styled(Content)`
   justify-content: center;
   display: flex;
   position: relative;
+  ${media.mobile`
+  padding:35px 35px;
+  `}
 `;
 
 export const StyledMeeting = styled(Content)`

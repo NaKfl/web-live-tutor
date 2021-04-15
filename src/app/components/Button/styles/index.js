@@ -94,6 +94,3 @@ export const StyledButton = styled(Button)`
   display: flex;
   align-items: center;
 `;
-StyledButton.propTypes = {
-  type: PropTypes.arrayOf(['primary', 'accent', 'default']),
-};

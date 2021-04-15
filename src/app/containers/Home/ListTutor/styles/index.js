@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Row } from 'antd';
+import { media } from 'styles/media';
 
 export const StyledTutorCard = styled.div`
   display: flex;
@@ -7,19 +7,29 @@ export const StyledTutorCard = styled.div`
   background-color: #fff;
   position: relative;
   height: 275px;
+  width: 100%;
   padding: 25px;
   .w-100 {
     width: 100%;
   }
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.2) 0 0 15px -3px;
+
+  ${media.mobile`
+  height:auto;
+  `}
 `;
+
 export const StyledHeader = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100%;
   position: relative;
   margin-bottom: 10px;
+  ${media.mobile`
+    flex-direction:column;
+    align-items:center;
+  `}
   .avatar {
     margin-right: 10px;
     min-width: 90px;
@@ -30,6 +40,10 @@ export const StyledHeader = styled.div`
     width: 100%;
     justify-content: flex-start;
     align-items: flex-start;
+    ${media.mobile`
+    flex-direction:column
+    align-items:center;
+    `}
     .rate {
       font-size: 12px;
     }
@@ -56,6 +70,12 @@ export const StyledHeader = styled.div`
     &:active {
       transform: scale(0.9);
     }
+    ${media.mobile`
+    width:100%;
+    position:absolute;
+    display: flex;
+    justify-content: flex-end;
+    `}
   }
 `;
 export const StyledMain = styled.div`
@@ -81,13 +101,39 @@ export const StyledMain = styled.div`
       & > * {
         margin-left: 10px;
       }
+      ${media.mobile`
+      position:relative;
+      `}
     }
   }
 `;
-export const LayoutListTutor = styled(Row)`
+
+export const LayoutListTutor = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 `;
+
+export const WrapTutor = styled.div`
+  width: calc(100% / 3);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+
+  ${media.subWide`
+    width: calc(100% / 2);
+  `}
+  /* ${media.tablet`
+    width: calc(100%);
+  `} */
+  ${media.mobile`
+    width: calc(100%);
+  `}
+`;
+
 export const InfoText = styled.p`
   margin-bottom: 0.5em;
   color: rgba(0, 0, 0, 0.85);

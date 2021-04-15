@@ -1,7 +1,6 @@
 import { memo } from 'react';
-import { LayoutListTutor } from './styles';
+import { LayoutListTutor, WrapTutor } from './styles';
 import { TutorCard } from './TutorCard';
-import { Col } from 'antd';
 import { checkIsFavorite } from 'utils/common';
 import useHooks from './hooks';
 
@@ -9,10 +8,10 @@ export const ListTutor = memo(({ listTutor, onClickHeart, listFavorite }) => {
   const { handlers } = useHooks();
   const { showInfoTutor, handleCallTutor } = handlers;
   return (
-    <LayoutListTutor gutter={[32, 24]}>
+    <LayoutListTutor>
       {listTutor.length > 0 &&
         listTutor.map((e, i) => (
-          <Col span={8} key={i}>
+          <WrapTutor key={i}>
             <TutorCard
               {...e}
               onClickHeart={onClickHeart}
@@ -20,7 +19,7 @@ export const ListTutor = memo(({ listTutor, onClickHeart, listFavorite }) => {
               showInfoTutor={showInfoTutor}
               handleCallTutor={handleCallTutor}
             />
-          </Col>
+          </WrapTutor>
         ))}
     </LayoutListTutor>
   );
