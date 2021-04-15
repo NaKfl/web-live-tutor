@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const Introduction = styled.div`
   display: flex;
@@ -18,6 +19,20 @@ export const Content = styled.div`
       width: 100%;
     }
   }
+  ${media.mobile`
+  .basic-info {
+    justify-content: center;
+    .basic-info-left,
+    .basic-info-right {
+      flex: unset !important;
+      max-width: 100%;
+      .ant-alert-info{
+        width: 222.66px;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+  `}
 `;
 
 // export const ImageUpload = styled.div`
