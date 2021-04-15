@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const StyledScheduleTutor = styled.div`
   display: flex;
@@ -14,6 +15,12 @@ export const StyledScheduleTutor = styled.div`
           font-size: 16px;
         }
       }
+      ${media.mobile`
+      .ant-picker-calendar-date {
+        width: 35px;
+        height: 3.5rem;
+      }
+      `}
     }
   }
 `;

@@ -62,8 +62,8 @@ export const StepProfile = ({
           <Divider orientation="left">
             {t('Register.Tutor.profile.title')}
           </Divider>
-          <Row gutter={16}>
-            <Col span={8}>
+          <Row gutter={16} className="basic-info">
+            <Col span={8} className="basic-info-left no-flex">
               <ImageUpload selectAvatar={selectAvatar} />
               <p>{t('Register.Tutor.profile.btnClickEdit')}</p>
               <Alert
@@ -71,7 +71,7 @@ export const StepProfile = ({
                 type="info"
               />
             </Col>
-            <Col span={16}>
+            <Col span={16} className="basic-info-right no-flex">
               <Col span={24}>
                 <Form.Item
                   label={t('Register.Tutor.profile.lable.name')}
