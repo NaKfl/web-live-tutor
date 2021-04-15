@@ -26,14 +26,11 @@ export const CoursePage = memo(() => {
         Gain confidence and fluency in conversational English. There is
         something for everyone, with courses for all skill levels covering
         everything from the basics of smalltalk to crafting well-formed opinions
-        about complex, topical issues. Business communication in an
-        international setting requires more than just strong English language
-        skills. Effective cross-cultural communication, both verbal and
-        non-verbal, is a powerful tool for career growth.
+        about complex, topical issues.
       </Title>
       <Row gutter={[30, 30]}>
         {coursesList.map(course => (
-          <Col key={course.id} className="gutter-row" span={6}>
+          <Col key={course.id} className="gutter-row">
             <CourseCard course={course} onSelectCard={onSelectCard} />
           </Col>
         ))}

@@ -5,6 +5,7 @@ export const StyledCourseCard = styled.div`
   box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.14);
   border-radius: 12px;
   height: 23.5rem;
+  max-width: 18rem;
   cursor: pointer;
   .description-course {
     overflow: hidden;

@@ -38,7 +38,7 @@ export const Profile = () => {
         initialValues={info ?? {}}
         layout="vertical"
       >
-        <Row className="mb-4">
+        <Row className="mb-4 group-avatar">
           <Col flex={0.05}>
             <StyledAvatar>
               <Avatar size={130} src={info?.avatar} />

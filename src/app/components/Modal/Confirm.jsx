@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { StyledModal, StyledRow, StyledMessage } from './styles';
+import { StyledModal, StyledRow, StyledMessage } from './InfoUser/styles';
 import Button from 'app/components/Button';
 import { SyncOutlined } from '@ant-design/icons';
 

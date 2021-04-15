@@ -1,21 +1,45 @@
 import styled from 'styled-components';
 import { Modal } from 'antd';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 
 export const StyledModal = styled(Modal)`
   .ant-modal-content {
     border-radius: 10px;
+    overflow: auto;
+
+    ${media.mobile`
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    `}
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
   }
   .ant-modal-body {
     height: 85vh;
-    padding: 24px 0px 24px 24px;
   }
 `;
 
 export const StyledProfile = styled.div`
   display: flex;
   justify-content: center;
-  overflow-y: scroll;
   height: 100%;
   h3,
   h4,
@@ -28,18 +52,26 @@ export const StyledProfile = styled.div`
   }
   .profile-form {
     width: 100%;
-    padding-right: 24px;
   }
 `;
 
 export const StyledTutorTitle = styled.div`
   .tutor-info {
-    padding: 10px 30px;
+    padding: 16px 32px;
+
+    ${media.mobile`
+      justify-content: center;
+    `}
+
     > button {
       width: 100%;
       justify-content: center;
     }
     .group-info {
+      ${media.mobile`
+        padding: 0 16px;
+      `}
+
       > h3 {
         opacity: 0.9;
       }
@@ -102,6 +134,11 @@ export const StyledTutorContent = styled.div`
       }
     }
     .tutor-calender {
+      ${media.mobile`
+        border: none;
+        padding: 0;
+      `}
+
       width: 100%;
       border: 1px #d9d9d9 solid;
       padding: 20px;
@@ -122,6 +159,7 @@ export const StyledTutorContent = styled.div`
         font-weight: bold;
         text-decoration: underline;
       }
+
       .ant-picker-calendar-date {
         height: 50px;
       }

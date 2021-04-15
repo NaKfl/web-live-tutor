@@ -16,10 +16,10 @@ export const DetailCourse = memo(() => {
   return (
     <StyledDetailCourse>
       <Row>
-        <Col className="detail-course-left p-3" style={{ flex: 0.4 }}>
+        <Col className="detail-course-left p-3">
           {detailCourse.name && <CourseCard course={detailCourse} />}
         </Col>
-        <Col className="detail-course-right p-3" style={{ flex: 0.6 }}>
+        <Col className="detail-course-right p-3">
           <Title level={3} className="fw-nor">
             Overview
           </Title>
@@ -58,11 +58,11 @@ export const DetailCourse = memo(() => {
             List Topics
           </Title>
           {detailCourse.topics?.map((topic, index) => (
-            <Row className="mt-4">
-              <Title level={5} className="fw-nor mt-0 me-3">
-                {index + 1}.
+            <Row className="mt-4 topic-item">
+              <Title level={5} className="fw-nor mt-0 me-3 topic-item-order">
+                {`${index + 1}.`}
               </Title>
-              <Title level={5} className="fw-nor mt-0">
+              <Title level={5} className="fw-nor mt-0 topic-item-name">
                 {topic.name}
               </Title>
             </Row>
