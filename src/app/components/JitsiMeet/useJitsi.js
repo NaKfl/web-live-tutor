@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 const useJitsi = props => {
   const {
-    domain = 'meet.jit.si',
+    domain = 'meet.livetutor.live',
     parentNode,
     subject,
     password,
