@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { TeamOutlined } from '@ant-design/icons';
-import { useForFavortiteList } from 'app/containers/Home/hooks';
+import { useForFavoriteList } from 'app/containers/Home/hooks';
 import saga from 'app/containers/Home/saga';
 import { sliceKey } from 'app/containers/Home/slice';
 import { useInjectSaga } from 'utils/reduxInjectors';
@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 export const FavoriteTutor = () => {
   useInjectSaga({ key: sliceKey, saga });
-  const { handlers, selectors } = useForFavortiteList();
+  const { handlers, selectors } = useForFavoriteList();
   const { listFavorite } = selectors;
   const { showFavoriteTutorList } = handlers;
   const { t } = useTranslation();

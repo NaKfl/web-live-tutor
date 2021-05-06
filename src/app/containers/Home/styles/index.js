@@ -12,3 +12,18 @@ export const StyledHome = styled.div`
     flex-wrap: wrap;
   }
 `;
+
+export const StyledPagination = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+export const StyledCoverSearch = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+`;

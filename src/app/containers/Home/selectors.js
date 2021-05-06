@@ -13,3 +13,11 @@ export const makeSelectListFavorite = createSelector(
   selectHomeState,
   listFavorite => get('listFavorite', listFavorite),
 );
+
+export const makeSelectCount = createSelector(selectHomeState, count =>
+  get('count', count),
+);
+
+export const makeCurrentPage = createSelector(selectHomeState, currentPage =>
+  get('currentPage', currentPage),
+);
