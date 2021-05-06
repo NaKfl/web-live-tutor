@@ -5,9 +5,11 @@ import { ACTION_STATUS } from 'utils/constants';
 
 export const initialState = {
   listTutor: [],
+  count: null,
   error: null,
   status: '',
   listFavorite: [],
+  currentPage: 1,
 };
 const homeSlice = createSlice({
   name: 'home',
@@ -17,6 +19,7 @@ const homeSlice = createSlice({
       return flow(
         set('error', null),
         set('status', ACTION_STATUS.PENDING),
+        set('currentPage', 1),
       )(state);
     },
     fetchRequestSuccess(state) {
@@ -32,7 +35,8 @@ const homeSlice = createSlice({
       )(state);
     },
     getList(state, action) {
-      return flow(set('listTutor', action.payload))(state);
+      const { rows, count } = action.payload;
+      return flow(set('listTutor', rows), set('count', count))(state);
     },
 
     manageFavoriteTutor(state, action) {
@@ -51,6 +55,7 @@ const homeSlice = createSlice({
         set('status', ACTION_STATUS.SUCCESS),
       )(state);
     },
+
     fetchFavoriteListFailed(state, action) {
       return flow(
         set('error', action.payload),

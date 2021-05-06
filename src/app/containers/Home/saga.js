@@ -6,17 +6,22 @@ import {
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 
-function getListTutorAPI(payload = '') {
-  return getList(payload);
+function getListTutorAPI({ search = null, page, perPage }) {
+  return getList({ search, page, perPage });
 }
 function* getListWatcher() {
-  yield takeLatest(actions.fetchRequest, fetchListTast);
+  yield takeLatest(actions.fetchRequest, fetchListTask);
 }
-function* fetchListTast() {
-  const { response, error } = yield call(getListTutorAPI);
+function* fetchListTask(action) {
+  const { response, error } = yield call(getListTutorAPI, {
+    search: null,
+    page: 1,
+    perPage: 20,
+    ...action.payload,
+  });
 
   if (response) {
-    const data = response.tutors?.rows;
+    const data = response.tutors;
     const favoriteList = response?.favoriteTutor;
     if (data) {
       yield put(actions.getList(data));

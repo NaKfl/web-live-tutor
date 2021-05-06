@@ -42,3 +42,7 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
         },
   );
 };
+
+export const useQuery = useLocation => {
+  return new URLSearchParams(useLocation?.search);
+};
