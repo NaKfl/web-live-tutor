@@ -3,48 +3,45 @@ import Dropdown from 'app/components/Dropdown';
 import Space from 'app/components/Space';
 import Menu from 'app/components/Menu';
 import Button from 'app/components/Button';
+import MenuBar from 'app/containers/Menu/MenuBar';
 import { useLogout } from 'app/containers/Login/hooks';
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
+import { Logo } from 'app/components/Logo';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { StyledHeader } from 'app/components/Layout';
 import FavoriteTutor from 'app/containers/AppLayout/Private/FavoriteTutor';
-import { getUser } from 'utils/localStorageUtils';
+import { actions as loginActions } from 'app/containers/Login/slice';
+import useActions from 'hooks/useActions';
+import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
+import { useSelector } from 'react-redux';
+import { ROLES } from 'utils/constants';
 
 export const Header = () => {
-  const user = getUser();
+  const user = useSelector(selectUserInfoAuthenticate);
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
-  const [selectedKey, setSelectedKey] = useState(['1']);
+  const { changeRole } = useActions(
+    {
+      changeRole: loginActions.changeRole,
+    },
+    [loginActions],
+  );
 
   return (
     <StyledHeader>
-      <Menu
-        theme="light"
-        mode="horizontal"
-        selectedKeys={selectedKey}
-        onClick={e => {
-          if (e.key) setSelectedKey([e.key]);
-        }}
-      >
-        <Menu.Item key="1">
-          <Link to="/">{t('Category.tutor')}</Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/courses">Courses</Link>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Link to="/register-tutor">{t('Category.registerTutor')}</Link>
-        </Menu.Item>
-        <Menu.Item key="4">{t('Category.progress')}</Menu.Item>
-        <Menu.Item key="5">
-          <Link to="/schedule-tutor">Schedule</Link>
-        </Menu.Item>
-      </Menu>
+      <div className="left-menu">
+        <div className="logo-wrapper">
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        <MenuBar />
+      </div>
       {(user && (
         <Space>
-          <FavoriteTutor></FavoriteTutor>
+          {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
           <Dropdown
             trigger={['click']}
             overlay={
@@ -52,6 +49,29 @@ export const Header = () => {
                 <Menu.Item>
                   <Link to="/profile">{t('Header.linkProfile')}</Link>
                 </Menu.Item>
+
+                {(!user?.roles?.includes(ROLES.TUTOR) && (
+                  <Menu.Item>
+                    <Link to="/register-tutor">
+                      {t('Header.linkRegisterTutor')}
+                    </Link>
+                  </Menu.Item>
+                )) || (
+                  <Menu.Item
+                    onClick={() =>
+                      changeRole({
+                        roleName:
+                          user?.currentRole === ROLES.STUDENT
+                            ? ROLES.TUTOR
+                            : ROLES.STUDENT,
+                      })
+                    }
+                  >
+                    {user?.currentRole === ROLES.STUDENT
+                      ? t('Header.switchRoleToTutor')
+                      : t('Header.switchRoleToStudent')}
+                  </Menu.Item>
+                )}
                 <Menu.Item onClick={onLogout}>
                   {t('Header.linkLogout')}
                 </Menu.Item>

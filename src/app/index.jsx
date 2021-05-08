@@ -8,8 +8,8 @@ import 'styles/core.css';
 export const App = () => {
   return (
     <BrowserRouter>
-      <Helmet titleTemplate="%s - LT" defaultTitle="Live tutor">
-        <meta name="description" content="Live tutor" />
+      <Helmet titleTemplate="%s - LT" defaultTitle="Live Tutor">
+        <meta name="description" content="Live Tutor" />
       </Helmet>
       <Switch>
         <Route component={AppLayout} />

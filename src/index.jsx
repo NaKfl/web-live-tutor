@@ -11,12 +11,13 @@ import { App } from 'app';
 import { HelmetProvider } from 'react-helmet-async';
 import { configureAppStore } from 'store/configureStore';
 
-import { isAuthenticated } from 'utils/localStorageUtils';
+import { isAuthenticated, getUser } from 'utils/localStorageUtils';
 import './locales/i18n';
 
 const initialState = {
   authentication: {
     isAuthenticated: isAuthenticated(),
+    info: getUser(),
   },
 };
 
