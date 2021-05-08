@@ -26,6 +26,7 @@ const useHooks = props => {
       isTutor,
       participantId,
       startTime,
+      jwtRoom,
     } = jwt.verify(token, JWT_SECRET);
     setRoomInfo({
       participantId,
@@ -34,6 +35,7 @@ const useHooks = props => {
       displayName,
       isTutor,
       startTime,
+      jwtRoom,
     });
   }, []);
 

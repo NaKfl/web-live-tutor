@@ -219,49 +219,41 @@ const TutorModal = memo(props => {
                   )}
                 </Row>
                 <Row className="group-tutor-calender">
-                  {/* {isSelectDate && ( */}
-                  <Row className="tutor-calender">
-                    <Row
-                      className="btn-back pointer align-items-center"
-                      onClick={handleBackSelectDate}
-                    >
-                      <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
+                  {isSelectDate && (
+                    <Row className="tutor-calender">
+                      <Row
+                        className="btn-back pointer align-items-center"
+                        onClick={handleBackSelectDate}
+                      >
+                        <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
+                      </Row>
+                      <Row className="flex-column w-100 p-4 mt-4">
+                        <DatePicker
+                          mode="date"
+                          className="w-50 mb-4"
+                          disabledDate={disabledDate}
+                          dateRender={datePickerRender}
+                          value={moment(dateSelected, 'YYYY-MM-DD')}
+                          format={'YYYY-MM-DD'}
+                        />
+                        {(freeTimesTutor || []).map(time => (
+                          <TimeSelect
+                            time={`From  ${time.startTime}  to  ${time.endTime}`}
+                            scheduleId={time.id}
+                            key={time.id}
+                          ></TimeSelect>
+                        ))}
+                      </Row>
                     </Row>
-                    <Row className="flex-column w-100 p-4 mt-4">
-                      <DatePicker
-                        mode="date"
-                        className="w-50 mb-4"
-                        disabledDate={disabledDate}
-                        dateRender={datePickerRender}
-                        value={moment(dateSelected, 'YYYY-MM-DD')}
-                        format={'YYYY-MM-DD'}
-                      />
-                      <TimeSelect
-                        time={`From  8:00  to  11:00`}
-                        scheduleId={'time.id'}
-                      ></TimeSelect>
-                      <TimeSelect
-                        time={`From  8:00  to  11:00`}
-                        scheduleId={'time.id'}
-                      ></TimeSelect>
-                      {(freeTimesTutor || []).map(time => (
-                        <TimeSelect
-                          time={`From  ${time.startTime}  to  ${time.endTime}`}
-                          scheduleId={time.id}
-                          key={time.id}
-                        ></TimeSelect>
-                      ))}
-                    </Row>
-                  </Row>
-                  {/* )} */}
-                  {/* {!isSelectDate && (
+                  )}
+                  {!isSelectDate && (
                     <Row className="tutor-calender">
                       <Calendar
                         dateFullCellRender={dateCellRender}
                         mode="month"
                       />
                     </Row>
-                  )} */}
+                  )}
                 </Row>
               </Row>
             </StyledTutorContent>

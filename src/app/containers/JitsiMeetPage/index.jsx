@@ -19,8 +19,8 @@ export const JitsiMeetPage = props => {
       {roomInfo.roomName && (
         <JitsiMeet
           roomName={roomInfo.roomName}
-          password={roomInfo.password}
           displayName={roomInfo.displayName}
+          jwt={roomInfo.jwtRoom}
           disableInviteFunctions={true}
           onMeetingEnd={() => handleSomeOneLeave(roomInfo)}
           loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>}

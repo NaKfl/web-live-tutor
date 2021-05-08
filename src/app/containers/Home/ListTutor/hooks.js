@@ -21,21 +21,25 @@ export const useHooks = props => {
   }, []);
 
   useEffect(() => {
-    socket.on('call:acceptedCall', ({ userCall, userBeCalled, startTime }) => {
-      const user = getUserFromStorage();
-      const token = jwt.sign(
-        {
-          participantId: userBeCalled.id,
-          roomName: userCall.id,
-          password: userCall.id,
-          displayName: user.name,
-          isTutor: true,
-          startTime,
-        },
-        JWT_SECRET,
-      );
-      history.push(`/call/?token=${token}`);
-    });
+    socket.on(
+      'call:acceptedCall',
+      ({ userCall, userBeCalled, startTime, jwtRoom }) => {
+        const user = getUserFromStorage();
+        const token = jwt.sign(
+          {
+            participantId: userBeCalled.id,
+            roomName: userCall.id,
+            password: userCall.id,
+            jwtRoom,
+            displayName: user.name,
+            isTutor: true,
+            startTime,
+          },
+          JWT_SECRET,
+        );
+        history.push(`/call/?token=${token}`);
+      },
+    );
   }, []);
 
   const showInfoTutor = useCallback(
