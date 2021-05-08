@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import flow from 'lodash/fp/flow';
 import set from 'lodash/fp/set';
-import { ACTION_STATUS } from 'utils/constants';
+import { updateUserInfo, getUser } from 'utils/localStorageUtils';
+import { ACTION_STATUS, ROLES } from 'utils/constants';
 export const initialState = {
   info: null,
   isAuthenticated: false,
@@ -24,6 +25,7 @@ const authenticationSlice = createSlice({
       return flow(
         set('isAuthenticated', true),
         set('info', action.payload?.user),
+        set('currentRole', ROLES.STUDENT),
         set('status', ACTION_STATUS.SUCCESS),
       )(state);
     },
@@ -45,6 +47,7 @@ const authenticationSlice = createSlice({
     loginServiceSuccess(state) {
       return flow(
         set('isAuthenticated', true),
+        set('currentRole', ROLES.STUDENT),
         set('status', ACTION_STATUS.SUCCESS),
       )(state);
     },
@@ -56,6 +59,13 @@ const authenticationSlice = createSlice({
       )(state);
     },
 
+    changeRole(state, action) {
+      const user = getUser();
+      user.currentRole = action?.payload?.roleName;
+      updateUserInfo(user);
+      return set('info', user)(state);
+    },
+
     logout(state) {
       return state;
     },
@@ -65,6 +75,7 @@ const authenticationSlice = createSlice({
         set('isAuthenticated', false),
         set('info', null),
         set('status', ''),
+        set('currentRole', ROLES.GUEST),
         set('error', null),
       )(state);
     },

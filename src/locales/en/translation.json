@@ -7,7 +7,7 @@
     "vn": "Vietnamese",
     "en": "English",
     "default": "English",
-    "brand": "Live tutor",
+    "brand": "Live Tutor",
     "callNow": "Call now",
     "back": "Back",
     "selectDay": "Select a day",
@@ -22,11 +22,14 @@
   "Header": {
     "linkHome": "Home",
     "linkProfile": "Profile",
-    "linkLogout": "Logout"
+    "linkLogout": "Logout",
+    "linkRegisterTutor": "Become a tutor",
+    "switchRoleToTutor": "Switch role to tutor",
+    "switchRoleToStudent": "Switch role to student"
   },
 
   "Login": {
-    "title": "Welcome back to Etutor",
+    "title": "Welcome back to Live Tutor",
     "messageInvalidEmail": "The input is not valid E-mail!",
     "messageEmptyEmail": "Please input your Email!",
     "messageEmptyPassword": "Please input your Password!",
@@ -37,7 +40,7 @@
     "linkRegister": "Register",
     "notifySuccess": "Login successful",
     "notifyFailed": "Login failed",
-    "suggestRegister": "New to Etutor ?",
+    "suggestRegister": "New to Live Tutor ?",
     "divider": "Or login with",
     "btnCap": "LOG IN",
     "labelEmail": "Email",
@@ -45,7 +48,7 @@
   },
 
   "Register": {
-    "title": "Start learning with Etutor",
+    "title": "Start learning with Live Tutor",
     "labelName": "Name",
     "labelEmail": "Email",
     "labelPassword": "Password",
@@ -208,5 +211,6 @@
   "Upload": {
     "avatar": "Upload avatar here ...",
     "video": "Choose video"
-  }
+  },
+  "Menu": {}
 }

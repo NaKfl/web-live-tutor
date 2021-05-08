@@ -5,6 +5,11 @@ import { COLOR } from 'styles/colorPalette';
 const StyledLayout = styled(Layout)``;
 
 export const StyledHeader = styled(Layout.Header)`
+  height: 70px;
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+  }
   z-index: 1;
   background-color: ${COLOR.WHITE};
   display: flex;
