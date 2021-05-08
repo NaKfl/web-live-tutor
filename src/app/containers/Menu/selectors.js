@@ -1,30 +1,12 @@
-/**
- * Menu selectors
- */
-
 import { createSelector } from 'reselect';
 import get from 'lodash/fp/get';
 
 const selectMenusState = state => state.menus;
 
-const getSelectActiveMenu = createSelector(selectMenusState, state =>
-  get('activeMenu', state),
+export const getActivatedMenu = createSelector(selectMenusState, state =>
+  get('activatedMenu', state),
 );
 
-const getSelectActiveItem = createSelector(selectMenusState, state =>
-  get('activeItem', state),
-);
-
-const getSelectIsSideNavOpen = createSelector(selectMenusState, state =>
+export const getIsSideNavOpen = createSelector(selectMenusState, state =>
   get('isSideNavOpen', state),
 );
-
-const getSelectChildrenMenusOpen = createSelector(selectMenusState, state =>
-  get('childrenMenusOpen', state),
-);
-export {
-  getSelectActiveMenu,
-  getSelectActiveItem,
-  getSelectIsSideNavOpen,
-  getSelectChildrenMenusOpen,
-};

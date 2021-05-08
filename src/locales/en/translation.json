@@ -17,7 +17,8 @@
     "tutor": "Tutor",
     "registerTutor": "Register tutor",
     "courses": "Courses",
-    "progress": "Progress"
+    "progress": "Progress",
+    "schedule": "Schedule"
   },
   "Header": {
     "linkHome": "Home",
@@ -211,6 +212,5 @@
   "Upload": {
     "avatar": "Upload avatar here ...",
     "video": "Choose video"
-  },
-  "Menu": {}
+  }
 }

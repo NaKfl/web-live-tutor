@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
-import { getUser as getUserInfoFromStorage } from 'utils/localStorageUtils';
+import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
+  const user = useSelector(selectUserInfoAuthenticate);
 
-  const user = getUserInfoFromStorage();
   if (isAuthenticated) {
     emitConnectionLogin(user);
   } else {
@@ -18,6 +18,7 @@ export const useHooks = () => {
   return {
     selectors: {
       isAuthenticated,
+      currentRole: user?.currentRole,
     },
     handler: {},
   };
