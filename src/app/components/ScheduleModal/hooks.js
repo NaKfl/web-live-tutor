@@ -11,6 +11,12 @@ import { ACTION_STATUS } from 'utils/constants';
 import moment from 'moment';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
+export const TIME = {
+  startTime: 0,
+  endTime: 1,
+  total: 2,
+};
+
 export const useHooks = props => {
   const { data } = props;
   const user = getUserFromStorage();
@@ -18,6 +24,8 @@ export const useHooks = props => {
   const selectorUnRegisterSchedule = useSelector(selectUnRegisterSchedule);
   const selectorScheduleTutorByDate = useSelector(selectScheduleTutorByDate);
   const [freeTimes, setFreeTimes] = useState([]);
+  const [startTimeSelect, setStartTime] = useState(null);
+  const [endTimeSelect, setEndTime] = useState(null);
 
   const {
     registerSchedule,
@@ -79,13 +87,27 @@ export const useHooks = props => {
     });
   };
 
+  const handleChangePickTime = time => {
+    if (time && time.length === TIME.total) {
+      setStartTime(time[TIME.startTime]);
+      setEndTime(time[TIME.endTime]);
+    } else {
+      setStartTime(null);
+      setEndTime(null);
+    }
+  };
+
   const handleUnRegisterSchedule = id => {
     unRegisterSchedule(id);
   };
 
   return {
-    handlers: { handleAddDateSchedule, handleUnRegisterSchedule },
-    selectors: { freeTimes },
+    handlers: {
+      handleAddDateSchedule,
+      handleUnRegisterSchedule,
+      handleChangePickTime,
+    },
+    selectors: { freeTimes, startTimeSelect, endTimeSelect },
   };
 };
 

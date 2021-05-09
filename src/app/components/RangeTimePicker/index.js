@@ -20,7 +20,8 @@ const RangeTimePicker = props => {
         onChange={handleChangePickTime}
       />
       <Button
-        className="mx-1"
+        className="btn-add"
+        type="accent"
         onClick={() =>
           startTimeSelect &&
           endTimeSelect &&
