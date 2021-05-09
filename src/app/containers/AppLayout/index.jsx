@@ -37,6 +37,7 @@ export const AppLayout = () => {
             path={route.path}
             component={route.component}
             layout={PrivateLayout}
+            requiredRoles={route.requiredRoles}
           />
         ))}
         {meetingRoutes.map(route => (
