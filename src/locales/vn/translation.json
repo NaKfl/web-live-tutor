@@ -49,6 +49,7 @@
   },
 
   "Register": {
+    "messageError": "Bạn đã là một gia sư",
     "title": "Nào cùng bắt đầu với Live Tutor",
     "labelName": "Tên",
     "labelEmail": "Email",
@@ -210,5 +211,12 @@
   "Upload": {
     "avatar": "Tải ảnh đại diện lên ...",
     "video": "Chọn video"
+  },
+  "Error": {
+    "somethingWrongTitle": "Lỗi",
+    "somethingWrong": "Đã xảy ra lỗi",
+    "backHome": "Trang Chủ",
+    "notFoundTitle": "Không tồn tại",
+    "notFound": "Xin lỗi, trang bạn truy cập không tồn tại"
   }
 }
