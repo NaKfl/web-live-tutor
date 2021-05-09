@@ -8,7 +8,7 @@ import 'styles/core.css';
 export const App = () => {
   return (
     <BrowserRouter>
-      <Helmet titleTemplate="%s - LT" defaultTitle="Live Tutor">
+      <Helmet titleTemplate="%s - Live Tutor" defaultTitle="Live Tutor">
         <meta name="description" content="Live Tutor" />
       </Helmet>
       <Switch>

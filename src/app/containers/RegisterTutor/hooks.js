@@ -7,20 +7,31 @@ import { makeSelectRegisterTutorStatus } from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import Form from 'app/components/Form';
 import moment from 'moment';
-import { DATE_FORMAT } from 'utils/constants';
+import { DATE_FORMAT, ROLES } from 'utils/constants';
 import { notifyError } from 'utils/notify';
+import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 
 export const useHooks = () => {
+  const history = useHistory();
+  const user = useSelector(selectUserInfoAuthenticate);
+  useEffect(() => {
+    if (user?.roles.includes(ROLES.TUTOR))
+      history.push({
+        pathname: '/something-wrong',
+        state: { message: 'Register.messageError' },
+      });
+  }, [history, user.currentRole, user.roles]);
+
   const [currentStep, setCurrentStep] = useState(0);
   const [tutorFormValues, setTutorFormValues] = useState({});
   const [avatar, setAvatar] = useState();
   const [video, setVideo] = useState();
   const [formProfile] = Form.useForm();
-  const history = useHistory();
   const { registerTutor } = useActions(
     { registerTutor: actions.registerTutor },
     [actions],
   );
+
   const status = useSelector(makeSelectRegisterTutorStatus);
 
   useEffect(() => {

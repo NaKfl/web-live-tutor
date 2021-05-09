@@ -49,6 +49,7 @@
   },
 
   "Register": {
+    "messageError": "You have already been a tutor",
     "title": "Start learning with Live Tutor",
     "labelName": "Name",
     "labelEmail": "Email",
@@ -212,5 +213,12 @@
   "Upload": {
     "avatar": "Upload avatar here ...",
     "video": "Choose video"
+  },
+  "Error": {
+    "somethingWrongTitle": "Error",
+    "somethingWrong": "Something went wrong",
+    "backHome": "Back Home",
+    "notFoundTitle": "Not found",
+    "notFound": "Sorry, the page you visited does not exist"
   }
 }

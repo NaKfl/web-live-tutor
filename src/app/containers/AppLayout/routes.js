@@ -8,6 +8,8 @@ import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
+import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
+import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
 
 export const privateRoutes = [
   {
@@ -57,6 +59,16 @@ export const publicRoutes = [
     path: '/register',
     component: Register,
     key: 'register',
+  },
+  {
+    path: '/something-wrong',
+    component: SomethingWrongPage,
+    key: 'something-wrong',
+  },
+  {
+    path: '/not-found',
+    component: NotFoundPage,
+    key: 'not-found',
   },
 ];
 
