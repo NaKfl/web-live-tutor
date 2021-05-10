@@ -5,10 +5,10 @@ import saga from './saga';
 import {
   StyledHome,
   StyledPagination,
-  StyledCoverSearch,
   StyledTopList,
   StyledFistPart,
   StyledTitle,
+  StyledSecondPart,
 } from './styles';
 import { useHooks } from './hooks';
 import ListTutor from './ListTutor';
@@ -16,8 +16,10 @@ import Search from './Search';
 import Banner from './Banner';
 import TopTutor from './TopTutor';
 import Pagination from 'app/components/Pagination';
+import { useTranslation } from 'react-i18next';
 
 export const Home = memo(() => {
+  const { t } = useTranslation();
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors, handlers } = useHooks();
@@ -31,10 +33,24 @@ export const Home = memo(() => {
           <TopTutor data={topTutor} />
         </StyledTopList>
       </StyledFistPart>
-      <StyledTitle>Find a Tutors</StyledTitle>
-      {/* <StyledCoverSearch>
-        <Search onSearch={onSearch}></Search>
-      </StyledCoverSearch> */}
+      <StyledSecondPart>
+        <div className="search-banner">
+          <h3 className="search-title">{t('Tutors.searchTitle')}</h3>
+          <p className="sub-title">
+            {t('Tutors.connect')} <strong>{t('Tutors.totalStudents')}</strong>{' '}
+            {t('Tutors.studentsTo')}
+            <strong>{t('Tutors.totalTutors')}</strong>
+            {t('Tutors.tutors')}
+          </p>
+          <Search
+            onSearch={onSearch}
+            placeholder={t('Tutors.searchPlaceholder')}
+          ></Search>
+        </div>
+      </StyledSecondPart>
+      <StyledTitle className="available-tutor-title">
+        {t('Tutors.availableTutors')}
+      </StyledTitle>
       <ListTutor
         listTutor={listTutor}
         onClickHeart={onClickHeart}

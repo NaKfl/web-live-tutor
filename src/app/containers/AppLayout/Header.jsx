@@ -1,25 +1,27 @@
 import Avatar from 'app/components/Avatar';
-import Dropdown from 'app/components/Dropdown';
-import Space from 'app/components/Space';
-import Menu from 'app/components/Menu';
 import Button from 'app/components/Button';
-import MenuBar from 'app/containers/Menu/MenuBar';
-import { useLogout } from 'app/containers/Login/hooks';
-import React, { memo } from 'react';
+import Dropdown from 'app/components/Dropdown';
 import { Logo } from 'app/components/Logo';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { StyledHeader } from './styles';
+import Menu from 'app/components/Menu';
+import Space from 'app/components/Space';
 import FavoriteTutor from 'app/containers/AppLayout/Private/FavoriteTutor';
-import { actions as loginActions } from 'app/containers/Login/slice';
-import useActions from 'hooks/useActions';
+import { useLogout } from 'app/containers/Login/hooks';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
+import { actions as loginActions } from 'app/containers/Login/slice';
+import MenuBar from 'app/containers/Menu/MenuBar';
+import US from 'assets/svg/united-states.svg';
+import VN from 'assets/svg/vietnam.svg';
+import useActions from 'hooks/useActions';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
+import { StyledFlag, StyledHeader } from './styles';
 
 export const Header = () => {
   const user = useSelector(selectUserInfoAuthenticate);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
   const { changeRole } = useActions(
@@ -41,8 +43,45 @@ export const Header = () => {
           <MenuBar />
         </div>
         {(user && (
-          <Space>
+          <Space className="right-menu">
+            <Button className="sub-btn" type="accent">
+              {t('Header.subscribe')}
+            </Button>
+
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
+            <Dropdown
+              trigger={['click']}
+              overlay={
+                <Menu>
+                  <Menu.Item onClick={() => i18n.changeLanguage('en')}>
+                    <StyledFlag className="me-2" src={US} alt="United States" />
+                    <span
+                      className={`${
+                        t('Common.default') === t('Common.en') ? 'fw-bol' : ''
+                      }`}
+                    >
+                      {t('Common.en')}
+                    </span>
+                  </Menu.Item>
+                  <Menu.Item onClick={() => i18n.changeLanguage('vn')}>
+                    <StyledFlag className="me-2" src={VN} alt="Vietnam" />
+                    <span
+                      className={`${
+                        t('Common.default') === t('Common.vn') ? 'fw-bol' : ''
+                      }`}
+                    >
+                      {t('Common.vn')}
+                    </span>
+                  </Menu.Item>
+                </Menu>
+              }
+            >
+              {t('Common.default') === t('Common.en') ? (
+                <StyledFlag src={US} alt="United States" />
+              ) : (
+                <StyledFlag src={VN} alt="Vietnam" />
+              )}
+            </Dropdown>
             <Dropdown
               trigger={['click']}
               overlay={
@@ -79,7 +118,7 @@ export const Header = () => {
                 </Menu>
               }
             >
-              <Avatar src={user.avatar} />
+              <Avatar size={38} src={user.avatar} />
             </Dropdown>
           </Space>
         )) || (

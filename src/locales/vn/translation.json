@@ -26,7 +26,8 @@
     "linkLogout": "Đăng xuất",
     "linkRegisterTutor": "Đăng ký làm gia sư",
     "switchRoleToTutor": "Chuyển sang vai trò gia sư",
-    "switchRoleToStudent": "Chuyển sang vai trò học viên"
+    "switchRoleToStudent": "Chuyển sang vai trò học viên",
+    "subscribe": "Mua Gói"
   },
 
   "Login": {
@@ -222,6 +223,20 @@
     "permissionDenied": "Xin lỗi, bạn không có quyền truy cập trang này"
   },
   "Tutors": {
-    "topTutors": "Gia Sư Tiêu Biểu"
+    "topTutors": "Gia Sư Tiêu Biểu",
+    "searchTitle": "Nền Tảng Giảng Dạy Trực Tuyến Tiên Phong",
+    "connect": "Kết nối",
+    "studentsTo": "học viên với",
+    "tutors": "gia sư",
+    "totalTutors": " 4,510 ",
+    "totalStudents": " 12,650 ",
+    "searchPlaceholder": "Tìm kiếm gia sư",
+    "availableTutors": "Gia sư đang trực tuyến"
+  },
+  "Footer": {
+    "policy": "Chính sách",
+    "term": "Điều khoản",
+    "contact": "Liên hệ",
+    "copyright": "Bản quyền © 2021 Live Tutor. Đã đăng ký Bản quyền."
   }
 }

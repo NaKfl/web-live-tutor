@@ -29,7 +29,7 @@ export const StyledTopTutor = styled.div`
       margin: 0;
       font-size: 20px;
       letter-spacing: 1px;
-      font-weight: 300;
+      font-weight: 600;
     }
   }
   .top-list {

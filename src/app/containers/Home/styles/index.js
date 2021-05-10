@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLOR } from 'styles/colorPalette';
 
 export const StyledHome = styled.div`
   width: 100%;
@@ -10,6 +11,9 @@ export const StyledHome = styled.div`
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+  }
+  .available-tutor-title {
+    margin-top: 40px;
   }
 `;
 
@@ -36,6 +40,34 @@ export const StyledFistPart = styled.div`
   }
 `;
 
+export const StyledSecondPart = styled.div`
+  border-top: solid 4px ${COLOR.CORNFLOWER};
+  background-color: ${COLOR.WHITE};
+  box-shadow: 0px 4px 16px ${COLOR.SHADOW_GRAY};
+  margin: 20px 0;
+  border-radius: 5px;
+  .search-banner {
+    width: 100%;
+    background-color: ${COLOR.WHITE};
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0 46px 0;
+    color: #0b2239;
+    .search-title {
+      font-size: 33px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .sub-title {
+      font-size: 16px;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+  }
+`;
+
 export const StyledTopList = styled.div`
   flex: 1;
 `;
@@ -43,7 +75,7 @@ export const StyledTopList = styled.div`
 export const StyledTitle = styled.h3`
   margin: 22px 0;
   font-size: 25px;
-  font-weight: 300;
+  font-weight: 600;
   letter-spacing: 1px;
   text-align: center;
   color: #3c3c3c;

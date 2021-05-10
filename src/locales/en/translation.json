@@ -26,7 +26,8 @@
     "linkLogout": "Logout",
     "linkRegisterTutor": "Become a tutor",
     "switchRoleToTutor": "Switch role to tutor",
-    "switchRoleToStudent": "Switch role to student"
+    "switchRoleToStudent": "Switch role to student",
+    "subscribe": "Subscribe"
   },
 
   "Login": {
@@ -224,6 +225,20 @@
     "permissionDenied": "Sorry, you are not authorized to access this pageHome"
   },
   "Tutors": {
-    "topTutors": "Top Tutors"
+    "topTutors": "Top Tutors",
+    "searchTitle": "Pioneering Platform For Teaching Online",
+    "connect": "Connect",
+    "studentsTo": "students to",
+    "tutors": "tutors",
+    "totalTutors": " 4,510 ",
+    "totalStudents": " 12,650 ",
+    "searchPlaceholder": "Search for tutors",
+    "availableTutors": "Available Tutors"
+  },
+  "Footer": {
+    "policy": "Privacy Policy",
+    "term": "Terms & Conditions",
+    "contact": "Contact",
+    "copyright": "Copyright © 2021 Live Tutor. All rights reserved."
   }
 }

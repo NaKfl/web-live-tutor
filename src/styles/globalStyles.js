@@ -14,7 +14,7 @@ html,body{
 }
 
 body{
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   overflow: auto !important;
 }
 
@@ -26,7 +26,7 @@ body{
 
 p,
   label {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     line-height: 1.5em;
   }
 

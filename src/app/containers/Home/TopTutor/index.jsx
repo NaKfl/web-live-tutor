@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import TopTutorItem from './TopTutorItem';
 
 export const TopTutor = ({ data }) => {
-  console.log('data', data);
   const { t } = useTranslation();
   return (
     <StyledTopTutor>

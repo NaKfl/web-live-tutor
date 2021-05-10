@@ -583,6 +583,9 @@
 .fw-nor {
   font-weight: normal !important;
 }
+.fw-bol {
+  font-weight: bold !important;
+}
 .fz-18 {
   font-size: 18px !important;
 }
