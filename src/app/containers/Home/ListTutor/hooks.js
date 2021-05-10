@@ -71,4 +71,23 @@ export const useHooks = props => {
   };
 };
 
+export const useShowInfoTutor = () => {
+  const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
+    popupActions,
+  ]);
+
+  const showInfoTutor = useCallback(
+    tutor => {
+      openPopup({
+        key: 'showInfoTutor',
+        type: POPUP_TYPE.INFO_TUTOR,
+        tutor,
+      });
+    },
+    [openPopup],
+  );
+
+  return { showInfoTutor };
+};
+
 export default useHooks;

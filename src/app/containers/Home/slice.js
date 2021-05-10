@@ -10,11 +10,36 @@ export const initialState = {
   status: '',
   listFavorite: [],
   currentPage: 1,
+  topTutor: {
+    data: null,
+    error: null,
+    status: '',
+  },
 };
 const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
+    getTopTutor(state) {
+      return flow(
+        set('topTutor.error', null),
+        set('topTutor.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+    getTopTutorSuccess(state, action) {
+      return flow(
+        set('topTutor.error', null),
+        set('topTutor.status', ACTION_STATUS.SUCCESS),
+        set('topTutor.data', action.payload),
+      )(state);
+    },
+    getTopTutorFailure(state, action) {
+      return flow(
+        set('topTutor.error', action.payload),
+        set('topTutor.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
     fetchRequest(state) {
       return flow(
         set('error', null),

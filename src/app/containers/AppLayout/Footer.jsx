@@ -17,10 +17,12 @@ export const Footer = () => {
   );
   return (
     <StyledFooter>
-      <StyledText>{t('Common.brand')}</StyledText>
-      <Dropdown placement="topCenter" overlay={menu} trigger="click">
-        <ButtonNoOutline>{t('Common.default')}</ButtonNoOutline>
-      </Dropdown>
+      <div className="footer-wrapper">
+        <StyledText>{t('Common.brand')}</StyledText>
+        <Dropdown placement="topCenter" overlay={menu} trigger="click">
+          <ButtonNoOutline>{t('Common.default')}</ButtonNoOutline>
+        </Dropdown>
+      </div>
     </StyledFooter>
   );
 };

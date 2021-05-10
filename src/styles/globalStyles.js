@@ -34,4 +34,22 @@ p,
     font-family: inherit;
     font-size: inherit;
   }
+
+::-webkit-scrollbar {
+      width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 `;

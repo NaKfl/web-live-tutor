@@ -6,7 +6,9 @@ import Footer from '../Footer';
 export const PublicLayout = ({ children }) => (
   <StyledLayout>
     <PublicHeader />
-    <StyledContent>{children}</StyledContent>
+    <StyledContent>
+      <div className="content-wrapper">{children}</div>
+    </StyledContent>
     <Footer />
   </StyledLayout>
 );

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { TeamOutlined } from '@ant-design/icons';
+import { HeartFilled } from '@ant-design/icons';
 import { useForFavoriteList } from 'app/containers/Home/hooks';
 import saga from 'app/containers/Home/saga';
 import { sliceKey } from 'app/containers/Home/slice';
@@ -8,6 +8,7 @@ import Menu from 'app/components/Menu';
 import Dropdown from 'app/components/Dropdown';
 import { FavoriteChild } from './FavoriteChild';
 import { useTranslation } from 'react-i18next';
+import { StyledFavoriteTutor } from './styles';
 
 export const FavoriteTutor = () => {
   useInjectSaga({ key: sliceKey, saga });
@@ -34,14 +35,14 @@ export const FavoriteTutor = () => {
     );
   };
   return (
-    <>
+    <StyledFavoriteTutor>
       <Dropdown overlay={OverLay()} placement="bottomRight" trigger={['click']}>
-        <TeamOutlined
-          style={{ fontSize: '24px' }}
+        <HeartFilled
+          className="heart-btn"
           onClick={() => showFavoriteTutorList()}
         />
       </Dropdown>
-    </>
+    </StyledFavoriteTutor>
   );
 };
 

@@ -220,5 +220,8 @@
     "notFound": "Xin lỗi, trang bạn truy cập không tồn tại",
     "permissionDeniedTitle": "Không có quyền truy cập",
     "permissionDenied": "Xin lỗi, bạn không có quyền truy cập trang này"
+  },
+  "Tutors": {
+    "topTutors": "Gia Sư Tiêu Biểu"
   }
 }

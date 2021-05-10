@@ -8,7 +8,9 @@ export const PrivateLayout = ({ children }) => (
   <StyledLayout>
     <Header />
     <Chat />
-    <StyledContent>{children}</StyledContent>
+    <StyledContent>
+      <div className="content-wrapper">{children}</div>
+    </StyledContent>
     <Footer />
   </StyledLayout>
 );
