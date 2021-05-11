@@ -1,13 +1,16 @@
-import { memo } from 'react';
-import { TeamOutlined } from '@ant-design/icons';
+import { faHeartbeat } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Empty } from 'antd';
+import Dropdown from 'app/components/Dropdown';
+import Menu from 'app/components/Menu';
 import { useForFavoriteList } from 'app/containers/Home/hooks';
 import saga from 'app/containers/Home/saga';
 import { sliceKey } from 'app/containers/Home/slice';
-import { useInjectSaga } from 'utils/reduxInjectors';
-import Menu from 'app/components/Menu';
-import Dropdown from 'app/components/Dropdown';
-import { FavoriteChild } from './FavoriteChild';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useInjectSaga } from 'utils/reduxInjectors';
+import { FavoriteChild } from './FavoriteChild';
+import { StyledFavoriteTutor } from './styles';
 
 export const FavoriteTutor = () => {
   useInjectSaga({ key: sliceKey, saga });
@@ -27,21 +30,25 @@ export const FavoriteTutor = () => {
               </Menu.Item>
             ))
           ) : (
-            <Menu.Item>{t('Favorite.noOne')}</Menu.Item>
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={<span>{t('Favorite.noOne')}</span>}
+            />
           )}
         </Menu.ItemGroup>
       </Menu>
     );
   };
   return (
-    <>
+    <StyledFavoriteTutor>
       <Dropdown overlay={OverLay()} placement="bottomRight" trigger={['click']}>
-        <TeamOutlined
-          style={{ fontSize: '24px' }}
+        <FontAwesomeIcon
+          icon={faHeartbeat}
+          className="heart-btn"
           onClick={() => showFavoriteTutorList()}
         />
       </Dropdown>
-    </>
+    </StyledFavoriteTutor>
   );
 };
 

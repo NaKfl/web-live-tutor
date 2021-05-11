@@ -19,5 +19,6 @@ export const COLOR = {
 
   BLACK_20: 'rgba(0, 0, 0, 0.2)',
   BLACK_12: 'rgba(0, 0, 0, 0.12)',
+  BROWN_F5: '#f5f6fa',
   BOULDER: '#7D7D7D',
 };

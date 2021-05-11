@@ -1,6 +1,8 @@
 import { memo, useState, useCallback } from 'react';
 import { StyleSearch, StyleWrapperInput, StyleWrapperSearch } from './style';
 import { SearchOutlined } from '@ant-design/icons';
+import Button from 'app/components/Button';
+
 export const Search = memo(({ placeholder, onSearch }) => {
   const [searchKey, setSearch] = useState('');
 
@@ -16,15 +18,19 @@ export const Search = memo(({ placeholder, onSearch }) => {
   return (
     <StyleWrapperSearch>
       <StyleWrapperInput>
-        <div className="icon-search">
-          <SearchOutlined />
-        </div>
         <StyleSearch
           value={searchKey}
           onChange={e => setSearch(e.target.value)}
-          placeholder={placeholder || 'Searching Tutor...'}
+          placeholder={placeholder || 'Searching...'}
           onKeyDown={onEnterSearch}
-        ></StyleSearch>
+        />
+        <Button
+          className="icon-search"
+          type="accent"
+          onClick={() => onSearch(searchKey)}
+        >
+          <SearchOutlined />
+        </Button>
       </StyleWrapperInput>
     </StyleWrapperSearch>
   );

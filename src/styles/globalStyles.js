@@ -14,7 +14,7 @@ html,body{
 }
 
 body{
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   overflow: auto !important;
 }
 
@@ -26,7 +26,7 @@ body{
 
 p,
   label {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     line-height: 1.5em;
   }
 
@@ -34,4 +34,22 @@ p,
     font-family: inherit;
     font-size: inherit;
   }
+
+::-webkit-scrollbar {
+      width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 `;

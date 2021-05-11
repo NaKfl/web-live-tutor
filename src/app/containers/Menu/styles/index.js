@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
-import { media } from 'styles/media';
 
 export const StyledMenuBar = styled.div`
   .menu-list {

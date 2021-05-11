@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import useHooks from './hooks';
 import {
   StyledChatList,
@@ -17,7 +16,6 @@ export const ChatList = () => {
   const { handlers, selectors } = useHooks();
   const { handleChangeConversation, handleDeleteNewConversation } = handlers;
   const { recentList, activatedConversation, newConversation } = selectors;
-  const { t } = useTranslation();
   const user = getUserFromStorage();
 
   return (

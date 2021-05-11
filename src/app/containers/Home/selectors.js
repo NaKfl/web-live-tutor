@@ -21,3 +21,7 @@ export const makeSelectCount = createSelector(selectHomeState, count =>
 export const makeCurrentPage = createSelector(selectHomeState, currentPage =>
   get('currentPage', currentPage),
 );
+
+export const selectTopTutorData = createSelector(selectHomeState, currentPage =>
+  get('topTutor.data', currentPage),
+);

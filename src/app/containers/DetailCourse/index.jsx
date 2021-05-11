@@ -11,7 +11,7 @@ import Title from 'app/components/Title';
 export const DetailCourse = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
-  const { selectors, handlers } = useHooks();
+  const { selectors } = useHooks();
   const { detailCourse } = selectors;
   return (
     <StyledDetailCourse>

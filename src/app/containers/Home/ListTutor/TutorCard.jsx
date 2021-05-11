@@ -1,68 +1,93 @@
-import { memo } from 'react';
-import { StyledTutorCard, StyledHeader, StyledMain, InfoText } from './styles';
+import { MessageOutlined, PhoneOutlined } from '@ant-design/icons';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from 'app/components/Avatar';
-import Title from 'app/components/Title';
-import Rate from 'app/components/Rate';
-import PropTypes from 'prop-types';
-import Skeleton from 'app/components/Skeleton';
 import Button from 'app/components/Button';
-import { PhoneOutlined, HeartOutlined, MailOutlined } from '@ant-design/icons';
-import { useTranslation } from 'react-i18next';
+import Rate from 'app/components/Rate';
+import Skeleton from 'app/components/Skeleton';
+import TextHighlight from 'app/components/TextHighlight';
+import Title from 'app/components/Title';
 import { useControlChatPopup } from 'app/containers/Chat/hooks';
+import PropTypes from 'prop-types';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  InfoText,
+  StyledAvatar,
+  StyledBadge,
+  StyledHeader,
+  StyledMain,
+  StyledSpecialties,
+  StyledTutorCard,
+} from './styles';
 
 export const TutorCard = memo(props => {
   const { handleSetNewConversation } = useControlChatPopup();
   const { showInfoTutor, handleCallTutor } = props;
   const { t } = useTranslation();
   return (
-    <StyledTutorCard>
+    <StyledTutorCard
+      onClick={() => {
+        showInfoTutor(props);
+      }}
+    >
       <StyledHeader>
-        {!props.avatar ? (
-          <Skeleton.Avatar shape="circle" size={90} active className="avatar" />
-        ) : (
-          <Avatar
-            src={props.avatar}
-            shape="circle"
-            size={90}
-            className="avatar"
-            onClick={() => {
-              showInfoTutor(props);
-            }}
-          />
-        )}
-        <div className="info">
-          <Title level={4} className="mb-2">
-            {props.name || (
-              <Skeleton.Button
-                size="small"
-                active
-                shape="round"
-                className="w-100"
-              />
-            )}
-          </Title>
-          <Rate disabled defaultValue={5} className="rate mb-2" />
-          <Button disabled size="small">
-            {t('Common.certificate')}
-          </Button>
+        <div className="header-left">
+          <StyledAvatar>
+            <Avatar size={90} src={props?.avatar} />
+            <StyledBadge color={(props?.isOnline && 'green') || '#D9D9D9'} />
+          </StyledAvatar>
+          <div className="info">
+            <Title level={4} className="info-title">
+              {props.name || (
+                <Skeleton.Button
+                  size="small"
+                  active
+                  shape="round"
+                  className="w-100"
+                />
+              )}
+            </Title>
+            <Rate disabled defaultValue={5} className="info-rate" />
+            <StyledSpecialties>
+              {props?.specialties?.map(content => (
+                <TextHighlight content={content} key={content} />
+              ))}
+            </StyledSpecialties>
+          </div>
         </div>
-        <div className="love">
-          <MailOutlined
-            className="mail-btn"
-            onClick={() => handleSetNewConversation(props)}
-          ></MailOutlined>
-          <HeartOutlined
-            style={{
-              fontSize: '24px',
-              color: `${props.isFavorite ? 'red' : 'black'}`,
-            }}
-            onClick={() => props.onClickHeart(props.userId)}
-          ></HeartOutlined>
+        <div className="header-right">
+          {props.isFavorite ? (
+            <FontAwesomeIcon
+              style={{
+                fontSize: '22px',
+                color: 'rgb(255, 98, 81)',
+              }}
+              onClick={e => {
+                e.stopPropagation();
+                props.onClickHeart(props.userId);
+              }}
+              icon={solidHeart}
+            />
+          ) : (
+            <FontAwesomeIcon
+              style={{
+                fontSize: '22px',
+                color: '#777777',
+              }}
+              onClick={e => {
+                e.stopPropagation();
+                props.onClickHeart(props.userId);
+              }}
+              icon={regularHeart}
+            />
+          )}
         </div>
       </StyledHeader>
       <StyledMain>
         <div className="bio">
-          <InfoText className="mb-2">
+          <InfoText>
             {!props.bio ? (
               <Skeleton.Button
                 size="small"
@@ -77,14 +102,28 @@ export const TutorCard = memo(props => {
         </div>
         <div className="control-layout">
           <div className="control">
-            <Button>{t('Profile.title')}</Button>
             <Button
               type="accent"
-              icon={<PhoneOutlined />}
-              onClick={() => handleCallTutor(props.userId)}
+              icon={<MessageOutlined />}
+              onClick={e => {
+                e.stopPropagation();
+                handleSetNewConversation(props);
+              }}
             >
-              {t('Common.call')}
+              {t('Tutors.message')}
             </Button>
+            {props?.isOnline && (
+              <Button
+                type="accent"
+                icon={<PhoneOutlined />}
+                onClick={e => {
+                  e.stopPropagation();
+                  handleCallTutor(props.userId);
+                }}
+              >
+                {t('Tutors.call')}
+              </Button>
+            )}
           </div>
         </div>
       </StyledMain>

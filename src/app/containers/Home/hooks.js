@@ -6,6 +6,7 @@ import {
   makeSelectListTutor,
   makeSelectListFavorite,
   makeSelectCount,
+  selectTopTutorData,
 } from './selectors';
 import { useHistory, useLocation } from 'react-router-dom';
 // import { useQuery } from 'utils/common';
@@ -20,14 +21,20 @@ export const useHooks = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page');
+  const topTutor = useSelector(selectTopTutorData);
 
-  const { fetchRequest, manageFavoriteTutor } = useActions(
+  const { fetchRequest, manageFavoriteTutor, getTopTutor } = useActions(
     {
       fetchRequest: actions.fetchRequest,
       manageFavoriteTutor: actions.manageFavoriteTutor,
+      getTopTutor: actions.getTopTutor,
     },
     [actions],
   );
+
+  useEffect(() => {
+    getTopTutor();
+  }, [getTopTutor]);
 
   useEffect(() => {
     if (page) {
@@ -61,6 +68,7 @@ export const useHooks = () => {
     selectors: {
       listTutor,
       listFavorite,
+      topTutor,
       pagination: {
         total: countTotal,
         pageSize: 20,

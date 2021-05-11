@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { makeSelectAuthenticationStatus } from './selectors';
 import { actions } from './slice';
+import { useHistory } from 'react-router-dom';
 
 export const useHooks = () => {
   const { login, loginService } = useActions(
@@ -48,11 +49,13 @@ export const useLoginService = () => {
 };
 
 export const useLogout = () => {
+  const history = useHistory();
   const { logout } = useActions({ logout: actions.logout });
 
   const onLogout = useCallback(() => {
     logout();
-  }, [logout]);
+    history.push('/login');
+  }, [history, logout]);
 
   return {
     handlers: { onLogout },

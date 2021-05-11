@@ -11,42 +11,51 @@ import { History } from 'app/containers/History/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
 import { ForgotPassword } from 'app/containers/ForgotPassword/Loadable';
+import { PermissionDeniedPage } from 'app/components/PermissionDeniedPage/Loadable';
+import { ROLES } from 'utils/constants';
 
 export const privateRoutes = [
   {
     path: '/profile',
     component: Profile,
     key: 'profile',
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
   {
     path: '/',
     component: Home,
     key: 'home',
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
   {
     path: '/register-tutor',
     component: RegisterTutor,
     key: 'register-tutor',
+    requiredRoles: [ROLES.STUDENT, ROLES.TUTOR],
   },
   {
     path: '/schedule-tutor',
     component: ScheduleTutor,
     key: 'schedule-tutor',
+    requiredRoles: [ROLES.TUTOR],
   },
   {
     path: '/courses',
     component: CoursePage,
     key: 'coursePage',
+    requiredRoles: [ROLES.STUDENT],
   },
   {
     path: '/courses/:id',
     component: DetailCourse,
     key: 'detailCourse',
+    requiredRoles: [ROLES.STUDENT],
   },
   {
     path: '/history',
     component: History,
     key: 'history-call-session',
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
 ];
 
@@ -75,6 +84,11 @@ export const publicRoutes = [
     path: '/password',
     component: ForgotPassword,
     key: 'password',
+  },
+  {
+    path: '/permission-denied',
+    component: PermissionDeniedPage,
+    key: 'permission-denied',
   },
 ];
 

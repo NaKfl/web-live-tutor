@@ -1,10 +1,9 @@
 import useActions from 'hooks/useActions';
-import { useCallback, useEffect, useState } from 'react';
-import { POPUP_TYPE } from 'app/containers/Popup/constants';
-import { useParams, useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectDetailCourse } from './selectors';
+import { useParams } from 'react-router-dom';
 import { ACTION_STATUS } from 'utils/constants';
+import { selectDetailCourse } from './selectors';
 import { actions } from './slice';
 
 const useHooks = () => {
@@ -19,7 +18,6 @@ const useHooks = () => {
   const [detailCourse, setDetailCourse] = useState({});
 
   useEffect(() => {
-    console.log('courseIdddddddddd', courseId);
     getDetailCourse(courseId);
   }, [courseId, getDetailCourse]);
 

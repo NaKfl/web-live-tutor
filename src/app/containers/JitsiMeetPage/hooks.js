@@ -35,21 +35,24 @@ const useHooks = props => {
       isTutor,
       startTime,
     });
-  }, []);
+  }, [token]);
 
-  const handleSomeOneLeave = useCallback(field => {
-    if (field.isTutor) {
-      return history.push('/');
-    }
-    const endCallField = {
-      studentId: field.participantId,
-      tutorId: field.roomName,
-      startTime: field.startTime,
-      endTime: moment(new Date()).format('YYYY-MM-DD hh:mm:ss'),
-    };
-    endCall(endCallField);
-    history.push('/');
-  }, []);
+  const handleSomeOneLeave = useCallback(
+    field => {
+      if (field.isTutor) {
+        return history.push('/');
+      }
+      const endCallField = {
+        studentId: field.participantId,
+        tutorId: field.roomName,
+        startTime: field.startTime,
+        endTime: moment(new Date()).format('YYYY-MM-DD hh:mm:ss'),
+      };
+      endCall(endCallField);
+      history.push('/');
+    },
+    [endCall, history],
+  );
 
   return {
     handlers: { handleSomeOneLeave },

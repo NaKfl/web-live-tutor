@@ -1,10 +1,25 @@
-import { getList } from 'fetchers/tutor.service';
+import { getList, getTopTutor } from 'fetchers/tutor.service';
 import {
   manageFavoriteTutor,
   getFavoriteTutorList,
 } from 'fetchers/user.service';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
+
+function getTopTutorAPI(payload) {
+  return getTopTutor(payload);
+}
+function* getTopTutorWatcher() {
+  yield takeLatest(actions.getTopTutor, getTopTutorTask);
+}
+function* getTopTutorTask(action) {
+  const { response, error } = yield call(getTopTutorAPI, action.payload);
+  if (response) {
+    yield put(actions.getTopTutorSuccess(response));
+  } else {
+    yield put(actions.getTopTutorFailure(error.data));
+  }
+}
 
 function getListTutorAPI({ search = null, page, perPage }) {
   return getList({ search, page, perPage });
@@ -73,5 +88,6 @@ export default function* defaultSaga() {
     fork(getListWatcher),
     fork(manageFavoriteTutorWatcher),
     fork(fetchListFavoriteWatcher),
+    fork(getTopTutorWatcher),
   ]);
 }

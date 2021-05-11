@@ -59,7 +59,16 @@ const useJitsi = props => {
     onMeetingEnd && client.addEventListener('participantLeft', onMeetingEnd);
 
     return () => jitsi && jitsi.dispose();
-  }, [window.JitsiMeetExternalAPI]);
+  }, [
+    displayName,
+    domain,
+    jitsi,
+    onMeetingEnd,
+    options,
+    parentNode,
+    password,
+    subject,
+  ]);
 
   return { jitsi, error, loading };
 };

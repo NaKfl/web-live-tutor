@@ -1,19 +1,23 @@
 import styled from 'styled-components';
+import Badge from 'app/components/Badge';
 import { media } from 'styles/media';
+import { COLOR } from 'styles/colorPalette';
+import { Row } from 'antd';
 
 export const StyledTutorCard = styled.div`
+  border-top: solid 4px ${COLOR.CORNFLOWER};
+  cursor: pointer;
   display: flex;
   flex-flow: column;
   background-color: #fff;
   position: relative;
-  height: 275px;
   width: 100%;
-  padding: 25px;
+  padding: 20px;
   .w-100 {
     width: 100%;
   }
-  border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 0 15px -3px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
 
   ${media.mobile`
   height:auto;
@@ -22,62 +26,54 @@ export const StyledTutorCard = styled.div`
 
 export const StyledHeader = styled.div`
   display: flex;
-  align-items: flex-start;
-  width: 100%;
-  position: relative;
-  margin-bottom: 10px;
-  ${media.mobile`
+  justify-content: space-between;
+  .header-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    margin-bottom: 10px;
+    ${media.mobile`
     flex-direction:column;
     align-items:center;
   `}
-  .avatar {
-    margin-right: 10px;
-    min-width: 90px;
-  }
-  .info {
-    display: flex;
-    flex-flow: column;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
-    ${media.mobile`
+    .avatar {
+      margin-right: 10px;
+      min-width: 90px;
+    }
+    .info {
+      margin-left: 12px;
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+      ${media.mobile`
     flex-direction:column
     align-items:center;
     `}
-    .rate {
-      font-size: 12px;
+      &-rate {
+        font-size: 12px;
+        margin-bottom: 0px;
+        margin-bottom: 1px;
+        li {
+          margin-right: 4px;
+          font-size: 12px;
+        }
+      }
+      &-title {
+        margin-bottom: 0px;
+        width: 100%;
+        font-size: 22px;
+        font-weight: 600;
+      }
     }
   }
-  .mb-2 {
-    margin-bottom: 0px;
-    height: 30px;
-    width: 100%;
-  }
-  .mail-btn {
-    font-size: 24px;
-    margin-right: 10px;
-    transition: all 0.3s ease;
-    &:hover {
-      transform: scale(1.1);
+  .header-right {
+    & > * {
+      transition: ease 0.4s;
     }
-  }
-
-  .love {
-    transition: all 0.3s ease;
-    &:hover {
-      transform: scale(1.1);
-    }
-    &:active {
-      transform: scale(0.9);
-    }
-    ${media.mobile`
-    width:100%;
-    position:absolute;
-    display: flex;
-    justify-content: flex-end;
-    `}
   }
 `;
+
 export const StyledMain = styled.div`
   width: 100%;
   height: 100%;
@@ -85,15 +81,17 @@ export const StyledMain = styled.div`
   flex-direction: column;
   .bio {
     width: 100%;
-    height: 100%;
+    font-size: 14px;
     font-weight: 400 !important;
+    p {
+      color: rgb(119, 119, 119);
+    }
+    height: 43px;
+    overflow: hidden;
   }
   .control-layout {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    margin-top: 30px;
     .control {
-      position: absolute;
       display: flex;
       justify-content: flex-end;
       bottom: 0;
@@ -109,19 +107,20 @@ export const StyledMain = styled.div`
 `;
 
 export const LayoutListTutor = styled.div`
-  width: 100%;
+  width: calc(100% + 20px);
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin: 0 -10px;
 `;
 
 export const WrapTutor = styled.div`
   width: calc(100% / 3);
+  padding: 0 10px 20px 10px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 18px;
 
   ${media.subWide`
     width: calc(100% / 2);
@@ -140,4 +139,31 @@ export const InfoText = styled.p`
   font-weight: 400;
   font-size: 14px;
   line-height: 1.5;
+`;
+
+export const StyledAvatar = styled.div`
+  position: relative;
+  height: fit-content;
+`;
+
+export const StyledBadge = styled(Badge)`
+  position: absolute;
+  right: -5px;
+  bottom: 5px;
+
+  .ant-badge-status-dot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+  }
+`;
+
+export const StyledSpecialties = styled(Row)`
+  & > * {
+    margin-left: 0;
+    margin-right: 8px;
+    background-color: rgba(119, 119, 119, 0.8);
+  }
+  max-height: 32px;
+  overflow: hidden;
 `;

@@ -1,16 +1,13 @@
-import React, { memo } from 'react';
-import { StyledModal, StyledAvatar } from './styles';
-
-import { Row, Col, Avatar, DatePicker, Typography } from 'antd';
-// import useHooks from './hooks';
-import { useTranslation } from 'react-i18next';
-import useHooks from './hooks';
+import { Avatar, Row, Typography } from 'antd';
 import Button from 'app/components/Button';
+import React, { memo } from 'react';
+import useHooks from './hooks';
+import { StyledAvatar, StyledModal } from './styles';
+
 const { Title } = Typography;
 
 const CallModal = memo(props => {
-  const { t } = useTranslation();
-  const { handlers, selectors } = useHooks(props);
+  const { handlers } = useHooks(props);
   const { handleAcceptCall } = handlers;
   const { visible, onCancel, userCall, userBeCalled, ...rest } = props;
 

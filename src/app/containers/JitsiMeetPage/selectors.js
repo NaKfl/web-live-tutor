@@ -1,8 +1,3 @@
-import get from 'lodash/fp/get';
-import { createSelector } from 'reselect';
-
-const selectJitsiState = state => state.jitsiMeet;
-
 // export const selectProfileInfo = createSelector(selectProfileState, profile =>
 //   get('info', profile),
 // );

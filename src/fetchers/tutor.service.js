@@ -24,3 +24,16 @@ export const getList = ({ page = 1, perPage = 20, search = 'Berry' }) => {
     })
     .catch(handleGeneralError);
 };
+
+export const getTopTutor = () => {
+  return request(WEB_API, {
+    // url: 'tutor/rank/20',
+    url: 'tutor',
+    method: 'GET',
+  })
+    .then(res => res.data)
+    .then(data => {
+      return { response: data };
+    })
+    .catch(handleGeneralError);
+};

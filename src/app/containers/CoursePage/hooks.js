@@ -1,10 +1,9 @@
 import useActions from 'hooks/useActions';
-import { useCallback, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { POPUP_TYPE } from 'app/containers/Popup/constants';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCoursesList } from './selectors';
+import { useHistory } from 'react-router-dom';
 import { ACTION_STATUS } from 'utils/constants';
+import { selectCoursesList } from './selectors';
 import { actions } from './slice';
 
 const useHooks = () => {
