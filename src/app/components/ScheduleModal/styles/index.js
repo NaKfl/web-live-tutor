@@ -23,10 +23,17 @@ export const StyledAvatar = styled.div`
 
 export const StyledRangeTimePicker = styled.div`
   display: flex;
-  .ant-picker-range {
-    width: 80%;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  .ant-picker-range,
+  .ant-picker {
+    width: 75%;
+    border: none;
   }
-  .btn-add {
-    padding: 8px 10px !important;
+  .ant-picker-input {
+    > input {
+      font-size: 15px;
+    }
   }
 `;

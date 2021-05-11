@@ -11,7 +11,7 @@ export const StyledScheduleTutor = styled.div`
       .ant-picker-input {
         font-size: 15px;
         > input {
-          font-size: 20px;
+          font-size: 16px;
         }
       }
     }

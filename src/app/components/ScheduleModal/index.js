@@ -1,12 +1,16 @@
 import React, { memo } from 'react';
 import { StyledModal } from './styles';
-import { DeleteOutlined } from '@ant-design/icons';
-import { Row, Typography, Checkbox } from 'antd';
+import {
+  DeleteOutlined,
+  CalendarOutlined,
+  ClockCircleOutlined,
+} from '@ant-design/icons';
+import { Row, Typography, DatePicker } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useHooks from './hooks';
 import TextTimeSchedule from 'app/components/TextTimeSchedule';
 import { StyledRangeTimePicker } from './styles';
-import { TimePicker } from 'antd';
+import { TimePicker, Switch } from 'antd';
 import Button from 'app/components/Button';
 import moment from 'moment';
 
@@ -20,8 +24,10 @@ const ScheduleModal = memo(props => {
     handleAddDateSchedule,
     handleUnRegisterSchedule,
     handleChangePickTime,
+    onChangeRepeatDay,
+    onChangeEndDate,
   } = handlers;
-  const { freeTimes, startTimeSelect, endTimeSelect } = selectors;
+  const { freeTimes, startTimeSelect, endTimeSelect, isRepeated } = selectors;
   const { visible, data, onCancel, ...rest } = props;
 
   return (
@@ -46,13 +52,18 @@ const ScheduleModal = memo(props => {
               typeText = 'Red';
             }
             return (
-              <Row className="align-items-center w-100">
+              <Row className="align-items-center w-100 justify-content-between">
                 <TextTimeSchedule
                   typeText={typeText}
                   content={`${time.startTime} - ${time.endTime}`}
                 ></TextTimeSchedule>
                 {!time.isBooked && (
                   <DeleteOutlined
+                    style={{
+                      fontSize: '16px',
+                      color: '#5f6368',
+                      fill: '#5f6368',
+                    }}
                     className="ms-3"
                     onClick={() => handleUnRegisterSchedule(time.id)}
                   />
@@ -62,23 +73,50 @@ const ScheduleModal = memo(props => {
           })}
         </Row>
         <StyledRangeTimePicker>
+          <ClockCircleOutlined
+            style={{
+              fontSize: '16px',
+              color: '#5f6368',
+              fill: '#5f6368',
+              marginRight: '24px',
+            }}
+          />
+
           <RangePicker
             minuteStep={15}
             format={'HH:mm'}
             showNow={false}
+            suffixIcon={false}
             onChange={handleChangePickTime}
           />
         </StyledRangeTimePicker>
-        <Checkbox>Repeat Weeks</Checkbox>
-        <StyledRangeTimePicker>
-          <RangePicker
-            minuteStep={15}
-            format={'HH:mm'}
-            showNow={false}
-            onChange={handleChangePickTime}
+        <Row>
+          <Switch
+            size="small"
+            onChange={onChangeRepeatDay}
+            defaultChecked={false}
+            style={{
+              marginRight: '24px',
+            }}
           />
-        </StyledRangeTimePicker>
-        <Row className="justify-content-end mt-3">
+          <span>Repeat until the date</span>
+        </Row>
+        {isRepeated && (
+          <StyledRangeTimePicker>
+            <CalendarOutlined
+              style={{
+                fontSize: '16px',
+                color: '#5f6368',
+                fill: '#5f6368',
+                marginRight: '24px',
+              }}
+            />
+
+            <DatePicker onChange={onChangeEndDate} suffixIcon={false} />
+          </StyledRangeTimePicker>
+        )}
+
+        <Row className="mt-3 justify-content-end">
           <Button className="me-2" key="cancel" onClick={onCancel}>
             Cancle
           </Button>

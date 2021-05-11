@@ -9,6 +9,7 @@ import {
 import { actions } from 'app/containers/ScheduleTutor/slice';
 import { ACTION_STATUS } from 'utils/constants';
 import moment from 'moment';
+import { notifyError } from 'utils/notify';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 export const TIME = {
@@ -26,6 +27,8 @@ export const useHooks = props => {
   const [freeTimes, setFreeTimes] = useState([]);
   const [startTimeSelect, setStartTime] = useState(null);
   const [endTimeSelect, setEndTime] = useState(null);
+  const [isRepeated, setRepeated] = useState(false);
+  const [endDate, setEndDate] = useState(data.date);
 
   const {
     registerSchedule,
@@ -80,11 +83,26 @@ export const useHooks = props => {
   const handleAddDateSchedule = ({ startTimeSelect, endTimeSelect }) => {
     const startTime = moment(startTimeSelect).format('HH:mm');
     const endTime = moment(endTimeSelect).format('HH:mm');
-    registerSchedule({
-      startTime,
-      endTime,
-      date: data.date,
-    });
+    const isValidDate = moment(endDate).isAfter(data.date);
+    if (isRepeated) {
+      if (isValidDate) {
+        registerSchedule({
+          startTime,
+          endTime,
+          isRepeated,
+          startDate: data.date,
+          endDate: moment(endDate).format('YYYY-MM-DD'),
+        });
+      } else {
+        notifyError('Please select valid end date');
+      }
+    } else {
+      registerSchedule({
+        startTime,
+        endTime,
+        date: data.date,
+      });
+    }
   };
 
   const handleChangePickTime = time => {
@@ -101,13 +119,23 @@ export const useHooks = props => {
     unRegisterSchedule(id);
   };
 
+  const onChangeRepeatDay = checked => {
+    setRepeated(checked);
+  };
+
+  const onChangeEndDate = date => {
+    setEndDate(date);
+  };
+
   return {
     handlers: {
       handleAddDateSchedule,
       handleUnRegisterSchedule,
       handleChangePickTime,
+      onChangeRepeatDay,
+      onChangeEndDate,
     },
-    selectors: { freeTimes, startTimeSelect, endTimeSelect },
+    selectors: { freeTimes, startTimeSelect, endTimeSelect, isRepeated },
   };
 };
 
