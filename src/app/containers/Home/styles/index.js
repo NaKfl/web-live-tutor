@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledHome = styled.div`
+  margin-top: -35px;
   width: 100%;
   height: 100%;
   .list {
@@ -38,14 +39,25 @@ export const StyledFistPart = styled.div`
   .ant-carousel {
     width: 1000px;
   }
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
+
+  & div {
+    border-bottom-left-radius: 5px;
+  }
+  .ant-carousel {
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
+  }
 `;
 
 export const StyledSecondPart = styled.div`
   border-top: solid 4px ${COLOR.CORNFLOWER};
-  background-color: ${COLOR.WHITE};
-  box-shadow: 0px 4px 16px ${COLOR.SHADOW_GRAY};
-  margin: 20px 0;
+  border-bottom: solid 4px ${COLOR.WHITE};
   border-radius: 5px;
+  background-color: ${COLOR.WHITE};
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
+
+  margin: 20px 0;
   .search-banner {
     width: 100%;
     background-color: ${COLOR.WHITE};

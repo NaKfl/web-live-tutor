@@ -208,8 +208,8 @@
     "schedule": "Schedule"
   },
   "Favorite": {
-    "title": "Favorite Tutor",
-    "noOne": "No one"
+    "title": "Favorite tutors",
+    "noOne": "Empty"
   },
   "Upload": {
     "avatar": "Upload avatar here ...",

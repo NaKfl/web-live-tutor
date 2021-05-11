@@ -1,3 +1,5 @@
+import { faBell, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from 'app/components/Avatar';
 import Button from 'app/components/Button';
 import Dropdown from 'app/components/Dropdown';
@@ -17,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
-import { StyledFlag, StyledHeader } from './styles';
+import { StyledHeader, StyledIcon } from './styles';
 
 export const Header = () => {
   const user = useSelector(selectUserInfoAuthenticate);
@@ -47,14 +49,25 @@ export const Header = () => {
             <Button className="sub-btn" type="accent">
               {t('Header.subscribe')}
             </Button>
-
+            <FontAwesomeIcon
+              icon={faBell}
+              style={{ fontSize: 22, color: '#757575' }}
+            />
+            <FontAwesomeIcon
+              icon={faCalendarWeek}
+              style={{ fontSize: 22, color: '#757575' }}
+            />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
             <Dropdown
+              placement="bottomRight"
               trigger={['click']}
               overlay={
                 <Menu>
-                  <Menu.Item onClick={() => i18n.changeLanguage('en')}>
-                    <StyledFlag className="me-2" src={US} alt="United States" />
+                  <Menu.Item
+                    className="d-flex align-items-center"
+                    onClick={() => i18n.changeLanguage('en')}
+                  >
+                    <StyledIcon className="me-2" src={US} alt="United States" />
                     <span
                       className={`${
                         t('Common.default') === t('Common.en') ? 'fw-bol' : ''
@@ -63,8 +76,11 @@ export const Header = () => {
                       {t('Common.en')}
                     </span>
                   </Menu.Item>
-                  <Menu.Item onClick={() => i18n.changeLanguage('vn')}>
-                    <StyledFlag className="me-2" src={VN} alt="Vietnam" />
+                  <Menu.Item
+                    className="d-flex align-items-center"
+                    onClick={() => i18n.changeLanguage('vn')}
+                  >
+                    <StyledIcon className="me-2" src={VN} alt="Vietnam" />
                     <span
                       className={`${
                         t('Common.default') === t('Common.vn') ? 'fw-bol' : ''
@@ -77,12 +93,13 @@ export const Header = () => {
               }
             >
               {t('Common.default') === t('Common.en') ? (
-                <StyledFlag src={US} alt="United States" />
+                <StyledIcon src={US} alt="United States" />
               ) : (
-                <StyledFlag src={VN} alt="Vietnam" />
+                <StyledIcon src={VN} alt="Vietnam" />
               )}
             </Dropdown>
             <Dropdown
+              placement="bottomRight"
               trigger={['click']}
               overlay={
                 <Menu>
@@ -118,7 +135,7 @@ export const Header = () => {
                 </Menu>
               }
             >
-              <Avatar size={38} src={user.avatar} />
+              <Avatar className="avatar" size={38} src={user.avatar} />
             </Dropdown>
           </Space>
         )) || (

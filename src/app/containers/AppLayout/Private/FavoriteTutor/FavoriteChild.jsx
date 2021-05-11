@@ -1,15 +1,26 @@
 import { Space } from 'antd';
 import { memo } from 'react';
 import Avatar from 'app/components/Avatar';
-import { PhoneOutlined } from '@ant-design/icons';
+import { StyledFavoriteChild } from './styles';
+import { MessageFilled } from '@ant-design/icons';
+import { useControlChatPopup } from 'app/containers/Chat/hooks';
+
 export const FavoriteChild = memo(props => {
+  const { handleSetNewConversation } = useControlChatPopup();
+
   return (
-    <Space>
-      <Space>
-        <Avatar src={props.avatar} alt="avatar"></Avatar>
+    <StyledFavoriteChild>
+      <Space className="left">
+        <Avatar src={props.avatar} alt="avatar" />
         {props.name}
       </Space>
-      <PhoneOutlined style={{ fontSize: '24px' }}></PhoneOutlined>
-    </Space>
+      <MessageFilled
+        className="right"
+        onClick={e => {
+          e.stopPropagation();
+          handleSetNewConversation(props);
+        }}
+      />
+    </StyledFavoriteChild>
   );
 });

@@ -10,8 +10,8 @@ export const StyledProfile = styled.div`
 
     .group-avatar {
       ${media.mobile`
-          padding: 16px; 
-          justify-content: center; 
+          padding: 16px;
+          justify-content: center;
       `}
     }
 

@@ -5,6 +5,7 @@ import { COLOR } from 'styles/colorPalette';
 import { Row } from 'antd';
 
 export const StyledTutorCard = styled.div`
+  border-top: solid 4px ${COLOR.CORNFLOWER};
   cursor: pointer;
   display: flex;
   flex-flow: column;
@@ -16,7 +17,7 @@ export const StyledTutorCard = styled.div`
     width: 100%;
   }
   border-radius: 5px;
-  box-shadow: 0px 4px 16px ${COLOR.SHADOW_GRAY};
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
 
   ${media.mobile`
   height:auto;
@@ -64,6 +65,11 @@ export const StyledHeader = styled.div`
         font-size: 22px;
         font-weight: 600;
       }
+    }
+  }
+  .header-right {
+    & > * {
+      transition: ease 0.4s;
     }
   }
 `;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledTopTutor = styled.div`
+  border-bottom-right-radius: 5px;
   background-color: ${COLOR.WHITE};
   width: 100%;
   height: 100%;

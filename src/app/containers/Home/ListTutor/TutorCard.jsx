@@ -57,7 +57,7 @@ export const TutorCard = memo(props => {
             </StyledSpecialties>
           </div>
         </div>
-        <div>
+        <div className="header-right">
           {props.isFavorite ? (
             <FontAwesomeIcon
               style={{

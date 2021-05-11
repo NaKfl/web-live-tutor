@@ -4,14 +4,19 @@ import { COLOR } from 'styles/colorPalette';
 const { Content, Footer, Header } = Layout;
 const maxWidth = 1370;
 
-export const StyledFlag = styled.img`
+export const StyledIcon = styled.img`
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   cursor: pointer;
 `;
 
 export const StyledHeader = styled(Header)`
+  .avatar {
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+      0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  }
+
   position: fixed;
   width: 100%;
   height: 70px;
@@ -39,10 +44,14 @@ export const StyledHeader = styled(Header)`
     justify-content: flex-end;
     & > * {
       margin-left: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .sub-btn {
       box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
         0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+      margin-right: 5px;
     }
   }
 
@@ -76,11 +85,13 @@ export const StyledLayout = styled(Layout)`
 `;
 
 export const StyledContent = styled(Content)`
-  background-color: ${COLOR.BROWN_F5};
+  background-color: ${COLOR.WHITE};
   width: 100%;
+  min-height: calc(100vh - 140px);
   position: relative;
 
   .content-wrapper {
+    padding: 35px 0;
     max-width: ${`${maxWidth}px`};
     margin: 0 auto;
     justify-content: center;
