@@ -21,3 +21,9 @@ export const StyledLogin = styled.div`
     }
   `}
 `;
+
+export const CoverLogin = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
