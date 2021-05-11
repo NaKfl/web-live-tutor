@@ -233,7 +233,9 @@
     "totalTutors": " 4,510 ",
     "totalStudents": " 12,650 ",
     "searchPlaceholder": "Search for tutors",
-    "availableTutors": "Available Tutors"
+    "availableTutors": "Available Tutors",
+    "message": "Message",
+    "call": "Call"
   },
   "Footer": {
     "policy": "Privacy Policy",

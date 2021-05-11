@@ -231,7 +231,9 @@
     "totalTutors": " 4,510 ",
     "totalStudents": " 12,650 ",
     "searchPlaceholder": "Tìm kiếm gia sư",
-    "availableTutors": "Gia sư đang trực tuyến"
+    "availableTutors": "Gia sư đang trực tuyến",
+    "message": "Nhắn tin",
+    "call": "Gọi"
   },
   "Footer": {
     "policy": "Chính sách",

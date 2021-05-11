@@ -56,9 +56,9 @@ export const Home = memo(() => {
         onClickHeart={onClickHeart}
         listFavorite={listFavorite}
       ></ListTutor>
-      <StyledPagination>
+      {/* <StyledPagination>
         <Pagination {...pagination}></Pagination>
-      </StyledPagination>
+      </StyledPagination> */}
     </StyledHome>
   );
 });
