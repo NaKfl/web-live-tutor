@@ -50,7 +50,7 @@ export const useHooks = props => {
       date: data.date,
       tutorId: user.id,
     });
-  }, [getFreeScheduleByDate, data]);
+  }, [getFreeScheduleByDate, data, user.id]);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate.status === ACTION_STATUS.SUCCESS) {

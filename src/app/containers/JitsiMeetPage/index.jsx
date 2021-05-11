@@ -1,10 +1,10 @@
 import { JitsiMeet } from 'app/components/JitsiMeet';
-import React, { memo, useState } from 'react';
+import React, { memo } from 'react';
+import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import useHooks from './hooks';
-import { StyledMeetingPage } from './styles';
-import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
-import { sliceKey, reducer } from './slice';
 import saga from './saga';
+import { reducer, sliceKey } from './slice';
+import { StyledMeetingPage } from './styles';
 
 export const JitsiMeetPage = props => {
   useInjectSaga({ key: sliceKey, saga });

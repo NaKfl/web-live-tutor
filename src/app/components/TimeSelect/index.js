@@ -3,7 +3,7 @@ import Button from 'app/components/Button';
 import useHooks from './hooks';
 
 const TimeSelect = ({ time, scheduleId, disabled, ...props }) => {
-  const { handlers, selectors } = useHooks();
+  const { handlers } = useHooks();
   const { handleSelectTime } = handlers;
   console.log({ scheduleId });
   return (

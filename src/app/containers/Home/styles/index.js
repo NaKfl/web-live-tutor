@@ -52,7 +52,7 @@ export const StyledSecondPart = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 30px 0 46px 0;
+    padding: 33px 0 49px 0;
     color: #0b2239;
     .search-title {
       font-size: 33px;
@@ -74,7 +74,7 @@ export const StyledTopList = styled.div`
 
 export const StyledTitle = styled.h3`
   margin: 22px 0;
-  font-size: 25px;
+  font-size: 28px;
   font-weight: 600;
   letter-spacing: 1px;
   text-align: center;

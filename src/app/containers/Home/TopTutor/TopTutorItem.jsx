@@ -3,7 +3,6 @@ import Avatar from 'app/components/Avatar';
 import Rate from 'app/components/Rate';
 import { useControlChatPopup } from 'app/containers/Chat/hooks';
 import React, { memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useShowInfoTutor } from '../ListTutor/hooks';
 import { StyledAvatar, StyledTopTutorItem } from './styles';
 import goldMedal from 'assets/svg//goldMedal.svg';
@@ -13,7 +12,6 @@ import bronzeMedal from 'assets/svg//bronzeMedal.svg';
 export const TopTutorItem = ({ no, info }) => {
   const { handleSetNewConversation } = useControlChatPopup();
   const { showInfoTutor } = useShowInfoTutor();
-  const { t } = useTranslation();
   return (
     <StyledTopTutorItem>
       <div className="info-group" onClick={() => showInfoTutor(info)}>

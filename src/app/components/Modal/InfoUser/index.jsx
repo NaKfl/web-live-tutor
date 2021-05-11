@@ -22,7 +22,7 @@ import {
 } from '@ant-design/icons';
 import Image from 'app/components/Image';
 import Rate from 'app/components/Rate';
-import { Row, Col, Avatar, DatePicker, Calendar } from 'antd';
+import { Row, Col, Avatar, DatePicker } from 'antd';
 import moment from 'moment';
 import { sliceKey, reducer } from 'app/containers/ScheduleTutor/slice';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
@@ -38,7 +38,6 @@ const TutorModal = memo(props => {
   const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
   const {
-    onSelectDate,
     handleBackSelectDate,
     toggleMessage,
     handleSelectDatePicker,
@@ -88,24 +87,24 @@ const TutorModal = memo(props => {
       </div>
     );
   };
-  const dateCellRender = value => {
-    const dateOfCell = moment(value).format('YYYY-MM-DD');
-    const dayOfDate = value.date();
-    const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
-    return (
-      <div className="ant-picker-cell-inner ant-picker-calendar-date background-free-time">
-        <div
-          onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
-          className={`ant-picker-calendar-date-value ${
-            haveFreeTimes ? 'date-free-time' : 'date-disabled'
-          }`}
-        >
-          {dayOfDate}
-        </div>
-        <div className="ant-picker-calendar-date-content"></div>
-      </div>
-    );
-  };
+  // const dateCellRender = value => {
+  //   const dateOfCell = moment(value).format('YYYY-MM-DD');
+  //   const dayOfDate = value.date();
+  //   const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
+  //   return (
+  //     <div className="ant-picker-cell-inner ant-picker-calendar-date background-free-time">
+  //       <div
+  //         onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
+  //         className={`ant-picker-calendar-date-value ${
+  //           haveFreeTimes ? 'date-free-time' : 'date-disabled'
+  //         }`}
+  //       >
+  //         {dayOfDate}
+  //       </div>
+  //       <div className="ant-picker-calendar-date-content"></div>
+  //     </div>
+  //   );
+  // };
 
   return (
     <StyledModal

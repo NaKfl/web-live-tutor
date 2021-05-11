@@ -1,8 +1,7 @@
-import useActions from 'hooks/useActions';
-import { actions as popupActions } from 'app/containers/Popup/slice';
-import { useCallback, useEffect, useState } from 'react';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
-import { useSelector } from 'react-redux';
+import { actions as popupActions } from 'app/containers/Popup/slice';
+import useActions from 'hooks/useActions';
+import { useCallback } from 'react';
 
 const useHooks = () => {
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [

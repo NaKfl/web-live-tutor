@@ -59,7 +59,7 @@ export const useHooks = props => {
     } else {
       notifyError('Select Time || All times are booked');
     }
-  }, [bookTimeSchedule, selectTimes]);
+  }, [bookTimeSchedule, getDetailSchedule, props, scheduleId, selectTimes]);
 
   return {
     handlers: { onChangeCheckBox, handleBookTime },

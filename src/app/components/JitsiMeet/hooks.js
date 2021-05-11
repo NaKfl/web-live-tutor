@@ -1,5 +1,4 @@
-import moment from 'moment';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import useJitsi from './useJitsi';
 
 const useHooks = props => {
@@ -19,11 +18,11 @@ const useHooks = props => {
 
   useEffect(() => {
     if (jitsi && onJitsi) onJitsi(jitsi);
-  }, [jitsi]);
+  }, [jitsi, onJitsi]);
 
   useEffect(() => {
     if (error && onError) onError(error);
-  }, [error]);
+  }, [error, onError]);
 
   return {
     handlers: { onError, onJitsi },

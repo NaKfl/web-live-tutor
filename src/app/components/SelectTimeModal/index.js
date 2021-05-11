@@ -1,15 +1,11 @@
-import React, { memo } from 'react';
-import { StyledModal } from './styles';
-import { Row, Col, Checkbox, Typography } from 'antd';
-import moment from 'moment';
-// import useHooks from './hooks';
-import { useTranslation } from 'react-i18next';
-import useHooks from './hooks';
+import { Checkbox, Row, Typography } from 'antd';
 import Button from 'app/components/Button';
+import React, { memo } from 'react';
+import useHooks from './hooks';
+import { StyledModal } from './styles';
 const { Title } = Typography;
 
 const SelectTimeModal = memo(props => {
-  const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
   const { handleBookTime, onChangeCheckBox } = handlers;
   const { freeTimesTutor } = selectors;
@@ -41,7 +37,7 @@ const SelectTimeModal = memo(props => {
         </Checkbox.Group>
         <Row className="justify-content-end mt-4">
           <Button className="me-2" key="cancel" onClick={onCancel}>
-            Cancle
+            Cancel
           </Button>
           <Button key="accept" type="accent" onClick={() => handleBookTime()}>
             Book

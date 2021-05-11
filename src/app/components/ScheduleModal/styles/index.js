@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Modal } from 'antd';
-import { COLOR } from 'styles/colorPalette';
 
 export const StyledModal = styled(Modal)`
   width: 350px !important;

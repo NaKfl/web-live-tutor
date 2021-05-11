@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Rate } from 'antd';
 export const StyledTimeSelect = styled.div`
   display: flex;
   align-items: center;

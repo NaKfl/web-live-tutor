@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import moment from 'moment';
+import { useState } from 'react';
 
 export const TIME = {
   startTime: 0,

@@ -1,8 +1,7 @@
 import { registerTutor } from 'fetchers/registerTutor';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
-import { actions } from './slice';
 import { notifySuccess } from 'utils/notify';
-import i18n from 'locales/i18n';
+import { actions } from './slice';
 
 function* registerTutorWatcher() {
   yield takeLatest(actions.registerTutor, registerTutorTask);

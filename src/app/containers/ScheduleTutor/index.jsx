@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import useHooks from './hooks';
-import { useTranslation } from 'react-i18next';
 import { Calendar, Badge, Row } from 'antd';
 import { StyledScheduleTutor } from './styles';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
@@ -17,7 +16,6 @@ export const ScheduleTutor = () => {
   const { handlers, selectors } = useHooks();
   const { handleSelectDate } = handlers;
   const { scheduleTutor } = selectors;
-  const { t } = useTranslation();
 
   const getFreeTimesOfDate = (data, date) => {
     return data[date] || [];

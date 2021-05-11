@@ -5,7 +5,7 @@ import {
   CalendarOutlined,
   ClockCircleOutlined,
 } from '@ant-design/icons';
-import { Row, Typography, DatePicker } from 'antd';
+import { Row, Typography, DatePicker, Badge } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useHooks from './hooks';
 import TextTimeSchedule from 'app/components/TextTimeSchedule';
@@ -18,7 +18,6 @@ const { Title } = Typography;
 const { RangePicker } = TimePicker;
 
 const ScheduleModal = memo(props => {
-  const { t } = useTranslation();
   const { handlers, selectors } = useHooks(props);
   const {
     handleAddDateSchedule,

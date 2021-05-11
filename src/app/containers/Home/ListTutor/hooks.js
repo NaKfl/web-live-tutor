@@ -15,12 +15,6 @@ export const useHooks = props => {
   ]);
 
   useEffect(() => {
-    socket.on('call:notifyCall', ({ userCall }) => {
-      showCallModal(userCall);
-    });
-  }, []);
-
-  useEffect(() => {
     socket.on('call:acceptedCall', ({ userCall, userBeCalled, startTime }) => {
       const user = getUserFromStorage();
       const token = jwt.sign(
@@ -36,7 +30,7 @@ export const useHooks = props => {
       );
       history.push(`/call/?token=${token}`);
     });
-  }, []);
+  }, [history]);
 
   const showInfoTutor = useCallback(
     tutor => {
@@ -63,6 +57,12 @@ export const useHooks = props => {
   const handleCallTutor = userId => {
     socket.emit('call:callVideo', { userId });
   };
+
+  useEffect(() => {
+    socket.on('call:notifyCall', ({ userCall }) => {
+      showCallModal(userCall);
+    });
+  }, [showCallModal]);
 
   return {
     selectors: {},

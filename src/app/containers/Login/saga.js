@@ -45,7 +45,7 @@ function* loginServiceTask(action) {
   if (response) {
     response.user.currentRole = ROLES.STUDENT;
     yield call(storeAuthInfo, response);
-    yield put(actions.loginServiceSuccess());
+    yield put(actions.loginServiceSuccess(response));
   } else {
     yield put(actions.loginServiceFailed(error.data));
   }
