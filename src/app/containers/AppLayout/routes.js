@@ -10,6 +10,7 @@ import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
+import { ForgotPassword } from 'app/containers/ForgotPassword/Loadable';
 
 export const privateRoutes = [
   {
@@ -69,6 +70,11 @@ export const publicRoutes = [
     path: '/not-found',
     component: NotFoundPage,
     key: 'not-found',
+  },
+  {
+    path: '/password',
+    component: ForgotPassword,
+    key: 'password',
   },
 ];
 

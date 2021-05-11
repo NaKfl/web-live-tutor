@@ -46,3 +46,29 @@ export const uploadAvatar = file => {
     })
     .catch(handleGeneralError);
 };
+
+export const requestRecoverPassword = email => {
+  return request(WEB_API, {
+    url: 'user/forgotPassword',
+    method: 'POST',
+    data: { email },
+  })
+    .then(res => res.data)
+    .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
+export const resetPassword = ({ email, token, password }) => {
+  return request(WEB_API, {
+    url: 'user/resetpassword',
+    method: 'POST',
+    data: {
+      email,
+      token,
+      password,
+    },
+  })
+    .then(res => res.data)
+    .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};

@@ -57,7 +57,6 @@ export const useHooks = () => {
     },
     [history],
   );
-
   return {
     selectors: {
       listTutor,
@@ -65,7 +64,7 @@ export const useHooks = () => {
       pagination: {
         total: countTotal,
         pageSize: 20,
-        current: page || 1,
+        current: parseInt(page) || 1,
         onChange: onChangePage,
       },
     },
