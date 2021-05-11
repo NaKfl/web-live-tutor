@@ -12,4 +12,11 @@ export const COMMON_PROPERTIES = {
   error: null,
 };
 
+export const ROLES = {
+  GUEST: 'guest',
+  STUDENT: 'student',
+  ADMIN: 'admin',
+  TUTOR: 'tutor',
+};
+
 export const DATE_FORMAT = 'YYYY/MM/DD';

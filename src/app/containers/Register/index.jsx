@@ -21,6 +21,7 @@ import { Row, Col } from 'app/components/Grid';
 import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
 import loginHooks from 'app/containers/Login/hooks';
 import { StyledRegister } from './styles';
+import { CoverLogin } from '../Login/styles';
 
 export const Register = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -34,126 +35,128 @@ export const Register = memo(() => {
   const { t } = useTranslation();
 
   return (
-    <StyledRegister>
-      <Row
-        gutter={[48, 48]}
-        justify="center"
-        align="middle"
-        className="register-page"
-      >
-        <Col.RightCenter span={12} className="img-banner">
-          <Image preview={false} alt="banner" src={banner} />
-        </Col.RightCenter>
-        <Col span={12} className="form-register">
-          <Form
-            className="login-form"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            requiredMark={false}
-            layout="vertical"
-          >
-            <Title
-              className="login-form-title"
-              level={3}
-              style={{ marginBottom: '15px !important' }}
+    <CoverLogin>
+      <StyledRegister>
+        <Row
+          gutter={[48, 48]}
+          justify="center"
+          align="middle"
+          className="register-page"
+        >
+          <Col.RightCenter span={12} className="img-banner">
+            <Image preview={false} alt="banner" src={banner} />
+          </Col.RightCenter>
+          <Col span={12} className="form-register">
+            <Form
+              className="login-form"
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              requiredMark={false}
+              layout="vertical"
             >
-              {t('Register.title')}
-            </Title>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                {
-                  type: 'email',
-                  message: t('Register.messageInvalidEmail'),
-                },
-                {
-                  required: true,
-                  message: t('Register.messageEmptyEmail'),
-                },
-              ]}
-            >
-              <Input placeholder="Email" />
-            </Form.Item>
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                {
-                  required: true,
-                  message: t('Register.messageEmptyPassword'),
-                },
-              ]}
-            >
-              <Input.Password type="password" placeholder="Password" />
-            </Form.Item>
-
-            <Form.Item className="login-form-button login-form-button-local">
-              <Button
-                type="accent"
-                size="large"
-                htmlType="submit"
-                loading={status === ACTION_STATUS.PENDING}
+              <Title
+                className="login-form-title"
+                level={3}
+                style={{ marginBottom: '15px !important' }}
               >
-                {t('Register.btnRegister')}
-              </Button>
-            </Form.Item>
-            <Form.Item>
-              <Divider>{t('Register.divider')}</Divider>
-            </Form.Item>
-            <Form.Item>
-              <Space.StyledSpace size="large">
-                <GoogleLogin
-                  clientId={GOOGLE_ID}
-                  render={renderProps => (
-                    <Button
-                      className="login-form-button"
-                      onClick={renderProps.onClick}
-                      icon={<GoogleOutlined />}
-                    >
-                      {t('Register.btnRegisterGoogle')}
-                    </Button>
-                  )}
-                  buttonText="Google Login"
-                  onSuccess={receivedData =>
-                    handleLoginService({
-                      service: 'google',
-                      data: receivedData && receivedData.accessToken,
-                    })
-                  }
-                  cookiePolicy={'single_host_origin'}
-                />
-                <FacebookLogin
-                  appId={FACEBOOK_ID}
-                  fields="name,email,picture"
-                  callback={receivedData =>
-                    handleLoginService({
-                      service: 'facebook',
-                      data: receivedData && receivedData.accessToken,
-                    })
-                  }
-                  render={renderProps => (
-                    <Button
-                      className="login-form-button"
-                      onClick={renderProps.onClick}
-                      icon={<FacebookOutlined />}
-                    >
-                      {t('Register.btnRegisterFacebook')}
-                    </Button>
-                  )}
-                />
-              </Space.StyledSpace>
-            </Form.Item>
-            <span className="login-form-register">
-              <Title level={5}>
-                {t('Register.suggestLogin')}
-                <Link to="/login"> {t('Register.linkLogin')} </Link>
+                {t('Register.title')}
               </Title>
-            </span>
-          </Form>
-        </Col>
-      </Row>
-    </StyledRegister>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  {
+                    type: 'email',
+                    message: t('Register.messageInvalidEmail'),
+                  },
+                  {
+                    required: true,
+                    message: t('Register.messageEmptyEmail'),
+                  },
+                ]}
+              >
+                <Input placeholder="Email" />
+              </Form.Item>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: t('Register.messageEmptyPassword'),
+                  },
+                ]}
+              >
+                <Input.Password type="password" placeholder="Password" />
+              </Form.Item>
+
+              <Form.Item className="login-form-button login-form-button-local">
+                <Button
+                  type="accent"
+                  size="large"
+                  htmlType="submit"
+                  loading={status === ACTION_STATUS.PENDING}
+                >
+                  {t('Register.btnRegister')}
+                </Button>
+              </Form.Item>
+              <Form.Item>
+                <Divider>{t('Register.divider')}</Divider>
+              </Form.Item>
+              <Form.Item>
+                <Space.StyledSpace size="large">
+                  <GoogleLogin
+                    clientId={GOOGLE_ID}
+                    render={renderProps => (
+                      <Button
+                        className="login-form-button"
+                        onClick={renderProps.onClick}
+                        icon={<GoogleOutlined />}
+                      >
+                        {t('Register.btnRegisterGoogle')}
+                      </Button>
+                    )}
+                    buttonText="Google Login"
+                    onSuccess={receivedData =>
+                      handleLoginService({
+                        service: 'google',
+                        data: receivedData && receivedData.accessToken,
+                      })
+                    }
+                    cookiePolicy={'single_host_origin'}
+                  />
+                  <FacebookLogin
+                    appId={FACEBOOK_ID}
+                    fields="name,email,picture"
+                    callback={receivedData =>
+                      handleLoginService({
+                        service: 'facebook',
+                        data: receivedData && receivedData.accessToken,
+                      })
+                    }
+                    render={renderProps => (
+                      <Button
+                        className="login-form-button"
+                        onClick={renderProps.onClick}
+                        icon={<FacebookOutlined />}
+                      >
+                        {t('Register.btnRegisterFacebook')}
+                      </Button>
+                    )}
+                  />
+                </Space.StyledSpace>
+              </Form.Item>
+              <span className="login-form-register">
+                <Title level={5}>
+                  {t('Register.suggestLogin')}
+                  <Link to="/login"> {t('Register.linkLogin')} </Link>
+                </Title>
+              </span>
+            </Form>
+          </Col>
+        </Row>
+      </StyledRegister>
+    </CoverLogin>
   );
 });
 

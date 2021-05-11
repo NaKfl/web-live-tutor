@@ -7,7 +7,7 @@
     "vn": "Tiếng Việt",
     "en": "Tiếng Anh",
     "default": "Tiếng Việt",
-    "brand": "Live tutor",
+    "brand": "Live Tutor",
     "callNow": "Gọi ngay",
     "back": "Trở lại",
     "selectDay": "Chọn một ngày",
@@ -17,16 +17,20 @@
     "tutor": "Gia sư",
     "registerTutor": "Đăng ký làm gia sư",
     "courses": "Khoá học",
-    "progress": "Đang phát triển"
+    "progress": "Đang phát triển",
+    "schedule": "Lịch dạy"
   },
   "Header": {
     "linkHome": "Trang chủ",
     "linkProfile": "Hồ sơ",
-    "linkLogout": "Đăng xuất"
+    "linkLogout": "Đăng xuất",
+    "linkRegisterTutor": "Đăng ký làm gia sư",
+    "switchRoleToTutor": "Chuyển sang vai trò gia sư",
+    "switchRoleToStudent": "Chuyển sang vai trò học viên"
   },
 
   "Login": {
-    "title": "Chào mừng trở lại với Etutor",
+    "title": "Chào mừng trở lại với Live Tutor",
     "messageInvalidEmail": "Email không phù hợp",
     "messageEmptyEmail": "Vui lòng nhập Email",
     "messageEmptyPassword": "Vui lòng nhập mật khẩu",
@@ -37,7 +41,7 @@
     "linkRegister": "Đăng ký",
     "notifySuccess": "Đăng nhập thành công",
     "notifyFailed": "Đăng nhập thất bại",
-    "suggestRegister": "Lần đầu đến với Etutor ?",
+    "suggestRegister": "Lần đầu đến với Live Tutor ?",
     "divider": "Hoặc đăng nhập với",
     "btnCap": "ĐĂNG NHẬP",
     "labelEmail": "Email",
@@ -45,7 +49,8 @@
   },
 
   "Register": {
-    "title": "Nào cùng bắt đầu với Etutor",
+    "messageError": "Bạn đã là một gia sư",
+    "title": "Nào cùng bắt đầu với Live Tutor",
     "labelName": "Tên",
     "labelEmail": "Email",
     "labelPassword": "Mật khẩu",
@@ -206,5 +211,12 @@
   "Upload": {
     "avatar": "Tải ảnh đại diện lên ...",
     "video": "Chọn video"
+  },
+  "Error": {
+    "somethingWrongTitle": "Lỗi",
+    "somethingWrong": "Đã xảy ra lỗi",
+    "backHome": "Trang Chủ",
+    "notFoundTitle": "Không tồn tại",
+    "notFound": "Xin lỗi, trang bạn truy cập không tồn tại"
   }
 }
