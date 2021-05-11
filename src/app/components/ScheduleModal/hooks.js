@@ -9,7 +9,14 @@ import {
 import { actions } from 'app/containers/ScheduleTutor/slice';
 import { ACTION_STATUS } from 'utils/constants';
 import moment from 'moment';
+import { notifyError } from 'utils/notify';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+
+export const TIME = {
+  startTime: 0,
+  endTime: 1,
+  total: 2,
+};
 
 export const useHooks = props => {
   const { data } = props;
@@ -18,6 +25,10 @@ export const useHooks = props => {
   const selectorUnRegisterSchedule = useSelector(selectUnRegisterSchedule);
   const selectorScheduleTutorByDate = useSelector(selectScheduleTutorByDate);
   const [freeTimes, setFreeTimes] = useState([]);
+  const [startTimeSelect, setStartTime] = useState(null);
+  const [endTimeSelect, setEndTime] = useState(null);
+  const [isRepeated, setRepeated] = useState(false);
+  const [endDate, setEndDate] = useState(data.date);
 
   const {
     registerSchedule,
@@ -72,20 +83,59 @@ export const useHooks = props => {
   const handleAddDateSchedule = ({ startTimeSelect, endTimeSelect }) => {
     const startTime = moment(startTimeSelect).format('HH:mm');
     const endTime = moment(endTimeSelect).format('HH:mm');
-    registerSchedule({
-      startTime,
-      endTime,
-      date: data.date,
-    });
+    const isValidDate = moment(endDate).isAfter(data.date);
+    if (isRepeated) {
+      if (isValidDate) {
+        registerSchedule({
+          startTime,
+          endTime,
+          isRepeated,
+          startDate: data.date,
+          endDate: moment(endDate).format('YYYY-MM-DD'),
+        });
+      } else {
+        notifyError('Please select valid end date');
+      }
+    } else {
+      registerSchedule({
+        startTime,
+        endTime,
+        date: data.date,
+      });
+    }
+  };
+
+  const handleChangePickTime = time => {
+    if (time && time.length === TIME.total) {
+      setStartTime(time[TIME.startTime]);
+      setEndTime(time[TIME.endTime]);
+    } else {
+      setStartTime(null);
+      setEndTime(null);
+    }
   };
 
   const handleUnRegisterSchedule = id => {
     unRegisterSchedule(id);
   };
 
+  const onChangeRepeatDay = checked => {
+    setRepeated(checked);
+  };
+
+  const onChangeEndDate = date => {
+    setEndDate(date);
+  };
+
   return {
-    handlers: { handleAddDateSchedule, handleUnRegisterSchedule },
-    selectors: { freeTimes },
+    handlers: {
+      handleAddDateSchedule,
+      handleUnRegisterSchedule,
+      handleChangePickTime,
+      onChangeRepeatDay,
+      onChangeEndDate,
+    },
+    selectors: { freeTimes, startTimeSelect, endTimeSelect, isRepeated },
   };
 };
 
