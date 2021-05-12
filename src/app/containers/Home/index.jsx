@@ -56,6 +56,7 @@ export const Home = memo(() => {
         onClickHeart={onClickHeart}
         listFavorite={listFavorite}
       ></ListTutor>
+      {/* TODO: Move pagination to search page */}
       {/* <StyledPagination>
         <Pagination {...pagination}></Pagination>
       </StyledPagination> */}
