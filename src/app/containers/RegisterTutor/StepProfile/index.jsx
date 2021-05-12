@@ -64,7 +64,10 @@ export const StepProfile = ({
           </Divider>
           <Row gutter={16} className="basic-info">
             <Col span={8} className="basic-info-left no-flex">
-              <ImageUpload selectAvatar={selectAvatar} />
+              <ImageUpload
+                className="avt-uploader"
+                selectAvatar={selectAvatar}
+              />
               <p>{t('Register.Tutor.profile.btnClickEdit')}</p>
               <Alert
                 message={t('Register.Tutor.profile.alertUploadMessage')}

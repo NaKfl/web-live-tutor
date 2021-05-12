@@ -11,6 +11,10 @@ export const Introduction = styled.div`
 `;
 
 export const Content = styled.div`
+  .avt-uploader {
+    overflow: hidden;
+  }
+
   .full-width {
     width: 100%;
     max-width: 100%;

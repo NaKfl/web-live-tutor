@@ -3,6 +3,7 @@ import Badge from 'app/components/Badge';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledChatList = styled.div`
+  position: relative;
   display: flex;
   width: 600px;
   height: 400px;
@@ -12,6 +13,17 @@ export const StyledChatList = styled.div`
   border-radius: 6px;
   .chat-window {
     flex: 1;
+  }
+  .close-btn {
+    position: absolute;
+    top: -6px;
+    left: -5px;
+    color: ${COLOR.NICKEL};
+    background-color: ${COLOR.WHITE};
+    border-radius: 50%;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
+      0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    cursor: pointer;
   }
 `;
 

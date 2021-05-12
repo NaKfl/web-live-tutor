@@ -15,7 +15,7 @@ export const Chat = () => {
 
   return (
     <StyledWrapper>
-      {isShow && <ChatList />}
+      {isShow && <ChatList handleShowHidePopup={handleShowHidePopup} />}
       <StyledBadge count={unreadCount} overflowCount={10}>
         <AntdButton
           className="message-button"

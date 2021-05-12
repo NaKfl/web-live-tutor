@@ -9,17 +9,18 @@ import {
 } from './styles';
 import Avatar from 'app/components/Avatar';
 import Conversation from '../Conversation';
-import { DeleteFilled } from '@ant-design/icons';
+import { DeleteFilled, CloseCircleFilled } from '@ant-design/icons';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
-export const ChatList = () => {
+export const ChatList = ({ handleShowHidePopup, ...rest }) => {
   const { handlers, selectors } = useHooks();
   const { handleChangeConversation, handleDeleteNewConversation } = handlers;
   const { recentList, activatedConversation, newConversation } = selectors;
   const user = getUserFromStorage();
 
   return (
-    <StyledChatList>
+    <StyledChatList {...rest}>
+      <CloseCircleFilled onClick={handleShowHidePopup} className="close-btn" />
       <Conversation
         className="chat-window"
         fromId={user?.id}

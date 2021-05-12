@@ -4,7 +4,7 @@ import { StyledImageUpload } from './styles';
 import { Image } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-export const ImageUpload = memo(({ loading, selectAvatar }) => {
+export const ImageUpload = memo(({ loading, selectAvatar, ...rest }) => {
   const { t } = useTranslation();
   const [preview, setPrivew] = useState();
   const onDrop = useCallback(
@@ -28,7 +28,7 @@ export const ImageUpload = memo(({ loading, selectAvatar }) => {
     accept: 'image/jpeg, image/png',
   });
   return (
-    <StyledImageUpload {...getRootProps()}>
+    <StyledImageUpload {...getRootProps()} {...rest}>
       <input {...getInputProps()} />
       {!!preview ? (
         <Image src={preview.preview} preview={false} />

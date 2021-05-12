@@ -21,8 +21,13 @@ import {
   StyledSpecialties,
   StyledTutorCard,
 } from './styles';
+import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
+import { useSelector } from 'react-redux';
+
+import { ROLES } from 'utils/constants';
 
 export const TutorCard = memo(props => {
+  const user = useSelector(selectUserInfoAuthenticate);
   const { handleSetNewConversation } = useControlChatPopup();
   const { showInfoTutor, handleCallTutor } = props;
   const { t } = useTranslation();
@@ -57,33 +62,35 @@ export const TutorCard = memo(props => {
             </StyledSpecialties>
           </div>
         </div>
-        <div className="header-right">
-          {props.isFavorite ? (
-            <FontAwesomeIcon
-              style={{
-                fontSize: '22px',
-                color: 'rgb(255, 98, 81)',
-              }}
-              onClick={e => {
-                e.stopPropagation();
-                props.onClickHeart(props.userId);
-              }}
-              icon={solidHeart}
-            />
-          ) : (
-            <FontAwesomeIcon
-              style={{
-                fontSize: '22px',
-                color: '#777777',
-              }}
-              onClick={e => {
-                e.stopPropagation();
-                props.onClickHeart(props.userId);
-              }}
-              icon={regularHeart}
-            />
-          )}
-        </div>
+        {user?.currentRole === ROLES.STUDENT && (
+          <div className="header-right">
+            {props.isFavorite ? (
+              <FontAwesomeIcon
+                style={{
+                  fontSize: '22px',
+                  color: 'rgb(255, 98, 81)',
+                }}
+                onClick={e => {
+                  e.stopPropagation();
+                  props.onClickHeart(props.userId);
+                }}
+                icon={solidHeart}
+              />
+            ) : (
+              <FontAwesomeIcon
+                style={{
+                  fontSize: '22px',
+                  color: '#777777',
+                }}
+                onClick={e => {
+                  e.stopPropagation();
+                  props.onClickHeart(props.userId);
+                }}
+                icon={regularHeart}
+              />
+            )}
+          </div>
+        )}
       </StyledHeader>
       <StyledMain>
         <div className="bio">
