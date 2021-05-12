@@ -11,19 +11,18 @@ import { useLogout } from 'app/containers/Login/hooks';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
 import MenuBar from 'app/containers/Menu/MenuBar';
-import US from 'assets/svg/united-states.svg';
-import VN from 'assets/svg/vietnam.svg';
 import useActions from 'hooks/useActions';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
-import { StyledHeader, StyledIcon } from './styles';
+import LanguageSelection from './LanguageSelection';
+import { StyledHeader } from './styles';
 
 export const Header = () => {
   const user = useSelector(selectUserInfoAuthenticate);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
   const { changeRole } = useActions(
@@ -58,46 +57,7 @@ export const Header = () => {
               style={{ fontSize: 22, color: '#757575' }}
             />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
-            <Dropdown
-              placement="bottomRight"
-              trigger={['click']}
-              overlay={
-                <Menu>
-                  <Menu.Item
-                    className="d-flex align-items-center"
-                    onClick={() => i18n.changeLanguage('en')}
-                  >
-                    <StyledIcon className="me-2" src={US} alt="United States" />
-                    <span
-                      className={`${
-                        t('Common.default') === t('Common.en') ? 'fw-bol' : ''
-                      }`}
-                    >
-                      {t('Common.en')}
-                    </span>
-                  </Menu.Item>
-                  <Menu.Item
-                    className="d-flex align-items-center"
-                    onClick={() => i18n.changeLanguage('vn')}
-                  >
-                    <StyledIcon className="me-2" src={VN} alt="Vietnam" />
-                    <span
-                      className={`${
-                        t('Common.default') === t('Common.vn') ? 'fw-bol' : ''
-                      }`}
-                    >
-                      {t('Common.vn')}
-                    </span>
-                  </Menu.Item>
-                </Menu>
-              }
-            >
-              {t('Common.default') === t('Common.en') ? (
-                <StyledIcon src={US} alt="United States" />
-              ) : (
-                <StyledIcon src={VN} alt="Vietnam" />
-              )}
-            </Dropdown>
+            <LanguageSelection />
             <Dropdown
               placement="bottomRight"
               trigger={['click']}
@@ -139,7 +99,8 @@ export const Header = () => {
             </Dropdown>
           </Space>
         )) || (
-          <Space>
+          <Space className="login-register-group">
+            <LanguageSelection className="language" />
             <Link to="/login">
               <Button size="medium">{t('Login.btnCap')}</Button>
             </Link>

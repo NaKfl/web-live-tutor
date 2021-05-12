@@ -13,13 +13,13 @@ export const StyledFavoriteTutor = styled.div`
 `;
 
 export const StyledFavoriteChild = styled.div`
-  width: 170px;
+  width: 185px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   .left {
-    max-width: 145px;
+    max-width: 150px;
     overflow: hidden;
   }
   .right {

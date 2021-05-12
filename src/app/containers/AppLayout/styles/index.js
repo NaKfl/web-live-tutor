@@ -12,9 +12,16 @@ export const StyledIcon = styled.img`
 `;
 
 export const StyledHeader = styled(Header)`
+  .login-register-group {
+    .language {
+      margin-right: 10px;
+    }
+  }
+
   .avatar {
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
       0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    cursor: pointer;
   }
 
   position: fixed;
@@ -85,18 +92,18 @@ export const StyledLayout = styled(Layout)`
 `;
 
 export const StyledContent = styled(Content)`
+  min-height: calc(100vh - 140px);
   background-color: ${COLOR.WHITE};
   width: 100%;
-  min-height: calc(100vh - 140px);
   position: relative;
 
   .content-wrapper {
+    min-height: calc(100vh - 140px);
     padding: 35px 0;
     max-width: ${`${maxWidth}px`};
     margin: 0 auto;
     justify-content: center;
     display: flex;
-    height: calc(100% - 70px);
     margin-top: 70px;
   }
 `;

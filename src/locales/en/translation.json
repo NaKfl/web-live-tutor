@@ -31,29 +31,31 @@
   },
 
   "Login": {
-    "title": "Welcome back to Live Tutor",
+    "title": "Sign in",
     "messageInvalidEmail": "The input is not valid E-mail!",
     "messageEmptyEmail": "Please input your Email!",
     "messageEmptyPassword": "Please input your Password!",
-    "forgotPassword": "Forgot password ?",
-    "btnLogin": "Login",
+    "forgotPassword": "Forgot Password?",
+    "btnLogin": "Sign in",
     "btnLoginFacebook": "Facebook",
     "btnLoginGoogle": "Google",
-    "linkRegister": "Register",
+    "linkRegister": "Sign up",
     "notifySuccess": "Login successful",
     "notifyFailed": "Login failed",
-    "suggestRegister": "New to Live Tutor ?",
-    "divider": "Or login with",
-    "btnCap": "LOG IN",
-    "labelEmail": "Email",
-    "labelPassword": "Mật khẩu"
+    "suggestRegister": "Not a member yet?",
+    "divider": "Or continue with",
+    "btnCap": "Log in",
+    "labelEmail": "Email address",
+    "labelPassword": "Password",
+    "exampleEmail": "mail@example.com"
   },
 
   "Register": {
+    "exampleEmail": "mail@example.com",
     "messageError": "You have already been a tutor",
-    "title": "Start learning with Live Tutor",
+    "title": "Sign up",
     "labelName": "Name",
-    "labelEmail": "Email",
+    "labelEmail": "Email address",
     "labelPassword": "Password",
     "labelConfirmPassword": "ConfirmPassword",
     "messageInvalidEmail": "The input is not valid E-mail!",
@@ -65,13 +67,13 @@
     "messageMinPassword": "Must be minimum 6 characters!",
     "notifySuccess": "Register successful",
     "notifyFailed": "Register failed",
-    "btnRegister": "Create account",
-    "linkLogin": "Login",
-    "btnCap": "SIGN UP",
+    "btnRegister": "Sign up",
+    "linkLogin": "Log in",
+    "btnCap": "Sign up",
     "btnRegisterFacebook": "Facebook",
     "btnRegisterGoogle": "Google",
-    "divider": "Or register with",
-    "suggestLogin": "Already have an account ?",
+    "divider": "Or continue with",
+    "suggestLogin": "Already have an account?",
     "Tutor": {
       "completeProfile": "Complete profile",
       "videoIntroduction": "Video introduction",
@@ -194,7 +196,7 @@
     "btnSave": "Save changes",
     "uploadAvatarSuccess": "Upload avatar sucesss!",
     "name": "Name",
-    "email": "Email",
+    "email": "Email address",
     "phone": "Phone Number",
     "country": "Country",
     "language": "Language",
@@ -205,7 +207,10 @@
     "interests": "Interests",
     "resume": "Resume",
     "teachExperience": "Teaching experience",
-    "schedule": "Schedule"
+    "schedule": "Schedule",
+    "account": "Account",
+    "settings": "Settings",
+    "accountID": "Account ID"
   },
   "Favorite": {
     "title": "Favorite tutors",
@@ -222,7 +227,7 @@
     "notFoundTitle": "Not found",
     "notFound": "Sorry, the page you visited does not exist",
     "permissionDeniedTitle": "Permission denied",
-    "permissionDenied": "Sorry, you are not authorized to access this pageHome"
+    "permissionDenied": "Sorry, you are not authorized to access this page"
   },
   "Tutors": {
     "topTutors": "Top Tutors",
