@@ -196,7 +196,7 @@
     "btnSave": "Save changes",
     "uploadAvatarSuccess": "Upload avatar sucesss!",
     "name": "Name",
-    "email": "Email",
+    "email": "Email address",
     "phone": "Phone Number",
     "country": "Country",
     "language": "Language",
@@ -207,7 +207,10 @@
     "interests": "Interests",
     "resume": "Resume",
     "teachExperience": "Teaching experience",
-    "schedule": "Schedule"
+    "schedule": "Schedule",
+    "account": "Account",
+    "settings": "Settings",
+    "accountID": "Account ID"
   },
   "Favorite": {
     "title": "Favorite tutors",

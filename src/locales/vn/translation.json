@@ -194,7 +194,7 @@
     "btnSave": "Lưu thay đổi",
     "uploadAvatarSuccess": "Tải lên ảnh đại diện thành công!",
     "name": "Tên",
-    "email": "Email",
+    "email": "Địa chỉ email",
     "phone": "Số điện thoại",
     "country": "Quốc gia",
     "language": "Ngôn ngữ",
@@ -205,7 +205,10 @@
     "interests": "Sở thích",
     "resume": "Sơ yếu lý lịch",
     "teachExperience": "Kinh nghiệm giảng dạy",
-    "schedule": "Lịch trình"
+    "schedule": "Lịch trình",
+    "account": "Tài khoản",
+    "settings": "Cài đặt",
+    "accountID": "ID"
   },
   "Favorite": {
     "title": "Gia sư yêu thích",
