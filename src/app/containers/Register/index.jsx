@@ -1,27 +1,26 @@
-import React, { memo } from 'react';
-import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
-import saga from './saga';
-import useHooks, { useUnmount } from './hooks';
-import { sliceKey, reducer } from './slice';
-import { Link } from 'react-router-dom';
-import Form from 'app/components/Form';
 import Button from 'app/components/Button';
-import Input from 'app/components/Input';
-import Title from 'app/components/Title';
-import Space from 'app/components/Space';
 import Divider from 'app/components/Divider';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import Form from 'app/components/Form';
+import { Col, Row } from 'app/components/Grid';
 import Image from 'app/components/Image';
-import banner from 'assets/2.png';
-import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
-import { ACTION_STATUS } from 'utils/constants';
-import { useTranslation } from 'react-i18next';
-import { Row, Col } from 'app/components/Grid';
-import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
+import Input from 'app/components/Input';
+import Space from 'app/components/Space';
 import loginHooks from 'app/containers/Login/hooks';
-import { StyledRegister } from './styles';
-import { CoverLogin } from '../Login/styles';
+import banner from 'assets/login.png';
+import FacebookLogo from 'assets/svg/facebook-logo.svg';
+import GoogleLogo from 'assets/svg/google-logo.svg';
+import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
+import React, { memo } from 'react';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import GoogleLogin from 'react-google-login';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { ACTION_STATUS } from 'utils/constants';
+import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
+import useHooks, { useUnmount } from './hooks';
+import saga from './saga';
+import { reducer, sliceKey } from './slice';
+import { CoverRegister, StyledLogo, StyledRegister } from './styles';
 
 export const Register = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -35,34 +34,22 @@ export const Register = memo(() => {
   const { t } = useTranslation();
 
   return (
-    <CoverLogin>
+    <CoverRegister>
       <StyledRegister>
-        <Row
-          gutter={[48, 48]}
-          justify="center"
-          align="middle"
-          className="register-page"
-        >
-          <Col.RightCenter span={12} className="img-banner">
+        <Row gutter={[48, 48]} justify="center" align="middle">
+          <Col.RightCenter className="img-banner">
             <Image preview={false} alt="banner" src={banner} />
           </Col.RightCenter>
-          <Col span={12} className="form-register">
+          <Col className="form-register">
+            <h3 className="register-form-title">{t('Register.title')}</h3>
             <Form
-              className="login-form"
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
               requiredMark={false}
               layout="vertical"
             >
-              <Title
-                className="login-form-title"
-                level={3}
-                style={{ marginBottom: '15px !important' }}
-              >
-                {t('Register.title')}
-              </Title>
               <Form.Item
-                label="Email"
+                label={t('Register.labelEmail')}
                 name="email"
                 rules={[
                   {
@@ -75,10 +62,10 @@ export const Register = memo(() => {
                   },
                 ]}
               >
-                <Input placeholder="Email" />
+                <Input placeholder={t('Register.exampleEmail')} />
               </Form.Item>
               <Form.Item
-                label="Password"
+                label={t('Register.labelPassword')}
                 name="password"
                 rules={[
                   {
@@ -87,11 +74,18 @@ export const Register = memo(() => {
                   },
                 ]}
               >
-                <Input.Password type="password" placeholder="Password" />
+                <Input.Password type="password" />
               </Form.Item>
 
-              <Form.Item className="login-form-button login-form-button-local">
+              <div className="footer-text">
+                <div>
+                  <span>{t('Register.suggestLogin')}</span>
+                  <Link to="/login"> {t('Register.linkLogin')} </Link>
+                </div>
+              </div>
+              <Form.Item>
                 <Button
+                  className="register-btn"
                   type="accent"
                   size="large"
                   htmlType="submit"
@@ -101,20 +95,22 @@ export const Register = memo(() => {
                 </Button>
               </Form.Item>
               <Form.Item>
-                <Divider>{t('Register.divider')}</Divider>
+                <Divider className="divider">{t('Register.divider')}</Divider>
               </Form.Item>
               <Form.Item>
-                <Space.StyledSpace size="large">
+                <Space.StyledSpace
+                  className="register-service-btn"
+                  size="large"
+                >
                   <GoogleLogin
                     clientId={GOOGLE_ID}
                     render={renderProps => (
-                      <Button
-                        className="login-form-button"
+                      <StyledLogo
+                        className="register-form-button"
                         onClick={renderProps.onClick}
-                        icon={<GoogleOutlined />}
-                      >
-                        {t('Register.btnRegisterGoogle')}
-                      </Button>
+                        src={GoogleLogo}
+                        alt="google-logo"
+                      />
                     )}
                     buttonText="Google Login"
                     onSuccess={receivedData =>
@@ -135,28 +131,21 @@ export const Register = memo(() => {
                       })
                     }
                     render={renderProps => (
-                      <Button
-                        className="login-form-button"
+                      <StyledLogo
+                        className="register-form-button"
                         onClick={renderProps.onClick}
-                        icon={<FacebookOutlined />}
-                      >
-                        {t('Register.btnRegisterFacebook')}
-                      </Button>
+                        src={FacebookLogo}
+                        alt="facebook-logo"
+                      />
                     )}
                   />
                 </Space.StyledSpace>
               </Form.Item>
-              <span className="login-form-register">
-                <Title level={5}>
-                  {t('Register.suggestLogin')}
-                  <Link to="/login"> {t('Register.linkLogin')} </Link>
-                </Title>
-              </span>
             </Form>
           </Col>
         </Row>
       </StyledRegister>
-    </CoverLogin>
+    </CoverRegister>
   );
 });
 

@@ -1,27 +1,26 @@
+import Button from 'app/components/Button';
+import Divider from 'app/components/Divider';
+import Form from 'app/components/Form';
+import { Col, Row } from 'app/components/Grid';
+import Image from 'app/components/Image';
+import Input from 'app/components/Input';
+import Space from 'app/components/Space';
+import banner from 'assets/login.png';
+import FacebookLogo from 'assets/svg/facebook-logo.svg';
+import GoogleLogo from 'assets/svg/google-logo.svg';
+import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
 import React, { memo } from 'react';
-import { useInjectSaga } from 'utils/reduxInjectors';
-import saga from './saga';
-import useHooks from './hooks';
-import { sliceKey } from './slice';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import GoogleLogin from 'react-google-login';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ACTION_STATUS } from 'utils/constants';
-import Form from 'app/components/Form';
-import Button from 'app/components/Button';
-import Space from 'app/components/Space';
-import Input from 'app/components/Input';
-import Divider from 'app/components/Divider';
-import Image from 'app/components/Image';
-import banner from 'assets/1.png';
-import Typography from 'app/components/Typography';
-import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
-import { FACEBOOK_ID, GOOGLE_ID } from 'configs';
-import { useTranslation } from 'react-i18next';
-import { Row, Col } from 'app/components/Grid';
-import { GoogleOutlined, FacebookOutlined } from '@ant-design/icons';
-import { CoverLogin, StyledLogin } from './styles';
+import { useInjectSaga } from 'utils/reduxInjectors';
+import useHooks from './hooks';
+import saga from './saga';
+import { sliceKey } from './slice';
+import { CoverLogin, StyledLogin, StyledLogo } from './styles';
 
-const { Title } = Typography;
 export const Login = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   const { handlers, selectors } = useHooks();
@@ -32,30 +31,18 @@ export const Login = memo(() => {
   return (
     <CoverLogin>
       <StyledLogin>
-        <Row
-          gutter={[48, 48]}
-          className="login-page"
-          justify="center"
-          align="middle"
-        >
-          <Col.RightCenter span={12} className="img-banner">
+        <Row gutter={[48, 48]} justify="center" align="middle">
+          <Col.RightCenter className="img-banner">
             <Image preview={false} alt="banner" src={banner} />
           </Col.RightCenter>
-          <Col span={12} className="form-login">
+          <Col className="form-login">
+            <h3 className="login-form-title">{t('Login.title')}</h3>
             <Form
-              className="login-form"
               onFinish={onFinish}
               onFinishFailed={onFinishFailed}
               requiredMark={false}
               layout="vertical"
             >
-              <Title
-                className="login-form-title"
-                level={3}
-                style={{ marginBottom: '15px !important' }}
-              >
-                {t('Login.title')}
-              </Title>
               <Form.Item
                 label={t('Login.labelEmail')}
                 name="email"
@@ -70,7 +57,7 @@ export const Login = memo(() => {
                   },
                 ]}
               >
-                <Input placeholder="Email" />
+                <Input placeholder={t('Login.exampleEmail')} />
               </Form.Item>
               <Form.Item
                 label={t('Login.labelPassword')}
@@ -82,16 +69,23 @@ export const Login = memo(() => {
                   },
                 ]}
               >
-                <Input.Password type="password" placeholder="Password" />
+                <Input.Password type="password" />
               </Form.Item>
-              <Link
-                to="/password"
-                style={{ display: 'block', marginBottom: '10px' }}
-              >
-                {t('Login.forgotPassword')}
-              </Link>
-              <Form.Item className="login-form-button login-form-button-local">
+              <div className="footer-text">
+                <div>
+                  <span>{t('Login.suggestRegister')}</span>
+                  <Link to="/register"> {t('Login.linkRegister')} </Link>
+                </div>
+                <Link
+                  to="/password"
+                  style={{ display: 'block', marginBottom: '10px' }}
+                >
+                  {t('Login.forgotPassword')}
+                </Link>
+              </div>
+              <Form.Item>
                 <Button
+                  className="login-btn"
                   type="accent"
                   size="large"
                   htmlType="submit"
@@ -101,20 +95,19 @@ export const Login = memo(() => {
                 </Button>
               </Form.Item>
               <Form.Item>
-                <Divider>{t('Login.divider')}</Divider>
+                <Divider className="divider">{t('Login.divider')}</Divider>
               </Form.Item>
               <Form.Item>
-                <Space.StyledSpace size="large">
+                <Space.StyledSpace className="login-service-btn" size="large">
                   <GoogleLogin
                     clientId={GOOGLE_ID}
                     render={renderProps => (
-                      <Button
+                      <StyledLogo
                         className="login-form-button"
                         onClick={renderProps.onClick}
-                        icon={<GoogleOutlined />}
-                      >
-                        {t('Login.btnLoginGoogle')}
-                      </Button>
+                        src={GoogleLogo}
+                        alt="google-logo"
+                      />
                     )}
                     buttonText="Google Login"
                     onSuccess={receivedData =>
@@ -135,23 +128,16 @@ export const Login = memo(() => {
                       })
                     }
                     render={renderProps => (
-                      <Button
+                      <StyledLogo
                         className="login-form-button"
                         onClick={renderProps.onClick}
-                        icon={<FacebookOutlined />}
-                      >
-                        {t('Login.btnLoginFacebook')}
-                      </Button>
+                        src={FacebookLogo}
+                        alt="facebook-logo"
+                      />
                     )}
                   />
                 </Space.StyledSpace>
               </Form.Item>
-              <span className="login-form-register">
-                <Title level={5}>
-                  {t('Login.suggestRegister')}
-                  <Link to="/register"> {t('Login.linkRegister')} </Link>
-                </Title>
-              </span>
             </Form>
           </Col>
         </Row>

@@ -23,8 +23,8 @@ const StyledCarousel = styled(Carousel)`
 `;
 
 const StyledImage = styled(Image)`
-  height: 100%;
-  width: 100%;
+  height: 400px;
+  width: 1000px;
 `;
 
 function SamplePrevArrow(props) {
