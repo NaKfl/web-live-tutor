@@ -83,7 +83,7 @@ export const useForm = () => {
     [openPopup],
   );
   const datasource = mapHistoryDataSource(historyList, isTutor);
-  const columns = [
+  const columnsForStudent = [
     {
       key: 'STT',
       dataIndex: 'stt',
@@ -110,26 +110,57 @@ export const useForm = () => {
       dataIndex: 'control',
       title: 'Control',
       width: '10%',
-      render: (text, record, index) => (
-        <Button
-          size="small"
-          onClick={() => {
-            const row = historyList[index];
-            const tutor = {
-              userId: row.tutorId,
-            };
-            showRatingForm(tutor);
-          }}
-        >
-          Review
-        </Button>
-      ),
+      render: (text, record, index) => {
+        const row = historyList[index];
+        if (row.isReviewed) {
+          return <span>Reviewed</span>;
+        } else {
+          return (
+            <Button
+              size="small"
+              onClick={() => {
+                const tutor = {
+                  userId: row.tutorId,
+                  sessionId: row.id,
+                };
+                showRatingForm(tutor);
+              }}
+            >
+              Review
+            </Button>
+          );
+        }
+      },
+    },
+  ];
+
+  const columnsForTutor = [
+    {
+      key: 'STT',
+      dataIndex: 'stt',
+      title: 'STT',
+      width: '10%',
+    },
+    {
+      key: 'studentName',
+      dataIndex: 'studentName',
+      title: 'Student Name',
+    },
+    {
+      key: 'startTime',
+      dataIndex: 'startTime',
+      title: 'Start Time',
+    },
+    {
+      key: 'endTime',
+      dataIndex: 'endTime',
+      title: 'End time',
     },
   ];
 
   return {
     dataSource: datasource,
-    columns,
+    columns: isTutor ? columnsForTutor : columnsForStudent,
     bordered: true,
     loading,
     size: 'small',

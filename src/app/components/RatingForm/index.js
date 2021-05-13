@@ -18,7 +18,6 @@ const RatingForm = memo(props => {
   } = handlers;
   const { tutorInfo } = selectors;
   const { visible, onCancel, values, ...rest } = props;
-  console.log(tutorInfo);
   return (
     <StyledModal
       centered

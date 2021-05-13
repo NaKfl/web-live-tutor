@@ -5,7 +5,6 @@ import useHooks from './hooks';
 const TimeSelect = ({ time, scheduleId, disabled, ...props }) => {
   const { handlers } = useHooks();
   const { handleSelectTime } = handlers;
-  console.log({ scheduleId });
   return (
     <StyledTimeSelect>
       <div>{time}</div>
