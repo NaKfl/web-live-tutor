@@ -1,6 +1,4 @@
-import Title from 'app/components/Title';
 import { memo } from 'react';
-import { Cover } from '../style';
 
 export const SecondStep = memo(() => {
   return (

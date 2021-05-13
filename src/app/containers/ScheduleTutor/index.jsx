@@ -1,21 +1,34 @@
-import React, { memo } from 'react';
-import useHooks from './hooks';
-import { Calendar, Badge, Row } from 'antd';
-import { StyledScheduleTutor } from './styles';
-import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
-import { Select, DatePicker, Col, Typography } from 'antd';
-import Button from 'app/components/Button';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DatePicker, Row } from 'antd';
 import TextTimeSchedule from 'app/components/TextTimeSchedule';
-import { reducer, sliceKey } from './slice';
-import saga from './saga';
 import moment from 'moment';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
+import useHooks from './hooks';
+import saga from './saga';
+import { reducer, sliceKey } from './slice';
+import {
+  StyledEnglishCalendar,
+  StyledScheduleTutor,
+  StyledVietnameseCalendar,
+} from './styles';
 
 export const ScheduleTutor = () => {
+  const { t } = useTranslation();
+
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
-  const { handleSelectDate } = handlers;
-  const { scheduleTutor } = selectors;
+  const {
+    handleSelectDate,
+    handleChangeMonth,
+    handleIncreaseMonth,
+    handleDecreaseMonth,
+    handleBackToToday,
+  } = handlers;
+  const { scheduleTutor, month } = selectors;
 
   const getFreeTimesOfDate = (data, date) => {
     return data[date] || [];
@@ -35,17 +48,9 @@ export const ScheduleTutor = () => {
         <div class="ant-picker-calendar-date-content">
           <Row className="flex-column align-content-center">
             {listFreeTime.map(time => {
-              const hoursStart = moment(time.startTime, 'HH:mm').hours();
-              let typeText = 'Purple';
-              if (hoursStart > 8) {
-                typeText = 'Green';
-              }
-              if (hoursStart > 16) {
-                typeText = 'Red';
-              }
               return (
                 <TextTimeSchedule
-                  typeText={typeText}
+                  typeText="Purple"
                   content={`${time.startTime} - ${time.endTime}`}
                 ></TextTimeSchedule>
               );
@@ -56,29 +61,55 @@ export const ScheduleTutor = () => {
     );
   }
 
-  const headerRender = ({ value, type, onChange, onTypeChange }) => {
+  const headerRender = () => {
     return (
       <div className="header-schedule">
+        <FontAwesomeIcon
+          icon={faAngleLeft}
+          className="arrow arrow-left"
+          onClick={handleDecreaseMonth}
+        />
         <DatePicker
-          format={'MMMM YYYY'}
-          onChange={(date, dateString) => {
-            onChange(date);
+          inputReadOnly
+          allowClear={false}
+          suffixIcon={false}
+          format={'MMM YYYY'}
+          onChange={date => {
+            handleChangeMonth(date);
           }}
           defaultValue={moment()}
           picker="month"
+          value={month}
         />
+        <FontAwesomeIcon
+          icon={faAngleRight}
+          className="arrow arrow-right"
+          onClick={handleIncreaseMonth}
+        />
+        <button onClick={handleBackToToday} className="today-btn">
+          {t('ScheduleTutor.toDay')}
+        </button>
       </div>
     );
   };
 
   return (
     <StyledScheduleTutor>
-      <Calendar
-        className="schedule-calender"
-        dateFullCellRender={dateCellRender}
-        headerRender={headerRender}
-        mode="month"
-      />
+      {(t('Common.default') === t('Common.en') && (
+        <StyledEnglishCalendar
+          dateFullCellRender={dateCellRender}
+          headerRender={headerRender}
+          mode="month"
+          value={month}
+        />
+      )) || (
+        <StyledVietnameseCalendar
+          dateFullCellRender={dateCellRender}
+          headerRender={headerRender}
+          mode="month"
+          value={month}
+        />
+      )}
     </StyledScheduleTutor>
   );
 };

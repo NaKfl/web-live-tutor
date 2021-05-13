@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectScheduleTutor } from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';
+import moment from 'moment';
 
 const useHooks = () => {
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
@@ -19,6 +20,7 @@ const useHooks = () => {
     [actions],
   );
   const [scheduleTutor, setScheduleTutor] = useState([]);
+  const [month, setMonth] = useState(moment());
 
   useEffect(() => {
     getFreeSchedule();
@@ -45,9 +47,32 @@ const useHooks = () => {
     },
     [openPopup],
   );
+
+  const handleChangeMonth = useCallback(month => {
+    setMonth(month);
+  }, []);
+
+  const handleIncreaseMonth = useCallback(() => {
+    setMonth(prev => moment(prev).add(1, 'month'));
+  }, []);
+
+  const handleDecreaseMonth = useCallback(() => {
+    setMonth(prev => moment(prev).add(-1, 'month'));
+  }, []);
+
+  const handleBackToToday = useCallback(() => {
+    setMonth(moment());
+  }, []);
+
   return {
-    handlers: { handleSelectDate },
-    selectors: { scheduleTutor },
+    handlers: {
+      handleSelectDate,
+      handleChangeMonth,
+      handleIncreaseMonth,
+      handleDecreaseMonth,
+      handleBackToToday,
+    },
+    selectors: { scheduleTutor, month },
   };
 };
 

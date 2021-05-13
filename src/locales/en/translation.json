@@ -11,7 +11,8 @@
     "callNow": "Call now",
     "back": "Back",
     "selectDay": "Select a day",
-    "selectTimeALot": "Select time a lot"
+    "selectTimeALot": "Select time a lot",
+    "cancel": "Cancel"
   },
   "Category": {
     "tutor": "Tutor",
@@ -23,6 +24,7 @@
   "Header": {
     "linkHome": "Home",
     "linkProfile": "Profile",
+    "linkHistory": "History",
     "linkLogout": "Logout",
     "linkRegisterTutor": "Become a tutor",
     "switchRoleToTutor": "Switch role to tutor",
@@ -247,5 +249,12 @@
     "term": "Terms & Conditions",
     "contact": "Contact",
     "copyright": "Copyright © 2021 Live Tutor. All rights reserved."
+  },
+  "ScheduleTutor": {
+    "toDay": "Today",
+    "schedule": "Schedule",
+    "registeredSchedule": "Registered schedule",
+    "registerNewSchedule": "Register new schedule",
+    "repeatUtil": "Repeat util date"
   }
 }

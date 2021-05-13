@@ -11,7 +11,6 @@ export const StyledLogin = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-30px);
 
   .img-banner {
     img {

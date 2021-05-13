@@ -135,7 +135,13 @@ export const useHooks = props => {
       onChangeRepeatDay,
       onChangeEndDate,
     },
-    selectors: { freeTimes, startTimeSelect, endTimeSelect, isRepeated },
+    selectors: {
+      currentDate: data.date,
+      freeTimes,
+      startTimeSelect,
+      endTimeSelect,
+      isRepeated,
+    },
   };
 };
 
