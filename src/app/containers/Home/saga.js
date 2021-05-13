@@ -46,7 +46,7 @@ function* fetchListTask(action) {
   const { response, error } = yield call(getListTutorAPI, {
     search: null,
     page: 1,
-    perPage: 20,
+    perPage: 18,
     ...action.payload,
   });
 

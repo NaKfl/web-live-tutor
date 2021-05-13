@@ -8,7 +8,7 @@ import socket from 'utils/socket';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { useCallback, useEffect } from 'react';
 
-export const useHooks = props => {
+export const useHooks = () => {
   const history = useHistory();
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
     popupActions,
@@ -40,17 +40,6 @@ export const useHooks = props => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const showInfoTutor = useCallback(
-    tutor => {
-      openPopup({
-        key: 'showInfoTutor',
-        type: POPUP_TYPE.INFO_TUTOR,
-        tutor,
-      });
-    },
-    [openPopup],
-  );
 
   const showCallModal = useCallback(
     userCall => {
@@ -84,30 +73,31 @@ export const useHooks = props => {
     });
   }, [showCallModal]);
 
+  const redirectToDetailTutor = useCallback(
+    tutor => {
+      history.push(`/tutor/${tutor?.userId}`);
+    },
+    [history],
+  );
+
   return {
     selectors: {},
-    handlers: { showInfoTutor, handleCallTutor, showRatingForm },
+    handlers: { handleCallTutor, redirectToDetailTutor, showRatingForm },
     states: {},
   };
 };
 
 export const useShowInfoTutor = () => {
-  const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
-    popupActions,
-  ]);
+  const history = useHistory();
 
-  const showInfoTutor = useCallback(
+  const redirectToDetailTutor = useCallback(
     tutor => {
-      openPopup({
-        key: 'showInfoTutor',
-        type: POPUP_TYPE.INFO_TUTOR,
-        tutor,
-      });
+      history.push(`/tutor/${tutor?.userId}`);
     },
-    [openPopup],
+    [history],
   );
 
-  return { showInfoTutor };
+  return { showInfoTutor: redirectToDetailTutor };
 };
 
 export default useHooks;

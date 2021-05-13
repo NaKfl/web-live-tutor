@@ -39,19 +39,20 @@ export const ScheduleTutor = () => {
     const dayOfDate = value.date();
     return (
       <div
-        class="ant-picker-cell-inner ant-picker-calendar-date"
+        className="ant-picker-cell-inner ant-picker-calendar-date"
         onClick={() =>
           handleSelectDate({ date: dateOfCell, freeTimes: listFreeTime })
         }
       >
-        <div class="ant-picker-calendar-date-value">{dayOfDate}</div>
-        <div class="ant-picker-calendar-date-content">
+        <div className="ant-picker-calendar-date-value">{dayOfDate}</div>
+        <div className="ant-picker-calendar-date-content">
           <Row className="flex-column align-content-center">
             {listFreeTime.map(time => {
               return (
                 <TextTimeSchedule
                   typeText="Purple"
                   content={`${time.startTime} - ${time.endTime}`}
+                  key={time?.id}
                 ></TextTimeSchedule>
               );
             })}

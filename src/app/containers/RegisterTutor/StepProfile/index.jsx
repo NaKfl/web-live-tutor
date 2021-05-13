@@ -226,7 +226,9 @@ export const StepProfile = ({
             >
               <Select>
                 {accents.map(item => (
-                  <Select.Option value={item}>{item}</Select.Option>
+                  <Select.Option value={item} key={item}>
+                    {item}
+                  </Select.Option>
                 ))}
               </Select>
             </Form.Item>

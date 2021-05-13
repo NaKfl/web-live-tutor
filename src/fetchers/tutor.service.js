@@ -53,7 +53,16 @@ export const getTutorById = ({ tutorId }) => {
   return request(WEB_API, {
     url: `/tutor/${tutorId}`,
     method: 'GET',
+  }).then(response => response.data);
+};
+
+export const getTutorDetail = payload => {
+  return request(WEB_API, {
+    url: `tutor/${payload}`,
   })
-    .then(response => response.data)
+    .then(res => res.data)
+    .then(data => {
+      return { response: data };
+    })
     .catch(handleGeneralError);
 };

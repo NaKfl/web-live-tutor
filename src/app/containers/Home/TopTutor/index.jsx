@@ -13,7 +13,7 @@ export const TopTutor = ({ data }) => {
       <div className="top-list">
         {data?.tutors?.rows?.length &&
           data.tutors.rows.map((item, index) => (
-            <TopTutorItem no={index + 1} info={item} />
+            <TopTutorItem key={item?.id} no={index + 1} info={item} />
           ))}
       </div>
     </StyledTopTutor>

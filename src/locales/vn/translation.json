@@ -188,6 +188,12 @@
   },
 
   "Profile": {
+    "callNow": "Gọi ngay",
+    "status": "Trực tuyến",
+    "message": "Nhắn tin",
+    "favorite": "Yêu thích",
+    "follow": "Theo dõi",
+    "report": "Báo cáo",
     "title": "Hồ sơ",
     "notifyEditSuccess": "Chỉnh sửa hồ sơ thành công",
     "requiredName": "Vui lòng nhập tên!",

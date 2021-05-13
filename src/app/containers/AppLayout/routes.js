@@ -8,6 +8,7 @@ import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
+import { TutorDetail } from 'app/containers/TutorDetail/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
 import { ForgotPassword } from 'app/containers/ForgotPassword/Loadable';
@@ -55,6 +56,12 @@ export const privateRoutes = [
     path: '/history',
     component: History,
     key: 'history-call-session',
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
+  },
+  {
+    path: '/tutor/:tutorId',
+    component: TutorDetail,
+    key: 'tutor-detail',
     requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
 ];
