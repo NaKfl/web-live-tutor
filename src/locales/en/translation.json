@@ -190,6 +190,12 @@
   },
 
   "Profile": {
+    "callNow": "Start Lesson",
+    "status": "Online",
+    "message": "Message",
+    "favorite": "Favorite",
+    "follow": "Follow",
+    "report": "Report",
     "title": "Profile",
     "notifyEditSuccess": "Edit profile successful",
     "requiredName": "Please input your name!",

@@ -29,14 +29,10 @@ import { ROLES } from 'utils/constants';
 export const TutorCard = memo(props => {
   const user = useSelector(selectUserInfoAuthenticate);
   const { handleSetNewConversation } = useControlChatPopup();
-  const { showInfoTutor, handleCallTutor } = props;
+  const { handleCallTutor, redirectToDetailTutor } = props;
   const { t } = useTranslation();
   return (
-    <StyledTutorCard
-      onClick={() => {
-        showInfoTutor(props);
-      }}
-    >
+    <StyledTutorCard onClick={() => redirectToDetailTutor(props)}>
       <StyledHeader>
         <div className="header-left">
           <StyledAvatar>

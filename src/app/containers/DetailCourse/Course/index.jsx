@@ -11,7 +11,7 @@ export const CourseCard = memo(({ course }) => {
         <StyledImageCard>
           <img width="100%" height="auto" alt="img" src={course.imageUrl} />
         </StyledImageCard>
-        <StyledContentCard class="flex-column w-100">
+        <StyledContentCard className="flex-column w-100">
           <Title className="fw-nor title-course" level={2}>
             {course?.name}
           </Title>

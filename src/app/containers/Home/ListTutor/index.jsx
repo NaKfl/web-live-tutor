@@ -6,7 +6,7 @@ import useHooks from './hooks';
 
 export const ListTutor = memo(({ listTutor, onClickHeart, listFavorite }) => {
   const { handlers } = useHooks();
-  const { showInfoTutor, handleCallTutor } = handlers;
+  const { handleCallTutor, redirectToDetailTutor } = handlers;
   return (
     <LayoutListTutor>
       {listTutor.length > 0 &&
@@ -16,8 +16,8 @@ export const ListTutor = memo(({ listTutor, onClickHeart, listFavorite }) => {
               {...e}
               onClickHeart={onClickHeart}
               isFavorite={checkIsFavorite(listFavorite, e?.userId)}
-              showInfoTutor={showInfoTutor}
               handleCallTutor={handleCallTutor}
+              redirectToDetailTutor={redirectToDetailTutor}
             />
           </WrapTutor>
         ))}

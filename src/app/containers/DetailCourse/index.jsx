@@ -58,7 +58,7 @@ export const DetailCourse = memo(() => {
             List Topics
           </Title>
           {detailCourse.topics?.map((topic, index) => (
-            <Row className="mt-4 topic-item">
+            <Row className="mt-4 topic-item" key={index}>
               <Title level={5} className="fw-nor mt-0 me-3 topic-item-order">
                 {`${index + 1}.`}
               </Title>

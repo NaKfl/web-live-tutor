@@ -17,7 +17,7 @@ export const CourseCard = memo(({ course, onSelectCard }) => {
             backgroundImage: `url('${course?.imageUrl}')`,
           }}
         ></StyledImageCard>
-        <StyledContentCard class="flex-column w-100">
+        <StyledContentCard className="flex-column w-100">
           <Title className="fw-nor title-course" level={4}>
             {course?.name}
           </Title>

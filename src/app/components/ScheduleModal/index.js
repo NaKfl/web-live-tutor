@@ -61,6 +61,7 @@ const ScheduleModal = memo(props => {
                 <Row
                   className="align-items-center justify-content-between w-100"
                   align="middle"
+                  key={time.id}
                 >
                   <Col span={22}>
                     <Row justify="end">
