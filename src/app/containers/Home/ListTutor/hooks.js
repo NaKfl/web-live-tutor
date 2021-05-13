@@ -23,6 +23,8 @@ export const useHooks = props => {
           roomName: userCall.id,
           password: userCall.id,
           displayName: user.name,
+          userCall,
+          userBeCalled,
           isTutor: true,
           startTime,
         },
@@ -31,6 +33,13 @@ export const useHooks = props => {
       history.push(`/call/?token=${token}`);
     });
   }, [history]);
+
+  useEffect(() => {
+    socket.on('call:endedCall', ({ tutor }) => {
+      showRatingForm(tutor);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showInfoTutor = useCallback(
     tutor => {
@@ -54,6 +63,17 @@ export const useHooks = props => {
     [openPopup],
   );
 
+  const showRatingForm = useCallback(
+    tutor => {
+      openPopup({
+        key: 'showRatingForm',
+        type: POPUP_TYPE.RATING_MODAL,
+        tutor,
+      });
+    },
+    [openPopup],
+  );
+
   const handleCallTutor = userId => {
     socket.emit('call:callVideo', { userId });
   };
@@ -66,7 +86,7 @@ export const useHooks = props => {
 
   return {
     selectors: {},
-    handlers: { showInfoTutor, handleCallTutor },
+    handlers: { showInfoTutor, handleCallTutor, showRatingForm },
     states: {},
   };
 };

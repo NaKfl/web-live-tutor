@@ -10,7 +10,14 @@ const Rate = ({
   disabled,
   ...props
 }) => {
-  return <StyledRate tooltips={tooltips} {...props} disabled={disabled} />;
+  return (
+    <StyledRate
+      tooltips={tooltips}
+      disabled={disabled}
+      onChange={onChange}
+      {...props}
+    />
+  );
 };
 // Rate.propTypes = {
 //   tooltips: PropTypes.array,

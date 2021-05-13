@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { actions } from './slice';
 import useActions from 'hooks/useActions';
 import moment from 'moment';
+import socket from 'utils/socket';
 
 const useHooks = props => {
   const { endCall } = useActions(
@@ -21,16 +22,18 @@ const useHooks = props => {
   useEffect(() => {
     const {
       roomName,
-      password,
       displayName,
       isTutor,
       participantId,
+      userCall,
+      userBeCalled,
       startTime,
     } = jwt.verify(token, JWT_SECRET);
     setRoomInfo({
       participantId,
       roomName,
-      password,
+      userCall,
+      userBeCalled,
       displayName,
       isTutor,
       startTime,
@@ -39,15 +42,14 @@ const useHooks = props => {
 
   const handleSomeOneLeave = useCallback(
     field => {
-      if (field.isTutor) {
-        return history.push('/');
-      }
       const endCallField = {
         studentId: field.participantId,
         tutorId: field.roomName,
         startTime: field.startTime,
         endTime: moment(new Date()).format('YYYY-MM-DD hh:mm:ss'),
       };
+      const { userCall, userBeCalled } = field;
+      socket.emit('call:endCall', { userCall, userBeCalled });
       endCall(endCallField);
       history.push('/');
     },

@@ -15,7 +15,7 @@ export const CallSessionTable = memo(
       <StyledTable>
         <StyledHeaderTable>
           <Title level={2}>Call session history</Title>
-          <Select
+          {/* <Select
             defaultValue="Student Role"
             size="small"
             style={{ width: 120 }}
@@ -23,7 +23,7 @@ export const CallSessionTable = memo(
           >
             <Select.Option value="student">Student Role</Select.Option>
             <Select.Option value="tutor">Tutor Role</Select.Option>
-          </Select>
+          </Select> */}
         </StyledHeaderTable>
         <Table {...form}></Table>
         {!!totalCount && (

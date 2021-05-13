@@ -38,15 +38,11 @@ const useJitsi = props => {
 
     client.addEventListener('videoConferenceJoined', () => {
       password && client.executeCommand('password', password);
-      setInterval(function () {
-        displayName && client.executeCommand('displayName', displayName);
-      }, 1000);
+      displayName && client.executeCommand('displayName', displayName);
     });
 
     client.addEventListener('participantJoined', () => {
-      setInterval(function () {
-        displayName && client.executeCommand('displayName', displayName);
-      }, 1000);
+      displayName && client.executeCommand('displayName', displayName);
     });
 
     client.addEventListener('participantJoined', () => {
@@ -59,16 +55,8 @@ const useJitsi = props => {
     onMeetingEnd && client.addEventListener('participantLeft', onMeetingEnd);
 
     return () => jitsi && jitsi.dispose();
-  }, [
-    displayName,
-    domain,
-    jitsi,
-    onMeetingEnd,
-    options,
-    parentNode,
-    password,
-    subject,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [window.JitsiMeetExternalAPI]);
 
   return { jitsi, error, loading };
 };
