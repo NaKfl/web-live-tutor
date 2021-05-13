@@ -38,7 +38,6 @@ export const useHooks = props => {
 
   useEffect(() => {
     // if (selectorBookTimeSchedule.status === ACTION_STATUS.SUCCESS) {
-    console.log('selectorBookTimeSchedule', selectorBookTimeSchedule);
     // notifySuccess('Booked Success');
     // getDetailSchedule(scheduleId);
     // }

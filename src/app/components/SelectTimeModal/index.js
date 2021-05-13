@@ -10,7 +10,6 @@ const SelectTimeModal = memo(props => {
   const { handleBookTime, onChangeCheckBox } = handlers;
   const { freeTimesTutor } = selectors;
   const { visible, onCancel, ...rest } = props;
-  console.log({ freeTimesTutor });
 
   return (
     <StyledModal

@@ -42,18 +42,16 @@ const useHooks = props => {
 
   const handleSomeOneLeave = useCallback(
     field => {
-      const endCallField = {
-        studentId: field.participantId,
-        tutorId: field.roomName,
-        startTime: field.startTime,
+      const { userCall, userBeCalled, startTime } = field;
+      socket.emit('call:endCall', {
+        userCall,
+        userBeCalled,
+        startTime,
         endTime: moment(new Date()).format('YYYY-MM-DD hh:mm:ss'),
-      };
-      const { userCall, userBeCalled } = field;
-      socket.emit('call:endCall', { userCall, userBeCalled });
-      endCall(endCallField);
+      });
       history.push('/');
     },
-    [endCall, history],
+    [history],
   );
 
   return {

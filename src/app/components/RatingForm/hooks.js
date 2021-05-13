@@ -9,8 +9,8 @@ export const useHooks = props => {
   const [contentReview, setContentReview] = useState('');
   const [rating, setRating] = useState(0);
   const { tutor } = props;
+  const { sessionId } = tutor;
   const [tutorInfo, setTutorInfo] = useState({});
-
   const { reviewTutor } = useActions(
     {
       reviewTutor: actions.reviewTutor,
@@ -37,7 +37,9 @@ export const useHooks = props => {
   };
   const handleSubmitReview = ({ tutor }) => {
     if (contentReview && rating) {
+      console.log('2222222222', sessionId);
       reviewTutor({
+        sessionId,
         tutorId: tutor.userId,
         rating,
         content: contentReview,
