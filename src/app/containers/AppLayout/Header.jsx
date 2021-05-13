@@ -66,6 +66,9 @@ export const Header = () => {
                   <Menu.Item>
                     <Link to="/profile">{t('Header.linkProfile')}</Link>
                   </Menu.Item>
+                  <Menu.Item>
+                    <Link to="/history">{t('Header.linkHistory')}</Link>
+                  </Menu.Item>
 
                   {(!user?.roles?.includes(ROLES.TUTOR) && (
                     <Menu.Item>

@@ -11,7 +11,8 @@
     "callNow": "Gọi ngay",
     "back": "Trở lại",
     "selectDay": "Chọn một ngày",
-    "selectTimeALot": "Chọn thời điểm"
+    "selectTimeALot": "Chọn thời điểm",
+    "cancel": "Hủy"
   },
   "Category": {
     "tutor": "Gia sư",
@@ -23,6 +24,7 @@
   "Header": {
     "linkHome": "Trang chủ",
     "linkProfile": "Hồ sơ",
+    "linkHistory": "Lịch sử",
     "linkLogout": "Đăng xuất",
     "linkRegisterTutor": "Đăng ký làm gia sư",
     "switchRoleToTutor": "Chuyển sang vai trò gia sư",
@@ -245,5 +247,12 @@
     "term": "Điều khoản",
     "contact": "Liên hệ",
     "copyright": "Bản quyền © 2021 Live Tutor. Đã đăng ký Bản quyền."
+  },
+  "ScheduleTutor": {
+    "toDay": "Hôm nay",
+    "schedule": "Lịch",
+    "registeredSchedule": "Lịch đã đăng ký",
+    "registerNewSchedule": "Đăng ký lịch mới",
+    "repeatUtil": "Lặp lại đến ngày"
   }
 }

@@ -135,5 +135,8 @@ export const StyledFooter = styled(Footer)`
         margin-right: 15px;
       }
     }
+    .group-icons {
+      font-size: 16px;
+    }
   }
 `;

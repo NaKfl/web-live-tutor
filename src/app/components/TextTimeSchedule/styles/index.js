@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { COLOR } from 'styles/colorPalette';
 
 export const StyledText = styled.span`
   padding-left: 10px;
@@ -17,11 +16,12 @@ export const StyledTextTimeSchedule = styled.div`
       background: ${color};
     `}
   margin-bottom: 5px;
-  width: 80%;
+  width: 93%;
   padding-top: 0px;
   height: 24px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: 500;
 `;
