@@ -15,6 +15,11 @@ export const initialState = {
     error: null,
     status: '',
   },
+  rating: {
+    data: null,
+    error: null,
+    status: '',
+  },
 };
 const homeSlice = createSlice({
   name: 'home',
@@ -37,6 +42,26 @@ const homeSlice = createSlice({
       return flow(
         set('topTutor.error', action.payload),
         set('topTutor.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    reviewTutor(state) {
+      return flow(
+        set('rating.error', null),
+        set('rating.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+    reviewTutorSuccess(state, action) {
+      return flow(
+        set('rating.error', null),
+        set('rating.status', ACTION_STATUS.SUCCESS),
+        set('rating.data', action.payload),
+      )(state);
+    },
+    reviewTutorFailure(state, action) {
+      return flow(
+        set('rating.error', action.payload),
+        set('rating.status', ACTION_STATUS.FAILED),
       )(state);
     },
 

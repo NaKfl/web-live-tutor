@@ -37,3 +37,23 @@ export const getTopTutor = () => {
     })
     .catch(handleGeneralError);
 };
+
+export const reviewTutor = ({ tutorId, rating, content }) => {
+  return request(WEB_API, {
+    url: 'user/feedbackTutor',
+    method: 'POST',
+    data: { tutorId, rating, content },
+  })
+    .then(response => response.data)
+    .then(({ data }) => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
+export const getTutorById = ({ tutorId }) => {
+  return request(WEB_API, {
+    url: `/tutor/${tutorId}`,
+    method: 'GET',
+  })
+    .then(response => response.data)
+    .catch(handleGeneralError);
+};

@@ -1,4 +1,4 @@
-import { getList, getTopTutor } from 'fetchers/tutor.service';
+import { getList, getTopTutor, reviewTutor } from 'fetchers/tutor.service';
 import {
   manageFavoriteTutor,
   getFavoriteTutorList,
@@ -18,6 +18,21 @@ function* getTopTutorTask(action) {
     yield put(actions.getTopTutorSuccess(response));
   } else {
     yield put(actions.getTopTutorFailure(error.data));
+  }
+}
+
+function reviewTutorAPI(payload) {
+  return reviewTutor(payload);
+}
+function* reviewTutorWatcher() {
+  yield takeLatest(actions.reviewTutor, reviewTutorTask);
+}
+function* reviewTutorTask(action) {
+  const { response, error } = yield call(reviewTutorAPI, action.payload);
+  if (response) {
+    yield put(actions.reviewTutorSuccess(response));
+  } else {
+    yield put(actions.reviewTutorFailure(error.data));
   }
 }
 
@@ -89,5 +104,6 @@ export default function* defaultSaga() {
     fork(manageFavoriteTutorWatcher),
     fork(fetchListFavoriteWatcher),
     fork(getTopTutorWatcher),
+    fork(reviewTutorWatcher),
   ]);
 }
