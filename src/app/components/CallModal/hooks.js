@@ -11,7 +11,9 @@ export const useHooks = props => {
     socket.emit('call:acceptCall', { userId: userCall.id, startTime });
     props.onCancel();
   };
-  const handleRejectCall = ({ userId }) => {};
+  const handleRejectCall = ({ userCall }) => {
+    socket.emit('call:cancelCall', { userId: userCall.id });
+  };
   return {
     handlers: { handleAcceptCall, handleRejectCall },
     selectors: {},

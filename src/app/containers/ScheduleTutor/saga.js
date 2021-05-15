@@ -4,8 +4,6 @@ import {
   registerSchedule,
   unRegisterSchedule,
   getScheduleByTutorId,
-  bookTimeSchedule,
-  getDetailSchedule,
 } from 'fetchers/scheduleFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
@@ -81,23 +79,6 @@ function registerScheduleAPI(payload) {
   return registerSchedule(payload);
 }
 
-function* bookTimeScheduleWatcher() {
-  yield takeLatest(actions.bookTimeSchedule, bookTimeScheduleTask);
-}
-
-function* bookTimeScheduleTask(action) {
-  const { response, error } = yield call(bookTimeScheduleAPI, action.payload);
-  if (response) {
-    yield put(actions.bookTimeScheduleSuccess(response));
-  } else {
-    yield put(actions.bookTimeScheduleFailed(error));
-  }
-}
-
-function bookTimeScheduleAPI(payload) {
-  return bookTimeSchedule(payload);
-}
-
 function* unRegisterScheduleWatcher() {
   yield takeLatest(actions.unRegisterSchedule, unRegisterScheduleTask);
 }
@@ -115,23 +96,6 @@ function unRegisterScheduleAPI(payload) {
   return unRegisterSchedule(payload);
 }
 
-function* getDetailScheduleWatcher() {
-  yield takeLatest(actions.getDetailSchedule, getDetailScheduleTask);
-}
-
-function* getDetailScheduleTask(action) {
-  const { response, error } = yield call(getDetailScheduleAPI, action.payload);
-  if (response) {
-    yield put(actions.getDetailScheduleSuccess(response));
-  } else {
-    yield put(actions.getDetailScheduleFailed(error));
-  }
-}
-
-function getDetailScheduleAPI(payload) {
-  return getDetailSchedule(payload);
-}
-
 export default function* defaultSaga() {
   yield all([
     fork(getScheduleWatcher),
@@ -139,7 +103,5 @@ export default function* defaultSaga() {
     fork(registerScheduleWatcher),
     fork(unRegisterScheduleWatcher),
     fork(getScheduleByDateWatcher),
-    fork(bookTimeScheduleWatcher),
-    fork(getDetailScheduleWatcher),
   ]);
 }

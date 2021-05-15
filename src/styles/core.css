@@ -46,6 +46,10 @@
   flex: 1 1 auto !important;
 }
 
+.flex-flow-nowrap {
+  flex-flow: nowrap;
+}
+
 .flex-row {
   flex-direction: row !important;
 }

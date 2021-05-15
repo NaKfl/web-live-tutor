@@ -172,12 +172,9 @@ export const StyledTutorContent = styled.div`
     }
     .group-tutor-calender {
       position: relative;
+
       .btn-back {
-        position: absolute;
         font-size: 15px;
-        opacity: 0.9;
-        top: 10px;
-        left: 10px;
         > span {
           margin-right: 10px;
         }
@@ -188,7 +185,12 @@ export const StyledTutorContent = styled.div`
         border: none;
         padding: 0;
       `}
-
+      .ant-picker-calendar-header {
+        justify-content: flex-start;
+        .ant-picker-calendar-mode-switch {
+          display: none;
+        }
+      }
       width: 100%;
       border: 1px #d9d9d9 solid;
       padding: 20px;

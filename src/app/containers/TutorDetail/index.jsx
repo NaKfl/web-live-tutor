@@ -6,6 +6,7 @@ import {
   ExclamationCircleOutlined,
   MessageOutlined,
   HeartOutlined,
+  CheckOutlined,
 } from '@ant-design/icons';
 import {
   Avatar,
@@ -16,11 +17,11 @@ import {
   Typography,
   Affix,
   Rate,
+  Collapse,
 } from 'antd';
 import Form from 'app/components/Form';
 import Image from 'app/components/Image';
 import TextHighlight from 'app/components/TextHighlight';
-import TimeSelect from 'app/components/TimeSelect';
 import moment from 'moment';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -37,7 +38,9 @@ import {
   StyledTutorName,
 } from './styles';
 import Button from 'app/components/Button';
+import GroupSelectTime from 'app/components/GroupSelectTime';
 const { Title } = Typography;
+const { Panel } = Collapse;
 
 export const TutorDetail = ({ ...rest }) => {
   useInjectSaga({ key: sliceKey, saga });
@@ -49,6 +52,8 @@ export const TutorDetail = ({ ...rest }) => {
     onSelectDate,
     handleBackSelectDate,
     handleSelectDatePicker,
+    handleDisableBtnBook,
+    handleBookSchedule,
   } = handlers;
 
   const {
@@ -57,6 +62,7 @@ export const TutorDetail = ({ ...rest }) => {
     scheduleDatesTutor,
     dateSelected,
     freeTimesTutor,
+    isShowedBtnBook,
   } = selectors;
 
   const userInfo = tutorDetail.User ?? {};
@@ -113,12 +119,8 @@ export const TutorDetail = ({ ...rest }) => {
       <Row justify="center">
         <Col span={14}>
           <StyledProfile>
-            <Form
-              className="profile-form"
-              requiredMark={false}
-              layout="vertical"
-            >
-              <Affix offsetTop={70}>
+            <Row className="profile-form">
+              <Affix offsetTop={70} className="w-100">
                 <StyledTutorTitle {...rest}>
                   <Col>
                     <Row className="tutor-info">
@@ -260,11 +262,6 @@ export const TutorDetail = ({ ...rest }) => {
                     {t('Profile.schedule')}
                   </Title>
                   <Row>
-                    {isSelectDate && (
-                      <Title className="schedule-content" level={5}>
-                        {t('Common.selectTimeALot')}
-                      </Title>
-                    )}
                     {!isSelectDate && (
                       <Title className="schedule-content" level={5}>
                         {t('Common.selectDay')}
@@ -280,26 +277,55 @@ export const TutorDetail = ({ ...rest }) => {
                         >
                           <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
                         </Row>
-                        <Row className="flex-column w-100 p-4 mt-4">
-                          <DatePicker
-                            mode="date"
-                            className="w-50 mb-4"
-                            disabledDate={disabledDate}
-                            dateRender={datePickerRender}
-                            value={moment(dateSelected, 'YYYY-MM-DD')}
-                            format={'YYYY-MM-DD'}
-                          />
-
-                          {(freeTimesTutor || []).map(time => (
-                            <TimeSelect
-                              time={`From  ${time.startTime}  to  ${time.endTime}`}
-                              scheduleId={time.id}
-                              key={time.id}
-                            ></TimeSelect>
-                          ))}
+                        <Row className="flex-column flex-flow-nowrap w-100 p-4 pb-0">
+                          <Row className="mb-4">
+                            <DatePicker
+                              mode="date"
+                              disabledDate={disabledDate}
+                              dateRender={datePickerRender}
+                              value={moment(dateSelected, 'YYYY-MM-DD')}
+                              format={'YYYY-MM-DD'}
+                            />
+                          </Row>
+                          <Form
+                            id="form-group-time"
+                            onFinish={handleBookSchedule}
+                            onValuesChange={(changedValues, allValues) => {
+                              handleDisableBtnBook(allValues);
+                            }}
+                          >
+                            <Collapse>
+                              {(freeTimesTutor || []).map((time, index) => (
+                                <Panel
+                                  header={`${t('Common.From')} ${
+                                    time.startTime
+                                  } ${t('Common.to')} ${time.endTime}`}
+                                  key={index + 1}
+                                >
+                                  <Form.Item name={time.id}>
+                                    <GroupSelectTime
+                                      scheduleDetails={time.scheduleDetails}
+                                    />
+                                  </Form.Item>
+                                </Panel>
+                              ))}
+                            </Collapse>
+                          </Form>
+                          <Row className="mt-4 justify-content-end">
+                            <Button
+                              icon={<CheckOutlined />}
+                              type="accent"
+                              htmlType="submit"
+                              form="form-group-time"
+                              disabled={!isShowedBtnBook}
+                            >
+                              {t('Common.book')}
+                            </Button>
+                          </Row>
                         </Row>
                       </Row>
                     )}
+
                     {!isSelectDate && (
                       <Row className="tutor-calender">
                         <Calendar
@@ -311,7 +337,7 @@ export const TutorDetail = ({ ...rest }) => {
                   </Row>
                 </Row>
               </StyledTutorContent>
-            </Form>
+            </Row>
           </StyledProfile>
         </Col>
       </Row>
