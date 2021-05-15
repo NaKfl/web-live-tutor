@@ -4,10 +4,10 @@ import { StyledText, StyledTextTimeSchedule } from './styles';
 const colorBackgroundText = type => {
   let color;
   switch (type) {
-    case 'Red':
+    case 'Gray':
       color = {
-        text: '#B73E89',
-        background: '#FFE2F9',
+        text: '#909090',
+        background: '#ededed',
       };
       break;
     case 'Green':

@@ -12,7 +12,10 @@
     "back": "Trở lại",
     "selectDay": "Chọn một ngày",
     "selectTimeALot": "Chọn thời điểm",
-    "cancel": "Hủy"
+    "cancel": "Hủy",
+    "From": "Từ",
+    "to": "đến",
+    "book": "Đặt ngay"
   },
   "Category": {
     "tutor": "Gia sư",

@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import socket from 'utils/socket';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { useCallback, useEffect } from 'react';
+import { notifyError } from 'utils/notify';
 
 export const useHooks = () => {
   const history = useHistory();
@@ -15,23 +16,29 @@ export const useHooks = () => {
   ]);
 
   useEffect(() => {
-    socket.on('call:acceptedCall', ({ userCall, userBeCalled, startTime }) => {
-      const user = getUserFromStorage();
-      const token = jwt.sign(
-        {
-          participantId: userBeCalled.id,
-          roomName: userCall.id,
-          password: userCall.id,
+    socket.on(
+      'call:acceptedCall',
+      ({ userCall, userBeCalled, startTime, roomName }) => {
+        const user = getUserFromStorage();
+        const userInfo = {
           displayName: user.name,
-          userCall,
-          userBeCalled,
-          isTutor: true,
-          startTime,
-        },
-        JWT_SECRET,
-      );
-      history.push(`/call/?token=${token}`);
-    });
+          email: user.email,
+        };
+        const token = jwt.sign(
+          {
+            participantId: userBeCalled.id,
+            roomName,
+            userInfo,
+            userCall,
+            userBeCalled,
+            isTutor: true,
+            startTime,
+          },
+          JWT_SECRET,
+        );
+        history.push(`/call/?token=${token}`);
+      },
+    );
   }, [history]);
 
   useEffect(() => {
@@ -42,6 +49,13 @@ export const useHooks = () => {
         userId: tutorInfo.userId,
         sessionId: session.id,
       });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    socket.on('call:cancelCalled', ({ userCall, userBeCalled }) => {
+      notifyError(`${userBeCalled.name} rejected`);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

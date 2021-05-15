@@ -12,7 +12,10 @@
     "back": "Back",
     "selectDay": "Select a day",
     "selectTimeALot": "Select time a lot",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "From": "From",
+    "to": "to",
+    "book": "Book now"
   },
   "Category": {
     "tutor": "Tutor",

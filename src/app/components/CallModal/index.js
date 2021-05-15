@@ -8,7 +8,7 @@ const { Title } = Typography;
 
 const CallModal = memo(props => {
   const { handlers } = useHooks(props);
-  const { handleAcceptCall } = handlers;
+  const { handleAcceptCall, handleRejectCall } = handlers;
   const { visible, onCancel, userCall, userBeCalled, ...rest } = props;
 
   return (
@@ -35,7 +35,7 @@ const CallModal = memo(props => {
           </StyledAvatar>
           <Row className="flex-column p-2">
             <Title className="" level={4}>
-              {`${userCall.name} đang gọi cho bạn.`}
+              {`${userCall?.name} đang gọi cho bạn.`}
             </Title>
             <Title className="text-description" level={5}>
               Cuộc gọi sẽ bắt đầu ngay khi bạn trả lời.
@@ -43,7 +43,14 @@ const CallModal = memo(props => {
           </Row>
         </Row>
         <Row className="justify-content-end mt-3">
-          <Button className="me-2" key="cancel" onClick={onCancel}>
+          <Button
+            className="me-2"
+            key="cancel"
+            onClick={() => {
+              handleRejectCall({ userCall });
+              onCancel();
+            }}
+          >
             Từ chối
           </Button>
           <Button

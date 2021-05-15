@@ -22,7 +22,7 @@ const useHooks = props => {
   useEffect(() => {
     const {
       roomName,
-      displayName,
+      userInfo,
       isTutor,
       participantId,
       userCall,
@@ -34,7 +34,7 @@ const useHooks = props => {
       roomName,
       userCall,
       userBeCalled,
-      displayName,
+      userInfo,
       isTutor,
       startTime,
     });

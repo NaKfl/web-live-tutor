@@ -8,11 +8,6 @@ export const selectScheduleTutor = createSelector(
   scheduleState => get('scheduleTutor', scheduleState),
 );
 
-export const selectDetailScheduleTutor = createSelector(
-  selectScheduleState,
-  scheduleState => get('getDetailSchedule', scheduleState),
-);
-
 export const selectbookTimeSchedule = createSelector(
   selectScheduleState,
   scheduleState => get('bookTimeSchedule', scheduleState),
