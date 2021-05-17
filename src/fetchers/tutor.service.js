@@ -27,8 +27,7 @@ export const getList = ({ page = 1, perPage = 20, search = 'Berry' }) => {
 
 export const getTopTutor = () => {
   return request(WEB_API, {
-    // url: 'tutor/rank/20',
-    url: 'tutor',
+    url: 'tutor/rank/20',
     method: 'GET',
   })
     .then(res => res.data)

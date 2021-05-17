@@ -15,7 +15,7 @@ function* getTopTutorWatcher() {
 function* getTopTutorTask(action) {
   const { response, error } = yield call(getTopTutorAPI, action.payload);
   if (response) {
-    yield put(actions.getTopTutorSuccess(response));
+    yield put(actions.getTopTutorSuccess(response.data));
   } else {
     yield put(actions.getTopTutorFailure(error.data));
   }
