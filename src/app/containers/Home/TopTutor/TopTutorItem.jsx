@@ -25,19 +25,27 @@ export const TopTutorItem = ({ no, info }) => {
             (no === 3 && (
               <img className="medal" src={bronzeMedal} alt="bronzeMedal" />
             )) || <span>{no}</span>}
-          <Avatar size={50} src={info?.avatar} />
+          <Avatar size={50} src={info?.User?.avatar} />
         </StyledAvatar>
         <div className="partner-info">
-          <span className="partner-name">{info?.name ?? 'Anonymous'}</span>
+          <span className="partner-name">
+            {info?.User?.name ?? 'Anonymous'}
+          </span>
           <p className="last-content">
-            <Rate disabled defaultValue={5} className="rate" />
+            <Rate
+              disabled
+              defaultValue={info?.User?.avgRating}
+              className="rate"
+            />
           </p>
         </div>
       </div>
       <div className="btn-group">
         <MessageFilled
           className="message-btn"
-          onClick={() => handleSetNewConversation(info)}
+          onClick={() =>
+            handleSetNewConversation({ userId: info.userId, ...info?.User })
+          }
         />
       </div>
     </StyledTopTutorItem>

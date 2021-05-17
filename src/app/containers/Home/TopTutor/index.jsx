@@ -11,8 +11,8 @@ export const TopTutor = ({ data }) => {
         <p>{t('Tutors.topTutors')}</p>
       </div>
       <div className="top-list">
-        {data?.tutors?.rows?.length &&
-          data.tutors.rows.map((item, index) => (
+        {data?.length &&
+          data.map((item, index) => (
             <TopTutorItem key={item?.id} no={index + 1} info={item} />
           ))}
       </div>
