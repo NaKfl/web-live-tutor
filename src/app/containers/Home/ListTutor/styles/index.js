@@ -159,10 +159,9 @@ export const StyledBadge = styled(Badge)`
 `;
 
 export const StyledSpecialties = styled(Row)`
-  & > * {
+  & > div {
     margin-left: 0;
     margin-right: 8px;
-    background-color: rgba(119, 119, 119, 0.8);
   }
   max-height: 32px;
   overflow: hidden;

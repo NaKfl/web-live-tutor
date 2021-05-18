@@ -10,7 +10,7 @@ export const StyledText = styled.span`
 export const StyledTextHighlight = styled.div`
   margin: 4px;
   padding-top: 0px;
-  background-color: ${COLOR.CORNFLOWER};
+  background-color: ${({ color }) => (color ? color : COLOR.CORNFLOWER)};
   height: 24px;
   border-radius: 16px;
   display: flex;

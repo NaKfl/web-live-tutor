@@ -249,7 +249,9 @@
     "searchPlaceholder": "Tìm kiếm gia sư",
     "availableTutors": "Gia sư đang trực tuyến",
     "message": "Nhắn tin",
-    "call": "Gọi"
+    "call": "Gọi",
+    "noFeedback": "Chưa có đánh giá",
+    "emptyList": "Chưa có gia sư nào trực tuyến"
   },
   "Footer": {
     "policy": "Chính sách",

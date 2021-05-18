@@ -50,10 +50,24 @@ export const TutorCard = memo(props => {
                 />
               )}
             </Title>
-            <Rate disabled defaultValue={5} className="info-rate" />
+            {(props?.rating && (
+              <Rate
+                disabled
+                defaultValue={props.rating}
+                className="info-rate"
+              />
+            )) || (
+              <span style={{ fontStyle: 'italic', color: 'rgb(0 0 0 / 0.6)' }}>
+                {t('Tutors.noFeedback')}
+              </span>
+            )}
             <StyledSpecialties>
               {props?.specialties?.map(content => (
-                <TextHighlight content={content} key={content} />
+                <TextHighlight
+                  content={content}
+                  key={content}
+                  color="rgba(119, 119, 119, 0.8)"
+                />
               ))}
             </StyledSpecialties>
           </div>
