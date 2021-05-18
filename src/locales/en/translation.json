@@ -45,11 +45,11 @@
     "btnLoginFacebook": "Facebook",
     "btnLoginGoogle": "Google",
     "linkRegister": "Sign up",
-    "notifySuccess": "Login successful",
-    "notifyFailed": "Login failed",
+    "notifySuccess": "Sign in successful",
+    "notifyFailed": "Sign in failed",
     "suggestRegister": "Not a member yet?",
     "divider": "Or continue with",
-    "btnCap": "Log in",
+    "btnCap": "Sign in",
     "labelEmail": "Email address",
     "labelPassword": "Password",
     "exampleEmail": "mail@example.com"
@@ -70,10 +70,10 @@
     "messageEmptyConfirmPassword": "Please confirm your Password!",
     "messageInvalidConfirmPassword": "Passwords do not match!",
     "messageMinPassword": "Must be minimum 6 characters!",
-    "notifySuccess": "Register successful",
-    "notifyFailed": "Register failed",
+    "notifySuccess": "Sign up successful",
+    "notifyFailed": "Sign up failed",
     "btnRegister": "Sign up",
-    "linkLogin": "Log in",
+    "linkLogin": "Sign in",
     "btnCap": "Sign up",
     "btnRegisterFacebook": "Facebook",
     "btnRegisterGoogle": "Google",
@@ -253,7 +253,8 @@
     "message": "Message",
     "call": "Call",
     "noFeedback": "No reviews yet",
-    "emptyList": "No tutor is online"
+    "emptyList": "No tutor is online",
+    "exploreTutor": "Explore more tutors"
   },
   "Footer": {
     "policy": "Privacy Policy",

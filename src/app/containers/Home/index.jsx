@@ -23,7 +23,13 @@ export const Home = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors, handlers } = useHooks();
-  const { listTutor, listFavorite, pagination, topTutor } = selectors;
+  const {
+    listTutor,
+    onlineTutors,
+    listFavorite,
+    pagination,
+    topTutor,
+  } = selectors;
   const { onClickHeart, onSearch } = handlers;
   return (
     <StyledHome>
@@ -52,13 +58,21 @@ export const Home = memo(() => {
         {t('Tutors.availableTutors')}
       </StyledTitle>
       <ListTutor
+        listTutor={onlineTutors}
+        onClickHeart={onClickHeart}
+        listFavorite={listFavorite}
+      ></ListTutor>
+      <StyledTitle className="available-tutor-title">
+        {t('Tutors.exploreTutor')}
+      </StyledTitle>
+      <ListTutor
         listTutor={listTutor}
         onClickHeart={onClickHeart}
         listFavorite={listFavorite}
       ></ListTutor>
-      {/* <StyledPagination>
+      <StyledPagination>
         <Pagination {...pagination}></Pagination>
-      </StyledPagination> */}
+      </StyledPagination>
     </StyledHome>
   );
 });

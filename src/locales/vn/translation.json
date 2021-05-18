@@ -251,7 +251,8 @@
     "message": "Nhắn tin",
     "call": "Gọi",
     "noFeedback": "Chưa có đánh giá",
-    "emptyList": "Chưa có gia sư nào trực tuyến"
+    "emptyList": "Chưa có gia sư nào trực tuyến",
+    "exploreTutor": "Khám phá thêm gia sư"
   },
   "Footer": {
     "policy": "Chính sách",
