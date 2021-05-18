@@ -23,6 +23,33 @@ export const StyledPagination = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  .ant-pagination {
+    li {
+      transition: none;
+      &:hover {
+        border-color: ${COLOR.CORNFLOWER};
+        a {
+          color: ${COLOR.CORNFLOWER};
+        }
+      }
+      button {
+        transition: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          border-color: ${COLOR.CORNFLOWER};
+          color: ${COLOR.CORNFLOWER};
+        }
+      }
+    }
+    .ant-pagination-item-active {
+      border-color: ${COLOR.CORNFLOWER};
+      a {
+        color: ${COLOR.CORNFLOWER};
+      }
+    }
+  }
 `;
 
 export const StyledCoverSearch = styled.div`

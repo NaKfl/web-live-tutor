@@ -3,6 +3,7 @@ import useActions from 'hooks/useActions';
 import { actions } from './slice';
 import { useSelector } from 'react-redux';
 import {
+  makeSelectListTutor,
   makeSelectListFavorite,
   makeSelectCount,
   selectTopTutorData,
@@ -16,13 +17,14 @@ const useQuery = () => {
 };
 export const useHooks = () => {
   const user = getUser();
+  const listTutor = useSelector(makeSelectListTutor);
   const listFavorite = useSelector(makeSelectListFavorite);
   const countTotal = useSelector(makeSelectCount);
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page');
   const topTutor = useSelector(selectTopTutorData);
-  const [listTutor, setListTutor] = useState([]);
+  const [onlineTutors, setOnlineTutors] = useState([]);
 
   const { fetchRequest, manageFavoriteTutor, getTopTutor } = useActions(
     {
@@ -32,6 +34,14 @@ export const useHooks = () => {
     },
     [actions],
   );
+
+  useEffect(() => {
+    if (page) {
+      fetchRequest({ page });
+    } else {
+      fetchRequest();
+    }
+  }, [fetchRequest, page]);
 
   useEffect(() => {
     getTopTutor();
@@ -46,7 +56,7 @@ export const useHooks = () => {
       const excludeMeListTutor = listTutor.filter(
         item => item?.userId !== user?.id,
       );
-      setListTutor(excludeMeListTutor);
+      setOnlineTutors(excludeMeListTutor);
     });
   }, [user?.id]);
 
@@ -72,12 +82,13 @@ export const useHooks = () => {
   );
   return {
     selectors: {
+      onlineTutors,
       listTutor,
       listFavorite,
       topTutor,
       pagination: {
         total: countTotal,
-        pageSize: 20,
+        pageSize: 9,
         current: parseInt(page) || 1,
         onChange: onChangePage,
       },

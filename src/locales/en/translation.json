@@ -253,7 +253,8 @@
     "message": "Message",
     "call": "Call",
     "noFeedback": "No reviews yet",
-    "emptyList": "No tutor is online"
+    "emptyList": "No tutor is online",
+    "exploreTutor": "Explore more tutors"
   },
   "Footer": {
     "policy": "Privacy Policy",
