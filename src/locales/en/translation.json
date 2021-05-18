@@ -251,7 +251,9 @@
     "searchPlaceholder": "Search for tutors",
     "availableTutors": "Available Tutors",
     "message": "Message",
-    "call": "Call"
+    "call": "Call",
+    "noFeedback": "No reviews yet",
+    "emptyList": "No tutor is online"
   },
   "Footer": {
     "policy": "Privacy Policy",

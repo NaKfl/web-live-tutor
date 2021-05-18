@@ -1,27 +1,28 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import useActions from 'hooks/useActions';
 import { actions } from './slice';
 import { useSelector } from 'react-redux';
 import {
-  makeSelectListTutor,
   makeSelectListFavorite,
   makeSelectCount,
   selectTopTutorData,
 } from './selectors';
 import { useHistory, useLocation } from 'react-router-dom';
-// import { useQuery } from 'utils/common';
+import socket from 'utils/socket';
+import { getUser } from 'utils/localStorageUtils';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
 };
 export const useHooks = () => {
-  const listTutor = useSelector(makeSelectListTutor);
+  const user = getUser();
   const listFavorite = useSelector(makeSelectListFavorite);
   const countTotal = useSelector(makeSelectCount);
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page');
   const topTutor = useSelector(selectTopTutorData);
+  const [listTutor, setListTutor] = useState([]);
 
   const { fetchRequest, manageFavoriteTutor, getTopTutor } = useActions(
     {
@@ -37,12 +38,17 @@ export const useHooks = () => {
   }, [getTopTutor]);
 
   useEffect(() => {
-    if (page) {
-      fetchRequest({ page });
-    } else {
-      fetchRequest();
-    }
-  }, [fetchRequest, page]);
+    socket.emit('onlineTutors:getList');
+  }, []);
+
+  useEffect(() => {
+    socket.on('onlineTutors:returnList', ({ listTutor }) => {
+      const excludeMeListTutor = listTutor.filter(
+        item => item?.userId !== user?.id,
+      );
+      setListTutor(excludeMeListTutor);
+    });
+  }, [user?.id]);
 
   const onClickHeart = useCallback(
     data => {

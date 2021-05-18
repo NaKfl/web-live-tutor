@@ -1,12 +1,10 @@
 import React from 'react';
 import { StyledText, StyledTextHighlight } from './styles';
 
-const TextHighlight = ({ content, ...rest }) => {
+const TextHighlight = ({ content, color, ...rest }) => {
   return (
-    <StyledTextHighlight>
-      <StyledText level={5} {...rest}>
-        {content}
-      </StyledText>
+    <StyledTextHighlight color={color} {...rest}>
+      <StyledText level={5}>{content}</StyledText>
     </StyledTextHighlight>
   );
 };
