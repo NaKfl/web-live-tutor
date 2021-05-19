@@ -69,8 +69,16 @@ export const TutorDetail = ({ ...rest }) => {
 
   const { avatar, country, name } = userInfo;
 
-  const { bio, languages, specialties, interests, video, resume } = tutorDetail;
-
+  const {
+    bio,
+    languages,
+    specialties,
+    interests,
+    video,
+    resume,
+    avgRating,
+  } = tutorDetail;
+  const rating = Math.floor(avgRating * 2) / 2.0;
   const style = {
     color: 'green',
     fontWeight: 'bold',
@@ -100,9 +108,11 @@ export const TutorDetail = ({ ...rest }) => {
     const dayOfDate = value.date();
     const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
     return (
-      <div className="ant-picker-cell-inner ant-picker-calendar-date background-free-time">
+      <div
+        onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
+        className="ant-picker-cell-inner ant-picker-calendar-date background-free-time"
+      >
         <div
-          onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
           className={`ant-picker-calendar-date-value ${
             haveFreeTimes ? 'date-free-time' : 'date-disabled'
           }`}
@@ -135,7 +145,7 @@ export const TutorDetail = ({ ...rest }) => {
                       <Row align="middle">
                         <Col className="group-info">
                           <StyledTutorName>{name}</StyledTutorName>
-                          <Rate disabled defaultValue={5} className="rate" />
+                          <Rate disabled value={rating} className="rate" />
                           <Row className="country">
                             <Image
                               preview={false}
@@ -277,7 +287,7 @@ export const TutorDetail = ({ ...rest }) => {
                         >
                           <ArrowLeftOutlined /> <span>{t('Common.back')}</span>
                         </Row>
-                        <Row className="flex-column flex-flow-nowrap w-100 p-4 pb-0">
+                        <Row className="p-4 pb-0 flex-column flex-flow-nowrap w-100">
                           <Row className="mb-4">
                             <DatePicker
                               mode="date"
