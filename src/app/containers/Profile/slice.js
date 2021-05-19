@@ -75,16 +75,23 @@ const profileSlice = createSlice({
       return flow(set('upload.visibleModal', true))(state);
     },
     uploadAvatar(state) {
-      return flow(set('upload.loading', true))(state);
+      return flow(
+        set('upload.status', ACTION_STATUS.PENDING),
+        set('upload.loading', true),
+      )(state);
     },
     uploadAvatarSuccess(state) {
       return flow(
+        set('upload.status', ACTION_STATUS.SUCCESS),
         set('upload.loading', false),
         set('upload.visibleModal', false),
       )(state);
     },
     uploadAvatarFailed(state, action) {
-      return flow(set('upload.error', action.payload))(state);
+      return flow(
+        set('upload.status', ACTION_STATUS.FAILED),
+        set('upload.error', action.payload),
+      )(state);
     },
   },
 });

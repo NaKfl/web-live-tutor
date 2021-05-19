@@ -1,19 +1,18 @@
-import { useEffect, useCallback } from 'react';
+import Button from 'app/components/Button';
+import { POPUP_TYPE } from 'app/containers/Popup/constants';
+import { actions as popupActions } from 'app/containers/Popup/slice';
 import useActions from 'hooks/useActions';
+import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
+import { mapHistoryDataSource } from 'utils/common';
+import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import {
   makeListHistory,
   makeSelectLoading,
-  makeSelectIsTutor,
   makeTutorCount,
 } from './selectors';
-import { POPUP_TYPE } from 'app/containers/Popup/constants';
-import { actions as popupActions } from 'app/containers/Popup/slice';
 import { actions } from './slice';
-import Button from 'app/components/Button';
-import { mapHistoryDataSource } from 'utils/common';
-import { useHistory, useLocation } from 'react-router-dom';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

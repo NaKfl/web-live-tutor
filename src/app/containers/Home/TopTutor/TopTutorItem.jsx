@@ -31,13 +31,13 @@ export const TopTutorItem = ({ no, info }) => {
           <span className="partner-name">
             {info?.User?.name ?? 'Anonymous'}
           </span>
-          <p className="last-content">
+          <div className="last-content">
             <Rate
               disabled
               defaultValue={info?.User?.avgRating}
               className="rate"
             />
-          </p>
+          </div>
         </div>
       </div>
       <div className="btn-group">

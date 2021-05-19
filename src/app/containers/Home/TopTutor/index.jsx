@@ -5,7 +5,6 @@ import TopTutorItem from './TopTutorItem';
 import { Empty } from 'antd';
 
 export const TopTutor = ({ data }) => {
-  console.log('data', data);
   const { t } = useTranslation();
   return (
     <StyledTopTutor>

@@ -1,8 +1,22 @@
 import { call, put, all, fork, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 import { login, google, facebook } from 'fetchers/authFetcher';
+import { getProfile } from 'fetchers/profileFetcher';
 import { storeAuthInfo, removeAuthInfo } from 'utils/localStorageUtils';
 import { ROLES } from 'utils/constants';
+
+function* getMeWatcher() {
+  yield takeLatest(actions.getMe, getMeTask);
+}
+
+function* getMeTask() {
+  const { response, error } = yield call(getProfile);
+  if (response) {
+    yield put(actions.getMeSuccess(response));
+  } else {
+    yield put(actions.getMeFailed(error.data));
+  }
+}
 
 function* loginWatcher() {
   yield takeLatest(actions.login, loginTask);
@@ -73,5 +87,6 @@ export default function* defaultSaga() {
     fork(loginWatcher),
     fork(logoutWatcher),
     fork(loginServiceWatcher),
+    fork(getMeWatcher),
   ]);
 }

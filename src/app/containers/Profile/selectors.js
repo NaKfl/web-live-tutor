@@ -25,3 +25,8 @@ export const selectLoadingUpload = createSelector(
   selectProfileState,
   loadingUpload => get('upload.loading', loadingUpload),
 );
+
+export const selectUploadStatus = createSelector(
+  selectProfileState,
+  loadingUpload => get('upload.status', loadingUpload),
+);

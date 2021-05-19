@@ -1,9 +1,5 @@
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
-import { JWT_SECRET } from 'configs';
-import jwt from 'jsonwebtoken';
 import socket from 'utils/socket';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 export const useHooks = props => {
   const handleAcceptCall = ({ userCall }) => {
