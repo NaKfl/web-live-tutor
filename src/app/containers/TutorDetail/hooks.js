@@ -40,7 +40,6 @@ const useHooks = () => {
   const [freeTimesTutor, setFreeTimesTutor] = useState([]);
   const [dateSelected, setDateSelected] = useState('');
   const [isSelectDate, setIsSelectDate] = useState(false);
-  const [allTimesSelect, setAllTimesSelect] = useState([]);
   useEffect(() => {
     getTutorDetail(tutorId);
   }, [getTutorDetail, tutorId]);

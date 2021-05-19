@@ -68,16 +68,6 @@ export const privateRoutes = [
 
 export const publicRoutes = [
   {
-    path: '/login',
-    component: Login,
-    key: 'login',
-  },
-  {
-    path: '/register',
-    component: Register,
-    key: 'register',
-  },
-  {
     path: '/something-wrong',
     component: SomethingWrongPage,
     key: 'something-wrong',
@@ -86,11 +76,6 @@ export const publicRoutes = [
     path: '/not-found',
     component: NotFoundPage,
     key: 'not-found',
-  },
-  {
-    path: '/password',
-    component: ForgotPassword,
-    key: 'password',
   },
   {
     path: '/permission-denied',
@@ -104,5 +89,23 @@ export const meetingRoutes = [
     path: '/call',
     component: JitsiMeetPage,
     key: 'jitsi-meet-page',
+  },
+];
+
+export const loginRoutes = [
+  {
+    path: '/login',
+    component: Login,
+    key: 'login',
+  },
+  {
+    path: '/register',
+    component: Register,
+    key: 'register',
+  },
+  {
+    path: '/password',
+    component: ForgotPassword,
+    key: 'password',
   },
 ];

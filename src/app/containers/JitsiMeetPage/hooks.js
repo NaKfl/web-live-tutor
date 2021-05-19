@@ -1,20 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
-import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from 'configs';
-import queryString from 'query-string';
-import { useHistory } from 'react-router-dom';
-import { actions } from './slice';
-import useActions from 'hooks/useActions';
+import jwt from 'jsonwebtoken';
 import moment from 'moment';
+import queryString from 'query-string';
+import { useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
 
 const useHooks = props => {
-  const { endCall } = useActions(
-    {
-      endCall: actions.endCall,
-    },
-    [actions],
-  );
   const { token } = queryString.parse(props.location.search);
   const history = useHistory();
   const [roomInfo, setRoomInfo] = useState({});

@@ -1,8 +1,8 @@
-import { Checkbox, Row, Typography } from 'antd';
+import { CheckSquareFilled } from '@ant-design/icons';
+import { Checkbox, Row } from 'antd';
 import React, { memo } from 'react';
 import TextTimeSchedule from '../TextTimeSchedule';
 import { StyledGroupSelectTime } from './styles';
-import { CheckSquareFilled } from '@ant-design/icons';
 
 const GroupSelectTime = memo(props => {
   const { scheduleDetails, ...rest } = props;

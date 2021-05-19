@@ -58,6 +58,31 @@ const authenticationSlice = createSlice({
       )(state);
     },
 
+    getMe(state) {
+      return flow(
+        set('error', null),
+        set('status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getMeSuccess(state, action) {
+      const user = getUser();
+      const currentRole = user?.currentRole ?? 'student';
+      const newUser = { ...action.payload?.user, currentRole };
+      updateUserInfo(newUser);
+      return flow(
+        set('info', newUser),
+        set('status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getMeFailed(state, action) {
+      return flow(
+        set('error', action.payload),
+        set('status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
     changeRole(state, action) {
       const user = getUser();
       user.currentRole = action?.payload?.roleName;
@@ -76,14 +101,6 @@ const authenticationSlice = createSlice({
         set('status', ''),
         set('error', null),
       )(state);
-    },
-
-    getUserInfoFromStorage(state) {
-      return state;
-    },
-
-    getUserInfoFromStorageSuccess(state, action) {
-      return set('info', action.payload)(state);
     },
   },
 });

@@ -1,6 +1,7 @@
 import { getProfile, editProfile } from 'fetchers/profileFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
+import { actions as loginActions } from 'app/containers/Login/slice';
 import { notifySuccess } from 'utils/notify';
 import i18n from 'locales/i18n';
 import { uploadAvatar } from 'fetchers/user.service';
@@ -47,6 +48,7 @@ function* uploadAvatarTask(action) {
   const { response, error } = yield call(uploadAvatarAPI, action.payload);
   if (response) {
     yield put(actions.getProfile());
+    yield put(loginActions.getMe());
     yield put(actions.uploadAvatarSuccess());
     notifySuccess(i18n.t('Profile.uploadAvatarSuccess'));
   } else {

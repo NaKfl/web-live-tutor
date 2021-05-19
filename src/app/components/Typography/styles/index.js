@@ -32,6 +32,5 @@ const sizeTitle = ({ level }) => {
 export const StyledTitle = styled(Title)`
   ${props => sizeTitle(props)}
   color:${COLOR.VIOLET} !important;
-  margin: 0 !important;
   ${props => props.style}
 `;

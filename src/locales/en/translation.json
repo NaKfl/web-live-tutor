@@ -253,7 +253,7 @@
     "message": "Message",
     "call": "Call",
     "noFeedback": "No reviews yet",
-    "emptyList": "No tutor is online",
+    "emptyList": "No tutor here",
     "exploreTutor": "Explore more tutors"
   },
   "Footer": {

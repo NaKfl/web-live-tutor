@@ -8,20 +8,19 @@ import Menu from 'app/components/Menu';
 import Space from 'app/components/Space';
 import FavoriteTutor from 'app/containers/AppLayout/Private/FavoriteTutor';
 import { useLogout } from 'app/containers/Login/hooks';
-import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
 import MenuBar from 'app/containers/Menu/MenuBar';
 import useActions from 'hooks/useActions';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
+import { useGetUserInfo } from './hooks';
 import LanguageSelection from './LanguageSelection';
 import { StyledHeader } from './styles';
 
 export const Header = () => {
-  const user = useSelector(selectUserInfoAuthenticate);
+  const { user } = useGetUserInfo();
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;

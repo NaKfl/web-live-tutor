@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
-import useActions from 'hooks/useActions';
 import { actions } from 'app/containers/Home/slice';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { getTutorById } from 'fetchers/tutor.service';
+import useActions from 'hooks/useActions';
+import { useEffect, useState } from 'react';
 import { notifyError, notifySuccess } from 'utils/notify';
 
 export const useHooks = props => {

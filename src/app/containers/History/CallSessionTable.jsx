@@ -1,10 +1,9 @@
-import { memo } from 'react';
 import { Table } from 'antd';
-import { useForm } from './hook';
-import { StyledTable, StyledHeaderTable } from './style';
-import Typography from 'app/components/Typography';
-import Select from 'app/components/Select';
 import Pagination from 'app/components/Pagination';
+import Typography from 'app/components/Typography';
+import { memo } from 'react';
+import { useForm } from './hook';
+import { StyledHeaderTable, StyledTable } from './style';
 
 const { Title } = Typography;
 

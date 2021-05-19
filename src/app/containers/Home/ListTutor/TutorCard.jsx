@@ -62,10 +62,10 @@ export const TutorCard = memo(props => {
               </span>
             )}
             <StyledSpecialties>
-              {props?.specialties?.map(content => (
+              {props?.specialties?.map((content, index) => (
                 <TextHighlight
                   content={content}
-                  key={content}
+                  key={content + index}
                   color="rgba(119, 119, 119, 0.8)"
                 />
               ))}
