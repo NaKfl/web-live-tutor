@@ -5,6 +5,7 @@ import { Profile } from 'app/containers/Profile/Loadable';
 import { RegisterTutor } from 'app/containers/RegisterTutor/Loadable';
 import { JitsiMeetPage } from 'app/containers/JitsiMeetPage/Loadable';
 import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
+import { BookingStudent } from 'app/containers/BookingStudent/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
@@ -39,6 +40,12 @@ export const privateRoutes = [
     component: ScheduleTutor,
     key: 'schedule-tutor',
     requiredRoles: [ROLES.TUTOR],
+  },
+  {
+    path: '/booking-student',
+    component: BookingStudent,
+    key: 'booking-student',
+    requiredRoles: [ROLES.STUDENT],
   },
   {
     path: '/courses',

@@ -1,4 +1,5 @@
 // Create an array from start to end - 1: range(1, 3) --> [1, 2]
+import { result } from 'lodash';
 import moment from 'moment';
 
 export const range = (start, end) => {
@@ -41,6 +42,25 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
           endTime: moment(value?.endTime).format('DD/MM/YYYY hh:mm:ss'),
         },
   );
+};
+
+export const mapBookingListDataSource = data => {
+  const result = data.map((item, index) => {
+    const { startPeriod, endPeriod, scheduleInfo } = item.scheduleDetailInfo;
+    const { date, tutorInfo } = scheduleInfo;
+    const { id, name } = tutorInfo;
+    return {
+      scheduleDetailId: item.scheduleDetailId,
+      stt: index + 1,
+      userId: item.userId,
+      tutorId: id,
+      name,
+      date,
+      startPeriod,
+      endPeriod,
+    };
+  });
+  return result;
 };
 
 export const useQuery = useLocation => {
