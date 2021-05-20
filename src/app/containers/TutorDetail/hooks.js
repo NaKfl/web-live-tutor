@@ -12,6 +12,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { notifyError, notifySuccess } from 'utils/notify';
+import { Form } from 'antd';
 
 const useHooks = () => {
   const { tutorId } = useParams();
@@ -21,6 +22,7 @@ const useHooks = () => {
   const selectorScheduleTutorByDate = useSelector(selectScheduleTutorByDate);
   const selectorBookTimeSchedule = useSelector(selectbookTimeSchedule);
   const [isShowedBtnBook, setBtnBook] = useState(false);
+  const [form] = Form.useForm();
   const {
     getTutorDetail,
     getFreeScheduleByTutorId,
@@ -85,18 +87,19 @@ const useHooks = () => {
 
   useEffect(() => {
     if (
-      selectbookTimeSchedule &&
-      selectbookTimeSchedule.status === ACTION_STATUS.SUCCESS
+      selectorBookTimeSchedule &&
+      selectorBookTimeSchedule.status === ACTION_STATUS.SUCCESS
     ) {
-      notifySuccess('Book Successfully');
+      notifySuccess('Your booking was successful');
+      form.resetFields();
     }
     if (
-      selectbookTimeSchedule &&
-      selectbookTimeSchedule.status === ACTION_STATUS.FAILED
+      selectorBookTimeSchedule &&
+      selectorBookTimeSchedule.status === ACTION_STATUS.FAILED
     ) {
       notifyError('Error');
     }
-  }, [selectorScheduleTutor]);
+  }, [form, selectorBookTimeSchedule]);
 
   const onSelectDate = useCallback(value => {
     setDateSelected(value);
@@ -117,8 +120,8 @@ const useHooks = () => {
     [getFreeScheduleByTutorId, tutorId],
   );
 
-  const handleDisableBtnBook = useCallback(changedValues => {
-    const isShowedBtnBook = Object.values(changedValues).some(
+  const handleDisableBtnBook = useCallback(allValues => {
+    const isShowedBtnBook = Object.values(allValues).some(
       item => item?.length > 0,
     );
     setBtnBook(isShowedBtnBook);
@@ -143,6 +146,7 @@ const useHooks = () => {
       user,
       freeTimesTutor,
       isShowedBtnBook,
+      form,
     },
     handlers: {
       onSelectDate,
