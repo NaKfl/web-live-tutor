@@ -71,6 +71,7 @@ export const privateRoutes = [
     path: '/tutor/:tutorId',
     component: TutorDetail,
     key: 'tutor-detail',
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
   {
     path: '/search',
