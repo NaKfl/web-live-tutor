@@ -85,9 +85,12 @@ const authenticationSlice = createSlice({
 
     changeRole(state, action) {
       const user = getUser();
-      user.currentRole = action?.payload?.roleName;
-      updateUserInfo(user);
-      return set('info', user)(state);
+      if (user) {
+        user.currentRole = action?.payload?.roleName;
+        updateUserInfo(user);
+        return set('info', user)(state);
+      }
+      return state;
     },
 
     logout(state) {

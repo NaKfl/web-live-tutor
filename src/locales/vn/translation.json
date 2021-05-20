@@ -15,7 +15,11 @@
     "cancel": "Hủy",
     "From": "Từ",
     "to": "đến",
-    "book": "Đặt ngay"
+    "book": "Đặt ngay",
+    "next": "Tiếp theo",
+    "previous": "Trở lại",
+    "done": "Hoàn tất",
+    "backHome": "Back Home"
   },
   "Category": {
     "tutor": "Gia sư",
@@ -80,6 +84,9 @@
     "divider": "Hoặc tiếp tục với",
     "suggestLogin": "Đã có tài khoản ?",
     "Tutor": {
+      "stepApproval": "Phê duyệt",
+      "allSteps": "Bạn đã hoàn thành đăng ký",
+      "waitApproval": "Vui lòng đợi phê duyệt",
       "completeProfile": "Hoàn thành hồ sơ",
       "videoIntroduction": "Video giới thiệu",
       "profile": {
@@ -144,7 +151,7 @@
         "lable": {
           "introduction": "Giới thiệu",
           "target": "Tôi giỏi nhất trong việc dạy những học viên",
-          "specialties": "Điểm đặc biệt của tôi là"
+          "specialties": "Chuyên ngành của tôi là"
         },
         "rule": {
           "introduction": "Vui lòng nhập thông tin giới thiệu!",
@@ -177,6 +184,7 @@
       },
       "video": {
         "intro": "Giới thiệu bản thân",
+        "title": "Video giới thiệu",
         "detail": "Hãy để học viên biết những gì họ có thể mong đợi từ khoá học của bạn bằng việc quay lại video điểm nhấn về việc dạy, chuyên môn và tính cách của bạn. Học viên có thể lo lắng khi nói chuyện với người bản xứ, vì vậy sẽ thực sự hữu ích khi có một video thân thiện giới thiệu bản thân và mời học viên gọi điện cho bạn.",
         "tip": {
           "title": "Một số mẹo hữu dụng:",

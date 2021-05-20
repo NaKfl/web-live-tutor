@@ -15,7 +15,11 @@
     "cancel": "Cancel",
     "From": "From",
     "to": "to",
-    "book": "Book now"
+    "book": "Book now",
+    "next": "Next",
+    "previous": "Previous",
+    "done": "Done",
+    "backHome": "Back Home"
   },
   "Category": {
     "tutor": "Tutor",
@@ -80,6 +84,9 @@
     "divider": "Or continue with",
     "suggestLogin": "Already have an account?",
     "Tutor": {
+      "stepApproval": "Approval",
+      "allSteps": "You have done all the steps",
+      "waitApproval": "Please, wait for the operator's approval",
       "completeProfile": "Complete profile",
       "videoIntroduction": "Video introduction",
       "profile": {
@@ -179,6 +186,7 @@
       },
       "video": {
         "intro": "Introduce yourself",
+        "title": "Introduction video",
         "detail": "Let students know what they can expect from a lesson with you by recording a video highlighting your teaching style, expertise and personality. Students can be nervous to speak with a foreigner, so it really helps to have a friendly video that introduces yourself and invites students to call you.",
         "tip": {
           "title": "A few helpful tips:",

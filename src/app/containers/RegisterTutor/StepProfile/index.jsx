@@ -5,30 +5,13 @@ import Form from 'app/components/Form';
 import Alert from 'app/components/Alert';
 import { Col, Row } from 'antd';
 import Input from 'app/components/Input';
-import Select from 'app/components/Select';
 import Radio from 'app/components/Radio';
 import Checkbox from 'app/components/Checkbox';
+import Select from 'app/components/Select';
 import DatePicker from 'app/components/DatePicker';
 import ImageUpload from './ImageUpload';
 import { useTranslation } from 'react-i18next';
-
-const accents = [
-  'North America',
-  'Canada',
-  'USA ',
-  'USA - Southern USA',
-  'North America - Other',
-  'United Kingdom / Republic of Ireland',
-  'British - Received Pronunciation',
-  'Ireland',
-  'Scotland',
-  'British Isles - Other',
-  'South Africa',
-  'Australia / New Zealand',
-  'Australia',
-  'New Zealand',
-  'Other',
-];
+import { COUNTRIES, MAJOR_NAMES } from './constants';
 
 export const StepProfile = ({
   formProfile,
@@ -100,7 +83,13 @@ export const StepProfile = ({
                     },
                   ]}
                 >
-                  <Input />
+                  <Select>
+                    {COUNTRIES.map(item => (
+                      <Select.Option value={item} key={item}>
+                        {item}
+                      </Select.Option>
+                    ))}
+                  </Select>
                 </Form.Item>
               </Col>
               <Col span={24}>
@@ -212,27 +201,6 @@ export const StepProfile = ({
               />
             </Form.Item>
           </Row>
-          <Row>
-            <Form.Item
-              label={t('Register.Tutor.languages.lable.accent')}
-              name="accent"
-              className="full-width"
-              rules={[
-                {
-                  required: true,
-                  message: t('Register.Tutor.languages.rule.accent'),
-                },
-              ]}
-            >
-              <Select>
-                {accents.map(item => (
-                  <Select.Option value={item} key={item}>
-                    {item}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </Row>
           {/*TEACH  */}
           <Divider orientation="left">
             {t('Register.Tutor.teach.title')}
@@ -292,69 +260,15 @@ export const StepProfile = ({
               ]}
             >
               <Checkbox.Group>
-                <Row className="justify-content-between mb-2">
-                  <Col>
-                    <Checkbox value="Friendly conversation">
-                      {t('Register.Tutor.teach.specialties.category.fc')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Business English">
-                      {t('Register.Tutor.teach.specialties.category.be')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Public speaking">
-                      {t('Register.Tutor.teach.specialties.category.ps')}
-                    </Checkbox>
-                  </Col>
-                </Row>
-                <Row className="justify-content-between mb-2">
-                  <Col>
-                    <Checkbox value="Test prep (IELTS, TOEFL, etc.)">
-                      {t('Register.Tutor.teach.specialties.category.tp')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Grammar instruction">
-                      {t('Register.Tutor.teach.specialties.category.gi')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Accent coaching">
-                      {t('Register.Tutor.teach.specialties.category.ac')}
-                    </Checkbox>
-                  </Col>
-                </Row>
-                <Row className="justify-content-between mb-2">
-                  <Col>
-                    <Checkbox value="Correcting speech">
-                      {t('Register.Tutor.teach.specialties.category.cs')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Discussing current events">
-                      {t('Register.Tutor.teach.specialties.category.dce')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Vocational lessons">
-                      {t('Register.Tutor.teach.specialties.category.vl')}
-                    </Checkbox>
-                  </Col>
-                </Row>
-                <Row className="justify-content-between mb-2">
-                  <Col>
-                    <Checkbox value="Culture (i.e. manners, customs)">
-                      {t('Register.Tutor.teach.specialties.category.c')}
-                    </Checkbox>
-                  </Col>
-                  <Col>
-                    <Checkbox value="Teaching idioms and slang">
-                      {t('Register.Tutor.teach.specialties.category.tias')}
-                    </Checkbox>
-                  </Col>
-                </Row>
+                {MAJOR_NAMES.map(({ vietnameseName }) => (
+                  <Row className="mb-2" key={vietnameseName}>
+                    <Col>
+                      <Checkbox value={vietnameseName}>
+                        {vietnameseName}
+                      </Checkbox>
+                    </Col>
+                  </Row>
+                ))}
               </Checkbox.Group>
             </Form.Item>
           </Row>

@@ -1,6 +1,5 @@
 import { registerTutor } from 'fetchers/registerTutor';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
-import { notifySuccess } from 'utils/notify';
 import { actions } from './slice';
 
 function* registerTutorWatcher() {
@@ -11,7 +10,6 @@ function* registerTutorTask(action) {
   const { response, error } = yield call(registerTutorAPI, action.payload);
   if (response) {
     yield put(actions.registerTutorSuccess());
-    notifySuccess('Register successful');
   } else {
     yield put(actions.registerTutorFailed(error.data));
   }

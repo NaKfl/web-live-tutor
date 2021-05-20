@@ -25,11 +25,11 @@ export const StyledRegisterTutor = styled.div`
 
 export const StepsContent = styled.div`
   margin-top: 60px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 export const StepsAction = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;

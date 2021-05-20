@@ -34,11 +34,6 @@ export const useHooks = () => {
 
   const status = useSelector(makeSelectRegisterTutorStatus);
 
-  useEffect(() => {
-    if (status === ACTION_STATUS.SUCCESS) {
-      history.push('/login');
-    }
-  }, [status, history]);
   //upload avatar
   const selectAvatar = useCallback(file => setAvatar(file), []);
   const selectVideo = useCallback(file => setVideo(file), []);
@@ -82,6 +77,12 @@ export const useHooks = () => {
     setCurrentStep(currentStep - 1);
   }, [currentStep]);
 
+  useEffect(() => {
+    if (status === ACTION_STATUS.SUCCESS) {
+      setCurrentStep(prev => prev + 1);
+    }
+  }, [status]);
+
   return {
     handlers: {
       onFinish,
@@ -90,8 +91,9 @@ export const useHooks = () => {
       prevStep,
       selectAvatar,
       selectVideo,
+      setCurrentStep,
     },
-    selectors: { status, currentStep, tutorFormValues, formProfile },
+    selectors: { status, currentStep, tutorFormValues, formProfile, user },
   };
 };
 

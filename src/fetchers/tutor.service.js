@@ -14,7 +14,7 @@ export const getList = ({ page = 1, perPage = 20, search = 'Berry' }) => {
     };
   }
   return request(WEB_API, {
-    url: 'tutor',
+    url: 'tutor/more',
     method: 'GET',
     params,
   })

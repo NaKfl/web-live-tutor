@@ -30,13 +30,14 @@ export const VideoUpload = ({ selectVideo }) => {
         }}
       >
         <Button
+          type="primary"
           {...getRootProps()}
           style={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             width: '150px',
-            marginBottom: '20px',
+            marginBottom: '10px',
           }}
         >
           <input {...getInputProps()} />

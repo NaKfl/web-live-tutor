@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 
+export const Introduction = styled.div`
+  display: flex;
+  .intro-image {
+    width: 115px;
+    height: 117.31px;
+    margin-right: 25px;
+  }
+`;
+
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   .full-width {
     width: 100%;
     max-width: 100%;
