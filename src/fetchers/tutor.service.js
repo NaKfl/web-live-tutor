@@ -65,3 +65,19 @@ export const getTutorDetail = payload => {
     })
     .catch(handleGeneralError);
 };
+
+export const getListTutorBySearch = data => {
+  const { search, perPage = 15, page = 1, ...filters } = data;
+  return request(WEB_API, {
+    url: 'tutor/search',
+    method: 'POST',
+    data: !!search
+      ? { filters, search, page, perPage }
+      : { filters, page, perPage },
+  })
+    .then(res => res.data)
+    .then(data => {
+      return { response: data };
+    })
+    .catch(handleGeneralError);
+};

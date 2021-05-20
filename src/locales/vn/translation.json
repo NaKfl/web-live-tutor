@@ -274,5 +274,15 @@
     "registeredSchedule": "Lịch đã đăng ký",
     "registerNewSchedule": "Đăng ký lịch mới",
     "repeatUtil": "Lặp lại đến ngày"
+  },
+  "Search": {
+    "result": "Kết quả",
+    "sorry": "Xin lỗi, chúng tôi không thể tìm thấy kết quả vớI từ khoá này",
+    "filter": "Bộ lọc",
+    "keyFilters": {
+      "accents": "Giọng điệu",
+      "specialties": "Điểm đặc biệt"
+    },
+    "search": "Tìm kiếm"
   }
 }

@@ -23,11 +23,13 @@ export const UploadAvatar = memo(
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
       onDrop,
     });
+
     useEffect(() => {
       return () => {
         setPreviewImage();
       };
     }, [visible]);
+
     return (
       <>
         <Modal

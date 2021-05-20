@@ -7,7 +7,6 @@ import { useControlChatPopup } from 'app/containers/Chat/hooks';
 import { useShowInfoTutor } from 'app/containers/Home/ListTutor/hooks';
 
 export const FavoriteChild = memo(props => {
-  console.log('props', props);
   const { handleSetNewConversation } = useControlChatPopup();
   const { showInfoTutor } = useShowInfoTutor();
 

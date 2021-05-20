@@ -10,6 +10,7 @@ import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
 import { TutorDetail } from 'app/containers/TutorDetail/Loadable';
+import { Search } from 'app/containers/Search/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
 import { ForgotPassword } from 'app/containers/ForgotPassword/Loadable';
@@ -69,6 +70,11 @@ export const privateRoutes = [
     path: '/tutor/:tutorId',
     component: TutorDetail,
     key: 'tutor-detail',
+  },
+  {
+    path: '/search',
+    component: Search,
+    key: 'search',
     requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
 ];
