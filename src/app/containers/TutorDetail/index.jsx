@@ -63,6 +63,7 @@ export const TutorDetail = ({ ...rest }) => {
     dateSelected,
     freeTimesTutor,
     isShowedBtnBook,
+    form,
   } = selectors;
 
   const userInfo = tutorDetail.User ?? {};
@@ -145,7 +146,18 @@ export const TutorDetail = ({ ...rest }) => {
                       <Row align="middle">
                         <Col className="group-info">
                           <StyledTutorName>{name}</StyledTutorName>
-                          <Rate disabled value={rating} className="rate" />
+                          {(rating && (
+                            <Rate disabled value={rating} className="rate" />
+                          )) || (
+                            <span
+                              style={{
+                                fontStyle: 'italic',
+                                color: 'rgb(0 0 0 / 0.6)',
+                              }}
+                            >
+                              {t('Tutors.noFeedback')}
+                            </span>
+                          )}
                           <Row className="country">
                             <Image
                               preview={false}
@@ -298,6 +310,7 @@ export const TutorDetail = ({ ...rest }) => {
                             />
                           </Row>
                           <Form
+                            form={form}
                             id="form-group-time"
                             onFinish={handleBookSchedule}
                             onValuesChange={(changedValues, allValues) => {
