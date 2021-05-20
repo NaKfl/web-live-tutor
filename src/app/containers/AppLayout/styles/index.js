@@ -60,6 +60,9 @@ export const StyledHeader = styled(Header)`
         0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
       margin-right: 5px;
     }
+    .schedule-icon {
+      cursor: pointer;
+    }
   }
 
   .logo-wrapper {
