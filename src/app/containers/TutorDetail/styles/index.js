@@ -27,7 +27,7 @@ export const StyledTutorName = styled.h3`
   font-weight: 600 !important;
   margin-bottom: 0;
   display: block;
-  height: 30px;
+  height: 35px;
 `;
 
 export const StyledTutorTitle = styled.div`
