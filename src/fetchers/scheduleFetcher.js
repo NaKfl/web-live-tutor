@@ -73,7 +73,7 @@ export const bookTimeSchedule = payload => {
     data: payload,
   })
     .then(response => response.data)
-    .then(data => ({ response: data }))
+    .then(({ data }) => ({ response: data }))
     .catch(handleGeneralError);
 };
 

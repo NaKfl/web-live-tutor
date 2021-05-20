@@ -44,7 +44,6 @@ export const useHooks = () => {
   useEffect(() => {
     socket.on('call:endedCall', ({ userCall, tutor, session }) => {
       const tutorInfo = tutor?.tutor;
-      console.log({ session });
       showRatingForm({
         userId: tutorInfo.userId,
         sessionId: session.id,
