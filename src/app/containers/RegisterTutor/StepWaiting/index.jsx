@@ -3,7 +3,7 @@ import Result from 'app/components/Result';
 import Button from 'app/components/Button';
 import { useTranslation } from 'react-i18next';
 import { Row } from 'app/components/Grid';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 const StepWaiting = ({ ...rest }) => {
   const { t } = useTranslation();
