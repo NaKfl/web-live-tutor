@@ -13,6 +13,7 @@ export const Introduction = styled.div`
 export const Content = styled.div`
   .avt-uploader {
     overflow: hidden;
+    cursor: pointer;
   }
 
   .full-width {
@@ -38,13 +39,6 @@ export const Content = styled.div`
   }
   `}
 `;
-
-// export const ImageUpload = styled.div`
-//   width: 222.66px;
-//   height: 222.66px;
-//   border: 1px solid rgb(221, 221, 221);
-//   margin-bottom: 5px;
-// `;
 
 export const StyledImageUpload = styled.div`
   width: 222.66px;
