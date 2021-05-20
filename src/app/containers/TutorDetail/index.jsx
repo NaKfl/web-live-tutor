@@ -75,8 +75,8 @@ export const TutorDetail = ({ ...rest }) => {
     specialties,
     interests,
     video,
-    resume,
     avgRating,
+    experience,
   } = tutorDetail;
   const rating = Math.floor(avgRating * 2) / 2.0;
   const style = {
@@ -181,8 +181,10 @@ export const TutorDetail = ({ ...rest }) => {
                   <video
                     className="video-tutor"
                     // TODO: Change example video
-                    // src={video}
-                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                    src={
+                      video ??
+                      'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+                    }
                     controlsList="nodownload"
                     controls
                   />
@@ -225,7 +227,7 @@ export const TutorDetail = ({ ...rest }) => {
                       {t('Profile.about')}
                     </Title>
                     <Title className="part-content" level={5}>
-                      {resume}
+                      {bio}
                     </Title>
                   </div>
 
@@ -262,7 +264,7 @@ export const TutorDetail = ({ ...rest }) => {
                       {t('Profile.teachExperience')}
                     </Title>
                     <Title className="part-content" level={5}>
-                      {resume}
+                      {experience}
                     </Title>
                   </div>
                 </Row>
