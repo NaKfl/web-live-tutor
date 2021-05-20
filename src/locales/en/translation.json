@@ -50,7 +50,7 @@
     "btnLoginGoogle": "Google",
     "linkRegister": "Sign up",
     "notifySuccess": "Sign in successful",
-    "notifyFailed": "Sign in failed",
+    "notifyFailed": "Your account has not activated. Please checkout your email to activate the account",
     "suggestRegister": "Not a member yet?",
     "divider": "Or continue with",
     "btnCap": "Sign in",
@@ -74,7 +74,7 @@
     "messageEmptyConfirmPassword": "Please confirm your Password!",
     "messageInvalidConfirmPassword": "Passwords do not match!",
     "messageMinPassword": "Must be minimum 6 characters!",
-    "notifySuccess": "Sign up successful",
+    "notifySuccess": "Sign up successful. Please check your email to verify the account",
     "notifyFailed": "Sign up failed",
     "btnRegister": "Sign up",
     "linkLogin": "Sign in",
@@ -286,5 +286,9 @@
       "specialties": "Specialties"
     },
     "search": "Search"
+  },
+  "VerifyAccount": {
+    "notifySuccess": "Your account has been successfully verified",
+    "notifyFail": "There are some problems with your verification"
   }
 }
