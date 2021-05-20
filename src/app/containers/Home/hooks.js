@@ -67,13 +67,6 @@ export const useHooks = () => {
     [manageFavoriteTutor],
   );
 
-  const onSearch = useCallback(
-    data => {
-      fetchRequest({ search: data });
-    },
-    [fetchRequest],
-  );
-
   const onChangePage = useCallback(
     page => {
       history.push(`/?page=${page}`);
@@ -95,8 +88,30 @@ export const useHooks = () => {
     },
     handlers: {
       onClickHeart,
-      onSearch,
     },
+  };
+};
+
+export const useListTutor = () => {
+  const listFavorite = useSelector(makeSelectListFavorite);
+
+  const { manageFavoriteTutor } = useActions(
+    {
+      manageFavoriteTutor: actions.manageFavoriteTutor,
+    },
+    [actions],
+  );
+
+  const onClickHeart = useCallback(
+    data => {
+      manageFavoriteTutor(data);
+    },
+    [manageFavoriteTutor],
+  );
+
+  return {
+    onClickHeart,
+    listFavorite,
   };
 };
 

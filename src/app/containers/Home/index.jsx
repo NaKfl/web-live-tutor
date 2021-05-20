@@ -4,19 +4,19 @@ import { sliceKey, reducer } from './slice';
 import saga from './saga';
 import {
   StyledHome,
-  StyledPagination,
   StyledTopList,
   StyledFistPart,
   StyledTitle,
   StyledSecondPart,
+  StyledPagination,
 } from './styles';
 import { useHooks } from './hooks';
 import ListTutor from './ListTutor';
 import Search from './Search';
 import Banner from './Banner';
 import TopTutor from './TopTutor';
-import Pagination from 'app/components/Pagination';
 import { useTranslation } from 'react-i18next';
+import Pagination from 'app/components/Pagination';
 
 export const Home = memo(() => {
   const { t } = useTranslation();
@@ -48,10 +48,7 @@ export const Home = memo(() => {
             <strong>{t('Tutors.totalTutors')}</strong>
             {t('Tutors.tutors')}
           </p>
-          <Search
-            onSearch={onSearch}
-            placeholder={t('Tutors.searchPlaceholder')}
-          ></Search>
+          <Search placeholder={t('Tutors.searchPlaceholder')}></Search>
         </div>
       </StyledSecondPart>
       <StyledTitle className="available-tutor-title">

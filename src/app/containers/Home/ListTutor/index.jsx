@@ -17,8 +17,11 @@ export const ListTutor = memo(({ listTutor, onClickHeart, listFavorite }) => {
           <WrapTutor key={i}>
             <TutorCard
               {...e}
+              key={e + i}
               onClickHeart={onClickHeart}
-              isFavorite={checkIsFavorite(listFavorite, e?.userId)}
+              isFavorite={
+                listFavorite && checkIsFavorite(listFavorite, e?.userId)
+              }
               handleCallTutor={handleCallTutor}
               redirectToDetailTutor={redirectToDetailTutor}
             />
@@ -31,4 +34,5 @@ export const ListTutor = memo(({ listTutor, onClickHeart, listFavorite }) => {
     </LayoutListTutor>
   );
 });
+
 export default ListTutor;
