@@ -258,7 +258,7 @@ export const TutorDetail = ({ ...rest }) => {
                       {t('Profile.specialties')}
                     </Title>
                     <Row className="part-content">
-                      {specialties?.map(content => (
+                      {specialties?.[0]?.split(',')?.map((content, index) => (
                         <TextHighlight content={content} key={content} />
                       ))}
                     </Row>

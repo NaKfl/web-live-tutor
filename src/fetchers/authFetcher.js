@@ -27,6 +27,18 @@ export const register = payload => {
     .catch(handleGeneralError);
 };
 
+export const verifyAccount = token => {
+  return request(WEB_API, {
+    url: `auth/verifyAccount`,
+    params: {
+      token,
+    },
+  })
+    .then(response => response.data)
+    .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
 export const google = payload => {
   return request(WEB_API, {
     url: 'auth/google',
