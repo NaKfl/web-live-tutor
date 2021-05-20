@@ -11,6 +11,7 @@ import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
 import { TutorDetail } from 'app/containers/TutorDetail/Loadable';
 import { Search } from 'app/containers/Search/Loadable';
+import { VerifyAccount } from 'app/containers/VerifyAccount/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
 import { ForgotPassword } from 'app/containers/ForgotPassword/Loadable';
@@ -86,11 +87,6 @@ export const publicRoutes = [
     key: 'something-wrong',
   },
   {
-    path: '/not-found',
-    component: NotFoundPage,
-    key: 'not-found',
-  },
-  {
     path: '/permission-denied',
     component: PermissionDeniedPage,
     key: 'permission-denied',
@@ -120,5 +116,15 @@ export const loginRoutes = [
     path: '/password',
     component: ForgotPassword,
     key: 'password',
+  },
+  {
+    path: '/verifyAccount',
+    component: VerifyAccount,
+    key: 'verifyAccount',
+  },
+  {
+    path: '/not-found',
+    component: NotFoundPage,
+    key: 'not-found',
   },
 ];

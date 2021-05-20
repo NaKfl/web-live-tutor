@@ -19,7 +19,7 @@
     "next": "Tiếp theo",
     "previous": "Trở lại",
     "done": "Hoàn tất",
-    "backHome": "Back Home"
+    "backHome": "Trang Chủ"
   },
   "Category": {
     "tutor": "Gia sư",
@@ -50,7 +50,7 @@
     "btnLoginGoogle": "Google",
     "linkRegister": "Đăng ký",
     "notifySuccess": "Đăng nhập thành công",
-    "notifyFailed": "Đăng nhập thất bại",
+    "notifyFailed": "Tài khoản của bạn chưa được kích hoạt. Vui lòng kiểm tra email và kích hoạt tài khoản",
     "suggestRegister": "Chưa có tài khoản?",
     "divider": "Hoặc tiếp tục với",
     "btnCap": "Đăng nhập",
@@ -74,7 +74,7 @@
     "messageEmptyConfirmPassword": "Nhập lại mật khẩu của bạn!",
     "messageInvalidConfirmPassword": "Mật khẩu không trùng khớp!",
     "messageMinPassword": "Độ dài mật khẩu ít nhất 6 kí tự!",
-    "notifySuccess": "Đăng ký thành công",
+    "notifySuccess": "Đăng ký thành công. Vui lòng kiểm tra email để kích hoạt tài khoản",
     "notifyFailed": "Đăng ký thất bại",
     "btnRegister": "Đăng ký",
     "linkLogin": "Đăng nhập",
@@ -284,5 +284,9 @@
       "specialties": "Điểm đặc biệt"
     },
     "search": "Tìm kiếm"
+  },
+  "VerifyAccount": {
+    "notifySuccess": "Tài khoản của bạn đã được xác thực thành công",
+    "notifyFail": "Có một số vấn đề với xác minh của bạn"
   }
 }
