@@ -18,9 +18,11 @@ import { ROLES } from 'utils/constants';
 import { useGetUserInfo } from './hooks';
 import LanguageSelection from './LanguageSelection';
 import { StyledHeader } from './styles';
+import { useHistory } from 'react-router-dom';
 
 export const Header = () => {
   const { user } = useGetUserInfo();
+  const history = useHistory();
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
@@ -52,6 +54,13 @@ export const Header = () => {
               style={{ fontSize: 22, color: '#757575' }}
             />
             <FontAwesomeIcon
+              onClick={() => {
+                if (user?.currentRole === ROLES.STUDENT)
+                  history.push('/booking-student');
+                if (user?.currentRole === ROLES.TUTOR)
+                  history.push('/booking-tutor');
+              }}
+              className="schedule-icon"
               icon={faCalendarWeek}
               style={{ fontSize: 22, color: '#757575' }}
             />

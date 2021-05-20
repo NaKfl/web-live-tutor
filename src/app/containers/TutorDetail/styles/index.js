@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
 import { media } from 'styles/media';
 
-export const StyledTutorDetail = styled.div``;
+export const StyledTutorDetail = styled.div`
+  width: 100%;
+`;
 
 export const StyledProfile = styled.div`
   display: flex;
@@ -27,7 +29,7 @@ export const StyledTutorName = styled.h3`
   font-weight: 600 !important;
   margin-bottom: 0;
   display: block;
-  height: 30px;
+  height: 35px;
 `;
 
 export const StyledTutorTitle = styled.div`
@@ -89,6 +91,7 @@ export const StyledTutorTitle = styled.div`
 `;
 
 export const StyledTutorContent = styled.div`
+  width: 100%;
   .intro-section {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding-bottom: 20px;
