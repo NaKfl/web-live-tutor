@@ -276,5 +276,15 @@
     "registeredSchedule": "Registered schedule",
     "registerNewSchedule": "Register new schedule",
     "repeatUtil": "Repeat util date"
+  },
+  "Search": {
+    "result": "Result",
+    "sorry": "Sorry we can't find any tutor with this keywords",
+    "filter": "Filter",
+    "keyFilters": {
+      "accents": "Accents",
+      "specialties": "Specialties"
+    },
+    "search": "Search"
   }
 }

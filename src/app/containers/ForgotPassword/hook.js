@@ -18,7 +18,6 @@ export const useHook = () => {
   );
   useEffect(() => {
     const token = query.get('token');
-    console.log(query);
     if (token) {
       changeToThirdStep();
     }

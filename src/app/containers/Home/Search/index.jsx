@@ -2,17 +2,28 @@ import { memo, useState, useCallback } from 'react';
 import { StyleSearch, StyleWrapperInput, StyleWrapperSearch } from './style';
 import { SearchOutlined } from '@ant-design/icons';
 import Button from 'app/components/Button';
-
-export const Search = memo(({ placeholder, onSearch }) => {
+import { useHistory } from 'react-router-dom';
+import qs from 'query-string';
+export const Search = memo(({ placeholder }) => {
   const [searchKey, setSearch] = useState('');
-
+  const history = useHistory();
   const onEnterSearch = useCallback(
     event => {
       if (event.key === 'Enter') {
-        onSearch(searchKey);
+        history.push({
+          pathname: '/search',
+          search: qs.stringify(
+            { search: searchKey },
+            {
+              arrayFormat: 'bracket-separator',
+              arrayFormatSeparator: '|',
+              skipNull: true,
+            },
+          ),
+        });
       }
     },
-    [onSearch, searchKey],
+    [searchKey, history],
   );
 
   return (
@@ -27,7 +38,7 @@ export const Search = memo(({ placeholder, onSearch }) => {
         <Button
           className="icon-search"
           type="accent"
-          onClick={() => onSearch(searchKey)}
+          onClick={() => onEnterSearch({ key: 'Enter' })}
         >
           <SearchOutlined />
         </Button>

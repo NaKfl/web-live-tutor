@@ -16,10 +16,10 @@ import GoogleLogin from 'react-google-login';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ACTION_STATUS } from 'utils/constants';
-import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import useHooks, { useUnmount } from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
+import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import { CoverRegister, StyledLogo, StyledRegister } from './styles';
 
 export const Register = memo(() => {
