@@ -70,6 +70,8 @@ export const TutorDetail = ({ ...rest }) => {
     form,
     getTutorDetailStatus,
     scheduleTutorByDateStatus,
+    detailScheduleTutorStatus,
+    scheduleTutorIdStatus,
   } = selectors;
 
   const userInfo = tutorDetail.User ?? {};
@@ -206,7 +208,7 @@ export const TutorDetail = ({ ...rest }) => {
               </Affix>
               <StyledTutorContent {...rest}>
                 {(getTutorDetailStatus === ACTION_STATUS.PENDING && (
-                  <Skeleton active paragraph={{ rows: 10 }} />
+                  <Skeleton active paragraph={{ rows: 60 }} />
                 )) || (
                   <>
                     <Row className="mb-4 intro-video-section">
@@ -339,50 +341,68 @@ export const TutorDetail = ({ ...rest }) => {
                                   format={'YYYY-MM-DD'}
                                 />
                               </Row>
-                              <Form
-                                form={form}
-                                id="form-group-time"
-                                onFinish={handleBookSchedule}
-                                onValuesChange={(_, allValues) => {
-                                  handleDisableBtnBook(allValues);
-                                }}
-                              >
-                                <Collapse>
-                                  {(freeTimesTutor || []).map((time, index) => (
-                                    <Panel
-                                      header={`${t('Common.From')} ${
-                                        time.startTime
-                                      } ${t('Common.to')} ${time.endTime}`}
-                                      key={index + 1}
-                                    >
-                                      <Form.Item name={time.id}>
-                                        <GroupSelectTime
-                                          isLoading={
-                                            scheduleTutorByDateStatus ===
-                                            ACTION_STATUS.PENDING
-                                          }
-                                          scheduleDetails={time.scheduleDetails}
-                                        />
-                                      </Form.Item>
-                                    </Panel>
-                                  ))}
-                                </Collapse>
-                              </Form>
-                              <Row className="mt-4 justify-content-end">
-                                <Button
-                                  icon={<CheckOutlined />}
-                                  type="accent"
-                                  htmlType="submit"
-                                  form="form-group-time"
-                                  disabled={!isShowedBtnBook}
-                                >
-                                  {t('Common.book')}
-                                </Button>
-                              </Row>
+                              <>
+                                {((scheduleTutorByDateStatus ===
+                                  ACTION_STATUS.PENDING ||
+                                  scheduleTutorIdStatus ===
+                                    ACTION_STATUS.PENDING) &&
+                                  [
+                                    ...Array(freeTimesTutor?.length || 2),
+                                  ].map((_, index) => (
+                                    <Skeleton
+                                      key={index}
+                                      active
+                                      paragraph={{ rows: 2 }}
+                                    />
+                                  ))) || (
+                                  <Form
+                                    form={form}
+                                    id="form-group-time"
+                                    onFinish={handleBookSchedule}
+                                    onValuesChange={(_, allValues) => {
+                                      handleDisableBtnBook(allValues);
+                                    }}
+                                  >
+                                    <Collapse>
+                                      {(freeTimesTutor || []).map(
+                                        (time, index) => (
+                                          <Panel
+                                            header={`${t('Common.From')} ${
+                                              time.startTime
+                                            } ${t('Common.to')} ${
+                                              time.endTime
+                                            }`}
+                                            key={index + 1}
+                                          >
+                                            <Form.Item name={time.id}>
+                                              <GroupSelectTime
+                                                scheduleDetails={
+                                                  time.scheduleDetails
+                                                }
+                                              />
+                                            </Form.Item>
+                                          </Panel>
+                                        ),
+                                      )}
+                                    </Collapse>
+                                    <Row className="mt-4 justify-content-end">
+                                      <Button
+                                        icon={<CheckOutlined />}
+                                        type="accent"
+                                        htmlType="submit"
+                                        form="form-group-time"
+                                        disabled={!isShowedBtnBook}
+                                      >
+                                        {t('Common.book')}
+                                      </Button>
+                                    </Row>
+                                  </Form>
+                                )}
+                              </>
                             </Row>
                           </Row>
                         )}
-                        {(getTutorDetailStatus === ACTION_STATUS.PENDING && (
+                        {(scheduleTutorIdStatus === ACTION_STATUS.PENDING && (
                           <Skeleton active paragraph={{ rows: 10 }} />
                         )) ||
                           (!isSelectDate && (

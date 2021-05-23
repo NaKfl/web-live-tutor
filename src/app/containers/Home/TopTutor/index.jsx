@@ -14,7 +14,7 @@ export const TopTutor = ({ data, isLoading }) => {
       <div className="top-list">
         {(isLoading && (
           <div style={{ padding: 20 }}>
-            {[...Array(3)].map((_, index) => (
+            {[...Array(5)].map((_, index) => (
               <Skeleton key={index} avatar active paragraph={{ rows: 1 }} />
             ))}
           </div>
