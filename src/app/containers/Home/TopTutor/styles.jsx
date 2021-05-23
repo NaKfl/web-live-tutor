@@ -38,6 +38,17 @@ export const StyledTopTutor = styled.div`
     display: flex;
     flex-direction: column;
     overflow: auto;
+    .ant-skeleton.ant-skeleton-with-avatar.ant-skeleton-active {
+      margin-bottom: 8px;
+      .ant-skeleton-content {
+        .ant-skeleton-title {
+          margin: 0 0 5px 0;
+        }
+        .ant-skeleton-paragraph {
+          margin-top: 0;
+        }
+      }
+    }
   }
   position: relative;
   &::after {

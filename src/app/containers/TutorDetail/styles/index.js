@@ -182,6 +182,17 @@ export const StyledTutorContent = styled.div`
           margin-right: 10px;
         }
       }
+      .ant-skeleton.ant-skeleton-active {
+        margin-top: 10px;
+        .ant-skeleton-content {
+          .ant-skeleton-title {
+            margin: 0 0 5px 0;
+          }
+          .ant-skeleton-paragraph {
+            margin-top: 10px;
+          }
+        }
+      }
     }
     .tutor-calender {
       ${media.mobile`

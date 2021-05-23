@@ -58,7 +58,7 @@ const ScheduleModal = memo(props => {
         <h3 className="sub-title">{t('ScheduleTutor.registeredSchedule')}</h3>
         <Row className="time-schedules flex-column align-items-center">
           {(isLoading &&
-            [...Array(freeTimes.length ?? 2)].map((_, index) => (
+            [...Array(freeTimes.length || 2)].map((_, index) => (
               <Skeleton key={index} active paragraph={{ rows: 0 }} />
             ))) || (
             <>
