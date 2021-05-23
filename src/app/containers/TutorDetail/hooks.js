@@ -122,15 +122,9 @@ const useHooks = () => {
     setIsSelectDate(false);
   }, []);
 
-  const handleSelectDatePicker = useCallback(
-    dateOfCell => {
-      setDateSelected(dateOfCell);
-      getFreeScheduleByTutorId({
-        tutorId: tutorId,
-      });
-    },
-    [getFreeScheduleByTutorId, tutorId],
-  );
+  const handleSelectDatePicker = useCallback(dateOfCell => {
+    setDateSelected(dateOfCell);
+  }, []);
 
   const handleDisableBtnBook = useCallback(allValues => {
     const isShowedBtnBook = Object.values(allValues).some(

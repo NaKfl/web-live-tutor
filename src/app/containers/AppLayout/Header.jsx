@@ -87,7 +87,7 @@ export const Header = () => {
                 </Menu>
               }
             >
-              <StyledAvatar>
+              <StyledAvatar isExistName={user?.name}>
                 <div className="avt-wrapper">
                   {user?.name && (
                     <span className="user-name">{user.name.split(' ')[0]}</span>
