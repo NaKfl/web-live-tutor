@@ -207,9 +207,10 @@ export const TutorDetail = ({ ...rest }) => {
                 </StyledTutorTitle>
               </Affix>
               <StyledTutorContent {...rest}>
-                {(getTutorDetailStatus === ACTION_STATUS.PENDING && (
-                  <Skeleton active paragraph={{ rows: 60 }} />
-                )) || (
+                {(getTutorDetailStatus === ACTION_STATUS.PENDING &&
+                  [...Array(5)].map((_, index) => (
+                    <Skeleton key={index} active paragraph={{ rows: 2 }} />
+                  ))) || (
                   <>
                     <Row className="mb-4 intro-video-section">
                       <video
@@ -342,10 +343,8 @@ export const TutorDetail = ({ ...rest }) => {
                                 />
                               </Row>
                               <>
-                                {((scheduleTutorByDateStatus ===
-                                  ACTION_STATUS.PENDING ||
-                                  scheduleTutorIdStatus ===
-                                    ACTION_STATUS.PENDING) &&
+                                {(scheduleTutorByDateStatus ===
+                                  ACTION_STATUS.PENDING &&
                                   [
                                     ...Array(freeTimesTutor?.length || 2),
                                   ].map((_, index) => (
@@ -363,10 +362,16 @@ export const TutorDetail = ({ ...rest }) => {
                                       handleDisableBtnBook(allValues);
                                     }}
                                   >
-                                    <Collapse>
+                                    <Collapse
+                                      // activeKey={(freeTimesTutor || []).map(
+                                      //   (_, index) => index + 1,
+                                      // )}
+                                      defaultActiveKey="1"
+                                    >
                                       {(freeTimesTutor || []).map(
                                         (time, index) => (
                                           <Panel
+                                            showArrow={false}
                                             header={`${t('Common.From')} ${
                                               time.startTime
                                             } ${t('Common.to')} ${
@@ -402,9 +407,10 @@ export const TutorDetail = ({ ...rest }) => {
                             </Row>
                           </Row>
                         )}
-                        {(scheduleTutorIdStatus === ACTION_STATUS.PENDING && (
-                          <Skeleton active paragraph={{ rows: 10 }} />
-                        )) ||
+                        {(!isSelectDate &&
+                          scheduleTutorIdStatus === ACTION_STATUS.PENDING && (
+                            <Skeleton active paragraph={{ rows: 10 }} />
+                          )) ||
                           (!isSelectDate && (
                             <Row className="tutor-calender">
                               <Calendar

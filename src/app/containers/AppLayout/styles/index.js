@@ -7,7 +7,7 @@ const maxWidth = 1370;
 export const StyledAvatar = styled.div`
   cursor: pointer;
   .avt-wrapper {
-    padding: 5px 5px 5px 10px;
+    padding: ${({ isExistName }) => (isExistName ? '5px 5px 5px 10px' : '5px')};
     display: flex;
     align-items: center;
     margin-left: 5px;
