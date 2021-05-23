@@ -2,13 +2,20 @@ import styled from 'styled-components';
 
 export const StyledFavoriteTutor = styled.div`
   .heart-btn {
-    font-size: 22px;
+    font-size: 18px;
     transition: ease 0.2s;
-    color: #757575;
+    color: #646464;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    background-color: #e4e6eb;
+    padding: 10px;
+    border-radius: 50%;
+    transition: ease 0.2s;
+    &:hover {
+      background-color: #cccccc;
+    }
   }
 `;
 

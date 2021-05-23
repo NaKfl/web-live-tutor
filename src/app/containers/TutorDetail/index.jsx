@@ -39,6 +39,8 @@ import {
 } from './styles';
 import Button from 'app/components/Button';
 import GroupSelectTime from 'app/components/GroupSelectTime';
+import { MAJOR_NAMES } from '../RegisterTutor/StepProfile/constants';
+import COUNTRIES from 'utils/countries';
 const { Title } = Typography;
 const { Panel } = Collapse;
 
@@ -139,7 +141,7 @@ export const TutorDetail = ({ ...rest }) => {
                         <Avatar
                           src={avatar}
                           shape="circle"
-                          size={90}
+                          size={100}
                           className="avatar"
                         />
                       </StyledAvatar>
@@ -169,7 +171,7 @@ export const TutorDetail = ({ ...rest }) => {
                               level={5}
                               className="d-flex align-items-center"
                             >
-                              {country}
+                              {COUNTRIES[country]}
                             </Title>
                           </Row>
                         </Col>
@@ -258,8 +260,15 @@ export const TutorDetail = ({ ...rest }) => {
                       {t('Profile.specialties')}
                     </Title>
                     <Row className="part-content">
-                      {specialties?.[0]?.split(',')?.map((content, index) => (
-                        <TextHighlight content={content} key={content} />
+                      {specialties?.[0]?.split(',')?.map(key => (
+                        <TextHighlight
+                          content={
+                            t('Common.default') === t('Common.vn')
+                              ? MAJOR_NAMES[key]?.vietnameseName
+                              : MAJOR_NAMES[key]?.englishName
+                          }
+                          key={key}
+                        />
                       ))}
                     </Row>
                   </div>

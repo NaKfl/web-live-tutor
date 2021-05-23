@@ -44,9 +44,9 @@ export const LanguageSelection = ({ ...props }) => {
       {...props}
     >
       {t('Common.default') === t('Common.en') ? (
-        <StyledIcon src={US} alt="United States" />
+        <StyledIcon src={US} alt="United States" className="menu-icon" />
       ) : (
-        <StyledIcon src={VN} alt="Vietnam" />
+        <StyledIcon src={VN} alt="Vietnam" className="menu-icon" />
       )}
     </Dropdown>
   );

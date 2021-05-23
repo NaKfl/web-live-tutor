@@ -101,6 +101,11 @@ export const StyledLogo = styled.img`
   cursor: pointer;
   border-radius: 50%;
   background-color: transparent;
-  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-    0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  box-shadow: -3px 3px 1px -2px rgb(0 0 0 / 10%),
+    -3px 2px 2px 0px rgb(0 0 0 / 7%), -3px 1px 5px 0px rgb(0 0 0 / 4%);
+  opacity: 0.9;
+  transition: ease 0.2s;
+  &:hover {
+    opacity: 1;
+  }
 `;
