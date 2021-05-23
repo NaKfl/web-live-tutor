@@ -5,6 +5,7 @@ const selectHomeState = state => state.home;
 export const makeSelectListTutor = createSelector(selectHomeState, home =>
   get('listTutor', home),
 );
+
 export const makeSelectStatus = createSelector(selectHomeState, home =>
   get('status', home),
 );
@@ -24,6 +25,11 @@ export const makeCurrentPage = createSelector(selectHomeState, currentPage =>
 
 export const selectTopTutorData = createSelector(selectHomeState, currentPage =>
   get('topTutor.data', currentPage),
+);
+
+export const selectTopTutorStatus = createSelector(
+  selectHomeState,
+  currentPage => get('topTutor.status', currentPage),
 );
 
 export const selectReviewTutor = createSelector(selectHomeState, currentPage =>

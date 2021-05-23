@@ -7,6 +7,7 @@ import {
   selectEditProfileStatus,
   selectVisibleModal,
   selectLoadingUpload,
+  selectGetStatus,
 } from './selectors';
 import { actions } from './slice';
 import Form from 'app/components/Form';
@@ -19,6 +20,8 @@ const useHooks = () => {
   const statusUpdate = useSelector(selectEditProfileStatus);
   const avatarUploadVisible = useSelector(selectVisibleModal);
   const loadingUpload = useSelector(selectLoadingUpload);
+  const getStatus = useSelector(selectGetStatus);
+
   const {
     getProfile,
     editProfile,
@@ -78,6 +81,7 @@ const useHooks = () => {
       form,
       avatarUploadVisible,
       loadingUpload,
+      getStatus,
     },
   };
 };

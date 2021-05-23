@@ -5,8 +5,8 @@ export const StyledModal = styled(Modal)`
   width: 380px !important;
   .btn-add {
     margin-left: 10px;
-    width: 18px;
-    height: 69px;
+    width: 31px;
+    height: 72px;
     padding: 0 !important;
     display: flex;
     align-items: center;
@@ -25,6 +25,17 @@ export const StyledModal = styled(Modal)`
     font-weight: normal;
   }
   .time-schedules {
+    .ant-skeleton.ant-skeleton-active .ant-skeleton-content {
+      .ant-skeleton-title {
+        display: inline-block;
+        width: 94% !important;
+        height: 20px;
+        margin: 0 0 0 20px;
+      }
+      .ant-skeleton-paragraph {
+        display: none;
+      }
+    }
     .ant-badge-status-text {
       font-size: 18px;
     }

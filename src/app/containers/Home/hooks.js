@@ -7,6 +7,8 @@ import {
   makeSelectListFavorite,
   makeSelectCount,
   selectTopTutorData,
+  selectTopTutorStatus,
+  makeSelectStatus,
 } from './selectors';
 import { useHistory, useLocation } from 'react-router-dom';
 import socket from 'utils/socket';
@@ -20,6 +22,8 @@ export const useHooks = () => {
   const listTutor = useSelector(makeSelectListTutor);
   const listFavorite = useSelector(makeSelectListFavorite);
   const countTotal = useSelector(makeSelectCount);
+  const topTutorStatus = useSelector(selectTopTutorStatus);
+  const moreTutorsStatus = useSelector(makeSelectStatus);
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page');
@@ -79,6 +83,8 @@ export const useHooks = () => {
       listTutor,
       listFavorite,
       topTutor,
+      topTutorStatus,
+      moreTutorsStatus,
       pagination: {
         total: countTotal,
         pageSize: 9,

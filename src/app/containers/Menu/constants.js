@@ -5,7 +5,7 @@ export const MenuBarListItems = [
     id: '1',
     title: 'Category.tutor',
     path: '/',
-    requiredRoles: [ROLES.STUDENT, ROLES.TUTOR],
+    requiredRoles: [ROLES.STUDENT],
   },
   {
     id: '2',

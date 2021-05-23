@@ -29,7 +29,7 @@ export const privateRoutes = [
     path: '/',
     component: Home,
     key: 'home',
-    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
+    requiredRoles: [ROLES.STUDENT],
   },
   {
     path: '/register-tutor',

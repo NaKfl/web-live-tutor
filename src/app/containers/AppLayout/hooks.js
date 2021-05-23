@@ -1,11 +1,12 @@
 import useActions from 'hooks/useActions';
 import { makeSelectIsAuthenticated } from 'app/containers/Login/selectors';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
+import { ROLES } from 'utils/constants';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
@@ -50,6 +51,35 @@ export const useGetUserInfo = () => {
   }, [getMe]);
 
   return { user };
+};
+
+export const useChangeRole = () => {
+  const history = useHistory();
+  const { user } = useGetUserInfo();
+  const { changeRoleAction } = useActions(
+    {
+      changeRoleAction: loginActions.changeRole,
+    },
+    [loginActions],
+  );
+
+  const changeRole = useCallback(() => {
+    if (user?.currentRole === ROLES.STUDENT) {
+      changeRoleAction({
+        roleName: ROLES.TUTOR,
+      });
+      history.push('/schedule-tutor');
+    }
+
+    if (user?.currentRole === ROLES.TUTOR) {
+      changeRoleAction({
+        roleName: ROLES.STUDENT,
+      });
+      history.push('/');
+    }
+  }, [changeRoleAction, history, user?.currentRole]);
+
+  return { changeRole };
 };
 
 export default useHooks;

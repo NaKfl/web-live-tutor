@@ -33,117 +33,128 @@ export const TutorCard = memo(props => {
   const { t } = useTranslation();
   return (
     <StyledTutorCard onClick={() => redirectToDetailTutor(props)}>
-      <StyledHeader>
-        <div className="header-left">
-          <StyledAvatar>
-            <Avatar size={90} src={props?.avatar} />
-            <StyledBadge color={(props?.isOnline && 'green') || '#D9D9D9'} />
-          </StyledAvatar>
-          <div className="info">
-            <Title level={4} className="info-title">
-              {props.name || (
-                <Skeleton.Button
-                  size="small"
-                  active
-                  shape="round"
-                  className="w-100"
+      {props.isLoading && <Skeleton active avatar paragraph={{ rows: 4 }} />}
+      {!props.isLoading && (
+        <>
+          <StyledHeader>
+            <div className="header-left">
+              <StyledAvatar>
+                <Avatar size={90} src={props?.avatar} />
+                <StyledBadge
+                  color={(props?.isOnline && 'green') || '#D9D9D9'}
                 />
-              )}
-            </Title>
-            {(props?.rating && (
-              <Rate
-                disabled
-                defaultValue={props.rating}
-                className="info-rate"
-              />
-            )) || (
-              <span style={{ fontStyle: 'italic', color: 'rgb(0 0 0 / 0.6)' }}>
-                {t('Tutors.noFeedback')}
-              </span>
+              </StyledAvatar>
+              <div className="info">
+                <Title level={4} className="info-title">
+                  {props.name || (
+                    <Skeleton.Button
+                      size="small"
+                      active
+                      shape="round"
+                      className="w-100"
+                    />
+                  )}
+                </Title>
+                {(props?.rating && (
+                  <Rate
+                    disabled
+                    defaultValue={props.rating}
+                    className="info-rate"
+                  />
+                )) || (
+                  <span
+                    style={{ fontStyle: 'italic', color: 'rgb(0 0 0 / 0.6)' }}
+                  >
+                    {t('Tutors.noFeedback')}
+                  </span>
+                )}
+                <StyledSpecialties>
+                  {props?.specialties?.[0]
+                    ?.split(',')
+                    ?.map((content, index) => (
+                      <TextHighlight
+                        content={content}
+                        key={content + index}
+                        color="rgba(119, 119, 119, 0.8)"
+                      />
+                    ))}
+                </StyledSpecialties>
+              </div>
+            </div>
+            {user?.currentRole === ROLES.STUDENT && (
+              <div className="header-right">
+                {props.isFavorite ? (
+                  <FontAwesomeIcon
+                    style={{
+                      fontSize: '22px',
+                      color: 'rgb(255, 98, 81)',
+                    }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      props.onClickHeart(props.userId);
+                    }}
+                    icon={solidHeart}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    style={{
+                      fontSize: '22px',
+                      color: '#777777',
+                    }}
+                    onClick={e => {
+                      e.stopPropagation();
+                      props.onClickHeart(props.userId);
+                    }}
+                    icon={regularHeart}
+                  />
+                )}
+              </div>
             )}
-            <StyledSpecialties>
-              {props?.specialties?.[0]?.split(',')?.map((content, index) => (
-                <TextHighlight
-                  content={content}
-                  key={content + index}
-                  color="rgba(119, 119, 119, 0.8)"
-                />
-              ))}
-            </StyledSpecialties>
-          </div>
-        </div>
-        {user?.currentRole === ROLES.STUDENT && (
-          <div className="header-right">
-            {props.isFavorite ? (
-              <FontAwesomeIcon
-                style={{
-                  fontSize: '22px',
-                  color: 'rgb(255, 98, 81)',
-                }}
-                onClick={e => {
-                  e.stopPropagation();
-                  props.onClickHeart(props.userId);
-                }}
-                icon={solidHeart}
-              />
-            ) : (
-              <FontAwesomeIcon
-                style={{
-                  fontSize: '22px',
-                  color: '#777777',
-                }}
-                onClick={e => {
-                  e.stopPropagation();
-                  props.onClickHeart(props.userId);
-                }}
-                icon={regularHeart}
-              />
-            )}
-          </div>
-        )}
-      </StyledHeader>
-      <StyledMain>
-        <div className="bio">
-          <InfoText>
-            {!props.bio ? (
-              <Skeleton.Button
-                size="small"
-                active
-                shape="round"
-                className="w-100"
-              />
-            ) : (
-              props.bio
-            )}
-          </InfoText>
-        </div>
-        <div className="control-layout">
-          <div className="control">
-            <Button
-              type="accent"
-              icon={<MessageOutlined />}
-              onClick={e => {
-                e.stopPropagation();
-                handleSetNewConversation(props);
-              }}
-            >
-              {t('Tutors.message')}
-            </Button>
-            {props?.isOnline && (
-              <Button
-                type="accent"
-                icon={<PhoneOutlined />}
-                onClick={e => {
-                  e.stopPropagation();
-                  handleCallTutor(props.userId);
-                }}
-              >
-                {t('Tutors.call')}
-              </Button>
-            )}
-          </div>
-        </div>
-      </StyledMain>
+          </StyledHeader>
+          <StyledMain>
+            <div className="bio">
+              <InfoText>
+                {!props.bio ? (
+                  <Skeleton.Button
+                    size="small"
+                    active
+                    shape="round"
+                    className="w-100"
+                  />
+                ) : (
+                  props.bio
+                )}
+              </InfoText>
+            </div>
+            <div className="control-layout">
+              <div className="control">
+                <Button
+                  type="accent"
+                  icon={<MessageOutlined />}
+                  onClick={e => {
+                    e.stopPropagation();
+                    handleSetNewConversation(props);
+                  }}
+                >
+                  {t('Tutors.message')}
+                </Button>
+                {props?.isOnline && (
+                  <Button
+                    type="accent"
+                    icon={<PhoneOutlined />}
+                    onClick={e => {
+                      e.stopPropagation();
+                      handleCallTutor(props.userId);
+                    }}
+                  >
+                    {t('Tutors.call')}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </StyledMain>
+        </>
+      )}
     </StyledTutorCard>
   );
 });

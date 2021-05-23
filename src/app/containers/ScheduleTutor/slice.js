@@ -9,7 +9,6 @@ const initialState = {
     error: null,
     data: [],
   },
-
   scheduleTutorById: {
     status: '',
     error: null,
