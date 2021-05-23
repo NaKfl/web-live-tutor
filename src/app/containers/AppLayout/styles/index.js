@@ -4,11 +4,45 @@ import { COLOR } from 'styles/colorPalette';
 const { Content, Footer, Header } = Layout;
 const maxWidth = 1370;
 
+export const StyledAvatar = styled.div`
+  cursor: pointer;
+  .avt-wrapper {
+    padding: 5px 5px 5px 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    border-radius: 30px;
+    transition: ease 0.2s;
+    .user-name {
+      margin-right: 6px;
+      font-weight: 600;
+      height: 38px;
+      display: flex;
+      align-items: center;
+    }
+    &:hover {
+      background-color: #e4e6eb;
+    }
+  }
+`;
+
 export const StyledIcon = styled.img`
   display: inline-block;
   width: 22px;
   height: 22px;
   cursor: pointer;
+  transition: ease 0.2s;
+  &.menu-icon {
+    width: 38px;
+    height: 38px;
+    background-color: #e4e6eb;
+    padding: 10px;
+    border-radius: 50%;
+    transition: ease 0.2s;
+    &:hover {
+      background-color: #cccccc;
+    }
+  }
 `;
 
 export const StyledHeader = styled(Header)`
@@ -50,7 +84,6 @@ export const StyledHeader = styled(Header)`
     align-items: center;
     justify-content: flex-end;
     & > * {
-      margin-left: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -60,8 +93,21 @@ export const StyledHeader = styled(Header)`
         0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
       margin-right: 5px;
     }
-    .schedule-icon {
+    .menu-icon {
+      font-size: 18px;
+      transition: ease 0.2s;
+      color: #646464;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
+      background-color: #e4e6eb;
+      padding: 10px;
+      border-radius: 50%;
+      transition: ease 0.2s;
+      &:hover {
+        background-color: #cccccc;
+      }
     }
   }
 

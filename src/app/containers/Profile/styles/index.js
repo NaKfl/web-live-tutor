@@ -95,11 +95,12 @@ export const StyledDetailInfo = styled(Row)`
     display: flex;
     flex-direction: column;
     .ant-form-item-label {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
       font-weight: 600;
-      padding-right: 15px;
+      label {
+        position: absolute;
+        right: 15px;
+        top: 5px;
+      }
       label:after {
         content: none;
       }

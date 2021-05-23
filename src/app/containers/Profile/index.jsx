@@ -3,6 +3,7 @@ import Button from 'app/components/Button';
 import Form from 'app/components/Form';
 import Input from 'app/components/Input';
 import DatePicker from 'app/components/DatePicker';
+import Select from 'app/components/Select';
 import { Avatar, Collapse } from 'antd';
 import { Row, Col } from 'app/components/Grid';
 import useHooks from './hooks';
@@ -19,6 +20,9 @@ import {
 } from './styles';
 import { useTranslation } from 'react-i18next';
 import UploadAvatar from './UploadAva';
+import COUNTRIES from 'utils/countries';
+import moment from 'moment';
+import { DEFAULT_PICKER_VALUE } from 'utils/constants';
 const { Panel } = Collapse;
 
 export const Profile = () => {
@@ -98,20 +102,26 @@ export const Profile = () => {
                   },
                 ]}
               >
-                <Input />
+                <Input disabled />
               </Form.Item>
               <Form.Item label={t('Profile.phone')} name="phone">
-                <Input placeholder="Phone" />
+                <Input />
               </Form.Item>
               <Form.Item label={t('Profile.country')} name="country">
-                <Input />
-              </Form.Item>
-              <Form.Item label={t('Profile.language')} name="language">
-                <Input />
+                <Select>
+                  {Object.entries(COUNTRIES).map(([key, value]) => (
+                    <Select.Option value={key} key={key}>
+                      {value}
+                    </Select.Option>
+                  ))}
+                </Select>
               </Form.Item>
               <Col>
                 <Form.Item label={t('Profile.birthday')} name="birthday">
-                  <DatePicker />
+                  <DatePicker
+                    showToday={false}
+                    defaultPickerValue={moment(DEFAULT_PICKER_VALUE)}
+                  />
                 </Form.Item>
               </Col>
             </Form>

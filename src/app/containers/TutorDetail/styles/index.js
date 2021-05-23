@@ -29,7 +29,7 @@ export const StyledTutorName = styled.h3`
   font-weight: 600 !important;
   margin-bottom: 0;
   display: block;
-  height: 35px;
+  height: 40px;
 `;
 
 export const StyledTutorTitle = styled.div`

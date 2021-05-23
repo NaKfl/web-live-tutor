@@ -1,12 +1,10 @@
-import { faBell, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from 'app/components/Avatar';
 import Button from 'app/components/Button';
 import Dropdown from 'app/components/Dropdown';
 import { Logo } from 'app/components/Logo';
 import Menu from 'app/components/Menu';
 import Space from 'app/components/Space';
-import FavoriteTutor from 'app/containers/AppLayout/Private/FavoriteTutor';
+import FavoriteTutor from 'app/containers/FavoriteTutor';
 import { useLogout } from 'app/containers/Login/hooks';
 import { actions as loginActions } from 'app/containers/Login/slice';
 import MenuBar from 'app/containers/Menu/MenuBar';
@@ -17,8 +15,9 @@ import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
 import { useGetUserInfo } from './hooks';
 import LanguageSelection from './LanguageSelection';
-import { StyledHeader } from './styles';
+import { StyledHeader, StyledAvatar } from './styles';
 import { useHistory } from 'react-router-dom';
+import { CalendarFilled, BellFilled } from '@ant-design/icons';
 
 export const Header = () => {
   const { user } = useGetUserInfo();
@@ -49,23 +48,18 @@ export const Header = () => {
             <Button className="sub-btn" type="accent">
               {t('Header.subscribe')}
             </Button>
-            <FontAwesomeIcon
-              icon={faBell}
-              style={{ fontSize: 22, color: '#757575' }}
-            />
-            <FontAwesomeIcon
+            <LanguageSelection />
+            <BellFilled className="menu-icon" />
+            <CalendarFilled
+              className="menu-icon"
               onClick={() => {
                 if (user?.currentRole === ROLES.STUDENT)
                   history.push('/booking-student');
                 if (user?.currentRole === ROLES.TUTOR)
                   history.push('/booking-tutor');
               }}
-              className="schedule-icon"
-              icon={faCalendarWeek}
-              style={{ fontSize: 22, color: '#757575' }}
             />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
-            <LanguageSelection />
             <Dropdown
               placement="bottomRight"
               trigger={['click']}
@@ -106,7 +100,14 @@ export const Header = () => {
                 </Menu>
               }
             >
-              <Avatar className="avatar" size={38} src={user.avatar} />
+              <StyledAvatar>
+                <div className="avt-wrapper">
+                  {user?.name && (
+                    <span className="user-name">{user.name.split(' ')[0]}</span>
+                  )}
+                  <Avatar className="avatar" size={38} src={user.avatar} />
+                </div>
+              </StyledAvatar>
             </Dropdown>
           </Space>
         )) || (
