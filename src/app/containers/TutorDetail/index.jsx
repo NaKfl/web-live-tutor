@@ -70,7 +70,6 @@ export const TutorDetail = ({ ...rest }) => {
     form,
     getTutorDetailStatus,
     scheduleTutorByDateStatus,
-    detailScheduleTutorStatus,
     scheduleTutorIdStatus,
   } = selectors;
 
@@ -363,10 +362,9 @@ export const TutorDetail = ({ ...rest }) => {
                                     }}
                                   >
                                     <Collapse
-                                      // activeKey={(freeTimesTutor || []).map(
-                                      //   (_, index) => index + 1,
-                                      // )}
-                                      defaultActiveKey="1"
+                                      activeKey={(freeTimesTutor || []).map(
+                                        (_, index) => index + 1,
+                                      )}
                                     >
                                       {(freeTimesTutor || []).map(
                                         (time, index) => (
