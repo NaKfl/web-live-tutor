@@ -3,7 +3,11 @@ import { actions as popupActions } from 'app/containers/Popup/slice';
 import { useCallback, useEffect, useState } from 'react';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { useSelector } from 'react-redux';
-import { selectScheduleTutor } from './selectors';
+import {
+  selectScheduleTutor,
+  selectScheduleTutorStatus,
+  selectScheduleTutorByDateStatus,
+} from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';
 import moment from 'moment';
@@ -13,6 +17,10 @@ const useHooks = () => {
     popupActions,
   ]);
   const selectorScheduleTutor = useSelector(selectScheduleTutor);
+  const scheduleTutorStatus = useSelector(selectScheduleTutorStatus);
+  const scheduleTutorByDateStatus = useSelector(
+    selectScheduleTutorByDateStatus,
+  );
   const { getFreeSchedule } = useActions(
     {
       getFreeSchedule: actions.getFreeSchedule,
@@ -42,10 +50,13 @@ const useHooks = () => {
       openPopup({
         key: 'registerSchedule',
         type: POPUP_TYPE.SCHEDULE_REGISTER,
-        data,
+        data: {
+          ...data,
+          isLoading: scheduleTutorByDateStatus === ACTION_STATUS.PENDING,
+        },
       });
     },
-    [openPopup],
+    [openPopup, scheduleTutorByDateStatus],
   );
 
   const handleChangeMonth = useCallback(month => {
@@ -72,7 +83,7 @@ const useHooks = () => {
       handleDecreaseMonth,
       handleBackToToday,
     },
-    selectors: { scheduleTutor, month },
+    selectors: { scheduleTutor, month, scheduleTutorStatus },
   };
 };
 

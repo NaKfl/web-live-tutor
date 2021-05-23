@@ -6,6 +6,8 @@ import {
   selectScheduleTutorId,
   selectScheduleTutorByDate,
   selectbookTimeSchedule,
+  selectTutorDetailStatus,
+  selectScheduleTutorByDateStatus,
 } from './selectors';
 import { actions } from './slice';
 import { useEffect, useState, useCallback } from 'react';
@@ -21,6 +23,10 @@ const useHooks = () => {
   const selectorScheduleTutor = useSelector(selectScheduleTutorId);
   const selectorScheduleTutorByDate = useSelector(selectScheduleTutorByDate);
   const selectorBookTimeSchedule = useSelector(selectbookTimeSchedule);
+  const getTutorDetailStatus = useSelector(selectTutorDetailStatus);
+  const scheduleTutorByDateStatus = useSelector(
+    selectScheduleTutorByDateStatus,
+  );
   const [isShowedBtnBook, setBtnBook] = useState(false);
   const [form] = Form.useForm();
   const {
@@ -147,6 +153,8 @@ const useHooks = () => {
       freeTimesTutor,
       isShowedBtnBook,
       form,
+      getTutorDetailStatus,
+      scheduleTutorByDateStatus,
     },
     handlers: {
       onSelectDate,

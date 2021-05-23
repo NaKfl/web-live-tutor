@@ -8,7 +8,7 @@ import { selectBookingList, selectCancelBooking } from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';
 import { mapBookingListDataSource } from 'utils/common';
-import { notifyError, notifySuccess } from 'utils/notify';
+import { notifySuccess } from 'utils/notify';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

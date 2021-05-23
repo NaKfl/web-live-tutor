@@ -6,9 +6,7 @@ import Menu from 'app/components/Menu';
 import Space from 'app/components/Space';
 import FavoriteTutor from 'app/containers/FavoriteTutor';
 import { useLogout } from 'app/containers/Login/hooks';
-import { actions as loginActions } from 'app/containers/Login/slice';
 import MenuBar from 'app/containers/Menu/MenuBar';
-import useActions from 'hooks/useActions';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -18,6 +16,7 @@ import LanguageSelection from './LanguageSelection';
 import { StyledHeader, StyledAvatar } from './styles';
 import { useHistory } from 'react-router-dom';
 import { CalendarFilled, BellFilled } from '@ant-design/icons';
+import { useChangeRole } from 'app/containers/AppLayout/hooks';
 
 export const Header = () => {
   const { user } = useGetUserInfo();
@@ -25,19 +24,16 @@ export const Header = () => {
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
-  const { changeRole } = useActions(
-    {
-      changeRole: loginActions.changeRole,
-    },
-    [loginActions],
-  );
+  const { changeRole } = useChangeRole();
 
   return (
     <StyledHeader>
       <div className="header-wrapper">
         <div className="left-menu">
           <div className="logo-wrapper">
-            <Link to="/">
+            <Link
+              to={user.currentRole === ROLES.TUTOR ? 'schedule-tutor' : '/'}
+            >
               <Logo />
             </Link>
           </div>
@@ -79,16 +75,7 @@ export const Header = () => {
                       </Link>
                     </Menu.Item>
                   )) || (
-                    <Menu.Item
-                      onClick={() =>
-                        changeRole({
-                          roleName:
-                            user?.currentRole === ROLES.STUDENT
-                              ? ROLES.TUTOR
-                              : ROLES.STUDENT,
-                        })
-                      }
-                    >
+                    <Menu.Item onClick={() => changeRole()}>
                       {user?.currentRole === ROLES.STUDENT
                         ? t('Header.switchRoleToTutor')
                         : t('Header.switchRoleToStudent')}

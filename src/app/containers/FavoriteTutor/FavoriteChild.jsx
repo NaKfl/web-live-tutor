@@ -20,7 +20,7 @@ export const FavoriteChild = memo(props => {
         className="right"
         onClick={e => {
           e.stopPropagation();
-          handleSetNewConversation(props);
+          handleSetNewConversation({ userId: props.id, ...props });
         }}
       />
     </StyledFavoriteChild>

@@ -162,15 +162,17 @@ export const StyledMeeting = styled(Content)`
 `;
 
 export const StyledFooter = styled(Footer)`
+  border: none;
+  height: 70px;
   background: #525961;
   color: #ddd;
   width: 100%;
   padding: 0 0 0;
 
   .footer-wrapper {
+    height: 100%;
     max-width: ${`${maxWidth}px`};
     margin: 0 auto;
-    padding: 24px 0;
     text-align: center;
     display: flex;
     justify-content: flex-end;

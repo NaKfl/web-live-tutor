@@ -8,6 +8,11 @@ export const selectTutorDetailData = createSelector(
   tutorDetail => get('getTutorDetail.data', tutorDetail),
 );
 
+export const selectTutorDetailStatus = createSelector(
+  selectTutorDetailState,
+  tutorDetail => get('getTutorDetail.status', tutorDetail),
+);
+
 export const selectScheduleTutorId = createSelector(
   selectTutorDetailState,
   tutorDetail => get('scheduleTutorById', tutorDetail),
@@ -16,6 +21,11 @@ export const selectScheduleTutorId = createSelector(
 export const selectScheduleTutorByDate = createSelector(
   selectTutorDetailState,
   tutorDetail => get('scheduleTutorByDate', tutorDetail),
+);
+
+export const selectScheduleTutorByDateStatus = createSelector(
+  selectTutorDetailState,
+  tutorDetail => get('scheduleTutorByDate.status', tutorDetail),
 );
 
 export const selectDetailScheduleTutor = createSelector(
