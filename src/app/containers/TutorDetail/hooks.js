@@ -113,9 +113,6 @@ const useHooks = () => {
   const handleSelectDatePicker = useCallback(
     dateOfCell => {
       setDateSelected(dateOfCell);
-      getFreeScheduleByTutorId({
-        tutorId: tutorId,
-      });
     },
     [getFreeScheduleByTutorId, tutorId],
   );
@@ -129,7 +126,8 @@ const useHooks = () => {
 
   const handleBookSchedule = useCallback(
     values => {
-      const scheduleDetailIds = Object.values(values).flat();
+      const ids = Object.values(values).flat();
+      const scheduleDetailIds = ids.filter(item => item != null);
       bookTimeSchedule({
         scheduleDetailIds,
       });
