@@ -28,17 +28,19 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
     isTutor
       ? {
           key: value.id,
+          during: value.during,
           stt: index + 1,
           studentName: value?.studentInfo?.name,
-          startTime: moment(value?.startTime).format('DD/MM/YYYY hh:mm:ss'),
-          endTime: moment(value?.endTime).format('DD/MM/YYYY hh:mm:ss'),
+          startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
+          endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
         }
       : {
           key: value.id,
+          during: value.during,
           stt: index + 1,
           tutorName: value?.tutorInfo?.name,
-          startTime: moment(value?.startTime).format('DD/MM/YYYY hh:mm:ss'),
-          endTime: moment(value?.endTime).format('DD/MM/YYYY hh:mm:ss'),
+          startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
+          endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
         },
   );
 };

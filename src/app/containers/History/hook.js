@@ -34,7 +34,8 @@ export const useHook = () => {
 
   useEffect(() => {
     fetchHistory({ isTutor, page: query.get('page') || 1 });
-  }, [fetchHistory, isTutor, query]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTutor, query.get('page')]);
 
   const changeCategory = useCallback(
     selected => {
@@ -105,6 +106,11 @@ export const useForm = () => {
       title: 'End time',
     },
     {
+      key: 'during',
+      dataIndex: 'during',
+      title: 'During time',
+    },
+    {
       key: 'control',
       dataIndex: 'control',
       title: 'Control',
@@ -154,6 +160,11 @@ export const useForm = () => {
       key: 'endTime',
       dataIndex: 'endTime',
       title: 'End time',
+    },
+    {
+      key: 'during',
+      dataIndex: 'during',
+      title: 'During time',
     },
   ];
 
