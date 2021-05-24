@@ -26,4 +26,12 @@ export const StyledGroupSelectTime = styled(Row)`
       width: 10rem;
     }
   }
+  .ant-skeleton.ant-skeleton-active .ant-skeleton-content {
+    .ant-skeleton-title {
+      margin: 0 0 5px 0;
+    }
+    .ant-skeleton-paragraph {
+      display: none;
+    }
+  }
 `;

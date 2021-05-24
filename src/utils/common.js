@@ -1,5 +1,4 @@
 // Create an array from start to end - 1: range(1, 3) --> [1, 2]
-import { result } from 'lodash';
 import moment from 'moment';
 
 export const range = (start, end) => {

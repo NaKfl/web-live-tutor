@@ -1,19 +1,16 @@
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { DatePicker, Row } from 'antd';
+import { DatePicker, Row, Skeleton } from 'antd';
 import TextTimeSchedule from 'app/components/TextTimeSchedule';
 import moment from 'moment';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ACTION_STATUS } from 'utils/constants';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import useHooks from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
-import {
-  StyledEnglishCalendar,
-  StyledScheduleTutor,
-  StyledVietnameseCalendar,
-} from './styles';
+import { StyledScheduleTutor, StyledCalendar } from './styles';
 
 export const ScheduleTutor = () => {
   const { t } = useTranslation();
@@ -28,7 +25,7 @@ export const ScheduleTutor = () => {
     handleDecreaseMonth,
     handleBackToToday,
   } = handlers;
-  const { scheduleTutor, month } = selectors;
+  const { scheduleTutor, month, scheduleTutorStatus } = selectors;
 
   const getFreeTimesOfDate = (data, date) => {
     return data[date] || [];
@@ -47,15 +44,22 @@ export const ScheduleTutor = () => {
         <div className="ant-picker-calendar-date-value">{dayOfDate}</div>
         <div className="ant-picker-calendar-date-content">
           <Row className="flex-column align-content-center">
-            {listFreeTime.map(time => {
-              return (
-                <TextTimeSchedule
-                  typeText="Purple"
-                  content={`${time.startTime} - ${time.endTime}`}
-                  key={time?.id}
-                ></TextTimeSchedule>
-              );
-            })}
+            {(scheduleTutorStatus === ACTION_STATUS.PENDING &&
+              [...Array(2)].map((_, index) => (
+                <Skeleton key={index} active paragraph={{ rows: 0 }} />
+              ))) || (
+              <>
+                {listFreeTime.map(time => {
+                  return (
+                    <TextTimeSchedule
+                      typeText="Purple"
+                      content={`${time.startTime} - ${time.endTime}`}
+                      key={time?.id}
+                    />
+                  );
+                })}
+              </>
+            )}
           </Row>
         </div>
       </div>
@@ -96,21 +100,12 @@ export const ScheduleTutor = () => {
 
   return (
     <StyledScheduleTutor>
-      {(t('Common.default') === t('Common.en') && (
-        <StyledEnglishCalendar
-          dateFullCellRender={dateCellRender}
-          headerRender={headerRender}
-          mode="month"
-          value={month}
-        />
-      )) || (
-        <StyledVietnameseCalendar
-          dateFullCellRender={dateCellRender}
-          headerRender={headerRender}
-          mode="month"
-          value={month}
-        />
-      )}
+      <StyledCalendar
+        dateFullCellRender={dateCellRender}
+        headerRender={headerRender}
+        mode="month"
+        value={month}
+      />
     </StyledScheduleTutor>
   );
 };

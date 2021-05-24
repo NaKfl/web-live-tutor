@@ -6,6 +6,10 @@ import {
   selectScheduleTutorId,
   selectScheduleTutorByDate,
   selectbookTimeSchedule,
+  selectTutorDetailStatus,
+  selectScheduleTutorByDateStatus,
+  selectDetailScheduleTutorStatus,
+  selectScheduleTutorIdStatus,
 } from './selectors';
 import { actions } from './slice';
 import { useEffect, useState, useCallback } from 'react';
@@ -21,6 +25,14 @@ const useHooks = () => {
   const selectorScheduleTutor = useSelector(selectScheduleTutorId);
   const selectorScheduleTutorByDate = useSelector(selectScheduleTutorByDate);
   const selectorBookTimeSchedule = useSelector(selectbookTimeSchedule);
+  const getTutorDetailStatus = useSelector(selectTutorDetailStatus);
+  const detailScheduleTutorStatus = useSelector(
+    selectDetailScheduleTutorStatus,
+  );
+  const scheduleTutorByDateStatus = useSelector(
+    selectScheduleTutorByDateStatus,
+  );
+  const scheduleTutorIdStatus = useSelector(selectScheduleTutorIdStatus);
   const [isShowedBtnBook, setBtnBook] = useState(false);
   const [form] = Form.useForm();
   const {
@@ -110,12 +122,9 @@ const useHooks = () => {
     setIsSelectDate(false);
   }, []);
 
-  const handleSelectDatePicker = useCallback(
-    dateOfCell => {
-      setDateSelected(dateOfCell);
-    },
-    [getFreeScheduleByTutorId, tutorId],
-  );
+  const handleSelectDatePicker = useCallback(dateOfCell => {
+    setDateSelected(dateOfCell);
+  }, []);
 
   const handleDisableBtnBook = useCallback(allValues => {
     const isShowedBtnBook = Object.values(allValues).some(
@@ -145,6 +154,10 @@ const useHooks = () => {
       freeTimesTutor,
       isShowedBtnBook,
       form,
+      getTutorDetailStatus,
+      scheduleTutorByDateStatus,
+      detailScheduleTutorStatus,
+      scheduleTutorIdStatus,
     },
     handlers: {
       onSelectDate,

@@ -20,3 +20,5 @@ export const ROLES = {
 };
 
 export const DATE_FORMAT = 'YYYY/MM/DD';
+
+export const DEFAULT_PICKER_VALUE = '12/06/1999';

@@ -17,6 +17,7 @@ import Banner from './Banner';
 import TopTutor from './TopTutor';
 import { useTranslation } from 'react-i18next';
 import Pagination from 'app/components/Pagination';
+import { ACTION_STATUS } from 'utils/constants';
 
 export const Home = memo(() => {
   const { t } = useTranslation();
@@ -29,14 +30,19 @@ export const Home = memo(() => {
     listFavorite,
     pagination,
     topTutor,
+    topTutorStatus,
+    moreTutorsStatus,
   } = selectors;
-  const { onClickHeart, onSearch } = handlers;
+  const { onClickHeart } = handlers;
   return (
     <StyledHome>
       <StyledFistPart>
         <Banner />
         <StyledTopList>
-          <TopTutor data={topTutor} />
+          <TopTutor
+            data={topTutor}
+            isLoading={topTutorStatus === ACTION_STATUS.PENDING}
+          />
         </StyledTopList>
       </StyledFistPart>
       <StyledSecondPart>
@@ -66,6 +72,7 @@ export const Home = memo(() => {
         listTutor={listTutor}
         onClickHeart={onClickHeart}
         listFavorite={listFavorite}
+        isLoading={moreTutorsStatus === ACTION_STATUS.PENDING}
       ></ListTutor>
       <StyledPagination>
         <Pagination {...pagination}></Pagination>

@@ -8,6 +8,11 @@ export const selectScheduleTutor = createSelector(
   scheduleState => get('scheduleTutor', scheduleState),
 );
 
+export const selectScheduleTutorStatus = createSelector(
+  selectScheduleState,
+  scheduleState => get('scheduleTutor.status', scheduleState),
+);
+
 export const selectbookTimeSchedule = createSelector(
   selectScheduleState,
   scheduleState => get('bookTimeSchedule', scheduleState),
@@ -21,6 +26,11 @@ export const selectScheduleTutorId = createSelector(
 export const selectScheduleTutorByDate = createSelector(
   selectScheduleState,
   scheduleState => get('scheduleTutorByDate', scheduleState),
+);
+
+export const selectScheduleTutorByDateStatus = createSelector(
+  selectScheduleState,
+  scheduleState => get('scheduleTutorByDate.status', scheduleState),
 );
 
 export const selectRegisterSchedule = createSelector(

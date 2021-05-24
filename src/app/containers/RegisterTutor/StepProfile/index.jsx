@@ -11,7 +11,8 @@ import Select from 'app/components/Select';
 import DatePicker from 'app/components/DatePicker';
 import ImageUpload from './ImageUpload';
 import { useTranslation } from 'react-i18next';
-import { COUNTRIES, MAJOR_NAMES } from './constants';
+import { MAJOR_NAMES } from './constants';
+import COUNTRIES from 'utils/countries';
 
 export const StepProfile = ({
   formProfile,
@@ -84,9 +85,9 @@ export const StepProfile = ({
                   ]}
                 >
                   <Select>
-                    {COUNTRIES.map(item => (
-                      <Select.Option value={item} key={item}>
-                        {item}
+                    {Object.entries(COUNTRIES).map(([key, value]) => (
+                      <Select.Option value={key} key={key}>
+                        {value}
                       </Select.Option>
                     ))}
                   </Select>
@@ -260,15 +261,19 @@ export const StepProfile = ({
               ]}
             >
               <Checkbox.Group>
-                {MAJOR_NAMES.map(({ vietnameseName }) => (
-                  <Row className="mb-2" key={vietnameseName}>
-                    <Col>
-                      <Checkbox value={vietnameseName}>
-                        {vietnameseName}
-                      </Checkbox>
-                    </Col>
-                  </Row>
-                ))}
+                {Object.entries(MAJOR_NAMES).map(
+                  ([key, { vietnameseName, englishName }]) => (
+                    <Row className="mb-2" key={key}>
+                      <Col>
+                        <Checkbox value={key}>
+                          {t('Common.default') === t('Common.vn')
+                            ? vietnameseName
+                            : englishName}
+                        </Checkbox>
+                      </Col>
+                    </Row>
+                  ),
+                )}
               </Checkbox.Group>
             </Form.Item>
           </Row>

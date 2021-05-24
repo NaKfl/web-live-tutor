@@ -29,7 +29,7 @@ export const StyledTutorName = styled.h3`
   font-weight: 600 !important;
   margin-bottom: 0;
   display: block;
-  height: 35px;
+  height: 40px;
 `;
 
 export const StyledTutorTitle = styled.div`
@@ -180,6 +180,17 @@ export const StyledTutorContent = styled.div`
         font-size: 15px;
         > span {
           margin-right: 10px;
+        }
+      }
+      .ant-skeleton.ant-skeleton-active {
+        margin-top: 10px;
+        .ant-skeleton-content {
+          .ant-skeleton-title {
+            margin: 0 0 5px 0;
+          }
+          .ant-skeleton-paragraph {
+            margin-top: 10px;
+          }
         }
       }
     }

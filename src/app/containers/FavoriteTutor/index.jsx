@@ -1,5 +1,4 @@
-import { faHeartbeat } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { HeartFilled } from '@ant-design/icons';
 import { Empty } from 'antd';
 import Dropdown from 'app/components/Dropdown';
 import Menu from 'app/components/Menu';
@@ -41,9 +40,13 @@ export const FavoriteTutor = () => {
   };
   return (
     <StyledFavoriteTutor>
-      <Dropdown overlay={OverLay()} placement="bottomRight" trigger={['click']}>
-        <FontAwesomeIcon
-          icon={faHeartbeat}
+      <Dropdown
+        className="dropdown"
+        overlay={OverLay()}
+        placement="bottomRight"
+        trigger={['click']}
+      >
+        <HeartFilled
           className="heart-btn"
           onClick={() => showFavoriteTutorList()}
         />
