@@ -19,7 +19,8 @@
     "next": "Next",
     "previous": "Previous",
     "done": "Done",
-    "backHome": "Back Home"
+    "backHome": "Back Home",
+    "backToHome": "Back to home"
   },
   "Category": {
     "tutor": "Tutor",

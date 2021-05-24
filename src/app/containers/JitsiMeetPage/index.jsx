@@ -5,27 +5,31 @@ import useHooks from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
 import { StyledMeetingPage } from './styles';
+import { Spin } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 export const JitsiMeetPage = props => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks(props);
-  const { roomInfo } = selectors;
+  const { roomInfo, isLoading } = selectors;
   const { handleSomeOneLeave } = handlers;
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
-    <StyledMeetingPage isTutor={roomInfo.isTutor}>
-      {roomInfo.roomName && (
-        <JitsiMeet
-          roomName={roomInfo.roomName}
-          userInfo={roomInfo.userInfo}
-          disableInviteFunctions={true}
-          onMeetingEnd={() => handleSomeOneLeave(roomInfo)}
-          loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>}
-        />
-      )}
-    </StyledMeetingPage>
+    <Spin spinning={isLoading} tip={`${t('Common.backToHome')} ...`}>
+      <StyledMeetingPage isTutor={roomInfo.isTutor}>
+        {roomInfo.roomName && (
+          <JitsiMeet
+            roomName={roomInfo.roomName}
+            userInfo={roomInfo.userInfo}
+            disableInviteFunctions={true}
+            onMeetingEnd={() => handleSomeOneLeave(roomInfo)}
+            loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>}
+          />
+        )}
+      </StyledMeetingPage>
+    </Spin>
   );
 };
 
