@@ -29,7 +29,6 @@ export const useHooks = () => {
   );
 
   useEffect(() => {
-    console.log('query', getBookingList, typeof getBookingList);
     getBookingList({ page: query.get('page') || 1 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query.get('page')]);

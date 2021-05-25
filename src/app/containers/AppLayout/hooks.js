@@ -7,6 +7,7 @@ import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
 import { ROLES } from 'utils/constants';
+import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
@@ -55,7 +56,7 @@ export const useGetUserInfo = () => {
 
 export const useChangeRole = () => {
   const history = useHistory();
-  const { user } = useGetUserInfo();
+  const user = getUserFromStorage();
   const { changeRoleAction } = useActions(
     {
       changeRoleAction: loginActions.changeRole,
