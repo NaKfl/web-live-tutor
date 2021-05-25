@@ -17,6 +17,7 @@ import { StyledHeader, StyledAvatar } from './styles';
 import { useHistory } from 'react-router-dom';
 import { CalendarFilled, BellFilled } from '@ant-design/icons';
 import { useChangeRole } from 'app/containers/AppLayout/hooks';
+import WalletAmount from 'app/components/WalletAmount';
 
 export const Header = () => {
   const { user } = useGetUserInfo();
@@ -56,6 +57,7 @@ export const Header = () => {
               }}
             />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
+            <WalletAmount wallet={user.walletInfo} />
             <Dropdown
               placement="bottomRight"
               trigger={['click']}
