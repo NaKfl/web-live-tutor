@@ -2,6 +2,8 @@ import { StyledPagination } from './style';
 import { memo } from 'react';
 
 export const Pagination = memo(prop => {
+  //total
+  //pageSize
   return (
     <StyledPagination
       defaultCurrent={1}

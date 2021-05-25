@@ -36,7 +36,6 @@ export const useHooks = props => {
   };
   const handleSubmitReview = ({ tutor }) => {
     if (contentReview && rating) {
-      console.log('2222222222', sessionId);
       reviewTutor({
         sessionId,
         tutorId: tutor.userId,

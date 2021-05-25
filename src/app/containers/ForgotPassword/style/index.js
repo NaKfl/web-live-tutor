@@ -15,10 +15,10 @@ export const Cover = styled.div`
   * > {
     margin-bottom: 28px;
   }
-  width: 560px;
+  width: 340px;
   p {
     letter-spacing: 1.5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .form {
     width: 100%;
@@ -33,6 +33,7 @@ export const Cover = styled.div`
       align-self: center;
     }
     .button {
+      margin-top: 10px;
       width: 100%;
       display: flex;
       justify-content: center;

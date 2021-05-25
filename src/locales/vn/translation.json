@@ -289,5 +289,25 @@
   "VerifyAccount": {
     "notifySuccess": "Tài khoản của bạn đã được xác thực thành công",
     "notifyFail": "Có một số vấn đề với xác minh của bạn"
+  },
+  "ForgotPassword": {
+    "title": "Đặt lại mật khẩu",
+    "enterEmail": "Vui lòng nhập email để tìm kiếm tài khoản của bạn.",
+    "checkEmail": "Kiểm tra hộp thư đến trong email để đặt lại mật khẩu của bạn.",
+    "enterPassword": "Nhập mật khẩu mới mà bạn muốn sử dụng cho tài khoản của mình.",
+    "label": {
+      "email": "Email",
+      "password": "Mật khẩu",
+      "confirmPassword": "Nhập lại mật khẩu"
+    },
+    "btnSubmit": "Gửi",
+    "btnSendLink": "Xác nhận",
+    "err": {
+      "inputPassword": "Vui lòng nhập mật khẩu xác nhận!",
+      "passwordNotMatch": "Mật khẩu xác nhận vừa nhập không khớp"
+    },
+    "forgotPasswordFailed": "Đặt mật khẩu thất bại vì một lí do không mong muốn nào đó. Quay về trang chủ.",
+    "forgotPasswordSuccess": "Đặt mật khẩu mới thành công. Quay lại trang chủ.",
+    "backToHome": "Quay về trang chủ"
   }
 }

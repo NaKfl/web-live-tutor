@@ -1,14 +1,12 @@
 import { memo } from 'react';
 import { InputEmailForm } from '../UseForm';
-
-export const FirstStep = memo(({ onFinish }) => {
+import { useTranslation } from 'react-i18next';
+export const FirstStep = memo(({ onFinish, status }) => {
+  const { t } = useTranslation();
   return (
     <>
-      <p>
-        Enter the email address associated with your Etutor account and we’ll
-        send you a reset link.
-      </p>
-      <InputEmailForm onFinish={onFinish}></InputEmailForm>
+      <p>{t('ForgotPassword.enterEmail')}</p>
+      <InputEmailForm onFinish={onFinish} status={status}></InputEmailForm>
     </>
   );
 });

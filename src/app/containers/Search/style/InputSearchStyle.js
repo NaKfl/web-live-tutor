@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { COLOR } from 'styles/colorPalette';
 
 export const WrapInputSearch = styled.div`
   max-width: 100%;
