@@ -52,8 +52,9 @@ export const InputSearch = memo(
             }),
           });
           setLocation(false);
-        }, 300)();
+        }, 500)();
       },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       [inputValue],
     );
 

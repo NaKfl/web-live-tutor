@@ -291,5 +291,25 @@
   "VerifyAccount": {
     "notifySuccess": "Your account has been successfully verified",
     "notifyFail": "There are some problems with your verification"
+  },
+  "ForgotPassword": {
+    "title": "Reset Password",
+    "enterEmail": "Please enter your email address to search for your account.",
+    "checkEmail": "Check your inbox for a link to reset your password.",
+    "enterPassword": "Enter the new password that you would like to use for your account.",
+    "label": {
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "btnSubmit": "Submit",
+    "btnSendLink": "Send reset link",
+    "err": {
+      "inputPassword": "Please input confirm password!",
+      "passwordNotMatch": "The two passwords that you entered do not match!"
+    },
+    "forgotPasswordFailed": "Reset password failed because some error so you can click button to go home",
+    "forgotPasswordSuccess": "Reset password success, go to home to login",
+    "backToHome": "Go to home"
   }
 }
