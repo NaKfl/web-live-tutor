@@ -1,12 +1,13 @@
-import { Spin } from 'antd';
+import { Row, Spin } from 'antd';
 import WalletBalance from 'app/components/WalletBalance';
 import React, { memo } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
+import ChartPanel from './ChartPanel';
 import useHooks from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
-import { StyledFullHeightCol, StyledWallet } from './styles';
+import { StyledFullHeightCol, StyledWallet, StyledLeftPart } from './styles';
 import TransactionPanel from './TransactionPanel';
 
 export const Wallet = () => {
@@ -14,17 +15,34 @@ export const Wallet = () => {
   useInjectReducer({ key: sliceKey, reducer });
 
   const { selectors } = useHooks();
-  const { historyStatus, historyData, total, income, outcome } = selectors;
+  const {
+    historyStatus,
+    historyData,
+    total,
+    income,
+    outcome,
+    statistics,
+  } = selectors;
 
   return (
     <StyledWallet gutter={[30, 0]}>
       {historyStatus === ACTION_STATUS.SUCCESS && (
         <>
-          <StyledFullHeightCol span={2}></StyledFullHeightCol>
-          <StyledFullHeightCol span={15}>
-            <WalletBalance amount={total} income={income} outcome={outcome} />
+          <StyledFullHeightCol span={16}>
+            <StyledLeftPart>
+              <Row>
+                <WalletBalance
+                  amount={total}
+                  income={income}
+                  outcome={outcome}
+                />
+              </Row>
+              <Row className="row-chart">
+                <ChartPanel height={'100%'} statistics={statistics} />
+              </Row>
+            </StyledLeftPart>
           </StyledFullHeightCol>
-          <StyledFullHeightCol span={7}>
+          <StyledFullHeightCol span={8}>
             <TransactionPanel height={'100%'} transactions={historyData.rows} />
           </StyledFullHeightCol>
         </>

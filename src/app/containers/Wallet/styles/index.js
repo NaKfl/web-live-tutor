@@ -13,4 +13,14 @@ export const StyledFullHeightCol = styled(Col)`
   height: 100%;
 `;
 
+export const StyledLeftPart = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .row-chart {
+    flex: 1;
+    margin-top: 30px;
+  }
+`;
+
 export const StyledTable = styled(Table)``;

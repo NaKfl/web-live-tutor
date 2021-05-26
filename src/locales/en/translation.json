@@ -327,6 +327,7 @@
     "myWallet": "My wallet",
     "balance": "Balance",
     "income": "Income",
-    "outcome": "Outcome"
+    "outcome": "Outcome",
+    "chartTitle": "Analytic"
   }
 }

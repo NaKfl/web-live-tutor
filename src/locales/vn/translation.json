@@ -325,6 +325,7 @@
     "myWallet": "Ví của tôi",
     "balance": "Số dư",
     "income": "Tiền vào",
-    "outcome": "Tiền ra"
+    "outcome": "Tiền ra",
+    "chartTitle": "Phân tích"
   }
 }
