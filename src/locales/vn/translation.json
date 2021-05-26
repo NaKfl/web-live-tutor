@@ -315,5 +315,10 @@
     "forgotPasswordFailed": "Đặt mật khẩu thất bại vì một lí do không mong muốn nào đó. Quay về trang chủ.",
     "forgotPasswordSuccess": "Đặt mật khẩu mới thành công. Quay lại trang chủ.",
     "backToHome": "Quay về trang chủ"
+  },
+  "Wallet": {
+    "transactionTitle": "Giao dịch",
+    "actionName": "Xem thêm",
+    "book": "Đặt"
   }
 }

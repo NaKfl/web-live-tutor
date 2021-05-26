@@ -317,5 +317,10 @@
     "forgotPasswordFailed": "Reset password failed because some error so you can click button to go home",
     "forgotPasswordSuccess": "Reset password success, go to home to login",
     "backToHome": "Go to home"
+  },
+  "Wallet": {
+    "transactionTitle": "Transactions",
+    "actionName": "View all",
+    "book": "Book"
   }
 }
