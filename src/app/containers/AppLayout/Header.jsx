@@ -11,7 +11,7 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
-import { useGetUserInfo } from './hooks';
+import { useGetUserInfo, useHooks } from './hooks';
 import LanguageSelection from './LanguageSelection';
 import { StyledHeader, StyledAvatar } from './styles';
 import { useHistory } from 'react-router-dom';
@@ -24,7 +24,9 @@ export const Header = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const { handlers } = useLogout();
+  const { handlerHooks } = useHooks();
   const { onLogout } = handlers;
+  const { showPaymentModal } = handlerHooks;
   const { changeRole } = useChangeRole();
 
   return (
@@ -57,7 +59,10 @@ export const Header = () => {
               }}
             />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
-            <WalletAmount wallet={user.walletInfo} />
+            <WalletAmount
+              onClick={() => showPaymentModal()}
+              wallet={user.walletInfo}
+            />
             <Dropdown
               placement="bottomRight"
               trigger={['click']}

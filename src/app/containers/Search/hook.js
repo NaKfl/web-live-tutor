@@ -40,7 +40,6 @@ export const useHook = () => {
       arrayFormatSeparator: '|',
       skipNull: true,
     });
-    console.log(urlParse);
     if (!!option) optionFromUrl({ ...urlParse });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
@@ -107,7 +106,6 @@ export const usePagination = () => {
         arrayFormatSeparator: '|',
         skipNull: true,
       });
-      console.log(a);
       history.push({
         search: a,
       });

@@ -291,5 +291,11 @@
   "VerifyAccount": {
     "notifySuccess": "Your account has been successfully verified",
     "notifyFail": "There are some problems with your verification"
+  },
+  "Payment": {
+    "depositInApp": "DEPOSIT IN LIVETUTOR",
+    "deposit": "Deposit",
+    "howMuchMoney": "Money (VNĐ)",
+    "minMax": "Min money is 10.000 and max money is 100.000.000"
   }
 }

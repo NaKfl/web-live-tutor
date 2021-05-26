@@ -12,7 +12,7 @@
     "back": "Trở lại",
     "selectDay": "Chọn một ngày",
     "selectTimeALot": "Chọn thời điểm",
-    "cancel": "Hủy",
+    "cancel": "Đóng",
     "From": "Từ",
     "to": "đến",
     "book": "Đặt ngay",
@@ -289,5 +289,11 @@
   "VerifyAccount": {
     "notifySuccess": "Tài khoản của bạn đã được xác thực thành công",
     "notifyFail": "Có một số vấn đề với xác minh của bạn"
+  },
+  "Payment": {
+    "depositInApp": "NẠP TIỀN VÀO LIVETUTOR",
+    "deposit": "Nạp tiền",
+    "howMuchMoney": "Số tiền bạn muốn nạp (VNĐ)",
+    "minMax": "Số tiền nạp tối thiểu là 10.000 và tối đa là 100.000.000"
   }
 }
