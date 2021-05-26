@@ -1,4 +1,5 @@
 import { Spin } from 'antd';
+import WalletBalance from 'app/components/WalletBalance';
 import React, { memo } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
@@ -13,14 +14,16 @@ export const Wallet = () => {
   useInjectReducer({ key: sliceKey, reducer });
 
   const { selectors } = useHooks();
-  const { historyStatus, historyData } = selectors;
+  const { historyStatus, historyData, total, income, outcome } = selectors;
 
   return (
-    <StyledWallet>
+    <StyledWallet gutter={[30, 0]}>
       {historyStatus === ACTION_STATUS.SUCCESS && (
         <>
           <StyledFullHeightCol span={2}></StyledFullHeightCol>
-          <StyledFullHeightCol span={15}></StyledFullHeightCol>
+          <StyledFullHeightCol span={15}>
+            <WalletBalance amount={total} income={income} outcome={outcome} />
+          </StyledFullHeightCol>
           <StyledFullHeightCol span={7}>
             <TransactionPanel height={'100%'} transactions={historyData.rows} />
           </StyledFullHeightCol>

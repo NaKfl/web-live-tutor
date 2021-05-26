@@ -20,7 +20,8 @@
     "previous": "Trở lại",
     "done": "Hoàn tất",
     "backHome": "Trang Chủ",
-    "backToHome": "Đang trở về trang Chủ"
+    "backToHome": "Đang trở về trang Chủ",
+    "empty": "Trống"
   },
   "Category": {
     "tutor": "Gia sư",
@@ -319,6 +320,11 @@
   "Wallet": {
     "transactionTitle": "Giao dịch",
     "actionName": "Xem thêm",
-    "book": "Đặt"
+    "book": "Đặt",
+    "depositNow": "Nạp ngay",
+    "myWallet": "Ví của tôi",
+    "balance": "Số dư",
+    "income": "Tiền vào",
+    "outcome": "Tiền ra"
   }
 }

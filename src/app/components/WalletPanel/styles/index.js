@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { COLOR } from 'styles/colorPalette';
 
 export const StyledWalletPanel = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
-  padding: 20px 40px;
-  border-radius: 5px;
+  box-shadow: 0px 4px 16px ${COLOR.SHADOW_GRAY};
+  padding: 20px 30px;
+  border-radius: 30px;
   width: ${({ width }) =>
     typeof width === 'string' && width.includes('%')
       ? `${width}`

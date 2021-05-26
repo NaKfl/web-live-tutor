@@ -32,7 +32,7 @@ export const StyledInfo = styled.div`
 `;
 
 export const StyledLeftPart = styled.div`
-  width: 75%;
+  width: 70%;
   display: flex;
   align-items: center;
 `;

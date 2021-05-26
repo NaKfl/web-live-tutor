@@ -1,6 +1,5 @@
 import TransactionList from 'app/components/TransactionList';
 import WalletPanel from 'app/components/WalletPanel';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 const TransactionPanel = ({

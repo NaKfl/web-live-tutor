@@ -20,7 +20,8 @@
     "previous": "Previous",
     "done": "Done",
     "backHome": "Back Home",
-    "backToHome": "Back to home"
+    "backToHome": "Back to home",
+    "empty": "Empty"
   },
   "Category": {
     "tutor": "Tutor",
@@ -321,6 +322,11 @@
   "Wallet": {
     "transactionTitle": "Transactions",
     "actionName": "View all",
-    "book": "Book"
+    "book": "Book",
+    "depositNow": "Deposit now",
+    "myWallet": "My wallet",
+    "balance": "Balance",
+    "income": "Income",
+    "outcome": "Outcome"
   }
 }

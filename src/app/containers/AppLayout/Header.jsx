@@ -44,9 +44,23 @@ export const Header = () => {
         </div>
         {(user && (
           <Space className="right-menu">
-            <Button className="sub-btn" type="accent">
-              {t('Header.subscribe')}
-            </Button>
+            <Dropdown
+              className="sub-btn"
+              placement="bottomRight"
+              trigger={['click']}
+              overlay={
+                <Menu>
+                  <Menu.Item onClick={() => showPaymentModal()}>
+                    {t('Wallet.depositNow')}
+                  </Menu.Item>
+                  <Menu.Item>
+                    <Link to="/my-wallet">{t('Wallet.myWallet')}</Link>
+                  </Menu.Item>
+                </Menu>
+              }
+            >
+              <WalletAmount wallet={user.walletInfo} />
+            </Dropdown>
             <LanguageSelection />
             <BellFilled className="menu-icon" />
             <CalendarFilled
@@ -59,10 +73,6 @@ export const Header = () => {
               }}
             />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
-            <WalletAmount
-              onClick={() => showPaymentModal()}
-              wallet={user.walletInfo}
-            />
             <Dropdown
               placement="bottomRight"
               trigger={['click']}
