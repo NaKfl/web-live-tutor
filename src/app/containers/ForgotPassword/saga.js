@@ -12,6 +12,7 @@ function* submitEmailTask(action) {
   if (response) {
     yield put(actions.submitEmailSuccess());
   } else {
+    yield put(actions.submitEmailFailed());
     console.log(error);
   }
 }
@@ -29,6 +30,7 @@ function* resetPasswordTask(action) {
     yield put(actions.resetPasswordSuccess());
     notifySuccess('Changed password success');
   } else {
+    yield put(actions.resetPasswordFailed(error));
     console.log(error);
   }
 }

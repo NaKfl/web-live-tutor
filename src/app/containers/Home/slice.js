@@ -31,6 +31,7 @@ const homeSlice = createSlice({
         set('topTutor.status', ACTION_STATUS.PENDING),
       )(state);
     },
+
     getTopTutorSuccess(state, action) {
       return flow(
         set('topTutor.error', null),
@@ -38,6 +39,7 @@ const homeSlice = createSlice({
         set('topTutor.data', action.payload),
       )(state);
     },
+
     getTopTutorFailure(state, action) {
       return flow(
         set('topTutor.error', action.payload),
@@ -51,6 +53,7 @@ const homeSlice = createSlice({
         set('rating.status', ACTION_STATUS.PENDING),
       )(state);
     },
+
     reviewTutorSuccess(state, action) {
       return flow(
         set('rating.error', null),
@@ -58,6 +61,7 @@ const homeSlice = createSlice({
         set('rating.data', action.payload),
       )(state);
     },
+
     reviewTutorFailure(state, action) {
       return flow(
         set('rating.error', action.payload),
@@ -110,6 +114,22 @@ const homeSlice = createSlice({
       return flow(
         set('error', action.payload),
         set('status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    pushFavoriteTutorToList(state, action) {
+      return flow(set('listFavorite', [...state.listFavorite, action.payload]))(
+        state,
+      );
+    },
+    removeFavoriteTutorFromList(state, action) {
+      return flow(
+        set(
+          'listFavorite',
+          [...state.listFavorite].filter(
+            value => value.secondId !== action.payload,
+          ),
+        ),
       )(state);
     },
   },

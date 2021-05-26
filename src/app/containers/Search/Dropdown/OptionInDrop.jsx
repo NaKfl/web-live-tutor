@@ -57,6 +57,7 @@ export const OptionInDrop = memo(({ option, onChangeFilter }) => {
 
   useEffect(() => {
     onChangeFilter(select);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select]);
 
   return (

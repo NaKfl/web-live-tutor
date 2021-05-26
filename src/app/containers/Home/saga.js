@@ -9,9 +9,11 @@ import { actions } from './slice';
 function getTopTutorAPI(payload) {
   return getTopTutor(payload);
 }
+
 function* getTopTutorWatcher() {
   yield takeLatest(actions.getTopTutor, getTopTutorTask);
 }
+
 function* getTopTutorTask(action) {
   const { response, error } = yield call(getTopTutorAPI, action.payload);
   if (response) {
@@ -24,9 +26,11 @@ function* getTopTutorTask(action) {
 function reviewTutorAPI(payload) {
   return reviewTutor(payload);
 }
+
 function* reviewTutorWatcher() {
   yield takeLatest(actions.reviewTutor, reviewTutorTask);
 }
+
 function* reviewTutorTask(action) {
   const { response, error } = yield call(reviewTutorAPI, action.payload);
   if (response) {
@@ -39,9 +43,11 @@ function* reviewTutorTask(action) {
 function getListTutorAPI({ search = null, page, perPage }) {
   return getList({ search, page, perPage });
 }
+
 function* getListWatcher() {
   yield takeLatest(actions.fetchRequest, fetchListTask);
 }
+
 function* fetchListTask(action) {
   const { response, error } = yield call(getListTutorAPI, {
     search: null,
@@ -67,16 +73,21 @@ function* fetchListTask(action) {
 function manageFavoriteTutorAPI(payload) {
   return manageFavoriteTutor(payload);
 }
+
 function* manageFavoriteTutorWatcher() {
   yield takeLatest(actions.manageFavoriteTutor, manageFavoriteTutorTask);
 }
+
 function* manageFavoriteTutorTask(action) {
   const { response, error } = yield call(
     manageFavoriteTutorAPI,
     action.payload,
   );
-  if (response) {
-    yield put(actions.fetchRequest());
+  console.log(action.payload);
+  if (response.result === 1) {
+    yield put(actions.removeFavoriteTutorFromList(action.payload));
+  } else if (response.result !== 1) {
+    yield put(actions.pushFavoriteTutorToList(response.result));
   } else {
     console.log(error);
   }
@@ -85,9 +96,11 @@ function* manageFavoriteTutorTask(action) {
 function fetchListFavoriteAPI(payload) {
   return getFavoriteTutorList(payload);
 }
+
 function* fetchListFavoriteWatcher() {
   yield takeLatest(actions.fetchFavoriteList, fetchFavoriteTutorTask);
 }
+
 function* fetchFavoriteTutorTask() {
   const { response, error } = yield call(fetchListFavoriteAPI);
   if (response) {

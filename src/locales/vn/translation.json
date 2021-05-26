@@ -295,5 +295,25 @@
     "deposit": "Nạp tiền",
     "howMuchMoney": "Số tiền bạn muốn nạp (VNĐ)",
     "minMax": "Số tiền nạp tối thiểu là 10.000 và tối đa là 100.000.000"
+  },
+  "ForgotPassword": {
+    "title": "Đặt lại mật khẩu",
+    "enterEmail": "Vui lòng nhập email để tìm kiếm tài khoản của bạn.",
+    "checkEmail": "Kiểm tra hộp thư đến trong email để đặt lại mật khẩu của bạn.",
+    "enterPassword": "Nhập mật khẩu mới mà bạn muốn sử dụng cho tài khoản của mình.",
+    "label": {
+      "email": "Email",
+      "password": "Mật khẩu",
+      "confirmPassword": "Nhập lại mật khẩu"
+    },
+    "btnSubmit": "Gửi",
+    "btnSendLink": "Xác nhận",
+    "err": {
+      "inputPassword": "Vui lòng nhập mật khẩu xác nhận!",
+      "passwordNotMatch": "Mật khẩu xác nhận vừa nhập không khớp"
+    },
+    "forgotPasswordFailed": "Đặt mật khẩu thất bại vì một lí do không mong muốn nào đó. Quay về trang chủ.",
+    "forgotPasswordSuccess": "Đặt mật khẩu mới thành công. Quay lại trang chủ.",
+    "backToHome": "Quay về trang chủ"
   }
 }

@@ -48,6 +48,7 @@ export const useHook = () => {
     return () => {
       resetState();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onChangeFilter = debounce(options => {
@@ -88,7 +89,6 @@ export const usePagination = () => {
   const current = useSelector(makePageCurrent);
   const option = useSelector(makeSelectedOption);
   const history = useHistory();
-  const location = useLocation();
 
   const [callHistoryPush, setHistoryPush] = useState(false);
 
@@ -111,6 +111,7 @@ export const usePagination = () => {
       });
       setHistoryPush(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [callHistoryPush, history]);
 
   const onChange = page => {

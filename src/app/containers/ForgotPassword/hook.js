@@ -1,18 +1,26 @@
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { makeSelectStep } from './selectors';
+import { makeSelectStep, makeSelectStatus } from './selectors';
 import { actions } from './slice';
 import useActions from 'hooks/useActions';
 import { useQuery } from 'utils/common';
 import { useLocation } from 'react-router-dom';
+
 export const useHook = () => {
   const step = useSelector(makeSelectStep);
+  const status = useSelector(makeSelectStatus);
   const query = useQuery(useLocation());
-  const { submitEmail, changeToThirdStep, resetPassword } = useActions(
+  const {
+    submitEmail,
+    changeToThirdStep,
+    resetPassword,
+    resetStep,
+  } = useActions(
     {
       submitEmail: actions.submitEmail,
       changeToThirdStep: actions.changeToThirdStep,
       resetPassword: actions.resetPassword,
+      resetStep: actions.resetStep,
     },
     [actions],
   );
@@ -23,6 +31,12 @@ export const useHook = () => {
     }
   }, [changeToThirdStep, query]);
 
+  useEffect(() => {
+    return () => {
+      resetStep();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const onSubmitEmail = useCallback(
     ({ email }) => {
       submitEmail(email);
@@ -42,6 +56,7 @@ export const useHook = () => {
   return {
     selectors: {
       step,
+      status,
     },
     handlers: {
       submitEmail: onSubmitEmail,

@@ -79,6 +79,12 @@ export const privateRoutes = [
     key: 'search',
     requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
+  {
+    path: '/search',
+    component: Search,
+    key: 'search',
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
+  },
 ];
 
 export const publicRoutes = [
