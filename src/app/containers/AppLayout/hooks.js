@@ -7,24 +7,37 @@ import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
 import { ROLES } from 'utils/constants';
+import { POPUP_TYPE } from 'app/containers/Popup/constants';
+import { actions as popupActions } from 'app/containers/Popup/slice';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
   const user = useSelector(selectUserInfoAuthenticate);
-
+  const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
+    popupActions,
+  ]);
   if (isAuthenticated) {
     emitConnectionLogin(user);
   } else {
     emitDisconnectionLogout();
   }
-
+  const showPaymentModal = useCallback(
+    user => {
+      openPopup({
+        key: 'showPaymentModal',
+        type: POPUP_TYPE.PAYMENT_MODAL,
+        user,
+      });
+    },
+    [openPopup],
+  );
   return {
     selectors: {
       isAuthenticated,
       currentRole: user?.currentRole,
     },
-    handler: {},
+    handlerHooks: { showPaymentModal },
   };
 };
 
