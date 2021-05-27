@@ -1,24 +1,28 @@
-import { useCallback, useEffect, useState } from 'react';
-import useActions from 'hooks/useActions';
-import { useSelector } from 'react-redux';
-import { selectDepositAccount } from './selectors';
-import { ACTION_STATUS } from 'utils/constants';
-import { actions } from './slice';
-import { getListBanksVN } from 'fetchers/authFetcher';
-import { notifySuccess } from 'utils/notify';
 import { Form } from 'antd';
+import { getListBanksVN } from 'fetchers/authFetcher';
+import useActions from 'hooks/useActions';
+import { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { ACTION_STATUS } from 'utils/constants';
+import { selectDepositAccountStatus } from './selectors';
+import { actions } from './slice';
+import { actions as walletActions } from 'app/containers/Wallet/slice';
 
 const useHooks = () => {
+  const location = useLocation();
   const [form] = Form.useForm();
   const [listBanksVN, setListBanksVN] = useState([]);
   const [bankSelected, setBankSelected] = useState({});
   const [isValidMoney, setValidMoney] = useState(true);
   const [moneyValue, setValueMoney] = useState(0);
-  const { depositToAccount } = useActions(
+  const depositStatus = useSelector(selectDepositAccountStatus);
+  const { depositToAccount, getHistory } = useActions(
     {
       depositToAccount: actions.depositToAccount,
+      getHistory: walletActions.getHistory,
     },
-    [actions],
+    [actions, walletActions],
   );
 
   useEffect(() => {
@@ -54,6 +58,13 @@ const useHooks = () => {
       form.resetFields();
     }
   }, [depositToAccount, form, isValidMoney, moneyValue]);
+
+  useEffect(() => {
+    const isInWallet = location.pathname === '/my-wallet';
+    if (isInWallet && depositStatus === ACTION_STATUS.SUCCESS) {
+      getHistory();
+    }
+  }, [depositStatus, getHistory, location.pathname]);
 
   return {
     handlers: {

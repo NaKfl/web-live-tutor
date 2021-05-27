@@ -20,7 +20,8 @@
     "previous": "Previous",
     "done": "Done",
     "backHome": "Back Home",
-    "backToHome": "Back to home"
+    "backToHome": "Back to home",
+    "empty": "Empty"
   },
   "Category": {
     "tutor": "Tutor",
@@ -317,5 +318,17 @@
     "forgotPasswordFailed": "Reset password failed because some error so you can click button to go home",
     "forgotPasswordSuccess": "Reset password success, go to home to login",
     "backToHome": "Go to home"
+  },
+  "Wallet": {
+    "transactionTitle": "Transactions",
+    "actionName": "View all",
+    "book": "Book",
+    "bookBy": "Booked by {{name}}",
+    "depositNow": "Deposit now",
+    "myWallet": "My wallet",
+    "balance": "Balance",
+    "income": "Income",
+    "outcome": "Outcome",
+    "chartTitle": "Analytic"
   }
 }

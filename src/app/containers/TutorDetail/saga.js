@@ -1,5 +1,6 @@
 import { getTutorDetail } from 'fetchers/tutor.service';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
+import { actions as loginActions } from 'app/containers/Login/slice';
 import { actions } from './slice';
 import {
   getScheduleByDate,
@@ -82,7 +83,8 @@ function* bookTimeScheduleTask(action) {
   const { response, error } = yield call(bookTimeScheduleAPI, action.payload);
   if (response) {
     yield put(actions.bookTimeScheduleSuccess(response));
-  } else {
+    yield put(loginActions.getMe());
+
     yield put(actions.bookTimeScheduleFailed(error));
   }
 }

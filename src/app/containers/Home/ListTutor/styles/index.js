@@ -22,6 +22,14 @@ export const StyledTutorCard = styled.div`
   ${media.mobile`
   height:auto;
   `}
+
+  .ant-skeleton {
+    .ant-skeleton-content {
+      .ant-skeleton-paragraph {
+        margin-top: 25px;
+      }
+    }
+  }
 `;
 
 export const StyledHeader = styled.div`

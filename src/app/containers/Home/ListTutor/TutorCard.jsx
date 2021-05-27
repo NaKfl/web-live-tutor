@@ -33,7 +33,7 @@ export const TutorCard = memo(props => {
   const { t } = useTranslation();
   return (
     <StyledTutorCard onClick={() => redirectToDetailTutor(props)}>
-      {props.isLoading && <Skeleton active avatar paragraph={{ rows: 4 }} />}
+      {props.isLoading && <Skeleton active avatar paragraph={{ rows: 5 }} />}
       {!props.isLoading && (
         <>
           <StyledHeader>

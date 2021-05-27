@@ -89,8 +89,6 @@ export const StyledHeader = styled(Header)`
       align-items: center;
     }
     .sub-btn {
-      box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%),
-        0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
       margin-right: 5px;
     }
     .menu-icon {
@@ -162,6 +160,7 @@ export const StyledMeeting = styled(Content)`
 `;
 
 export const StyledFooter = styled(Footer)`
+  z-index: 10;
   border: none;
   height: 70px;
   background: #525961;
