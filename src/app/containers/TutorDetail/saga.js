@@ -8,6 +8,8 @@ import {
   getDetailSchedule,
   bookTimeSchedule,
 } from 'fetchers/scheduleFetcher';
+import { priceOneOfSession } from 'fetchers/paymentFetcher';
+
 function* getTutorDetailWatcher() {
   yield takeLatest(actions.getTutorDetail, getTutorDetailTask);
 }
@@ -93,6 +95,19 @@ function bookTimeScheduleAPI(payload) {
   return bookTimeSchedule(payload);
 }
 
+function* getPriceOneOfSessionWatcher() {
+  yield takeLatest(actions.getPriceOneOfSession, getPriceOneOfSessionTask);
+}
+
+function* getPriceOneOfSessionTask() {
+  const { response } = yield call(priceOneOfSessionAPI);
+  if (response) {
+    yield put(actions.getPriceOneOfSessionSuccess(response?.price));
+  }
+}
+function priceOneOfSessionAPI() {
+  return priceOneOfSession();
+}
 export default function* defaultSaga() {
   yield all([
     fork(getTutorDetailWatcher),
@@ -100,5 +115,6 @@ export default function* defaultSaga() {
     fork(getScheduleByDateWatcher),
     fork(getDetailScheduleWatcher),
     fork(bookTimeScheduleWatcher),
+    fork(getPriceOneOfSessionWatcher),
   ]);
 }

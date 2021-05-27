@@ -13,9 +13,8 @@ import { StyledFavoriteTutor } from './styles';
 
 export const FavoriteTutor = () => {
   useInjectSaga({ key: sliceKey, saga });
-  const { handlers, selectors } = useForFavoriteList();
+  const { selectors } = useForFavoriteList();
   const { listFavorite } = selectors;
-  const { showFavoriteTutorList } = handlers;
   const { t } = useTranslation();
 
   const OverLay = () => {
@@ -46,10 +45,7 @@ export const FavoriteTutor = () => {
         placement="bottomRight"
         trigger={['click']}
       >
-        <HeartFilled
-          className="heart-btn"
-          onClick={() => showFavoriteTutorList()}
-        />
+        <HeartFilled className="heart-btn" />
       </Dropdown>
     </StyledFavoriteTutor>
   );

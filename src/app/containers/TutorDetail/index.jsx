@@ -43,6 +43,7 @@ import GroupSelectTime from 'app/components/GroupSelectTime';
 import { MAJOR_NAMES } from '../RegisterTutor/StepProfile/constants';
 import COUNTRIES from 'utils/countries';
 import { ACTION_STATUS } from 'utils/constants';
+import { ModalBookConfirm } from './ModalBookConfirm';
 const { Title } = Typography;
 const { Panel } = Collapse;
 
@@ -388,6 +389,7 @@ export const TutorDetail = ({ ...rest }) => {
                                         ),
                                       )}
                                     </Collapse>
+                                    <ModalBookConfirm />
                                     <Row className="mt-4 justify-content-end">
                                       <Button
                                         icon={<CheckOutlined />}

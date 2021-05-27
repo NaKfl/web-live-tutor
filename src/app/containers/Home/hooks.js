@@ -123,19 +123,8 @@ export const useListTutor = () => {
 
 export const useForFavoriteList = () => {
   const listFavorite = useSelector(makeSelectListFavorite);
-  const { fetchFavoriteList } = useActions(
-    {
-      fetchFavoriteList: actions.fetchFavoriteList,
-    },
-    [actions],
-  );
-
-  const showFavoriteTutorList = useCallback(() => {
-    fetchFavoriteList();
-  }, [fetchFavoriteList]);
 
   return {
-    handlers: { showFavoriteTutorList },
     selectors: { listFavorite },
   };
 };

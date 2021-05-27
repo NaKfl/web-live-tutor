@@ -11,3 +11,12 @@ export const depositToAccount = payload => {
     .then(({ data }) => ({ response: data }))
     .catch(handleGeneralError);
 };
+
+export const priceOneOfSession = () => {
+  return request(BASE_URL, {
+    url: '/payment/price-of-session',
+    method: 'GET',
+  })
+    .then(({ data }) => ({ response: data }))
+    .catch(handleGeneralError);
+};

@@ -15,7 +15,6 @@ import { actions } from './slice';
 import { useEffect, useState, useCallback } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
-import { notifyError, notifySuccess } from 'utils/notify';
 import { Form } from 'antd';
 
 const useHooks = () => {
@@ -39,13 +38,14 @@ const useHooks = () => {
     getTutorDetail,
     getFreeScheduleByTutorId,
     getFreeScheduleByDate,
-    bookTimeSchedule,
+    showModalBooking,
   } = useActions(
     {
       getTutorDetail: actions.getTutorDetail,
       getFreeScheduleByTutorId: actions.getFreeScheduleByTutorId,
       getFreeScheduleByDate: actions.getFreeScheduleByDate,
       bookTimeSchedule: actions.bookTimeSchedule,
+      showModalBooking: actions.showModalBooking,
     },
     [actions, actions],
   );
@@ -102,7 +102,6 @@ const useHooks = () => {
       selectorBookTimeSchedule &&
       selectorBookTimeSchedule.status === ACTION_STATUS.SUCCESS
     ) {
-      notifySuccess('Your booking was successful');
       form.resetFields();
     }
   }, [form, selectorBookTimeSchedule]);
@@ -130,12 +129,9 @@ const useHooks = () => {
   const handleBookSchedule = useCallback(
     values => {
       const ids = Object.values(values).flat();
-      const scheduleDetailIds = ids.filter(item => item != null);
-      bookTimeSchedule({
-        scheduleDetailIds,
-      });
+      showModalBooking(ids);
     },
-    [bookTimeSchedule],
+    [showModalBooking],
   );
 
   return {
