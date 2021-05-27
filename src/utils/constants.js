@@ -24,3 +24,11 @@ export const DATE_FORMAT = 'YYYY/MM/DD';
 export const DATE_TIME_FORMAT = 'YYYY/MM/DD HH:mm';
 
 export const DEFAULT_PICKER_VALUE = '12/06/1999';
+
+export const TRANSACTION_TYPES = {
+  BUY: 'buy',
+  SELL: 'sell',
+  DEPOSIT: 'deposit',
+  CANCEL: 'cancel',
+  RETURN: 'return',
+};

@@ -320,8 +320,11 @@
   "Wallet": {
     "transactionTitle": "Giao dịch",
     "actionName": "Xem thêm",
+    "deposit": "Nạp",
     "book": "Đặt",
     "bookBy": "Được {{name}} đặt",
+    "cancelBook": "Hủy đặt {{name}}",
+    "returnBook": "{{name}} hủy đặt",
     "depositNow": "Nạp ngay",
     "myWallet": "Ví của tôi",
     "balance": "Số dư",

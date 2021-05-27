@@ -8,17 +8,14 @@ import {
 } from './styles';
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
 import moment from 'moment';
-import { DATE_FORMAT, ROLES } from 'utils/constants';
+import { DATE_FORMAT, ROLES, TRANSACTION_TYPES } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 const TransactionItem = ({ transaction, ...rest }) => {
   const { t } = useTranslation();
-  const user = getUserFromStorage();
   const tutorInfo = transaction?.bookingInfo?.scheduleDetailInfo?.tutorInfo;
   const studentInfo = transaction?.bookingInfo?.userInfo;
-  const { price, createdAt } = transaction;
-  const isTutor = user.roles.includes(ROLES.TUTOR);
+  const { price, createdAt, type } = transaction;
 
   return (
     <StyledTransactionItem {...rest}>
@@ -34,13 +31,21 @@ const TransactionItem = ({ transaction, ...rest }) => {
         )}
         <StyledInfo>
           <h3>
-            {tutorInfo
-              ? isTutor
-                ? `${t('Wallet.bookBy', {
-                    name: studentInfo.name || 'Anonymous',
-                  })}`
-                : `${t('Wallet.book')} ${tutorInfo.name}`
-              : 'Deposit'}
+            {type === TRANSACTION_TYPES.DEPOSIT && `${t('Wallet.deposit')}`}
+            {type === TRANSACTION_TYPES.BUY &&
+              `${t('Wallet.book')} ${tutorInfo.name}`}
+            {type === TRANSACTION_TYPES.SELL &&
+              `${t('Wallet.bookBy', {
+                name: studentInfo.name || 'Anonymous',
+              })}`}
+            {type === TRANSACTION_TYPES.CANCEL &&
+              `${t('Wallet.cancelBook', {
+                name: tutorInfo.name || 'Anonymous',
+              })}`}
+            {type === TRANSACTION_TYPES.RETURN &&
+              `${t('Wallet.returnBook', {
+                name: studentInfo.name || 'Anonymous',
+              })}`}
           </h3>
           <span>{moment(createdAt).format(DATE_FORMAT)}</span>
         </StyledInfo>

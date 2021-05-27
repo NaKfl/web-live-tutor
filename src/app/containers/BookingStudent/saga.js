@@ -4,6 +4,7 @@ import {
 } from 'fetchers/scheduleFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
+import { actions as loginActions } from 'app/containers/Login/slice';
 
 function* getBookingListWatcher() {
   yield takeLatest(actions.getBookingList, getBookingListTask);
@@ -33,6 +34,7 @@ function* cancelBookScheduleTask(action) {
   const { response, error } = yield call(cancelBookScheduleAPI, action.payload);
   if (response) {
     yield put(actions.cancelBookScheduleSuccess(response));
+    yield put(loginActions.getMe());
   } else {
     yield put(actions.cancelBookScheduleFailed(error));
   }
