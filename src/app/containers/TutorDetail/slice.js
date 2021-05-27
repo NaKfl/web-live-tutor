@@ -28,6 +28,12 @@ const initialState = {
     status: '',
     data: [],
   },
+  modalControl: {
+    error: null,
+    status: '',
+    isModalVisible: false,
+    idsSelected: [],
+  },
 };
 
 const tutorDetailSlice = createSlice({
@@ -136,6 +142,31 @@ const tutorDetailSlice = createSlice({
       return flow(
         set('bookTimeSchedule.error', action.payload),
         set('bookTimeSchedule.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    showModalBooking(state, action) {
+      return flow(
+        set('modalControl.isModalVisible', true),
+        set('modalControl.idsSelected', action.payload || []),
+      )(state);
+    },
+
+    hideModalBooking(state) {
+      return flow(
+        set('modalControl.isModalVisible', false),
+        set('bookTimeSchedule.status', ''),
+      )(state);
+    },
+
+    getPriceOneOfSession(state) {
+      return flow(set('modalControl.status', ACTION_STATUS.PENDING))(state);
+    },
+
+    getPriceOneOfSessionSuccess(state, action) {
+      return flow(
+        set('modalControl.price', action.payload),
+        set('modalControl.status', ACTION_STATUS.SUCCESS),
       )(state);
     },
   },

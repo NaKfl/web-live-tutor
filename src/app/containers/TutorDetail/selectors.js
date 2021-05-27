@@ -47,3 +47,28 @@ export const selectbookTimeSchedule = createSelector(
   selectTutorDetailState,
   tutorDetail => get('bookTimeSchedule', tutorDetail),
 );
+
+export const selectModalVisible = createSelector(
+  selectTutorDetailState,
+  isModalVisible => get('modalControl.isModalVisible', isModalVisible),
+);
+
+export const selectBookTimeScheduleStatus = createSelector(
+  selectTutorDetailState,
+  status => get('bookTimeSchedule.status', status),
+);
+
+export const selectScheduleTutorByDateData = createSelector(
+  selectTutorDetailState,
+  scheduleData => get('scheduleTutorByDate.data', scheduleData),
+);
+
+export const selectModalIdsSelected = createSelector(
+  selectTutorDetailState,
+  idsSelected => get('modalControl.idsSelected', idsSelected),
+);
+
+export const selectPriceOneOfPrice = createSelector(
+  selectTutorDetailState,
+  price => get('modalControl.price', price),
+);
