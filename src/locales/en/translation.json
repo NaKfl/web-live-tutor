@@ -322,8 +322,11 @@
   "Wallet": {
     "transactionTitle": "Transactions",
     "actionName": "View all",
+    "deposit": "Deposit",
     "book": "Book",
     "bookBy": "Booked by {{name}}",
+    "cancelBook": "Canceled booking {{name}}",
+    "returnBook": "{{name}} canceled booking",
     "depositNow": "Deposit now",
     "myWallet": "My wallet",
     "balance": "Balance",
