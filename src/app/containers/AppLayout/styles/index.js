@@ -160,6 +160,7 @@ export const StyledMeeting = styled(Content)`
 `;
 
 export const StyledFooter = styled(Footer)`
+  z-index: 10;
   border: none;
   height: 70px;
   background: #525961;

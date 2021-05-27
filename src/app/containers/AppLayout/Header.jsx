@@ -11,23 +11,23 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
-import { useGetUserInfo, useHooks } from './hooks';
+import { useGetUserInfo } from './hooks';
 import LanguageSelection from './LanguageSelection';
 import { StyledHeader, StyledAvatar } from './styles';
 import { useHistory } from 'react-router-dom';
 import { CalendarFilled, BellFilled } from '@ant-design/icons';
 import { useChangeRole } from 'app/containers/AppLayout/hooks';
 import WalletAmount from 'app/components/WalletAmount';
+import { useDeposit } from '../Wallet/hooks';
 
 export const Header = () => {
   const { user } = useGetUserInfo();
   const history = useHistory();
   const { t } = useTranslation();
   const { handlers } = useLogout();
-  const { handlerHooks } = useHooks();
   const { onLogout } = handlers;
-  const { showPaymentModal } = handlerHooks;
   const { changeRole } = useChangeRole();
+  const { showPaymentModal } = useDeposit();
 
   return (
     <StyledHeader>

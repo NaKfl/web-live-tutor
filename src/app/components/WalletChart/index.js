@@ -3,7 +3,7 @@ import { StyledWalletChart } from './styles';
 import { Line } from '@ant-design/charts';
 import { COLOR } from 'styles/colorPalette';
 
-const WalletChart = ({ statistics, ...rest }) => {
+const WalletChart = ({ statistics = [], ...rest }) => {
   const config = {
     data: statistics,
     xField: 'date',

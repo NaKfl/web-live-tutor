@@ -321,6 +321,7 @@
     "transactionTitle": "Giao dịch",
     "actionName": "Xem thêm",
     "book": "Đặt",
+    "bookBy": "Được {{name}} đặt",
     "depositNow": "Nạp ngay",
     "myWallet": "Ví của tôi",
     "balance": "Số dư",

@@ -323,6 +323,7 @@
     "transactionTitle": "Transactions",
     "actionName": "View all",
     "book": "Book",
+    "bookBy": "Booked by {{name}}",
     "depositNow": "Deposit now",
     "myWallet": "My wallet",
     "balance": "Balance",

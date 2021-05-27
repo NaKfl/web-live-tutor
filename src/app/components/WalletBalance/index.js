@@ -9,8 +9,15 @@ import { UpCircleOutlined, DownCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import { DATE_TIME_FORMAT } from 'utils/constants';
+import Button from '../Button';
 
-const WalletBalance = ({ amount = 0, income = 0, outcome = 0, ...rest }) => {
+const WalletBalance = ({
+  amount = 0,
+  income = 0,
+  outcome = 0,
+  showPaymentModal,
+  ...rest
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -24,6 +31,9 @@ const WalletBalance = ({ amount = 0, income = 0, outcome = 0, ...rest }) => {
           }).format(amount)}
         </h1>
         <p>{moment().format(DATE_TIME_FORMAT)}</p>
+        <Button type="accent" onClick={() => showPaymentModal()}>
+          {t('Wallet.depositNow')}
+        </Button>
       </StyledLeftPart>
       <StyledRightPart>
         <StyledInOutCome className="mb-4">

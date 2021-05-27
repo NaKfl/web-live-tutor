@@ -4,7 +4,7 @@ import { faWallet } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../Button';
 
-const WalletAmount = ({ wallet, onClick, ...rest }) => {
+const WalletAmount = ({ wallet, ...rest }) => {
   const { amount } = wallet;
   return (
     <StyledWalletAmount {...rest}>

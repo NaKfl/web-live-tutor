@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import ChartPanel from './ChartPanel';
-import useHooks from './hooks';
+import useHooks, { useDeposit } from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
 import { StyledFullHeightCol, StyledWallet, StyledLeftPart } from './styles';
@@ -13,6 +13,8 @@ import TransactionPanel from './TransactionPanel';
 export const Wallet = () => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
+
+  const { showPaymentModal } = useDeposit();
 
   const { selectors } = useHooks();
   const {
@@ -25,7 +27,7 @@ export const Wallet = () => {
   } = selectors;
 
   return (
-    <StyledWallet gutter={[30, 0]}>
+    <StyledWallet gutter={[30, 5]}>
       {historyStatus === ACTION_STATUS.SUCCESS && (
         <>
           <StyledFullHeightCol span={16}>
@@ -35,6 +37,7 @@ export const Wallet = () => {
                   amount={total}
                   income={income}
                   outcome={outcome}
+                  showPaymentModal={showPaymentModal}
                 />
               </Row>
               <Row className="row-chart">

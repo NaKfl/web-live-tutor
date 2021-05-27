@@ -12,11 +12,11 @@ export const StyledLeftPart = styled.div`
   justify-content: center;
   flex-direction: column;
   border-radius: 30px;
-  box-shadow: 0px 4px 16px ${COLOR.SHADOW_GRAY};
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
   text-align: center;
   flex: 1;
   margin-right: 15px;
-  padding: 40px 0 48px 0;
+  padding: 30px 0 38px 0;
   h3 {
     font-size: 24px;
     font-weight: 600;
@@ -31,17 +31,18 @@ export const StyledLeftPart = styled.div`
     margin-bottom: 0;
   }
   p {
-    margin-bottom: 0;
+    margin-bottom: 20px;
     color: #837b98;
     font-size: 16px;
   }
 `;
 
 export const StyledInOutCome = styled.div`
+  width: 100%;
   text-align: left;
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding-left: 70px;
   .wrapper {
     display: flex;
     align-items: flex-end;
@@ -86,7 +87,7 @@ export const StyledRightPart = styled.div`
   justify-content: center;
   flex-direction: column;
   border-radius: 30px;
-  box-shadow: 0px 4px 16px ${COLOR.SHADOW_GRAY};
+  box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
   text-align: center;
   flex: 1;
   margin-left: 15px;
