@@ -297,7 +297,8 @@
     "depositInApp": "DEPOSIT IN LIVETUTOR",
     "deposit": "Deposit",
     "howMuchMoney": "Money (VNĐ)",
-    "minMax": "Min money is 10.000 and max money is 100.000.000"
+    "minMax": "Min money is 10.000 and max money is 100.000.000",
+    "transactionsList": "Danh sách các giao dịch"
   },
   "ForgotPassword": {
     "title": "Reset Password",

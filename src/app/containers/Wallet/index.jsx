@@ -14,7 +14,7 @@ export const Wallet = () => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
 
-  const { showPaymentModal } = useDeposit();
+  const { showPaymentModal, showTransactionModal } = useDeposit();
 
   const { selectors } = useHooks();
   const {
@@ -46,7 +46,11 @@ export const Wallet = () => {
             </StyledLeftPart>
           </StyledFullHeightCol>
           <StyledFullHeightCol span={8}>
-            <TransactionPanel height={'100%'} transactions={historyData.rows} />
+            <TransactionPanel
+              height={'100%'}
+              transactions={historyData.rows}
+              actionHandler={() => showTransactionModal(historyData.rows)}
+            />
           </StyledFullHeightCol>
         </>
       )}

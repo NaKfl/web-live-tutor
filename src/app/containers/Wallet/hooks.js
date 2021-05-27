@@ -55,7 +55,18 @@ export const useDeposit = () => {
     [openPopup],
   );
 
-  return { showPaymentModal };
+  const showTransactionModal = useCallback(
+    transactions => {
+      openPopup({
+        key: 'showTransactionModal',
+        type: POPUP_TYPE.TRANSACTION_MODAL,
+        transactions,
+      });
+    },
+    [openPopup],
+  );
+
+  return { showPaymentModal, showTransactionModal };
 };
 
 export default useHooks;

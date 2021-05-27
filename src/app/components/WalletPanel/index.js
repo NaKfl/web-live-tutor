@@ -13,7 +13,7 @@ const WalletPanel = ({
     <StyledWalletPanel {...rest}>
       <StyledHeader>
         <h3>{name}</h3>
-        <span onClick={actionHandler && actionHandler}>{actionName}</span>
+        <span onClick={() => actionHandler()}>{actionName}</span>
       </StyledHeader>
       <StyledBody>{content && content}</StyledBody>
     </StyledWalletPanel>

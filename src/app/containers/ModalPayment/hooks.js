@@ -17,6 +17,7 @@ const useHooks = () => {
   const [isValidMoney, setValidMoney] = useState(true);
   const [moneyValue, setValueMoney] = useState(0);
   const depositStatus = useSelector(selectDepositAccountStatus);
+  const [isLoading, setLoading] = useState(false);
   const { depositToAccount, getHistory } = useActions(
     {
       depositToAccount: actions.depositToAccount,
@@ -26,10 +27,12 @@ const useHooks = () => {
   );
 
   useEffect(() => {
+    setLoading(true);
     getListBanksVN().then(data => {
       const removes = [0, 295, 296];
       const listBanks = data.filter(bank => !removes.includes(bank.id));
       setListBanksVN(listBanks);
+      setLoading(false);
     });
   }, []);
 
@@ -78,6 +81,7 @@ const useHooks = () => {
       bankSelected,
       isValidMoney,
       form,
+      isLoading,
     },
   };
 };

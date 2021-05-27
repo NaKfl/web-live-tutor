@@ -84,7 +84,7 @@ function* bookTimeScheduleTask(action) {
   if (response) {
     yield put(actions.bookTimeScheduleSuccess(response));
     yield put(loginActions.getMe());
-
+  } else {
     yield put(actions.bookTimeScheduleFailed(error));
   }
 }
