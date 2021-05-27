@@ -105,12 +105,6 @@ const useHooks = () => {
       notifySuccess('Your booking was successful');
       form.resetFields();
     }
-    if (
-      selectorBookTimeSchedule &&
-      selectorBookTimeSchedule.status === ACTION_STATUS.FAILED
-    ) {
-      notifyError('Error');
-    }
   }, [form, selectorBookTimeSchedule]);
 
   const onSelectDate = useCallback(value => {

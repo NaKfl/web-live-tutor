@@ -9,6 +9,7 @@ import CallModal from 'app/components/CallModal';
 import RatingForm from 'app/components/RatingForm';
 import ScheduleModal from 'app/components/ScheduleModal';
 import ModalPayment from 'app/containers/ModalPayment';
+import ModalTransaction from 'app/containers/ModalTransaction';
 
 import { POPUP_TYPE } from './constants';
 
@@ -80,6 +81,17 @@ export const Popup = memo(() => {
           case POPUP_TYPE.PAYMENT_MODAL: {
             return (
               <ModalPayment
+                key={popup.key}
+                onCancel={handleClosePopup(popup)}
+                visible
+                {...popup}
+              />
+            );
+          }
+
+          case POPUP_TYPE.TRANSACTION_MODAL: {
+            return (
+              <ModalTransaction
                 key={popup.key}
                 onCancel={handleClosePopup(popup)}
                 visible

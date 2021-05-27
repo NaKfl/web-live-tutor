@@ -1,14 +1,6 @@
 import React, { memo } from 'react';
 import { StyledModal } from './styles';
-import {
-  Collapse,
-  Typography,
-  Row,
-  Col,
-  Form,
-  InputNumber,
-  Popconfirm,
-} from 'antd';
+import { Collapse, Typography, Row, Col, Form, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';
 import useHooks from './hooks.js';
 import Button from 'app/components/Button';
@@ -27,7 +19,13 @@ const ModalPayment = memo(props => {
   const { visible, onCancel, tutor, ...rest } = props;
   const { handlers, selectors } = useHooks();
   const { t } = useTranslation();
-  const { listBanksVN, bankSelected, isValidMoney, form } = selectors;
+  const {
+    listBanksVN,
+    bankSelected,
+    isValidMoney,
+    form,
+    isLoading,
+  } = selectors;
   const {
     handleSelectBank,
     handleBackToBanks,
@@ -81,6 +79,9 @@ const ModalPayment = memo(props => {
           })}
           key={1}
         >
+          <Row className="justify-content-center">
+            <Spin spinning={isLoading} />
+          </Row>
           <Row>
             {bankSelected.id && (
               <Row className="flex-column w-100">
