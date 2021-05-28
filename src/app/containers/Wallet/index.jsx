@@ -27,7 +27,7 @@ export const Wallet = () => {
   } = selectors;
 
   return (
-    <StyledWallet gutter={[30, 5]}>
+    <StyledWallet gutter={[30, 10]}>
       {historyStatus === ACTION_STATUS.SUCCESS && (
         <>
           <StyledFullHeightCol span={16}>

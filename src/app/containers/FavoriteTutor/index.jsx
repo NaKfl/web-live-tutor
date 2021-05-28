@@ -21,7 +21,7 @@ export const FavoriteTutor = () => {
     return (
       <Menu>
         <Menu.ItemGroup title={t('Favorite.title')}>
-          {listFavorite.length > 0 ? (
+          {listFavorite?.length > 0 ? (
             listFavorite.map((data, i) => (
               <Menu.Item key={i}>
                 <FavoriteChild {...data?.secondInfo}></FavoriteChild>
