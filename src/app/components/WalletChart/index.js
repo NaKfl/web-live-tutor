@@ -6,7 +6,7 @@ import { COLOR } from 'styles/colorPalette';
 const WalletChart = ({ statistics = [], ...rest }) => {
   const config = {
     data: statistics,
-    xField: 'date',
+    xField: 'time',
     yField: 'total',
     point: {
       size: 5,

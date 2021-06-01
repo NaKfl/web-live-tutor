@@ -23,6 +23,8 @@ export const DATE_FORMAT = 'YYYY/MM/DD';
 
 export const DATE_TIME_FORMAT = 'YYYY/MM/DD HH:mm';
 
+export const DATE_TIME_FORMAT_YY_MM_HH_MM_SS = 'YY/MM/DD HH:mm:ss';
+
 export const DEFAULT_PICKER_VALUE = '12/06/1999';
 
 export const TRANSACTION_TYPES = {
