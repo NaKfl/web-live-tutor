@@ -9,6 +9,11 @@ const initialState = {
     status: '',
     error: null,
   },
+  getStatistics: {
+    data: {},
+    status: '',
+    error: null,
+  },
 };
 
 const walletSlice = createSlice({
@@ -33,6 +38,27 @@ const walletSlice = createSlice({
       return flow(
         set('getHistory.error', action.payload),
         set('getHistory.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    getStatistics(state) {
+      return flow(
+        set('getStatistics.error', null),
+        set('getStatistics.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getStatisticsSuccess(state, action) {
+      return flow(
+        set('getStatistics.data', action.payload),
+        set('getStatistics.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getStatisticsFailed(state, action) {
+      return flow(
+        set('getStatistics.error', action.payload),
+        set('getStatistics.status', ACTION_STATUS.FAILED),
       )(state);
     },
   },

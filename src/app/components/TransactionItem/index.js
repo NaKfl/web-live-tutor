@@ -1,15 +1,15 @@
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import moment from 'moment';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { DATE_FORMAT, TRANSACTION_TYPES } from 'utils/constants';
 import {
-  StyledTransactionItem,
-  StyledUpDownIcon,
   StyledInfo,
   StyledLeftPart,
   StyledPrice,
+  StyledTransactionItem,
+  StyledUpDownIcon,
 } from './styles';
-import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons';
-import moment from 'moment';
-import { DATE_FORMAT, ROLES, TRANSACTION_TYPES } from 'utils/constants';
-import { useTranslation } from 'react-i18next';
 
 const TransactionItem = ({ transaction, ...rest }) => {
   const { t } = useTranslation();

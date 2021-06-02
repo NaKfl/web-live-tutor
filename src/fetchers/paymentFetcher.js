@@ -20,3 +20,23 @@ export const priceOneOfSession = () => {
     .then(({ data }) => ({ response: data }))
     .catch(handleGeneralError);
 };
+
+export const getListBanksVN = () => {
+  return request(BASE_URL, {
+    url: 'payment/banks',
+    method: 'GET',
+  })
+    .then(response => response.data)
+    .then(({ data }) => data)
+    .catch(handleGeneralError);
+};
+
+export const verifyDeposit = () => {
+  return request(BASE_URL, {
+    url: 'payment/banks',
+    method: 'GET',
+  })
+    .then(response => response.data)
+    .then(({ data }) => ({ response: data }))
+    .catch(handleGeneralError);
+};

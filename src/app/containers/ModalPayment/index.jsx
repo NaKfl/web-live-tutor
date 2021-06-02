@@ -6,16 +6,11 @@ import useHooks from './hooks.js';
 import Button from 'app/components/Button';
 import Input from 'app/components/Input';
 import { LeftOutlined } from '@ant-design/icons';
-import saga from './saga';
-import { reducer, sliceKey } from './slice';
-import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
 
 const ModalPayment = memo(props => {
-  useInjectSaga({ key: sliceKey, saga });
-  useInjectReducer({ key: sliceKey, reducer });
   const { visible, onCancel, tutor, ...rest } = props;
   const { handlers, selectors } = useHooks();
   const { t } = useTranslation();
@@ -97,7 +92,7 @@ const ModalPayment = memo(props => {
                   </Row>
                 </Row>
                 <Title level={5} className="mb-3 text-center">
-                  {bankSelected.bank_name}
+                  {bankSelected.bankName}
                 </Title>
                 <Form
                   form={form}
@@ -130,7 +125,7 @@ const ModalPayment = memo(props => {
                     />
                   </Form.Item>
 
-                  <Form.Item>
+                  <Form.Item className="deposit-button">
                     <Button
                       type="accent"
                       disabled={!isValidMoney}
@@ -144,25 +139,25 @@ const ModalPayment = memo(props => {
               </Row>
             )}
             {!bankSelected.id &&
-              listBanksVN.map(bank => (
-                <Col
-                  span={4}
-                  style={{ marginBottom: '15px', cursor: 'pointer' }}
-                  onClick={() => handleSelectBank(bank)}
-                >
-                  <img
-                    src={bank.bank_logo}
-                    alt="PD"
-                    className="bank-img-thumbnail"
-                  />
-                </Col>
-              ))}
+              listBanksVN.length > 0 &&
+              listBanksVN.map(bank => {
+                return (
+                  <Col
+                    key={bank.id}
+                    span={4}
+                    style={{ marginBottom: '15px', cursor: 'pointer' }}
+                    onClick={() => handleSelectBank(bank)}
+                  >
+                    <img
+                      src={bank.bankLogo}
+                      alt={bank.bankCode}
+                      className="bank-img-thumbnail"
+                    />
+                  </Col>
+                );
+              })}
           </Row>
         </Panel>
-
-        {/* <Panel showArrow={false} header={renderHeader()} key={2}>
-          <p>aaaaaaaaa</p>
-        </Panel> */}
       </Collapse>
     </StyledModal>
   );

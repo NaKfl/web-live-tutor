@@ -1,8 +1,8 @@
-import React, { memo } from 'react';
-import { StyledModal } from './styles';
-import { Collapse, Typography, Row, Col, Form, Spin } from 'antd';
-import { useTranslation } from 'react-i18next';
+import { Typography } from 'antd';
 import Button from 'app/components/Button';
+import React, { memo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { StyledModal } from './styles';
 import TransactionListTable from './TransactionListTable';
 
 const { Title } = Typography;

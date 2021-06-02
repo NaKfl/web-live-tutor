@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { Redirect, Switch } from 'react-router-dom';
+import { Redirect, Switch, Route } from 'react-router-dom';
+import { vnp_Url } from 'configs';
 import {
   publicRoutes,
   privateRoutes,
@@ -14,13 +15,20 @@ import LoginLayout from './Login/Layout';
 import PrivateLayout from './Private/Layout';
 import MeetingLayout from './MeetingRoute/Layout';
 import { useAuthenticatedRedirect } from './hooks';
-import { useInjectSaga } from 'utils/reduxInjectors';
+import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from 'app/containers/Login/saga';
+import sagaDeposit from 'app/containers/ModalPayment/saga';
+import {
+  reducer as depositReducer,
+  sliceKey as depositSliceKey,
+} from 'app/containers/ModalPayment/slice';
 import { sliceKey } from 'app/containers/Login/slice';
 import ScrollToTop from 'app/components/ScrollToTop';
 
 export const AppLayout = () => {
   useInjectSaga({ key: sliceKey, saga });
+  useInjectReducer({ key: depositSliceKey, reducer: depositReducer });
+  useInjectSaga({ key: depositSliceKey, saga: sagaDeposit });
   useAuthenticatedRedirect();
 
   return (
@@ -64,6 +72,14 @@ export const AppLayout = () => {
             layout={MeetingLayout}
           />
         ))}
+        <Route
+          path="/checkout-vnpay"
+          component={props => {
+            const query = props?.location?.search;
+            window.location = `${vnp_Url}${query}`;
+            return null;
+          }}
+        />
         <Redirect to="/not-found" />
       </Switch>
     </>

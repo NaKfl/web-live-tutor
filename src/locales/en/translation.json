@@ -334,5 +334,10 @@
     "income": "Income",
     "outcome": "Outcome",
     "chartTitle": "Analytic"
+  },
+  "VerifyDeposit": {
+    "notifySuccess": "Deposit successfully",
+    "notifyFail": "Deposit failed",
+    "notifyError": "Something went wrong"
   }
 }

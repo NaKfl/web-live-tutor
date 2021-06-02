@@ -1,11 +1,11 @@
 import useActions from 'hooks/useActions';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { ACTION_STATUS } from 'utils/constants';
 import {
   selectBookTimeScheduleStatus,
-  selectModalVisible,
   selectModalIdsSelected,
+  selectModalVisible,
 } from '../selectors';
 import { actions } from '../slice';
 
@@ -29,7 +29,7 @@ export const useHooks = () => {
 
   useEffect(() => {
     if (isModalVisible) getPriceOneOfSession();
-  }, [isModalVisible]);
+  }, [getPriceOneOfSession, isModalVisible]);
 
   const getConditionRender = () => {
     if (statusBooking === ACTION_STATUS.SUCCESS) {

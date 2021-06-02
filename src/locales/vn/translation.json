@@ -332,5 +332,10 @@
     "income": "Tiền vào",
     "outcome": "Tiền ra",
     "chartTitle": "Phân tích"
+  },
+  "VerifyDeposit": {
+    "notifySuccess": "Nạp tiền thành công",
+    "notifyFail": "Nạp tiền thất bại",
+    "notifyError": "Đã có lỗi xảy ra"
   }
 }
