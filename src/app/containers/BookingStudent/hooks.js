@@ -8,7 +8,6 @@ import { selectBookingList, selectCancelBooking } from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';
 import { mapBookingListDataSource } from 'utils/common';
-import { notifySuccess } from 'utils/notify';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -31,7 +30,7 @@ export const useHooks = () => {
   useEffect(() => {
     getBookingList({ page: query.get('page') || 1 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.get('page')]);
+  }, [query.get('page'), selectorCancelBooking.status]);
 
   useEffect(() => {
     if (
@@ -44,17 +43,6 @@ export const useHooks = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectorBookingList.status]);
-
-  useEffect(() => {
-    if (
-      selectorCancelBooking &&
-      selectorCancelBooking.status === ACTION_STATUS.SUCCESS
-    ) {
-      getBookingList({ page: query.get('page') || 1 });
-      notifySuccess('Cancel Booking Successfully');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectorCancelBooking.status]);
 
   const onChangePage = useCallback(
     value => {

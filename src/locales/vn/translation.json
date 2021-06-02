@@ -337,5 +337,27 @@
     "notifySuccess": "Nạp tiền thành công",
     "notifyFail": "Nạp tiền thất bại",
     "notifyError": "Đã có lỗi xảy ra"
+  },
+  "Error_code": {
+    "INVALID_TOKEN_TYPE": "Loại token không hợp lệ!",
+    "PLEASE_AUTHENTICATE": "Vui lòng xác thực tài khoản.",
+    "ACCOUNT_NOT_ACTIVATED": "Tài khoản của bạn chưa được kích hoạt.",
+    "PERMISSION_DENIED": "Bạn không có quyền.",
+    "EMAIL_EXIST": "Email đã được sử dụng.",
+    "EMAIL_NOT_EXIST": "Email không tồn tại",
+    "USER_NOT_REQUEST_CHANGEPW": "Người dùng không yêu cầu thay đổi mật khẩu.",
+    "INCORRECT_EMAIL_PASSWORD": "Email hoặc mật khẩu không đúng!",
+    "HAVE_BEEN_TUTOR": "Người dùng đã là một gia sư",
+    "FILE_TYPE_NOT_SUPPORT": "Không hỗ trợ loại file này",
+    "BOOKING_CANCEL_BEFORE_1DAY": "Bạn chỉ có thể hủy đặt lịch trước 1 ngày",
+    "BOOKING_EXIST": "Đặt lịch đã tồn tại",
+    "BOOKING_NOT_EXIST": "Đặt lịch không tồn tại",
+    "PAYMENT_SYSTEM": "Hệ thống thanh toán gặp lỗi !",
+    "WALLET_BLOCKED": "Ví của bạn đã bị khóa",
+    "NOT_ENOUGH_MONEY": "Bạn không đủ tiền",
+    "SELLER_NOT_ENOUGH": "Gia sư chưa đủ điều kiện để hoàn tiền",
+    "END_GREATER_START": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
+    "PERIOD_DIVISIABLE_30": "Tổng thời gian phải chia hết cho 30!",
+    "SCHEDULE_DUPLICATE": "Lỗi đăng ký lịch trùng thời gian!"
   }
 }
