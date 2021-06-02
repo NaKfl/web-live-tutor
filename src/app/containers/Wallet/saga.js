@@ -1,4 +1,4 @@
-import { getHistory } from 'fetchers/walletFetcher';
+import { getHistory, getStatistics } from 'fetchers/walletFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 
@@ -15,6 +15,19 @@ function* getHistoryTask(action) {
   }
 }
 
+function* getStatisticsWatcher() {
+  yield takeLatest(actions.getStatistics, getStatisticsTask);
+}
+
+function* getStatisticsTask(action) {
+  const { response, error } = yield call(getStatistics, action.payload);
+  if (response) {
+    yield put(actions.getStatisticsSuccess(response.data));
+  } else {
+    yield put(actions.getStatisticsFailed(error.data));
+  }
+}
+
 export default function* defaultSaga() {
-  yield all([fork(getHistoryWatcher)]);
+  yield all([fork(getHistoryWatcher), fork(getStatisticsWatcher)]);
 }

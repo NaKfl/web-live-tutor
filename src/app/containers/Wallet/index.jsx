@@ -10,38 +10,34 @@ import { reducer, sliceKey } from './slice';
 import { StyledFullHeightCol, StyledWallet, StyledLeftPart } from './styles';
 import TransactionPanel from './TransactionPanel';
 
-export const Wallet = () => {
+export const Wallet = props => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
 
   const { showPaymentModal, showTransactionModal } = useDeposit();
 
-  const { selectors } = useHooks();
-  const {
-    historyStatus,
-    historyData,
-    total,
-    income,
-    outcome,
-    statistics,
-  } = selectors;
+  const { selectors } = useHooks(props);
+  const { isLoading, historyData, statisticsData } = selectors;
 
   return (
     <StyledWallet gutter={[30, 10]}>
-      {historyStatus === ACTION_STATUS.SUCCESS && (
+      {isLoading === ACTION_STATUS.SUCCESS && (
         <>
           <StyledFullHeightCol span={16}>
             <StyledLeftPart>
               <Row>
                 <WalletBalance
-                  amount={total}
-                  income={income}
-                  outcome={outcome}
+                  amount={statisticsData?.total}
+                  income={statisticsData?.income}
+                  outcome={statisticsData?.outcome}
                   showPaymentModal={showPaymentModal}
                 />
               </Row>
               <Row className="row-chart">
-                <ChartPanel height={'100%'} statistics={statistics} />
+                <ChartPanel
+                  height={'100%'}
+                  statistics={statisticsData.statistics}
+                />
               </Row>
             </StyledLeftPart>
           </StyledFullHeightCol>
@@ -54,7 +50,7 @@ export const Wallet = () => {
           </StyledFullHeightCol>
         </>
       )}
-      {historyStatus === ACTION_STATUS.PENDING && <Spin size="large" />}
+      {isLoading === ACTION_STATUS.PENDING && <Spin size="large" />}
     </StyledWallet>
   );
 };

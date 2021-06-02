@@ -13,6 +13,7 @@ import { TutorDetail } from 'app/containers/TutorDetail/Loadable';
 import { Search } from 'app/containers/Search/Loadable';
 import { Wallet } from 'app/containers/Wallet/Loadable';
 import { VerifyAccount } from 'app/containers/VerifyAccount/Loadable';
+import { VerifyDeposit } from 'app/containers/VerifyDeposit/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
 import { ForgotPassword } from 'app/containers/ForgotPassword/Loadable';
@@ -85,6 +86,12 @@ export const privateRoutes = [
     component: Wallet,
     key: 'my-wallet',
     requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
+  },
+  {
+    path: '/verifyDeposit',
+    component: VerifyDeposit,
+    key: 'verifyDeposit',
+    requiredRoles: [ROLES.STUDENT, ROLES.TUTOR],
   },
 ];
 

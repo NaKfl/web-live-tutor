@@ -1,8 +1,7 @@
-import { memo } from 'react';
 import { Table } from 'antd';
+import { memo } from 'react';
 import { useForm } from './hooks';
 import { StyledTable } from './styles';
-import Pagination from 'app/components/Pagination';
 
 export const TransactionListTable = memo(
   ({ totalCount, onChangePage, dataSource }) => {

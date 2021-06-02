@@ -11,3 +11,11 @@ export const selectGetHistoryStatus = createSelector(
 export const selectGetHistoryData = createSelector(selectWalletState, wallet =>
   get('getHistory.data', wallet),
 );
+
+export const getStatisticsStatus = createSelector(selectWalletState, wallet =>
+  get('getStatistics.status', wallet),
+);
+
+export const getStatisticsData = createSelector(selectWalletState, wallet =>
+  get('getStatistics.data', wallet),
+);

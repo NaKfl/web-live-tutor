@@ -36,14 +36,17 @@ export const StyledModal = styled(Modal)`
 
     .ant-collapse-content {
       .bank-img-thumbnail {
-        padding: 4px;
         height: 45px;
+        width: 75px;
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 4px;
         max-width: 100%;
       }
       .payment-form-recharge {
+        .deposit-button {
+          margin-bottom: 10px;
+        }
         .ant-form-item-control {
           display: flex;
           justify-content: center;

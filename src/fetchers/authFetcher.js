@@ -64,13 +64,3 @@ export const facebook = payload => {
     .then(data => ({ response: data }))
     .catch(handleGeneralError);
 };
-
-export const getListBanksVN = () => {
-  return request('https://playerduo.com', {
-    url: 'api/playerDuo-service-v2/customer/payment/list-bank',
-    method: 'GET',
-  })
-    .then(response => response.data)
-    .then(({ result }) => result)
-    .catch(handleGeneralError);
-};

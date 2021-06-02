@@ -54,7 +54,7 @@ export const useTables = () => {
       return res;
     }
     return [];
-  }, [idsSelected, priceOfOneSession]);
+  }, [idsSelected, priceOfOneSession, scheduleData]);
 
   const footer = () => {
     return (

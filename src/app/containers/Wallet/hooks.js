@@ -1,40 +1,41 @@
 import { useSelector } from 'react-redux';
-import { selectGetHistoryStatus, selectGetHistoryData } from './selectors';
+import {
+  selectGetHistoryStatus,
+  selectGetHistoryData,
+  getStatisticsStatus,
+  getStatisticsData,
+} from './selectors';
 import { useCallback, useEffect } from 'react';
 import { actions } from './slice';
 import useActions from 'hooks/useActions';
-import { getIncomeOutCome } from './helper';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { actions as popupActions } from 'app/containers/Popup/slice';
 
-const useHooks = () => {
+const useHooks = props => {
   const historyStatus = useSelector(selectGetHistoryStatus);
   const historyData = useSelector(selectGetHistoryData);
+  const statisticsStatus = useSelector(getStatisticsStatus);
+  const statisticsData = useSelector(getStatisticsData);
 
-  const { total, income, outcome, statistics } = getIncomeOutCome(
-    historyData.rows,
-  );
-
-  const { getHistory } = useActions(
+  const { getHistory, getStatistics } = useActions(
     {
       getHistory: actions.getHistory,
+      getStatistics: actions.getStatistics,
     },
     [actions, actions],
   );
 
   useEffect(() => {
     getHistory();
-  }, [getHistory]);
+    getStatistics();
+  }, [getHistory, getStatistics]);
 
   return {
     handlers: {},
     selectors: {
-      historyStatus,
+      isLoading: historyStatus && statisticsStatus,
       historyData,
-      total,
-      income,
-      outcome,
-      statistics,
+      statisticsData,
     },
   };
 };
