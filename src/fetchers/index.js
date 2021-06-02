@@ -3,6 +3,8 @@ import isNil from 'lodash/fp/isNil';
 import get from 'lodash/fp/get';
 import { getAccessToken } from 'utils/localStorageUtils';
 import { notifyError } from 'utils/notify';
+import i18n from 'locales/i18n';
+import { errorCode } from 'utils/constants';
 
 const createClient = (baseURL, isMultipart = 0) => {
   if (!isMultipart) {
@@ -50,8 +52,13 @@ export const handleGeneralError = error => {
 };
 
 const handleShowError = error => {
+  // i18n.t('Profile.notifyEditSuccess');
   const message = get('data.message', error);
-  if (message) notifyError(message);
+  const statusCode = get('data.statusCode', error);
+  const messaseShow =
+    i18n.t(`Error_code.${errorCode[statusCode]}`) + ` (code: ${statusCode})`;
+  console.log(messaseShow);
+  if (message) notifyError(messaseShow);
 };
 
 export default request;

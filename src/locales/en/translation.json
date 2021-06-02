@@ -339,5 +339,27 @@
     "notifySuccess": "Deposit successfully",
     "notifyFail": "Deposit failed",
     "notifyError": "Something went wrong"
+  },
+  "Error_code": {
+    "INVALID_TOKEN_TYPE": "Invalid token type",
+    "PLEASE_AUTHENTICATE": "Please authenticate",
+    "ACCOUNT_NOT_ACTIVATED": "Your account has not activated",
+    "PERMISSION_DENIED": "Permission denied",
+    "EMAIL_EXIST": "Email has already taken",
+    "EMAIL_NOT_EXIST": "Email doesn't exist!",
+    "USER_NOT_REQUEST_CHANGEPW": "User does not request to change password",
+    "INCORRECT_EMAIL_PASSWORD": "Incorrect email or password",
+    "HAVE_BEEN_TUTOR": "User has already been a tutor",
+    "FILE_TYPE_NOT_SUPPORT": "File type does not support in situation",
+    "BOOKING_CANCEL_BEFORE_1DAY": "You can only cancel booking before 1 day",
+    "BOOKING_EXIST": "Booking has already exists",
+    "BOOKING_NOT_EXIST": "Booking does not exist",
+    "PAYMENT_SYSTEM": "Payment system has problems",
+    "WALLET_BLOCKED": "Your wallet is blocked",
+    "NOT_ENOUGH_MONEY": "Not enough money",
+    "SELLER_NOT_ENOUGH": "Seller amount not enough",
+    "END_GREATER_START": "End time should be greater than start time",
+    "PERIOD_DIVISIABLE_30": "The period must be divisible by 30",
+    "SCHEDULE_DUPLICATE": "Conflict to register schedule"
   }
 }
