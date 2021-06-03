@@ -3,7 +3,7 @@ import get from 'lodash/fp/get';
 
 const selectSearchState = state => state.search;
 
-export const makeSelectedshowHideDropDown = createSelector(
+export const makeSelectedShowHideDropDown = createSelector(
   selectSearchState,
   showHideDropDown => get('showHideDropDown', showHideDropDown),
 );
@@ -23,4 +23,8 @@ export const makeTotalCount = createSelector(selectSearchState, count =>
 
 export const makePageCurrent = createSelector(selectSearchState, pageCurrent =>
   get('option.page', pageCurrent),
+);
+
+export const makeFilter = createSelector(selectSearchState, filter =>
+  get('filter', filter),
 );

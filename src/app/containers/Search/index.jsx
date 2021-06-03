@@ -9,6 +9,7 @@ import Pagination from 'app/components/Pagination';
 import saga from './saga';
 import { Empty } from 'antd';
 import { useTranslation } from 'react-i18next';
+import Filter from './Filter';
 
 export const Search = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -32,7 +33,7 @@ export const Search = memo(() => {
         onChangeFilter={onChangeFilter}
         showHideDropDownState={showHideDropDownState}
       ></InputSearch>
-
+      <Filter />
       <StyledIntro>
         <div className="title">{t('Search.result')}</div>
       </StyledIntro>
