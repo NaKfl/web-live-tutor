@@ -116,21 +116,34 @@ export const TutorDetail = ({ ...rest }) => {
     const dateOfCell = moment(value).format('YYYY-MM-DD');
     const dayOfDate = value.date();
     const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
-    return (
-      <div
-        onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
-        className="ant-picker-cell-inner ant-picker-calendar-date background-free-time"
-      >
-        <div
-          className={`ant-picker-calendar-date-value ${
-            haveFreeTimes ? 'date-free-time' : 'date-disabled'
-          }`}
-        >
-          {dayOfDate}
+    const compareToDateNow = moment(value).diff(moment(), 'days');
+
+    if (compareToDateNow < 0) {
+      return (
+        <div className="ant-picker-cell-inner ant-picker-calendar-date background-free-time">
+          <div className={`ant-picker-calendar-date-value date-disabled `}>
+            {dayOfDate}
+          </div>
+          <div className="ant-picker-calendar-date-content"></div>
         </div>
-        <div className="ant-picker-calendar-date-content"></div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div
+          onClick={() => haveFreeTimes && onSelectDate(dateOfCell)}
+          className="ant-picker-cell-inner ant-picker-calendar-date background-free-time"
+        >
+          <div
+            className={`ant-picker-calendar-date-value ${
+              haveFreeTimes ? 'date-free-time' : 'date-disabled'
+            }`}
+          >
+            {dayOfDate}
+          </div>
+          <div className="ant-picker-calendar-date-content"></div>
+        </div>
+      );
+    }
   };
 
   return (

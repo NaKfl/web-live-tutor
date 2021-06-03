@@ -358,6 +358,7 @@
     "SELLER_NOT_ENOUGH": "Gia sư chưa đủ điều kiện để hoàn tiền",
     "END_GREATER_START": "Thời gian kết thúc phải lớn hơn thời gian bắt đầu",
     "PERIOD_DIVISIABLE_30": "Tổng thời gian phải chia hết cho 30!",
-    "SCHEDULE_DUPLICATE": "Lỗi đăng ký lịch trùng thời gian!"
+    "SCHEDULE_DUPLICATE": "Lỗi đăng ký lịch trùng thời gian!",
+    "SCHEDULE_INVALID_DATE": "Đăng ký lịch ngày không hợp lệ!"
   }
 }

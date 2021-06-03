@@ -56,4 +56,5 @@ export const errorCode = {
   17: 'END_GREATER_START',
   18: 'PERIOD_DIVISIABLE_30',
   19: 'SCHEDULE_DUPLICATE',
+  20: 'SCHEDULE_INVALID_DATE',
 };

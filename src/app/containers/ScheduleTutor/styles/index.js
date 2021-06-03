@@ -95,6 +95,9 @@ export const StyledCalendar = styled(Calendar)`
           }
           .ant-picker-cell-inner {
             padding: 8px;
+            .invalid-date {
+              color: rgba(0, 0, 0, 0.25) !important;
+            }
             .ant-picker-calendar-date-value {
               display: inline-block;
               padding: 4px 8px;
