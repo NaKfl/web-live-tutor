@@ -19,7 +19,7 @@ export const ListTutor = memo(
               <TutorCard isLoading />
             </WrapTutor>
           ))) ||
-          (listTutor.length > 0 &&
+          (listTutor?.length > 0 &&
             listTutor.map((e, i) => (
               <WrapTutor key={i}>
                 <TutorCard

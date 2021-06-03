@@ -5,8 +5,6 @@ import { ACTION_STATUS } from 'utils/constants';
 const initialState = {
   showHideDropDown: false,
   option: {
-    accents: [],
-    specialties: [],
     page: 1,
   },
   status: null,
@@ -14,6 +12,7 @@ const initialState = {
   listTutor: [],
   count: 0,
   haveNoTutor: false,
+  filter: [],
 };
 
 const searchSlice = createSlice({
@@ -70,6 +69,19 @@ const searchSlice = createSlice({
 
     changePage(state, action) {
       return flow(set('option.page', parseInt(action.payload)))(state);
+    },
+    getFilter(state) {
+      return state;
+    },
+    getFilterSuccess(state, action) {
+      return flow(set('filter', [...action.payload]))(state);
+    },
+    getFilterFailed(state, action) {
+      return flow(set('error', action.payload))(state);
+    },
+    onChangeFilter(state, action) {
+      const { category, tag } = action.payload;
+      return flow(set(`option.${category}`, tag))(state);
     },
   },
 });

@@ -4,7 +4,7 @@ import {
   makeListTutorFilter,
   makePageCurrent,
   makeSelectedOption,
-  makeSelectedshowHideDropDown,
+  makeSelectedShowHideDropDown,
   makeTotalCount,
 } from './selector';
 import { actions } from './slice';
@@ -14,7 +14,7 @@ import { useLocation, useHistory } from 'react-router';
 import { debounce } from 'lodash';
 
 export const useHook = () => {
-  const show = useSelector(makeSelectedshowHideDropDown);
+  const show = useSelector(makeSelectedShowHideDropDown);
   const option = useSelector(makeSelectedOption);
   const location = useLocation();
   const history = useHistory();
@@ -24,8 +24,10 @@ export const useHook = () => {
     hideDropDown,
     optionFromUrl,
     resetState,
+    getFilter,
   } = useActions(
     {
+      getFilter: actions.getFilter,
       showHideDropDown: actions.showHideDropDown,
       hideDropDown: actions.hideDropDown,
       optionFromUrl: actions.optionFromUrl,
@@ -45,6 +47,7 @@ export const useHook = () => {
   }, [location.search]);
 
   useEffect(() => {
+    getFilter();
     return () => {
       resetState();
     };
