@@ -26,32 +26,35 @@ const mapDataScheduleTo2Rows = scheduleDetails => {
 const GroupSelectTime = memo(props => {
   const { scheduleDetails, ...rest } = props;
   const dataSource = mapDataScheduleTo2Rows(scheduleDetails);
+
   return (
     <StyledGroupSelectTime>
       <Checkbox.Group {...rest} style={{ width: '100%' }}>
-        <Row className="justify-content-between">
-          {(dataSource || []).map(times => {
-            return times.map(time => {
-              return (
-                <Checkbox
-                  value={time.id}
-                  key={time.id}
-                  checked={false}
-                  disabled={time.isBooked}
-                >
-                  {time.isBooked && (
-                    <CheckSquareFilled className="icon-checked" />
-                  )}
-                  <TextTimeSchedule
-                    className="time-select"
-                    typeText={time.isBooked ? 'Gray' : 'Purple'}
-                    content={`${time.startPeriod} - ${time.endPeriod}`}
-                  />
-                </Checkbox>
-              );
-            });
-          })}
-        </Row>
+        {(dataSource || []).map(times => {
+          return (
+            <Row className="justify-content-around">
+              {times.map(time => {
+                return (
+                  <Checkbox
+                    value={time.id}
+                    key={time.id}
+                    checked={false}
+                    disabled={time.isBooked}
+                  >
+                    {time.isBooked && (
+                      <CheckSquareFilled className="icon-checked" />
+                    )}
+                    <TextTimeSchedule
+                      className="time-select"
+                      typeText={time.isBooked ? 'Gray' : 'Purple'}
+                      content={`${time.startPeriod} - ${time.endPeriod}`}
+                    />
+                  </Checkbox>
+                );
+              })}
+            </Row>
+          );
+        })}
       </Checkbox.Group>
     </StyledGroupSelectTime>
   );
