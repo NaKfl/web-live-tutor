@@ -43,6 +43,14 @@ export const StyledModal = styled(Modal)`
         border-radius: 4px;
         max-width: 100%;
       }
+      .payment-form-recharge-paypal {
+        padding-top: 20px;
+        width: 361px;
+        margin: 0 auto;
+        input {
+          text-align: center;
+        }
+      }
       .payment-form-recharge {
         .deposit-button {
           margin-bottom: 10px;
