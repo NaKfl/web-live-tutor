@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { StyledModal } from './styles';
 import { Collapse, Typography, Row, Col, Form, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -6,11 +6,17 @@ import useHooks from './hooks.js';
 import Button from 'app/components/Button';
 import Input from 'app/components/Input';
 import { LeftOutlined } from '@ant-design/icons';
+import ReactDOM from 'react-dom';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
 
 const ModalPayment = memo(props => {
+  const [amountPaypal, setAmountPaypal] = useState(0);
+  const PayPalButton = window.paypal.Buttons.driver('react', {
+    React,
+    ReactDOM,
+  });
   const { visible, onCancel, tutor, ...rest } = props;
   const { handlers, selectors } = useHooks();
   const { t } = useTranslation();
@@ -27,6 +33,29 @@ const ModalPayment = memo(props => {
     handleDepositBank,
     handleChangeInputMoney,
   } = handlers;
+
+  const _createOrder = (_, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: amountPaypal,
+          },
+        },
+      ],
+    });
+  };
+
+  const _onApprove = async (_, actions) => {
+    window.location.replace(
+      `/verifyDeposit?vnp_Amount=${amountPaypal * 23000 * 100}`,
+    );
+  };
+
+  const _onError = () => {
+    window.location.replace(`/verifyDeposit?vnp_Amount=error`);
+  };
+
   const renderHeader = ({ img, contentFirst, contentSecond }) => {
     return (
       <Row className="option-header align-items-center">
@@ -42,6 +71,11 @@ const ModalPayment = memo(props => {
       </Row>
     );
   };
+
+  const handleChangeMoneyPaypal = values => {
+    setAmountPaypal(values['money-paypal']);
+  };
+
   return (
     <StyledModal
       centered
@@ -63,14 +97,14 @@ const ModalPayment = memo(props => {
       <Title level={4} className="payment-title">
         {t('Payment.depositInApp')}
       </Title>
-      <Collapse className="payment-collapse" defaultActiveKey={1}>
+      <Collapse className="payment-collapse" defaultActiveKey={1} accordion>
         <Panel
           showArrow={false}
           header={renderHeader({
             img:
               'https://files.playerduo.com/production/static-files/icon/atm-card.png',
             contentFirst: 'Thanh toán trực tiếp qua Internet Banking',
-            contentSecond: 'Phí 1.760đ + 3% giá trị nạp',
+            contentSecond: 'Miễn phí nạp',
           })}
           key={1}
         >
@@ -108,11 +142,21 @@ const ModalPayment = memo(props => {
                       () => ({
                         validator(_, value) {
                           if (!value)
-                            return Promise.reject(t('Payment.minMax'));
+                            return Promise.reject(
+                              t('Payment.minMax', {
+                                min: '10.000',
+                                max: '100.000.000',
+                              }),
+                            );
                           if (value >= 10000 && value <= 100000000) {
                             return Promise.resolve();
                           }
-                          return Promise.reject(t('Payment.minMax'));
+                          return Promise.reject(
+                            t('Payment.minMax', {
+                              min: '10.000',
+                              max: '100.000.000',
+                            }),
+                          );
                         },
                       }),
                     ]}
@@ -156,6 +200,68 @@ const ModalPayment = memo(props => {
                   </Col>
                 );
               })}
+          </Row>
+        </Panel>
+        <Panel
+          showArrow={false}
+          header={renderHeader({
+            img:
+              'https://files.playerduo.com/production/static-files/icon/atm-card.png',
+            contentFirst: 'Thanh toán trực tiếp qua Paypal',
+            contentSecond: 'Phí dựa vào chính sách Paypal',
+          })}
+          key={2}
+        >
+          <Row className="justify-content-center">
+            <Spin spinning={isLoading} />
+          </Row>
+          <Row>
+            <Form
+              className="payment-form-recharge-paypal"
+              layout="vertical"
+              onValuesChange={handleChangeMoneyPaypal}
+            >
+              <Form.Item
+                name="money-paypal"
+                rules={[
+                  () => ({
+                    validator(_, value) {
+                      if (!value)
+                        return Promise.reject(
+                          t('Payment.minMax', {
+                            min: '5',
+                            max: '100.000',
+                          }),
+                        );
+                      if (value >= 5 && value <= 100000) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        t('Payment.minMax', {
+                          min: '5',
+                          max: '100.000',
+                        }),
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input
+                  formatter={value =>
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                  }
+                  placeholder={t('Payment.howMuchMoney')}
+                />
+              </Form.Item>
+              <Form.Item className="deposit-button">
+                <PayPalButton
+                  createOrder={(data, actions) => _createOrder(data, actions)}
+                  onApprove={(data, actions) => _onApprove(data, actions)}
+                  onError={(data, actions) => _onError(data, actions)}
+                  onCancel={() => _onError('Canceled')}
+                />
+              </Form.Item>
+            </Form>
           </Row>
         </Panel>
       </Collapse>

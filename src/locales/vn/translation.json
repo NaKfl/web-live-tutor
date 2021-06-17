@@ -295,7 +295,7 @@
     "depositInApp": "NẠP TIỀN VÀO LIVETUTOR",
     "deposit": "Nạp tiền",
     "howMuchMoney": "Số tiền bạn muốn nạp (VNĐ)",
-    "minMax": "Số tiền nạp tối thiểu là 10.000 và tối đa là 100.000.000",
+    "minMax": "Số tiền nạp tối thiểu là {{min}} và tối đa là {{max}}",
     "transactionsList": "List of transactions"
   },
   "ForgotPassword": {
