@@ -13,6 +13,7 @@ import { TutorDetail } from 'app/containers/TutorDetail/Loadable';
 import { Search } from 'app/containers/Search/Loadable';
 import { Wallet } from 'app/containers/Wallet/Loadable';
 import { VerifyAccount } from 'app/containers/VerifyAccount/Loadable';
+import { CheckoutPaypal } from 'app/containers/CheckoutPaypal/Loadable';
 import { VerifyDeposit } from 'app/containers/VerifyDeposit/Loadable';
 import { SomethingWrongPage } from 'app/components/SomethingWrongPage/Loadable';
 import { NotFoundPage } from 'app/components/NotFoundPage/Loadable';
@@ -141,5 +142,10 @@ export const loginRoutes = [
     path: '/not-found',
     component: NotFoundPage,
     key: 'not-found',
+  },
+  {
+    path: '/checkout-paypal',
+    component: CheckoutPaypal,
+    key: 'checkout-paypal',
   },
 ];
