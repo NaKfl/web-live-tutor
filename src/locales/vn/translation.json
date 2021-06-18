@@ -294,7 +294,7 @@
   "Payment": {
     "depositInApp": "NẠP TIỀN VÀO LIVETUTOR",
     "deposit": "Nạp tiền",
-    "howMuchMoney": "Số tiền bạn muốn nạp (VNĐ)",
+    "howMuchMoney": "Số tiền bạn muốn nạp ({{currency}})",
     "minMax": "Số tiền nạp tối thiểu là {{min}} và tối đa là {{max}}",
     "transactionsList": "List of transactions"
   },

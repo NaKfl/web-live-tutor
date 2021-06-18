@@ -165,7 +165,9 @@ const ModalPayment = memo(props => {
                       formatter={value =>
                         `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                       }
-                      placeholder={t('Payment.howMuchMoney')}
+                      placeholder={t('Payment.howMuchMoney', {
+                        currency: 'VND',
+                      })}
                     />
                   </Form.Item>
 
@@ -250,7 +252,9 @@ const ModalPayment = memo(props => {
                   formatter={value =>
                     `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                   }
-                  placeholder={t('Payment.howMuchMoney')}
+                  placeholder={t('Payment.howMuchMoney', {
+                    currency: 'USD',
+                  })}
                 />
               </Form.Item>
               <Form.Item className="deposit-button">

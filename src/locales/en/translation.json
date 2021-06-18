@@ -296,7 +296,7 @@
   "Payment": {
     "depositInApp": "DEPOSIT IN LIVETUTOR",
     "deposit": "Deposit",
-    "howMuchMoney": "Money (VNĐ)",
+    "howMuchMoney": "Amount ({{currency}})",
     "minMax": "Min money is {{min}} and max money is {{max}}",
     "transactionsList": "Danh sách các giao dịch"
   },
