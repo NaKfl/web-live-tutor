@@ -361,6 +361,7 @@
     "END_GREATER_START": "End time should be greater than start time",
     "PERIOD_DIVISIABLE_30": "The period must be divisible by 30",
     "SCHEDULE_DUPLICATE": "Conflict to register schedule",
-    "SCHEDULE_INVALID_DATE": "Register schedule with invalid date"
+    "SCHEDULE_INVALID_DATE": "Register schedule with invalid date",
+    "INVALID_REFRESH_TOKEN": "Session has been expired. Please sign in again"
   }
 }

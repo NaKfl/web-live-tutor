@@ -14,7 +14,7 @@ import PublicLayout from './Public/Layout';
 import LoginLayout from './Login/Layout';
 import PrivateLayout from './Private/Layout';
 import MeetingLayout from './MeetingRoute/Layout';
-import { useAuthenticatedRedirect } from './hooks';
+import { useAuthenticatedRedirect, useRefreshToken } from './hooks';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from 'app/containers/Login/saga';
 import sagaDeposit from 'app/containers/ModalPayment/saga';
@@ -30,6 +30,7 @@ export const AppLayout = () => {
   useInjectReducer({ key: depositSliceKey, reducer: depositReducer });
   useInjectSaga({ key: depositSliceKey, saga: sagaDeposit });
   useAuthenticatedRedirect();
+  useRefreshToken();
 
   return (
     <>

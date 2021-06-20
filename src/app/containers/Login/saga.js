@@ -1,8 +1,12 @@
 import { call, put, all, fork, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
-import { login, google, facebook } from 'fetchers/authFetcher';
+import { login, google, facebook, getRefreshToken } from 'fetchers/authFetcher';
 import { getProfile } from 'fetchers/profileFetcher';
-import { storeAuthInfo, removeAuthInfo } from 'utils/localStorageUtils';
+import {
+  storeAuthInfo,
+  removeAuthInfo,
+  getAuthInfo,
+} from 'utils/localStorageUtils';
 import { ROLES } from 'utils/constants';
 
 function* getMeWatcher() {
@@ -82,11 +86,32 @@ function* logoutTask() {
   yield put(actions.logoutSuccess());
 }
 
+function* refreshTokenWatcher() {
+  yield takeLatest(actions.refreshToken, refreshTokenTask);
+}
+
+export function* refreshTokenTask() {
+  const authInfo = getAuthInfo();
+  const { response } = yield call(getRefreshToken, {
+    email: authInfo?.user?.email ?? '',
+    refreshToken: authInfo?.tokens?.refresh?.token ?? '',
+  });
+  if (response) {
+    response.user.currentRole = authInfo?.user?.currentRole
+      ? authInfo.user.currentRole
+      : ROLES.STUDENT;
+    yield call(storeAuthInfo, response);
+  } else {
+    yield put(actions.logout());
+  }
+}
+
 export default function* defaultSaga() {
   yield all([
     fork(loginWatcher),
     fork(logoutWatcher),
     fork(loginServiceWatcher),
     fork(getMeWatcher),
+    fork(refreshTokenWatcher),
   ]);
 }

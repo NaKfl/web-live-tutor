@@ -105,6 +105,10 @@ const authenticationSlice = createSlice({
         set('error', null),
       )(state);
     },
+
+    refreshToken(state) {
+      return state;
+    },
   },
 });
 

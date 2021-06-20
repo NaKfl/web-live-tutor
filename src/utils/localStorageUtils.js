@@ -15,7 +15,7 @@ export const isValidAuthInfo = authInfo => {
 export const getAuthInfo = () => {
   try {
     const authInfo = JSON.parse(localStorage.getItem(AUTH_INFO_KEY));
-    if (!isNil(authInfo) && isValidAuthInfo(authInfo)) {
+    if (!isNil(authInfo)) {
       return authInfo;
     }
     return null;
@@ -27,12 +27,12 @@ export const getAuthInfo = () => {
 
 export const getAccessToken = () => {
   const authInfo = getAuthInfo();
-  return get('tokens.access.token', authInfo);
+  return get('tokens.access.token', authInfo, '');
 };
 
 export const getRefreshToken = () => {
   const authInfo = getAuthInfo();
-  return get('tokens.refresh.token', authInfo);
+  return get('tokens.refresh.token', authInfo, '');
 };
 
 export const getUser = () => {

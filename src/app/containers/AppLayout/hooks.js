@@ -1,6 +1,6 @@
 import useActions from 'hooks/useActions';
 import { makeSelectIsAuthenticated } from 'app/containers/Login/selectors';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
@@ -8,6 +8,7 @@ import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
 import { ROLES } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { REFRESH_TOKEN_INTERVAL_MINUTES } from 'configs';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
@@ -80,6 +81,34 @@ export const useChangeRole = () => {
   }, [changeRoleAction, history, user?.currentRole]);
 
   return { changeRole };
+};
+
+export const useRefreshToken = () => {
+  const intervalRefreshTokenMilliseconds =
+    REFRESH_TOKEN_INTERVAL_MINUTES * 60 * 1000;
+  const { refreshToken } = useActions(
+    { refreshToken: loginActions.refreshToken },
+    [loginActions],
+  );
+
+  const isAuthenticated = useSelector(makeSelectIsAuthenticated);
+
+  useEffect(() => {
+    window.intervalRefreshTokenTimer = null;
+    if (isAuthenticated) {
+      refreshToken();
+      if (window.intervalRefreshTokenTimer === null) {
+        window.intervalRefreshTokenTimer = setInterval(
+          () => refreshToken(),
+          intervalRefreshTokenMilliseconds,
+        );
+      }
+    }
+
+    return () => {
+      clearInterval(window.intervalRefreshTokenTimer);
+    };
+  }, [intervalRefreshTokenMilliseconds, isAuthenticated, refreshToken]);
 };
 
 export default useHooks;

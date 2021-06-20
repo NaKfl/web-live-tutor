@@ -6,3 +6,5 @@ export const vnp_TmnCode = process.env.REACT_APP_VNP_TMNCODE;
 export const vnp_HashSecret = process.env.REACT_APP_VNP_HASHSECRET;
 export const vnp_Url = process.env.REACT_APP_VNP_URL;
 export const vnp_ReturnUrl = process.env.REACT_APP_VNP_RETURNURL;
+export const REFRESH_TOKEN_INTERVAL_MINUTES =
+  process.env.REACT_APP_REFRESH_TOKEN_INTERVAL_MINUTES;

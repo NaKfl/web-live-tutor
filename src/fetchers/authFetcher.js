@@ -64,3 +64,14 @@ export const facebook = payload => {
     .then(data => ({ response: data }))
     .catch(handleGeneralError);
 };
+
+export const getRefreshToken = payload => {
+  return request(WEB_API, {
+    url: 'auth/refresh-token',
+    method: 'POST',
+    data: payload,
+  })
+    .then(response => response.data)
+    .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};

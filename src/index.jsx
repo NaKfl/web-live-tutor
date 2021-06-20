@@ -21,7 +21,7 @@ const initialState = {
   },
 };
 
-const store = configureAppStore(initialState);
+export const store = configureAppStore(initialState);
 const MOUNT_NODE = document.getElementById('root');
 
 const ConnectedApp = ({ Component }) => (
