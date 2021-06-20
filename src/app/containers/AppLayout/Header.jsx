@@ -35,7 +35,7 @@ export const Header = () => {
         <div className="left-menu">
           <div className="logo-wrapper">
             <Link
-              to={user.currentRole === ROLES.TUTOR ? 'schedule-tutor' : '/'}
+              to={user?.currentRole === ROLES.TUTOR ? 'schedule-tutor' : '/'}
             >
               <Logo />
             </Link>

@@ -1,10 +1,10 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import Popup from 'app/containers/Popup';
-import useHooks from '../hooks';
-import { useAuthorization } from 'hooks/useAuthorization';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
+import Popup from 'app/containers/Popup';
+import { useAuthorization } from 'hooks/useAuthorization';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
+import useHooks from '../hooks';
 
 const PrivateRoute = ({
   component,

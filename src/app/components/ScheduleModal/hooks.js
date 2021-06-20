@@ -48,9 +48,9 @@ export const useHooks = props => {
   useEffect(() => {
     getFreeScheduleByDate({
       date: data.date,
-      tutorId: user.id,
+      tutorId: user?.id,
     });
-  }, [getFreeScheduleByDate, data, user.id]);
+  }, [getFreeScheduleByDate, data, user?.id]);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate.status === ACTION_STATUS.SUCCESS) {
@@ -68,7 +68,7 @@ export const useHooks = props => {
       getFreeSchedule();
       getFreeScheduleByDate({
         date: data.date,
-        tutorId: user.id,
+        tutorId: user?.id,
       });
     }
   }, [
@@ -76,7 +76,7 @@ export const useHooks = props => {
     selectorUnRegisterSchedule,
     data,
     getFreeSchedule,
-    user.id,
+    user?.id,
     getFreeScheduleByDate,
   ]);
 

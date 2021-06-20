@@ -5,6 +5,8 @@ import { getAccessToken } from 'utils/localStorageUtils';
 import { notifyError } from 'utils/notify';
 import i18n from 'locales/i18n';
 import { errorCode } from 'utils/constants';
+import { actions } from 'app/containers/Login/slice';
+import { store } from '../index';
 
 const createClient = (baseURL, isMultipart = 0) => {
   if (!isMultipart) {
@@ -55,9 +57,12 @@ const handleShowError = error => {
   // i18n.t('Profile.notifyEditSuccess');
   const message = get('data.message', error);
   const statusCode = get('data.statusCode', error);
+  if (statusCode === 21 || statusCode === 1) {
+    store.dispatch(actions.logout());
+    return;
+  }
   const messaseShow =
     i18n.t(`Error_code.${errorCode[statusCode]}`) + ` (code: ${statusCode})`;
-  console.log(messaseShow);
   if (message) notifyError(messaseShow);
 };
 

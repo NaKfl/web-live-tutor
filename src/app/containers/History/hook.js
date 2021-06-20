@@ -30,7 +30,7 @@ export const useHook = () => {
     [actions],
   );
   const user = getUserFromStorage();
-  const isTutor = user.currentRole === 'tutor';
+  const isTutor = user?.currentRole === 'tutor';
 
   useEffect(() => {
     fetchHistory({ isTutor, page: query.get('page') || 1 });
@@ -67,7 +67,7 @@ export const useForm = () => {
   const historyList = useSelector(makeListHistory);
   const loading = useSelector(makeSelectLoading);
   const user = getUserFromStorage();
-  const isTutor = user.currentRole === 'tutor';
+  const isTutor = user?.currentRole === 'tutor';
 
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
     popupActions,

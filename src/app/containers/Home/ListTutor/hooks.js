@@ -21,8 +21,8 @@ export const useHooks = () => {
       ({ userCall, userBeCalled, startTime, roomName }) => {
         const user = getUserFromStorage();
         const userInfo = {
-          displayName: user.name,
-          email: user.email,
+          displayName: user?.name,
+          email: user?.email,
         };
         const token = jwt.sign(
           {
