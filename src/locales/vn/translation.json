@@ -321,6 +321,7 @@
   "Wallet": {
     "transactionTitle": "Giao dịch",
     "actionName": "Xem thêm",
+    "close": "Đóng",
     "deposit": "Nạp",
     "book": "Đặt",
     "bookBy": "Được {{name}} đặt",

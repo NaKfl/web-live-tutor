@@ -1,6 +1,6 @@
 import useActions from 'hooks/useActions';
 import { makeSelectIsAuthenticated } from 'app/containers/Login/selectors';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
