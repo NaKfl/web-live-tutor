@@ -28,7 +28,10 @@
     "registerTutor": "Register tutor",
     "courses": "Courses",
     "progress": "Progress",
-    "schedule": "Schedule"
+    "schedule": "Schedule",
+    "BookedSchedule": "Reservation",
+    "BookedScheduleStudent": "Schedule",
+    "History": "History"
   },
   "Header": {
     "linkHome": "Home",

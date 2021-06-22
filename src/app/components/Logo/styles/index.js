@@ -9,6 +9,7 @@ export const StyledLogo = styled.div`
     height: 47px;
   }
   .logo-name {
+    white-space: nowrap;
     color: ${COLOR.CORNFLOWER};
     font-size: 28px;
     margin-left: 5px;

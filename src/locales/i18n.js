@@ -12,7 +12,7 @@ const translationsJson = {
     translation: vn,
   },
 };
-const language = getDefaultLanguages() || 'en';
+const language = getDefaultLanguages() || 'vn';
 export const translations = {};
 
 /*

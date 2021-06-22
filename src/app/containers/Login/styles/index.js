@@ -19,7 +19,10 @@ export const StyledLogin = styled.div`
     }
   }
 
-  ${media.mobile`
+  ${media.tablet`
+    .img-banner{
+      display:none;
+    }
     .login-page {
       flex-direction: column;
       margin: 0;

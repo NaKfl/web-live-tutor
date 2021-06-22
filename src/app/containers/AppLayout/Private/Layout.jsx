@@ -3,15 +3,25 @@ import React, { memo } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import { StyledContent, StyledLayout } from '../styles';
+import querystring from 'querystring';
+import isEmpty from 'lodash/fp/isEmpty';
+import { MoreMenus } from 'app/containers/MoreMenus/Loadable';
 
-export const PrivateLayout = ({ children }) => {
+export const PrivateLayout = props => {
+  const query = querystring.parse(props?.location?.search);
+  const isShowMoreMenus = !isEmpty(query) && query['?more-menus'];
+
   return (
     <StyledLayout>
-      <Header />
+      <Header {...props} />
       <Chat />
-      <StyledContent>
-        <div className="content-wrapper">{children}</div>
-      </StyledContent>
+      {isShowMoreMenus ? (
+        <MoreMenus />
+      ) : (
+        <StyledContent>
+          <div className="content-wrapper">{props.children}</div>
+        </StyledContent>
+      )}
       <Footer />
     </StyledLayout>
   );

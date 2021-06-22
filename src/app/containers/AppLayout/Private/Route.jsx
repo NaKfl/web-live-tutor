@@ -19,7 +19,7 @@ const PrivateRoute = ({
   const renderFn = Component => props => {
     if (canAccess && !!Component && isAuthenticated) {
       return (
-        <Layout>
+        <Layout {...props}>
           <Component {...props} />
           <Popup />
         </Layout>
