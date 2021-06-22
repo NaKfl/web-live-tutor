@@ -4,7 +4,8 @@ import React, { memo } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import ChartPanel from './ChartPanel';
-import useHooks, { useDeposit } from './hooks';
+import useHooks from './hooks';
+import { useShowModal } from 'app/containers/AppLayout/hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
 import { StyledFullHeightCol, StyledWallet, StyledLeftPart } from './styles';
@@ -20,7 +21,7 @@ export const Wallet = props => {
   const { t } = useTranslation();
   const history = useHistory();
 
-  const { showPaymentModal, showTransactionModal } = useDeposit();
+  const { showPaymentModal, showTransactionModal } = useShowModal();
 
   const { selectors } = useHooks(props);
   const { isLoading, historyData, statisticsData } = selectors;

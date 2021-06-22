@@ -7,6 +7,7 @@ const useJitsi = props => {
     password,
     displayName,
     onMeetingEnd,
+    onSomeOneLeave,
     ...options
   } = props;
   const [loading, setLoading] = useState(true);
@@ -52,8 +53,10 @@ const useJitsi = props => {
     client.addEventListener('passwordRequired', () => {
       password && client.executeCommand('password', password);
     });
-    onMeetingEnd && client.addEventListener('participantLeft', onMeetingEnd);
+    onSomeOneLeave &&
+      client.addEventListener('participantLeft', onSomeOneLeave);
 
+    onMeetingEnd && client.addEventListener('readyToClose', onMeetingEnd);
     return () => jitsi && jitsi.dispose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.JitsiMeetExternalAPI]);

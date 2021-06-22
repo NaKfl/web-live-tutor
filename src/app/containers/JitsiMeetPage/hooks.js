@@ -2,7 +2,7 @@ import { JWT_SECRET } from 'configs';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import queryString from 'query-string';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
 
@@ -11,6 +11,14 @@ const useHooks = props => {
   const history = useHistory();
   const [roomInfo, setRoomInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  let myTimeOut;
+
+  const pushToHome = isTutor => {
+    myTimeOut = setTimeout(() => {
+      if (isTutor) history.push('/schedule-tutor');
+      else history.push('/');
+    }, 3000);
+  };
 
   useEffect(() => {
     const {
@@ -31,27 +39,27 @@ const useHooks = props => {
       isTutor,
       startTime,
     });
-  }, [token]);
+  }, [token, myTimeOut]);
 
-  const handleSomeOneLeave = useCallback(
-    field => {
-      const { userCall, userBeCalled, startTime } = field;
-      socket.emit('call:endCall', {
-        userCall,
-        userBeCalled,
-        startTime,
-        endTime: moment(new Date()).format('YYYY-MM-DD hh:mm:ss'),
-      });
-      setIsLoading(true);
-      setTimeout(() => {
-        history.push('/');
-      }, 3000);
-    },
-    [history],
-  );
+  const handleSomeOneLeave = field => {
+    const { userCall, userBeCalled, startTime } = field;
+    socket.emit('call:endCall', {
+      userCall,
+      userBeCalled,
+      startTime,
+      endTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+    });
+    setIsLoading(true);
+    pushToHome(roomInfo.isTutor);
+  };
+
+  const endCall = () => {
+    setIsLoading(true);
+    pushToHome(roomInfo.isTutor);
+  };
 
   return {
-    handlers: { handleSomeOneLeave },
+    handlers: { handleSomeOneLeave, endCall },
     selectors: { roomInfo, isLoading },
   };
 };

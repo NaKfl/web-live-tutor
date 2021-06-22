@@ -18,7 +18,7 @@ import { useHistory } from 'react-router-dom';
 import { CalendarFilled, BellFilled } from '@ant-design/icons';
 import { useChangeRole } from 'app/containers/AppLayout/hooks';
 import WalletAmount from 'app/components/WalletAmount';
-import { useDeposit } from '../Wallet/hooks';
+import { useShowModal } from 'app/containers/AppLayout/hooks';
 
 export const Header = () => {
   const { user } = useGetUserInfo();
@@ -27,7 +27,7 @@ export const Header = () => {
   const { handlers } = useLogout();
   const { onLogout } = handlers;
   const { changeRole } = useChangeRole();
-  const { showPaymentModal } = useDeposit();
+  const { showPaymentModal } = useShowModal();
 
   return (
     <StyledHeader>
