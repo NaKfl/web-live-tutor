@@ -1,13 +1,18 @@
-FROM node:14
+FROM node:14-alpine as builder
 
 WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json yarn.lock ./
+RUN npm install -g yarn --force && yarn install --prod
 
-COPY package*.json ./
+COPY . ./
+RUN yarn build
 
-RUN npm install
+FROM nginx:alpine
+RUN apk add --no-cache bash
 
-COPY . /app
+EXPOSE 80
+COPY manifest/default.conf /etc/nginx/conf.d/
+COPY --from=builder /app/build /usr/share/nginx/html
 
-RUN npm install
-
-CMD ["npm", "start"]
+CMD ["/bin/bash", "-c", "nginx -g \"daemon off;\""]
