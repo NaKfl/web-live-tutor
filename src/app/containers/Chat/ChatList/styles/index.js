@@ -1,8 +1,12 @@
 import styled, { css } from 'styled-components';
 import Badge from 'app/components/Badge';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 
 export const StyledChatList = styled.div`
+  ${media.custom700px`
+    width: unset;
+  `}
   position: relative;
   display: flex;
   width: 600px;
@@ -28,6 +32,9 @@ export const StyledChatList = styled.div`
 `;
 
 export const StyledNav = styled.div`
+  ${media.custom700px`
+  min-width: unset;
+  `}
   min-width: 220px;
   display: flex;
   flex-direction: column;
@@ -36,6 +43,15 @@ export const StyledNav = styled.div`
 `;
 
 export const StyledNavItem = styled.div`
+  ${media.custom700px`
+    .partner-name,
+    .last-content {
+      display:none;
+    }
+    .partner-avatar {
+    margin-left: 10px;
+    }
+  `}
   padding: 9px 10px;
   display: flex;
   justify-content: flex-start;

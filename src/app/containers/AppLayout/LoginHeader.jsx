@@ -24,10 +24,10 @@ export const LoginHeader = () => {
         </div>
         <Space className="login-register-group">
           <LanguageSelection className="language" />
-          <Link to="/login">
+          <Link to="/login" className="login-btn">
             <Button size="medium">{t('Login.btnCap')}</Button>
           </Link>
-          <Link to="/register">
+          <Link to="/register" className="register-button">
             <Button size="medium" type="accent">
               {t('Register.btnCap')}
             </Button>

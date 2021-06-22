@@ -28,7 +28,10 @@
     "registerTutor": "Đăng ký làm gia sư",
     "courses": "Khoá học",
     "progress": "Đang phát triển",
-    "schedule": "Lịch dạy"
+    "schedule": "Lịch dạy",
+    "BookedSchedule": "Lịch được đặt",
+    "BookedScheduleStudent": "Lịch",
+    "History": "Lịch sử"
   },
   "Header": {
     "linkHome": "Trang chủ",

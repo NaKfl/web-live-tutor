@@ -6,6 +6,9 @@ export const sizes = {
   tablet: 980,
   wide: 1300,
   subWide: 1142,
+  custom500px: 500,
+  custom600px: 600,
+  custom700px: 700,
 };
 
 // Iterate through the sizes and create a media template

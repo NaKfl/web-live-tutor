@@ -8,7 +8,7 @@ import { useHooks } from './hooks';
 import { reducer, sliceKey } from './slice';
 import { StyledMenuBar } from './styles';
 
-const MenuBar = () => {
+const MenuBar = ({ ...rest }) => {
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors } = useHooks();
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ const MenuBar = () => {
   const { activatedMenu } = selectors;
 
   return (
-    <StyledMenuBar>
+    <StyledMenuBar {...rest}>
       <div className="menu-list">
         {MenuBarListItems.map(menu => (
           <Can
