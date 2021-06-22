@@ -1,8 +1,5 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
-import saga from './saga';
-import { reducer, sliceKey } from './slice';
 import { StyledMoreMenus, StyledSection, StyledMenuItem } from './styles';
 import { useGetUserInfo } from 'app/containers/AppLayout/hooks';
 import Avatar from 'app/components/Avatar';
@@ -21,8 +18,6 @@ import { ROLES } from 'utils/constants';
 import { useLogout } from 'app/containers/Login/hooks';
 
 export const MoreMenus = () => {
-  useInjectSaga({ key: sliceKey, saga });
-  useInjectReducer({ key: sliceKey, reducer });
   const history = useHistory();
   const { t } = useTranslation();
   const { user } = useGetUserInfo();
