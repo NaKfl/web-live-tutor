@@ -229,10 +229,7 @@ export const TutorDetail = ({ ...rest }) => {
                       <video
                         className="video-tutor"
                         // TODO: Change example video
-                        src={
-                          video ??
-                          'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
-                        }
+                        src={video}
                         controlsList="nodownload"
                         controls
                       />
