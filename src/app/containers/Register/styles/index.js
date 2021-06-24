@@ -12,6 +12,13 @@ export const StyledRegister = styled.div`
   justify-content: center;
   align-items: center;
 
+  .img-banner {
+    img {
+      height: 470px;
+      width: auto;
+    }
+  }
+
   ${media.tablet`
   .img-banner{
       display:none;

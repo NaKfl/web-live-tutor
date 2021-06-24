@@ -136,22 +136,6 @@ export const StyledHeader = styled(Header)`
     }
   }
 
-  ${media.custom500px`
-  padding: 0 5px;
-  .header-wrapper{
-    .logo-wrapper{
-      height: 64px;
-      width: unset;
-    }
-  }
-  `}
-
-  ${media.custom600px`
-    .login-btn, .register-button{
-      display: none;
-    }
-  `}
-
   ${media.tablet`
     .header-wrapper{
       .profile-menu{
@@ -169,6 +153,28 @@ export const StyledHeader = styled(Header)`
         .nav-item-menus{
           display: none;
         }
+      }
+    }
+  `}
+
+  ${media.custom600px`
+    padding: 0 22px 0 30px;
+    .login-btn, .register-button{
+      display: none;
+    }
+    .login-register-group {
+      .language {
+        margin-right: 0;
+      }
+    }
+  `}
+
+  ${media.custom500px`
+    padding: 0 10px 0 18px;
+    .header-wrapper{
+      .logo-wrapper{
+        height: 64px;
+        width: unset;
       }
     }
   `}

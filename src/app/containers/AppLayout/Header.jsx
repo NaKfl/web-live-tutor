@@ -33,7 +33,6 @@ export const Header = props => {
 
   const query = querystring.parse(props?.location?.search);
   const isShowMoreMenus = !isEmpty(query) && query['?more-menus'];
-  console.log('isShowMoreMenus', isShowMoreMenus);
 
   return (
     <StyledHeader>
