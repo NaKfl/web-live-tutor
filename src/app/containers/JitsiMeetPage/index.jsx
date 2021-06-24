@@ -13,7 +13,7 @@ export const JitsiMeetPage = props => {
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks(props);
   const { roomInfo, isLoading } = selectors;
-  const { handleSomeOneLeave } = handlers;
+  const { handleSomeOneLeave, endCall } = handlers;
   const { t } = useTranslation();
 
   return (
@@ -24,7 +24,8 @@ export const JitsiMeetPage = props => {
             roomName={roomInfo.roomName}
             userInfo={roomInfo.userInfo}
             disableInviteFunctions={true}
-            onMeetingEnd={() => handleSomeOneLeave(roomInfo)}
+            onMeetingEnd={() => endCall()}
+            onSomeOneLeave={() => handleSomeOneLeave(roomInfo)}
             loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>}
           />
         )}

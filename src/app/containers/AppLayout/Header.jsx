@@ -14,10 +14,10 @@ import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
-import { useDeposit } from '../Wallet/hooks';
 import { useGetUserInfo } from './hooks';
 import LanguageSelection from './LanguageSelection';
-import { StyledAvatar, StyledHeader } from './styles';
+import { StyledHeader, StyledAvatar } from './styles';
+import { useShowModal } from 'app/containers/AppLayout/hooks';
 import querystring from 'querystring';
 import isEmpty from 'lodash/fp/isEmpty';
 
@@ -29,7 +29,7 @@ export const Header = props => {
   const { handlers } = useLogout();
   const { onLogout } = handlers;
   const { changeRole } = useChangeRole();
-  const { showPaymentModal } = useDeposit();
+  const { showPaymentModal } = useShowModal();
 
   const query = querystring.parse(props?.location?.search);
   const isShowMoreMenus = !isEmpty(query) && query['?more-menus'];
