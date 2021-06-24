@@ -13,6 +13,8 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import socket from 'utils/socket';
 import { getUser } from 'utils/localStorageUtils';
+import { notifyError } from 'utils/notify';
+import { useShowModal } from '../AppLayout/hooks';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -29,6 +31,7 @@ export const useHooks = () => {
   const page = query.get('page');
   const topTutor = useSelector(selectTopTutorData);
   const [onlineTutors, setOnlineTutors] = useState([]);
+  const { closeCallModal } = useShowModal();
 
   const { fetchRequest, manageFavoriteTutor, getTopTutor } = useActions(
     {
@@ -46,6 +49,25 @@ export const useHooks = () => {
       fetchRequest();
     }
   }, [fetchRequest, page]);
+
+  useEffect(() => {
+    socket.on('call:cancelCalled', ({ userCall, userBeCalled }) => {
+      closeCallModal();
+      notifyError(`${userBeCalled.name} rejected`);
+    });
+    return () => {
+      socket.off('call:cancelCalled');
+    };
+  }, []);
+
+  useEffect(() => {
+    socket.on('call:selfCancelCalled', () => {
+      closeCallModal();
+    });
+    return () => {
+      socket.off('call:selfCancelCalled');
+    };
+  }, []);
 
   useEffect(() => {
     getTopTutor();

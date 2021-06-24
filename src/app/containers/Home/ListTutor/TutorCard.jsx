@@ -144,7 +144,7 @@ export const TutorCard = memo(props => {
                     icon={<PhoneOutlined />}
                     onClick={e => {
                       e.stopPropagation();
-                      handleCallTutor(props.userId);
+                      handleCallTutor(props);
                     }}
                   >
                     {t('Tutors.call')}
