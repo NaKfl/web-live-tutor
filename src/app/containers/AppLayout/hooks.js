@@ -49,7 +49,11 @@ export const useHooks = () => {
 
   useEffect(() => {
     socket.on('call:notifyCall', ({ userCall }) => {
-      showCallModal(userCall);
+      const studentCall = {
+        ...userCall,
+        isReceived: true,
+      };
+      showCallModal(studentCall);
     });
   }, [showCallModal]);
 
@@ -151,9 +155,10 @@ export const useRefreshToken = () => {
 };
 
 export const useShowModal = () => {
-  const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
-    popupActions,
-  ]);
+  const { openPopup, closePopup } = useActions(
+    { openPopup: popupActions.openPopup, closePopup: popupActions.closePopup },
+    [popupActions],
+  );
 
   const showPaymentModal = useCallback(
     user => {
@@ -177,6 +182,13 @@ export const useShowModal = () => {
     [openPopup],
   );
 
+  const closeCallModal = useCallback(() => {
+    closePopup({
+      key: 'showCallModal',
+      type: POPUP_TYPE.CALL_VIDEO,
+    });
+  }, [closePopup]);
+
   const showTransactionModal = useCallback(
     transactions => {
       openPopup({
@@ -188,7 +200,12 @@ export const useShowModal = () => {
     [openPopup],
   );
 
-  return { showPaymentModal, showTransactionModal, showCallModal };
+  return {
+    showPaymentModal,
+    showTransactionModal,
+    showCallModal,
+    closeCallModal,
+  };
 };
 
 export default useHooks;

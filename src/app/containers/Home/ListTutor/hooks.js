@@ -4,13 +4,14 @@ import useActions from 'hooks/useActions';
 import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
 import { useCallback, useEffect } from 'react';
-import { notifyError } from 'utils/notify';
+import { useShowModal } from 'app/containers/AppLayout/hooks';
 
 export const useHooks = () => {
   const history = useHistory();
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
     popupActions,
   ]);
+  const { showCallModal } = useShowModal();
 
   useEffect(() => {
     socket.on('call:endedCall', ({ userCall, tutor, session }) => {
@@ -19,13 +20,6 @@ export const useHooks = () => {
         userId: tutorInfo.userId,
         sessionId: session.id,
       });
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    socket.on('call:cancelCalled', ({ userCall, userBeCalled }) => {
-      notifyError(`${userBeCalled.name} rejected`);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -41,8 +35,9 @@ export const useHooks = () => {
     [openPopup],
   );
 
-  const handleCallTutor = userId => {
-    socket.emit('call:callVideo', { userId });
+  const handleCallTutor = tutor => {
+    showCallModal(tutor);
+    socket.emit('call:callVideo', { userId: tutor.userId });
   };
 
   const redirectToDetailTutor = useCallback(

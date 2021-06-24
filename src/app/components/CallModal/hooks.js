@@ -10,8 +10,13 @@ export const useHooks = props => {
   const handleRejectCall = ({ userCall }) => {
     socket.emit('call:cancelCall', { userId: userCall.id });
   };
+
+  const handleSelfCancelCall = ({ userCall }) => {
+    socket.emit('call:selfCancelCall', { userId: userCall.userId });
+  };
+
   return {
-    handlers: { handleAcceptCall, handleRejectCall },
+    handlers: { handleAcceptCall, handleRejectCall, handleSelfCancelCall },
     selectors: {},
   };
 };
