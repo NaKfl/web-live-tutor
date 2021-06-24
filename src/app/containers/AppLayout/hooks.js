@@ -18,7 +18,7 @@ import socket from 'utils/socket';
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
   const user = useSelector(selectUserInfoAuthenticate);
-  const { showCallModal } = useShowModal();
+  const { showCallModal, closeCallModal } = useShowModal();
   const history = useHistory();
 
   useEffect(() => {
@@ -42,10 +42,11 @@ export const useHooks = () => {
           },
           JWT_SECRET,
         );
+        closeCallModal();
         history.push(`/call/?token=${token}`);
       },
     );
-  }, [history]);
+  }, [history, closeCallModal]);
 
   useEffect(() => {
     socket.on('call:notifyCall', ({ userCall }) => {
