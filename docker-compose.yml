@@ -4,6 +4,7 @@ services:
   app:
     image: nakfl/front-end-live-tutor:latest
     environment:
+      NODE_ENV: production
       REACT_APP_WEB_API: https://api.livetutor.live
       REACT_APP_GOOGLE_ID: 518404312823-1h2kl40fr7nh0sj2q334sk175tcqa9ls.apps.googleusercontent.com
       REACT_APP_FACEBOOK_ID: 243818813996519
@@ -13,6 +14,6 @@ services:
       REACT_APP_VNP_URL: http://sandbox.vnpayment.vn/paymentv2/vpcpay.html
       REACT_APP_VNP_RETURNURL: https://livetutor.live/verifyDeposit
       REACT_APP_REFRESH_TOKEN_INTERVAL_MINUTES: 29
-    command: sh -c "npm start"
+    command: sh -c "/usr/share/nginx/html/env.sh && nginx -g \"daemon off;\""
     ports:
-      - 3000:3000
+      - 3000:80

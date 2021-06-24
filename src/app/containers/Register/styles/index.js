@@ -19,7 +19,10 @@ export const StyledRegister = styled.div`
     }
   }
 
-  ${media.mobile`
+  ${media.tablet`
+  .img-banner{
+      display:none;
+    }
     .register-page {
       flex-direction: column;
       margin: 0;

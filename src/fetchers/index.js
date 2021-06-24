@@ -54,7 +54,6 @@ export const handleGeneralError = error => {
 };
 
 const handleShowError = error => {
-  // i18n.t('Profile.notifyEditSuccess');
   const message = get('data.message', error);
   const statusCode = get('data.statusCode', error);
   if (statusCode === 21 || statusCode === 1) {
@@ -63,7 +62,7 @@ const handleShowError = error => {
   }
   const messaseShow =
     i18n.t(`Error_code.${errorCode[statusCode]}`) + ` (code: ${statusCode})`;
-  if (message) notifyError(messaseShow);
+  if (statusCode && errorCode[statusCode] && message) notifyError(messaseShow);
 };
 
 export default request;

@@ -1,33 +1,38 @@
+import { BarsOutlined, BellFilled } from '@ant-design/icons';
 import Avatar from 'app/components/Avatar';
 import Button from 'app/components/Button';
 import Dropdown from 'app/components/Dropdown';
 import { Logo } from 'app/components/Logo';
 import Menu from 'app/components/Menu';
 import Space from 'app/components/Space';
+import WalletAmount from 'app/components/WalletAmount';
+import { useChangeRole } from 'app/containers/AppLayout/hooks';
 import FavoriteTutor from 'app/containers/FavoriteTutor';
 import { useLogout } from 'app/containers/Login/hooks';
 import MenuBar from 'app/containers/Menu/MenuBar';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
 import { useGetUserInfo } from './hooks';
 import LanguageSelection from './LanguageSelection';
 import { StyledHeader, StyledAvatar } from './styles';
-import { useHistory } from 'react-router-dom';
-import { CalendarFilled, BellFilled } from '@ant-design/icons';
-import { useChangeRole } from 'app/containers/AppLayout/hooks';
-import WalletAmount from 'app/components/WalletAmount';
 import { useShowModal } from 'app/containers/AppLayout/hooks';
+import querystring from 'querystring';
+import isEmpty from 'lodash/fp/isEmpty';
 
-export const Header = () => {
-  const { user } = useGetUserInfo();
+export const Header = props => {
   const history = useHistory();
+  const { pathname } = useLocation();
+  const { user } = useGetUserInfo();
   const { t } = useTranslation();
   const { handlers } = useLogout();
   const { onLogout } = handlers;
   const { changeRole } = useChangeRole();
   const { showPaymentModal } = useShowModal();
+
+  const query = querystring.parse(props?.location?.search);
+  const isShowMoreMenus = !isEmpty(query) && query['?more-menus'];
 
   return (
     <StyledHeader>
@@ -37,10 +42,10 @@ export const Header = () => {
             <Link
               to={user?.currentRole === ROLES.TUTOR ? 'schedule-tutor' : '/'}
             >
-              <Logo />
+              <Logo className="logo" />
             </Link>
           </div>
-          <MenuBar />
+          <MenuBar className="nav-item-menus" />
         </div>
         {(user && (
           <Space className="right-menu">
@@ -62,18 +67,18 @@ export const Header = () => {
               <WalletAmount wallet={user.walletInfo} />
             </Dropdown>
             <LanguageSelection />
-            <BellFilled className="menu-icon" />
-            <CalendarFilled
-              className="menu-icon"
-              onClick={() => {
-                if (user?.currentRole === ROLES.STUDENT)
-                  history.push('/booking-student');
-                if (user?.currentRole === ROLES.TUTOR)
-                  history.push('/booking-tutor');
-              }}
-            />
             {user?.currentRole === ROLES.STUDENT && <FavoriteTutor />}
+            <BellFilled className="menu-icon" />
+            <BarsOutlined
+              className="menu-icon more-btn"
+              onClick={() =>
+                isShowMoreMenus
+                  ? history.push(`${pathname}`)
+                  : history.push(`${pathname}?more-menus=true`)
+              }
+            />
             <Dropdown
+              className="profile-menu"
               placement="bottomRight"
               trigger={['click']}
               overlay={
@@ -81,10 +86,6 @@ export const Header = () => {
                   <Menu.Item>
                     <Link to="/profile">{t('Header.linkProfile')}</Link>
                   </Menu.Item>
-                  <Menu.Item>
-                    <Link to="/history">{t('Header.linkHistory')}</Link>
-                  </Menu.Item>
-
                   {(!user?.roles?.includes(ROLES.TUTOR) && (
                     <Menu.Item>
                       <Link to="/register-tutor">

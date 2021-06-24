@@ -50,7 +50,6 @@ export const useForm = data => {
           style: 'currency',
           currency: 'VND',
         }).format(record.price);
-        console.log({ price });
         return <h4>{price}</h4>;
       },
     },

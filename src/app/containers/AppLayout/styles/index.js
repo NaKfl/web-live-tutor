@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Layout from 'app/components/Layout';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 const { Content, Footer, Header } = Layout;
 const maxWidth = 1370;
 
@@ -91,6 +92,9 @@ export const StyledHeader = styled(Header)`
     .sub-btn {
       margin-right: 5px;
     }
+    .menu-icon.more-btn {
+      display: none;
+    }
     .menu-icon {
       font-size: 18px;
       transition: ease 0.2s;
@@ -131,6 +135,49 @@ export const StyledHeader = styled(Header)`
       border-color: ${COLOR.CORNFLOWER};
     }
   }
+
+  ${media.tablet`
+    .header-wrapper{
+      .profile-menu{
+        display: none;
+      }
+      .sub-btn{
+        display: none;
+      }
+      .right-menu{
+        .menu-icon.more-btn{
+          display: block;
+        }
+      };
+      .left-menu{
+        .nav-item-menus{
+          display: none;
+        }
+      }
+    }
+  `}
+
+  ${media.custom600px`
+    padding: 0 22px 0 30px;
+    .login-btn, .register-button{
+      display: none;
+    }
+    .login-register-group {
+      .language {
+        margin-right: 0;
+      }
+    }
+  `}
+
+  ${media.custom500px`
+    padding: 0 10px 0 18px;
+    .header-wrapper{
+      .logo-wrapper{
+        height: 64px;
+        width: unset;
+      }
+    }
+  `}
 `;
 
 export const StyledLayout = styled(Layout)`
@@ -162,11 +209,10 @@ export const StyledMeeting = styled(Content)`
 export const StyledFooter = styled(Footer)`
   z-index: 10;
   border: none;
-  height: 70px;
   background: #525961;
   color: #ddd;
   width: 100%;
-  padding: 0 0 0;
+  padding: 22.5px 50px;
 
   .footer-wrapper {
     height: 100%;
@@ -174,19 +220,25 @@ export const StyledFooter = styled(Footer)`
     margin: 0 auto;
     text-align: center;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
     .group-menus,
     .group-icons {
       * {
         margin-right: 15px;
+        cursor: pointer;
       }
     }
     .group-icons {
       font-size: 16px;
     }
+    ${media.custom600px`
+    justify-content: center;
+    .group-menus,
+    .group-icons {
+      margin-bottom:10px;
+    }
+      `}
   }
 `;
