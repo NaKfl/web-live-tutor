@@ -31,7 +31,7 @@ export const useHooks = () => {
   const page = query.get('page');
   const topTutor = useSelector(selectTopTutorData);
   const [onlineTutors, setOnlineTutors] = useState([]);
-  const { closeCallModal } = useShowModal();
+  const { closeCallModal, showCallModal } = useShowModal();
 
   const { fetchRequest, manageFavoriteTutor, getTopTutor } = useActions(
     {
@@ -85,6 +85,18 @@ export const useHooks = () => {
       setOnlineTutors(excludeMeListTutor);
     });
   }, [user?.id]);
+
+  useEffect(() => {
+    socket.on('call:canCallTutor', ({ userBeCalled }) => {
+      showCallModal(userBeCalled);
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('call:canNotCallTutor', ({ userBeCalled }) => {
+      notifyError(`${userBeCalled.name} đang có một cuộc gọi khác !`);
+    });
+  }, []);
 
   const onClickHeart = useCallback(
     data => {
