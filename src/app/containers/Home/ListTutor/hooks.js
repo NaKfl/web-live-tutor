@@ -11,7 +11,6 @@ export const useHooks = () => {
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
     popupActions,
   ]);
-  const { showCallModal } = useShowModal();
 
   useEffect(() => {
     socket.on('call:endedCall', ({ userCall, tutor, session }) => {
@@ -36,7 +35,6 @@ export const useHooks = () => {
   );
 
   const handleCallTutor = tutor => {
-    showCallModal(tutor);
     socket.emit('call:callVideo', { userId: tutor.userId });
   };
 
