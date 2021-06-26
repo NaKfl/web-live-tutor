@@ -1,10 +1,12 @@
 import { useDepositAfterConfirm } from 'app/containers/ModalPayment/hooks';
-import isEmpty from 'lodash/fp/isEmpty';
-import querystring from 'querystring';
 import { useEffect } from 'react';
+import { getTransactionToken } from 'utils/localStorageUtils';
+import querystring from 'querystring';
+import isEmpty from 'lodash/fp/isEmpty';
 
 const useHooks = props => {
-  const returnPayment = querystring.parse(props?.location?.search);
+  const query = querystring.parse(props?.location?.search);
+  const error = !isEmpty(query) && query['?error'];
 
   const {
     depositAfterConfirmStatus,
@@ -12,16 +14,16 @@ const useHooks = props => {
   } = useDepositAfterConfirm();
 
   useEffect(() => {
-    if (!isEmpty(returnPayment)) {
-      const price = returnPayment['?vnp_Amount'];
-      depositAfterConfirm(price / 100);
+    const transactionToken = getTransactionToken();
+    if (!error && transactionToken) {
+      depositAfterConfirm(transactionToken);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
     handlers: {},
-    selectors: { status: depositAfterConfirmStatus },
+    selectors: { status: depositAfterConfirmStatus, error },
   };
 };
 

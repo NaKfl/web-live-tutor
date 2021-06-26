@@ -1,5 +1,5 @@
 import { Form } from 'antd';
-import { getListBanksVN } from 'fetchers/paymentFetcher';
+import { getListBanksVN, getPricePerDollar } from 'fetchers/paymentFetcher';
 import useActions from 'hooks/useActions';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -8,18 +8,27 @@ import { ACTION_STATUS } from 'utils/constants';
 import { selectDepositAccountStatus } from './selectors';
 import { actions } from './slice';
 import { actions as walletActions } from 'app/containers/Wallet/slice';
-import { vnp_TmnCode, vnp_HashSecret, vnp_ReturnUrl } from 'configs';
+import {
+  vnp_TmnCode,
+  vnp_HashSecret,
+  vnp_ReturnUrl,
+  JWT_SECRET,
+} from 'configs';
 import ip from 'ip';
 import moment from 'moment';
 import querystring from 'query-string';
 import sha256 from 'sha256';
 import { sortObject } from 'utils/common';
+import { v4 as uuidv4 } from 'uuid';
+import { storeTransactionToken } from 'utils/localStorageUtils';
+import jwt from 'jsonwebtoken';
 
 const useHooks = () => {
   const location = useLocation();
   const history = useHistory();
   const [form] = Form.useForm();
   const [listBanksVN, setListBanksVN] = useState([]);
+  const [pricePerDollar, setPricePerDollar] = useState(0);
   const [bankSelected, setBankSelected] = useState({});
   const [isValidMoney, setValidMoney] = useState(true);
   const [moneyValue, setValueMoney] = useState(0);
@@ -29,7 +38,7 @@ const useHooks = () => {
     {
       getHistory: walletActions.getHistory,
     },
-    [actions, walletActions],
+    [walletActions],
   );
 
   useEffect(() => {
@@ -37,6 +46,12 @@ const useHooks = () => {
     getListBanksVN().then(data => {
       if (data) {
         setListBanksVN(data);
+        setLoading(false);
+      }
+    });
+    getPricePerDollar().then(data => {
+      if (data?.price) {
+        setPricePerDollar(data.price);
         setLoading(false);
       }
     });
@@ -59,7 +74,21 @@ const useHooks = () => {
     }
   }, []);
 
+  const generateTransactionToken = useCallback(price => {
+    const transactionToken = jwt.sign(
+      {
+        id: uuidv4(),
+        price,
+      },
+      JWT_SECRET,
+    );
+
+    storeTransactionToken(transactionToken);
+  }, []);
+
   const handleDepositBank = useCallback(() => {
+    generateTransactionToken(moneyValue);
+
     if (isValidMoney) {
       let vnpParams = {
         vnp_TmnCode,
@@ -96,7 +125,14 @@ const useHooks = () => {
 
       form.resetFields();
     }
-  }, [bankSelected.bankCode, form, history, isValidMoney, moneyValue]);
+  }, [
+    bankSelected.bankCode,
+    form,
+    generateTransactionToken,
+    history,
+    isValidMoney,
+    moneyValue,
+  ]);
 
   useEffect(() => {
     const isInWallet = location.pathname === '/my-wallet';
@@ -111,6 +147,7 @@ const useHooks = () => {
       handleBackToBanks,
       handleDepositBank,
       handleChangeInputMoney,
+      generateTransactionToken,
     },
     selectors: {
       listBanksVN,
@@ -118,6 +155,7 @@ const useHooks = () => {
       isValidMoney,
       form,
       isLoading,
+      pricePerDollar,
     },
   };
 };
@@ -133,11 +171,10 @@ export const useDepositAfterConfirm = () => {
   );
 
   const depositAfterConfirm = useCallback(
-    price => {
-      if (price > 0)
-        depositToAccount({
-          price,
-        });
+    token => {
+      depositToAccount({
+        token,
+      });
     },
     [depositToAccount],
   );
