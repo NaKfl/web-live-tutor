@@ -35,3 +35,7 @@ export const selectTopTutorStatus = createSelector(
 export const selectReviewTutor = createSelector(selectHomeState, currentPage =>
   get('rating', currentPage),
 );
+
+export const selectMajor = createSelector(selectHomeState, major =>
+  get('major', major),
+);

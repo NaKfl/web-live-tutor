@@ -25,12 +25,19 @@ import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { useSelector } from 'react-redux';
 
 import { ROLES } from 'utils/constants';
+import { selectMajor } from '../selectors';
+import { majorBykey } from 'utils/common';
 
 export const TutorCard = memo(props => {
   const user = useSelector(selectUserInfoAuthenticate);
   const { handleSetNewConversation } = useControlChatPopup();
   const { handleCallTutor, redirectToDetailTutor } = props;
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const major = useSelector(selectMajor);
+
   return (
     <StyledTutorCard onClick={() => redirectToDetailTutor(props)}>
       {props.isLoading && <Skeleton active avatar paragraph={{ rows: 5 }} />}
@@ -69,15 +76,13 @@ export const TutorCard = memo(props => {
                   </span>
                 )}
                 <StyledSpecialties>
-                  {props?.specialties?.[0]
-                    ?.split(',')
-                    ?.map((content, index) => (
-                      <TextHighlight
-                        content={content}
-                        key={content + index}
-                        color="rgba(119, 119, 119, 0.8)"
-                      />
-                    ))}
+                  {props?.specialties?.split(',')?.map((content, index) => (
+                    <TextHighlight
+                      content={majorBykey(major, content, language)}
+                      key={content + index}
+                      color="rgba(119, 119, 119, 0.8)"
+                    />
+                  ))}
                 </StyledSpecialties>
               </div>
             </div>
@@ -162,8 +167,8 @@ export const TutorCard = memo(props => {
 TutorCard.propTypes = {
   userId: PropTypes.string,
   bio: PropTypes.string,
-  languages: PropTypes.arrayOf(PropTypes.string),
-  specialties: PropTypes.arrayOf(PropTypes.string),
+  languages: PropTypes.string,
+  specialties: PropTypes.string,
   resume: PropTypes.string,
   email: PropTypes.string,
   country: PropTypes.string,

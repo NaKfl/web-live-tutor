@@ -2,6 +2,7 @@ import useActions from 'hooks/useActions';
 import { useSelector } from 'react-redux';
 import {
   makeListTutorFilter,
+  makeLoading,
   makePageCurrent,
   makeSelectedOption,
   makeSelectedShowHideDropDown,
@@ -9,16 +10,19 @@ import {
 } from './selector';
 import { actions } from './slice';
 import qs from 'query-string';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router';
 import { debounce } from 'lodash';
+import { useGetMajor } from '../Home/hooks';
+import { useMemo } from 'react';
 
 export const useHook = () => {
   const show = useSelector(makeSelectedShowHideDropDown);
   const option = useSelector(makeSelectedOption);
   const location = useLocation();
+  const loading = useSelector(makeLoading);
   const history = useHistory();
-
+  useGetMajor();
   const {
     showHideDropDown,
     hideDropDown,
@@ -41,11 +45,19 @@ export const useHook = () => {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: '|',
       skipNull: true,
+      encode: true,
     });
-    if (!!option) optionFromUrl({ ...urlParse });
+    debounceSearch(urlParse);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debounceSearch = useCallback(
+    debounce(urlParse => {
+      if (!!option) optionFromUrl({ ...urlParse });
+    }, 200),
+    [],
+  );
   useEffect(() => {
     getFilter();
     return () => {
@@ -54,22 +66,35 @@ export const useHook = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const onChangeFilter = debounce(options => {
-    const a = qs.stringify(options, {
+  const onChangeFilter = useCallback(options => {
+    debouncedSave(options);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const debouncedSave = useCallback(nextValue => {
+    const a = qs.stringify(nextValue, {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: '|',
       skipNull: true,
+      encode: true,
     });
     history.push({
       search: a,
     });
-  }, 600);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const options = useMemo(() => {
+    return option;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     selectors: {
       showHideDropDownState: show,
-      option,
-      searchValue: option?.search,
+      option: options,
+      searchValue: option.search,
+      loading,
     },
     handlers: {
       showHideDropDown,

@@ -1,18 +1,19 @@
 import ProfileTutor from 'assets/tutor-profile.png';
-import { Introduction, Content } from './styles';
+import { Introduction, Content, StyleMultiSelect } from './styles';
 import Divider from 'app/components/Divider';
 import Form from 'app/components/Form';
 import Alert from 'app/components/Alert';
-import { Col, Row } from 'antd';
+import { Select, Col, Row } from 'antd';
 import Input from 'app/components/Input';
 import Radio from 'app/components/Radio';
 import Checkbox from 'app/components/Checkbox';
-import Select from 'app/components/Select';
 import DatePicker from 'app/components/DatePicker';
 import ImageUpload from './ImageUpload';
 import { useTranslation } from 'react-i18next';
 import { MAJOR_NAMES } from './constants';
 import COUNTRIES from 'utils/countries';
+import LANGUAGES from 'utils/languages';
+import MultiOptions from './MultiOptions';
 
 export const StepProfile = ({
   formProfile,
@@ -195,11 +196,20 @@ export const StepProfile = ({
                 },
               ]}
             >
-              <Input.TextArea
+              {/* <Input.TextArea
                 placeholder={t(
                   'Register.Tutor.languages.placeholder.languages',
                 )}
-              />
+              /> */}
+              <StyleMultiSelect
+                mode="tags"
+                style={{ width: '100%' }}
+                placeholder={t(
+                  'Register.Tutor.languages.placeholder.languages',
+                )}
+              >
+                {MultiOptions({ list: LANGUAGES })}
+              </StyleMultiSelect>
             </Form.Item>
           </Row>
           {/*TEACH  */}

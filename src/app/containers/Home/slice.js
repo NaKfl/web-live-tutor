@@ -20,7 +20,9 @@ export const initialState = {
     error: null,
     status: '',
   },
+  major: [],
 };
+
 const homeSlice = createSlice({
   name: 'home',
   initialState,
@@ -131,6 +133,12 @@ const homeSlice = createSlice({
           ),
         ),
       )(state);
+    },
+    getMajor(state) {
+      return state;
+    },
+    setMajorSuccess(state, action) {
+      return flow(set('major', action.payload))(state);
     },
   },
 });

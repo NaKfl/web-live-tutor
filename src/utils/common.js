@@ -86,3 +86,11 @@ export const sortObject = o => {
   }
   return sorted;
 };
+
+export const majorBykey = (majors, key, lang) => {
+  if (lang === 'en') {
+    return majors.find(major => major?.key === key)?.englishName;
+  } else {
+    return majors.find(major => major?.key === key)?.vietnameseName;
+  }
+};

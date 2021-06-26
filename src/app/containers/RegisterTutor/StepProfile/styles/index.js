@@ -1,3 +1,4 @@
+import { Select } from 'antd';
 import styled from 'styled-components';
 import { media } from 'styles/media';
 
@@ -53,4 +54,11 @@ export const StyledImageUpload = styled.div`
   border-radius: 2px;
   color: #aaaaaa;
   margin-bottom: 2px;
+`;
+
+export const StyleMultiSelect = styled(Select)`
+  .ant-select-selector {
+    padding: 10px;
+    border-radius: 6px;
+  }
 `;

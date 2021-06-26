@@ -64,7 +64,6 @@ export const useHooks = () => {
         birthday: values?.birthday
           ? moment(values?.birthday).format(DATE_FORMAT)
           : null,
-        languages: values?.languages?.split(', '),
         avatar,
       });
       setCurrentStep(currentStep + 1);
