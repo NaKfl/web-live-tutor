@@ -60,8 +60,7 @@ const handleShowError = error => {
     store.dispatch(actions.logout());
     return;
   }
-  const messaseShow =
-    i18n.t(`Error_code.${errorCode[statusCode]}`) + ` (code: ${statusCode})`;
+  const messaseShow = i18n.t(`Error_code.${errorCode[statusCode]}`);
   if (statusCode && errorCode[statusCode] && message) notifyError(messaseShow);
 };
 

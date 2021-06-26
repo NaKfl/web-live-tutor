@@ -15,6 +15,7 @@ export const StyledAvatar = styled.div`
     border-radius: 30px;
     transition: ease 0.2s;
     .user-name {
+      white-space: nowrap;
       margin-right: 6px;
       font-weight: 600;
       height: 38px;
@@ -193,7 +194,7 @@ export const StyledContent = styled(Content)`
 
   .content-wrapper {
     min-height: calc(100vh - 140px);
-    padding: 35px 0;
+    padding: 35px 30px;
     max-width: ${`${maxWidth}px`};
     margin: 0 auto;
     justify-content: center;

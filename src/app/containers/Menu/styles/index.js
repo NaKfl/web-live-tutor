@@ -7,6 +7,7 @@ export const StyledMenuBar = styled.div`
     margin: 0;
 
     .menu-item {
+      white-space: nowrap;
       cursor: pointer;
       margin-right: 20px;
       font-size: 17px;
