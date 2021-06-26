@@ -22,7 +22,7 @@ export const JitsiMeetPage = props => {
         {roomInfo.roomName && (
           <JitsiMeet
             roomName={roomInfo.roomName}
-            userInfo={roomInfo.userInfo}
+            jwt={roomInfo?.token}
             disableInviteFunctions={true}
             onMeetingEnd={() => endCall()}
             onSomeOneLeave={() => handleSomeOneLeave(roomInfo)}

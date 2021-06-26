@@ -76,7 +76,7 @@ export const useForm = data => {
       dataIndex: 'createdAt',
       title: 'Transaction Time',
       render: (_, record, __) => {
-        const time = moment(record.createdAt).format('YYYY/MM/DD HH:MM');
+        const time = moment(record.createdAt).format('YYYY/MM/DD HH:mm');
         return <h4>{time}</h4>;
       },
     },
