@@ -9,6 +9,7 @@ import {
   selectTopTutorData,
   selectTopTutorStatus,
   makeSelectStatus,
+  selectMajor,
 } from './selectors';
 import { useHistory, useLocation } from 'react-router-dom';
 import socket from 'utils/socket';
@@ -58,6 +59,7 @@ export const useHooks = () => {
     return () => {
       socket.off('call:cancelCalled');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -67,6 +69,7 @@ export const useHooks = () => {
     return () => {
       socket.off('call:selfCancelCalled');
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -161,4 +164,19 @@ export const useForFavoriteList = () => {
   return {
     selectors: { listFavorite },
   };
+};
+
+export const useGetMajor = () => {
+  const majors = useSelector(selectMajor);
+  const { getMajor } = useActions(
+    {
+      getMajor: actions.getMajor,
+    },
+    [actions],
+  );
+  useEffect(() => {
+    getMajor();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return majors;
 };

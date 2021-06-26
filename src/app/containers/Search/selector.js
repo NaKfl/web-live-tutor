@@ -28,3 +28,7 @@ export const makePageCurrent = createSelector(selectSearchState, pageCurrent =>
 export const makeFilter = createSelector(selectSearchState, filter =>
   get('filter', filter),
 );
+
+export const makeLoading = createSelector(selectSearchState, loading =>
+  get('loading', loading),
+);

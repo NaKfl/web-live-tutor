@@ -29,7 +29,7 @@ export const Filter = memo(() => {
               >
                 {type.categories.map(category => (
                   <Option
-                    value={category.description}
+                    value={category.key}
                     label={category.description}
                     key={category.id}
                   >

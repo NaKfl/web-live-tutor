@@ -44,6 +44,7 @@ import { MAJOR_NAMES } from '../RegisterTutor/StepProfile/constants';
 import COUNTRIES from 'utils/countries';
 import { ACTION_STATUS } from 'utils/constants';
 import { ModalBookConfirm } from './ModalBookConfirm';
+import LANGUAGES from 'utils/languages';
 const { Title } = Typography;
 const { Panel } = Collapse;
 
@@ -281,8 +282,11 @@ export const TutorDetail = ({ ...rest }) => {
                           {t('Profile.languages')}
                         </Title>
                         <Row className="part-content">
-                          {languages?.[0]?.split(',')?.map(content => (
-                            <TextHighlight content={content} key={content} />
+                          {languages?.split(',')?.map(content => (
+                            <TextHighlight
+                              content={LANGUAGES[content]}
+                              key={content}
+                            />
                           ))}
                         </Row>
                       </div>
@@ -291,7 +295,7 @@ export const TutorDetail = ({ ...rest }) => {
                           {t('Profile.specialties')}
                         </Title>
                         <Row className="part-content">
-                          {specialties?.[0]?.split(',')?.map(key => (
+                          {specialties?.split(',')?.map(key => (
                             <TextHighlight
                               content={
                                 t('Common.default') === t('Common.vn')

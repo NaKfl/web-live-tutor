@@ -20,10 +20,16 @@ export const InputSearch = memo(
     const [changeLocation, setLocation] = useState(false);
     const { t } = useTranslation();
 
-    const ClearContent = () => {
+    const ClearContent = useCallback(() => {
       setValue('');
       setLocation(true);
-    };
+    }, []);
+
+    useEffect(() => {
+      if (searchValue) {
+        setValue(searchValue);
+      }
+    }, [searchValue]);
 
     useEffect(() => {
       if (changeLocation) {
@@ -43,16 +49,16 @@ export const InputSearch = memo(
             }),
           });
           setLocation(false);
-        }, 500)();
+        }, 100)();
       },
       // eslint-disable-next-line react-hooks/exhaustive-deps
       [inputValue],
     );
 
-    const onChangeValueSearch = event => {
+    const onChangeValueSearch = useCallback(event => {
       setValue(event.target.value);
       setLocation(true);
-    };
+    }, []);
 
     return (
       <WrapInputSearch>
@@ -60,7 +66,6 @@ export const InputSearch = memo(
           <Filter showHideDropDown={showHideDropDown}></Filter>
           <StyledInput
             placeholder={placeholder || t('Search.search')}
-            defaultValue={inputValue}
             value={inputValue}
             onChange={onChangeValueSearch}
           ></StyledInput>

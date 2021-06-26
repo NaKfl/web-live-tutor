@@ -1,3 +1,4 @@
+import { getMajor } from 'fetchers/majorFetcher';
 import { getList, getTopTutor, reviewTutor } from 'fetchers/tutor.service';
 import {
   manageFavoriteTutor,
@@ -83,7 +84,6 @@ function* manageFavoriteTutorTask(action) {
     manageFavoriteTutorAPI,
     action.payload,
   );
-  console.log(action.payload);
   if (response.result === 1) {
     yield put(actions.removeFavoriteTutorFromList(action.payload));
   } else if (response.result !== 1) {
@@ -111,6 +111,22 @@ function* fetchFavoriteTutorTask() {
   }
 }
 
+function getMajorAPI() {
+  return getMajor();
+}
+
+function* fetchMajorWatcher() {
+  yield takeLatest(actions.getMajor, fetchMajorTask);
+}
+
+function* fetchMajorTask() {
+  const { response, error } = yield call(getMajorAPI);
+  if (response) {
+    yield put(actions.setMajorSuccess(response));
+  } else {
+    console.log(error);
+  }
+}
 export default function* defaultSaga() {
   yield all([
     fork(getListWatcher),
@@ -118,5 +134,6 @@ export default function* defaultSaga() {
     fork(fetchListFavoriteWatcher),
     fork(getTopTutorWatcher),
     fork(reviewTutorWatcher),
+    fork(fetchMajorWatcher),
   ]);
 }

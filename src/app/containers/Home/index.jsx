@@ -10,7 +10,7 @@ import {
   StyledSecondPart,
   StyledPagination,
 } from './styles';
-import { useHooks } from './hooks';
+import { useGetMajor, useHooks } from './hooks';
 import ListTutor from './ListTutor';
 import Search from './Search';
 import Banner from './Banner';
@@ -24,6 +24,7 @@ export const Home = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors, handlers } = useHooks();
+  useGetMajor();
   const {
     listTutor,
     onlineTutors,
