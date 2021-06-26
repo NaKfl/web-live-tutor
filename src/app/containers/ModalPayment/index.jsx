@@ -26,15 +26,19 @@ const ModalPayment = memo(props => {
     isValidMoney,
     form,
     isLoading,
+    pricePerDollar,
   } = selectors;
   const {
     handleSelectBank,
     handleBackToBanks,
     handleDepositBank,
     handleChangeInputMoney,
+    generateTransactionToken,
   } = handlers;
 
   const _createOrder = (_, actions) => {
+    generateTransactionToken(amountPaypal * pricePerDollar);
+
     return actions.order.create({
       purchase_units: [
         {
@@ -47,13 +51,11 @@ const ModalPayment = memo(props => {
   };
 
   const _onApprove = async (_, actions) => {
-    window.location.replace(
-      `/verifyDeposit?vnp_Amount=${amountPaypal * 23000 * 100}`,
-    );
+    window.location.replace(`/verifyDeposit`);
   };
 
   const _onError = () => {
-    window.location.replace(`/verifyDeposit?vnp_Amount=error`);
+    window.location.replace(`/verifyDeposit?error=true`);
   };
 
   const renderHeader = ({ img, contentFirst, contentSecond }) => {

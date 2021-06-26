@@ -31,6 +31,15 @@ export const getListBanksVN = () => {
     .catch(handleGeneralError);
 };
 
+export const getPricePerDollar = () => {
+  return request(BASE_URL, {
+    url: 'payment/price-of-dollar',
+    method: 'GET',
+  })
+    .then(({ data }) => data)
+    .catch(handleGeneralError);
+};
+
 export const verifyDeposit = () => {
   return request(BASE_URL, {
     url: 'payment/banks',

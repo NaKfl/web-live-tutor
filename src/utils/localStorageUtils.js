@@ -1,7 +1,7 @@
 import moment from 'moment';
 import isNil from 'lodash/fp/isNil';
 import get from 'lodash/fp/get';
-import { AUTH_INFO_KEY } from './constants';
+import { AUTH_INFO_KEY, TRANSACTION_TOKEN } from './constants';
 
 export const storeAuthInfo = authInfo => {
   localStorage.setItem(AUTH_INFO_KEY, JSON.stringify(authInfo));
@@ -52,4 +52,26 @@ export const getDefaultLanguages = () => localStorage.getItem('i18nextLng');
 export const updateUserInfo = user => {
   const authInfo = getAuthInfo();
   localStorage.setItem(AUTH_INFO_KEY, JSON.stringify({ ...authInfo, user }));
+};
+
+export const storeTransactionToken = token => {
+  localStorage.setItem(TRANSACTION_TOKEN, JSON.stringify(token));
+};
+
+export const removeTransactionToken = () =>
+  localStorage.removeItem(TRANSACTION_TOKEN);
+
+export const getTransactionToken = () => {
+  try {
+    const transactionToken = JSON.parse(
+      localStorage.getItem(TRANSACTION_TOKEN),
+    );
+    if (!isNil(transactionToken)) {
+      return transactionToken;
+    }
+    return null;
+  } catch (error) {
+    console.log('Error: ', error);
+    return null;
+  }
 };

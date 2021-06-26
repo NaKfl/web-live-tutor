@@ -13,7 +13,7 @@ export const VerifyDeposit = props => {
   useInjectReducer({ key: sliceKey, reducer });
 
   const { selectors } = useHooks(props);
-  const { status } = selectors;
+  const { status, error } = selectors;
   const { t } = useTranslation();
 
   return (
@@ -25,7 +25,7 @@ export const VerifyDeposit = props => {
       {status === ACTION_STATUS.FAILED && (
         <Result status="warning" title={t('VerifyDeposit.notifyFail')} />
       )}
-      {!status && (
+      {(error || !status) && (
         <Result status="error" title={t('VerifyDeposit.notifyError')} />
       )}
     </StyledVerifyDeposit>
