@@ -26,22 +26,26 @@ export const useHooks = () => {
       'call:acceptedCall',
       ({ userCall, userBeCalled, startTime, roomName }) => {
         const user = getUserFromStorage();
-        const userInfo = {
-          displayName: user?.name,
-          email: user?.email,
-        };
-        const token = jwt.sign(
-          {
-            participantId: userBeCalled.id,
-            roomName,
-            userInfo,
-            userCall,
-            userBeCalled,
-            isTutor: user.currentRole === ROLES.TUTOR,
-            startTime,
+        const obj = {
+          context: {
+            user: {
+              email: user?.email,
+              name: user?.name,
+            },
           },
-          JWT_SECRET,
-        );
+          room: roomName,
+          roomName,
+          userCall,
+          userBeCalled,
+          isTutor: user.currentRole === ROLES.TUTOR,
+          startTime,
+        };
+        const token = jwt.sign(obj, JWT_SECRET, {
+          issuer: 'livetutor',
+          subject: 'https://meet.livetutor.live',
+          expiresIn: '2h',
+          audience: 'livetutor',
+        });
         closeCallModal();
         history.push(`/call/?token=${token}`);
       },

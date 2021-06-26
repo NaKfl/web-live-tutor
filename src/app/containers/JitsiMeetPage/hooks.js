@@ -4,6 +4,7 @@ import moment from 'moment';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { notifyError } from 'utils/notify';
 import socket from 'utils/socket';
 
 const useHooks = props => {
@@ -21,25 +22,29 @@ const useHooks = props => {
   };
 
   useEffect(() => {
-    const {
-      roomName,
-      userInfo,
-      isTutor,
-      participantId,
-      userCall,
-      userBeCalled,
-      startTime,
-    } = jwt.verify(token, JWT_SECRET);
-    setRoomInfo({
-      participantId,
-      roomName,
-      userCall,
-      userBeCalled,
-      userInfo,
-      isTutor,
-      startTime,
-    });
-  }, [token, myTimeOut]);
+    const { roomName, isTutor, userCall, userBeCalled, startTime } = jwt.verify(
+      token,
+      JWT_SECRET,
+    );
+    if (moment().isAfter(moment(startTime))) {
+      setRoomInfo({
+        userCall,
+        roomName,
+        userBeCalled,
+        isTutor,
+        startTime,
+        token,
+      });
+    } else {
+      setIsLoading(true);
+      notifyError(
+        `Video Call will start on ${moment(startTime).format(
+          'DD-MM-YYYY HH:mm',
+        )}`,
+      );
+      pushToHome(roomInfo.isTutor);
+    }
+  }, [token, myTimeOut, roomInfo.isTutor]);
 
   const handleSomeOneLeave = field => {
     const { userCall, userBeCalled, startTime } = field;
