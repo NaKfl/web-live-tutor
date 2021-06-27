@@ -5,6 +5,7 @@ import useHooks from './hooks';
 import { StyledAvatar, StyledModal } from './styles';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from 'assets/mp3/audioCall.mp3';
+import callingFile from 'assets/mp3/calling.m4a';
 
 const { Title } = Typography;
 
@@ -23,7 +24,7 @@ const CallModal = memo(props => {
     >
       <ReactAudioPlayer
         style={{ display: 'none' }}
-        src={audioFile}
+        src={userCall.isReceived ? audioFile : callingFile}
         loop
         autoPlay
         controls
@@ -41,7 +42,7 @@ const CallModal = memo(props => {
               className="avatar"
             />
           </StyledAvatar>
-          <Row className="flex-column p-2">
+          <Row className="p-2 flex-column">
             <Title className="" level={4}>
               {userCall.isReceived
                 ? `${userCall?.name} đang gọi cho bạn.`
@@ -54,7 +55,7 @@ const CallModal = memo(props => {
             </Title>
           </Row>
         </Row>
-        <Row className="justify-content-end mt-3">
+        <Row className="mt-3 justify-content-end">
           <Button
             className="me-2"
             key="cancel"

@@ -1,6 +1,6 @@
 // Create an array from start to end - 1: range(1, 3) --> [1, 2]
 import moment from 'moment';
-
+import { orderBy } from 'lodash';
 export const range = (start, end) => {
   const result = [];
   for (let i = start; i < end; i++) {
@@ -46,10 +46,20 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
 };
 
 export const mapBookingListDataSource = data => {
-  const result = data.map((item, index) => {
+  const sortData = orderBy(
+    data,
+    ['scheduleDetailInfo.scheduleInfo.date', 'scheduleDetailInfo.startPeriod'],
+    ['desc', 'desc'],
+  );
+  const result = sortData.map((item, index) => {
     const { startPeriod, endPeriod, scheduleInfo } = item.scheduleDetailInfo;
     const { date, tutorInfo } = scheduleInfo;
     const { id, name } = tutorInfo;
+    let duration = moment.duration(
+      moment(`${date} ${startPeriod}`, 'YYYY-MM-DD HH:mm').diff(moment()),
+    );
+    let hours = duration.asHours();
+
     return {
       scheduleDetailId: item.scheduleDetailId,
       stt: index + 1,
@@ -59,6 +69,7 @@ export const mapBookingListDataSource = data => {
       date,
       startPeriod,
       endPeriod,
+      canDelete: hours >= 24,
     };
   });
   return result;

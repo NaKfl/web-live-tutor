@@ -13,6 +13,11 @@ export const selectTutorDetailStatus = createSelector(
   tutorDetail => get('getTutorDetail.status', tutorDetail),
 );
 
+export const selectTutorDetail = createSelector(
+  selectTutorDetailState,
+  tutorDetail => get('getTutorDetail', tutorDetail),
+);
+
 export const selectScheduleTutorId = createSelector(
   selectTutorDetailState,
   tutorDetail => get('scheduleTutorById', tutorDetail),

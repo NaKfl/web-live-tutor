@@ -143,7 +143,7 @@ export const TutorCard = memo(props => {
                 >
                   {t('Tutors.message')}
                 </Button>
-                {props?.isOnline && (
+                {props?.isOnline && props?.isListOnline && (
                   <Button
                     type="accent"
                     icon={<PhoneOutlined />}

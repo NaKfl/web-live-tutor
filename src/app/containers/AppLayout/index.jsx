@@ -14,7 +14,11 @@ import PublicLayout from './Public/Layout';
 import LoginLayout from './Login/Layout';
 import PrivateLayout from './Private/Layout';
 import MeetingLayout from './MeetingRoute/Layout';
-import { useAuthenticatedRedirect, useRefreshToken } from './hooks';
+import {
+  useAuthenticatedRedirect,
+  useRefreshToken,
+  useListenSocket,
+} from './hooks';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from 'app/containers/Login/saga';
 import sagaDeposit from 'app/containers/ModalPayment/saga';
@@ -24,6 +28,7 @@ import {
 } from 'app/containers/ModalPayment/slice';
 import { sliceKey } from 'app/containers/Login/slice';
 import ScrollToTop from 'app/components/ScrollToTop';
+import Popup from 'app/containers/Popup';
 
 export const AppLayout = () => {
   useInjectSaga({ key: sliceKey, saga });
@@ -31,10 +36,12 @@ export const AppLayout = () => {
   useInjectSaga({ key: depositSliceKey, saga: sagaDeposit });
   useAuthenticatedRedirect();
   useRefreshToken();
+  useListenSocket();
 
   return (
     <>
       <ScrollToTop></ScrollToTop>
+      <Popup />
       <Switch>
         {loginRoutes.map(route => (
           <PublicRoute

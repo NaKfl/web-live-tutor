@@ -7,7 +7,7 @@ import { Empty, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 export const ListTutor = memo(
-  ({ listTutor, onClickHeart, listFavorite, isLoading }) => {
+  ({ listTutor, onClickHeart, listFavorite, isLoading, isListOnline }) => {
     const { t } = useTranslation();
     const { handlers } = useHooks();
     const { handleCallTutor, redirectToDetailTutor } = handlers;
@@ -29,12 +29,13 @@ export const ListTutor = memo(
                   isFavorite={
                     listFavorite && checkIsFavorite(listFavorite, e?.userId)
                   }
+                  isListOnline={isListOnline}
                   handleCallTutor={handleCallTutor}
                   redirectToDetailTutor={redirectToDetailTutor}
                 />
               </WrapTutor>
             ))) || (
-            <Row justify="center" className="w-100 my-3">
+            <Row justify="center" className="my-3 w-100">
               <Empty description={<span>{t('Tutors.emptyList')}</span>} />
             </Row>
           )}

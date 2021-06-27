@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useActions from 'hooks/useActions';
 import { makeSelectIsAuthenticated } from 'app/containers/Login/selectors';
 import { useCallback, useEffect } from 'react';
@@ -14,13 +15,29 @@ import { JWT_SECRET } from 'configs';
 import jwt from 'jsonwebtoken';
 import { actions as popupActions } from 'app/containers/Popup/slice';
 import socket from 'utils/socket';
+import { notifyError } from 'utils/notify';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
   const user = useSelector(selectUserInfoAuthenticate);
+
+  if (isAuthenticated) {
+    emitConnectionLogin(user);
+  } else {
+    emitDisconnectionLogout();
+  }
+
+  return {
+    selectors: {
+      isAuthenticated,
+      currentRole: user?.currentRole,
+    },
+  };
+};
+
+export const useListenSocket = () => {
   const { showCallModal, closeCallModal } = useShowModal();
   const history = useHistory();
-
   useEffect(() => {
     socket.on(
       'call:acceptedCall',
@@ -43,14 +60,13 @@ export const useHooks = () => {
         const token = jwt.sign(obj, JWT_SECRET, {
           issuer: 'livetutor',
           subject: 'https://meet.livetutor.live',
-          expiresIn: '2h',
           audience: 'livetutor',
         });
         closeCallModal();
         history.push(`/call/?token=${token}`);
       },
     );
-  }, [history, closeCallModal]);
+  }, [history]);
 
   useEffect(() => {
     socket.on('call:notifyCall', ({ userCall }) => {
@@ -60,20 +76,32 @@ export const useHooks = () => {
       };
       showCallModal(studentCall);
     });
+  }, []);
+
+  useEffect(() => {
+    socket.on('call:canCallTutor', ({ userBeCalled }) => {
+      showCallModal(userBeCalled);
+    });
   }, [showCallModal]);
 
-  if (isAuthenticated) {
-    emitConnectionLogin(user);
-  } else {
-    emitDisconnectionLogout();
-  }
+  useEffect(() => {
+    socket.on('call:canNotCallTutor', ({ userBeCalled }) => {
+      notifyError(`${userBeCalled.name} đang có một cuộc gọi khác !`);
+    });
+  }, []);
 
-  return {
-    selectors: {
-      isAuthenticated,
-      currentRole: user?.currentRole,
-    },
-  };
+  useEffect(() => {
+    socket.on('call:cancelCalled', ({ userCall, userBeCalled }) => {
+      closeCallModal();
+      notifyError(`${userBeCalled.name} rejected`);
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('call:selfCancelCalled', () => {
+      closeCallModal();
+    });
+  }, []);
 };
 
 export const useAuthenticatedRedirect = () => {

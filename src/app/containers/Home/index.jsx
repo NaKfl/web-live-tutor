@@ -65,6 +65,7 @@ export const Home = memo(() => {
         listTutor={onlineTutors}
         onClickHeart={onClickHeart}
         listFavorite={listFavorite}
+        isListOnline={true}
       ></ListTutor>
       <StyledTitle className="available-tutor-title">
         {t('Tutors.exploreTutor')}

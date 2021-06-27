@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { JWT_SECRET } from 'configs';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';

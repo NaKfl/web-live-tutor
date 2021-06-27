@@ -14,8 +14,6 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import socket from 'utils/socket';
 import { getUser } from 'utils/localStorageUtils';
-import { notifyError } from 'utils/notify';
-import { useShowModal } from '../AppLayout/hooks';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -32,7 +30,6 @@ export const useHooks = () => {
   const page = query.get('page');
   const topTutor = useSelector(selectTopTutorData);
   const [onlineTutors, setOnlineTutors] = useState([]);
-  const { closeCallModal, showCallModal } = useShowModal();
 
   const { fetchRequest, manageFavoriteTutor, getTopTutor } = useActions(
     {
@@ -52,27 +49,6 @@ export const useHooks = () => {
   }, [fetchRequest, page]);
 
   useEffect(() => {
-    socket.on('call:cancelCalled', ({ userCall, userBeCalled }) => {
-      closeCallModal();
-      notifyError(`${userBeCalled.name} rejected`);
-    });
-    return () => {
-      socket.off('call:cancelCalled');
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    socket.on('call:selfCancelCalled', () => {
-      closeCallModal();
-    });
-    return () => {
-      socket.off('call:selfCancelCalled');
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
     getTopTutor();
   }, [getTopTutor]);
 
@@ -88,18 +64,6 @@ export const useHooks = () => {
       setOnlineTutors(excludeMeListTutor);
     });
   }, [user?.id]);
-
-  useEffect(() => {
-    socket.on('call:canCallTutor', ({ userBeCalled }) => {
-      showCallModal(userBeCalled);
-    });
-  }, []);
-
-  useEffect(() => {
-    socket.on('call:canNotCallTutor', ({ userBeCalled }) => {
-      notifyError(`${userBeCalled.name} đang có một cuộc gọi khác !`);
-    });
-  }, []);
 
   const onClickHeart = useCallback(
     data => {

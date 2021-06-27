@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useActions from 'hooks/useActions';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
@@ -12,7 +13,8 @@ import {
   selectScheduleTutorIdStatus,
 } from './selectors';
 import { actions } from './slice';
-import { useEffect, useState, useCallback } from 'react';
+import { actions as homeActions } from 'app/containers/Home/slice';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { actions as popupActions } from 'app/containers/Popup/slice';
@@ -36,12 +38,14 @@ const useHooks = () => {
   const scheduleTutorIdStatus = useSelector(selectScheduleTutorIdStatus);
   const [isShowedBtnBook, setBtnBook] = useState(false);
   const [form] = Form.useForm();
+  const scheduleRef = useRef();
   const {
     getTutorDetail,
     getFreeScheduleByTutorId,
     getFreeScheduleByDate,
     showModalBooking,
     openPopup,
+    manageFavoriteTutor,
   } = useActions(
     {
       getTutorDetail: actions.getTutorDetail,
@@ -49,24 +53,31 @@ const useHooks = () => {
       getFreeScheduleByDate: actions.getFreeScheduleByDate,
       bookTimeSchedule: actions.bookTimeSchedule,
       showModalBooking: actions.showModalBooking,
+      manageFavoriteTutor: homeActions.manageFavoriteTutor,
       openPopup: popupActions.openPopup,
     },
-    [actions, popupActions],
+    [actions, popupActions, homeActions],
   );
 
   const [scheduleDatesTutor, setScheduleDatesTutor] = useState([]);
   const [freeTimesTutor, setFreeTimesTutor] = useState([]);
   const [dateSelected, setDateSelected] = useState('');
   const [isSelectDate, setIsSelectDate] = useState(false);
+  const [isFavorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    setFavorite(tutorDetail.isFavorite);
+  }, [tutorDetail]);
+
   useEffect(() => {
     getTutorDetail(tutorId);
-  }, [getTutorDetail, tutorId]);
+  }, [tutorId]);
 
   useEffect(() => {
     getFreeScheduleByTutorId({
       tutorId,
     });
-  }, [getFreeScheduleByTutorId, tutorId]);
+  }, [tutorId]);
 
   useEffect(() => {
     if (dateSelected) {
@@ -75,12 +86,7 @@ const useHooks = () => {
         tutorId,
       });
     }
-  }, [
-    getFreeScheduleByDate,
-    dateSelected,
-    tutorId,
-    selectorBookTimeSchedule.data,
-  ]);
+  }, [dateSelected]);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate?.status === ACTION_STATUS.SUCCESS) {
@@ -109,6 +115,11 @@ const useHooks = () => {
       form.resetFields();
     }
   }, [form, selectorBookTimeSchedule]);
+
+  const onClickHeart = useCallback(data => {
+    setFavorite(pre => !pre);
+    manageFavoriteTutor(data);
+  }, []);
 
   const onSelectDate = useCallback(value => {
     setDateSelected(value);
@@ -149,6 +160,10 @@ const useHooks = () => {
     },
     [openPopup],
   );
+  const executeScroll = () => {
+    window.scrollTo({ top: scheduleRef.current.offsetTop, behavior: 'smooth' });
+    // scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return {
     selectors: {
@@ -164,6 +179,8 @@ const useHooks = () => {
       scheduleTutorByDateStatus,
       detailScheduleTutorStatus,
       scheduleTutorIdStatus,
+      scheduleRef,
+      isFavorite,
     },
     handlers: {
       onSelectDate,
@@ -172,6 +189,8 @@ const useHooks = () => {
       handleDisableBtnBook,
       handleBookSchedule,
       handleShowReviews,
+      executeScroll,
+      onClickHeart,
     },
   };
 };
