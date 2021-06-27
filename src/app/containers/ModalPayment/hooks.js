@@ -18,8 +18,7 @@ import ip from 'ip';
 import moment from 'moment';
 import querystring from 'query-string';
 import sha256 from 'sha256';
-import { sortObject } from 'utils/common';
-import { v4 as uuidv4 } from 'uuid';
+import { sortObject, generateUUID } from 'utils/common';
 import { storeTransactionToken } from 'utils/localStorageUtils';
 import jwt from 'jsonwebtoken';
 
@@ -77,7 +76,7 @@ const useHooks = () => {
   const generateTransactionToken = useCallback(price => {
     const transactionToken = jwt.sign(
       {
-        id: uuidv4(),
+        id: generateUUID(),
         price,
       },
       JWT_SECRET,
