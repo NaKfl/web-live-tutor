@@ -207,6 +207,7 @@
 
   "Profile": {
     "callNow": "Start Lesson",
+    "showReview": "Reviews",
     "status": "Online",
     "message": "Message",
     "favorite": "Favorite",
@@ -367,5 +368,8 @@
     "SCHEDULE_DUPLICATE": "Conflict to register schedule",
     "SCHEDULE_INVALID_DATE": "Register schedule with invalid date",
     "INVALID_REFRESH_TOKEN": "Session has been expired. Please sign in again"
+  },
+  "Reviews": {
+    "Title": "Reviews"
   }
 }

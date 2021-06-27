@@ -4,6 +4,7 @@ import { reducer, sliceKey } from './slice';
 import useHooks from './hooks';
 
 import Confirm from 'app/components/Modal/Confirm';
+import Reviews from 'app/components/Modal/Reviews';
 import InfoUser from 'app/components/Modal/InfoUser';
 import CallModal from 'app/components/CallModal';
 import RatingForm from 'app/components/RatingForm';
@@ -92,6 +93,17 @@ export const Popup = memo(() => {
           case POPUP_TYPE.TRANSACTION_MODAL: {
             return (
               <ModalTransaction
+                key={popup.key}
+                onCancel={handleClosePopup(popup)}
+                visible
+                {...popup}
+              />
+            );
+          }
+
+          case POPUP_TYPE.REVIEW_MODAL: {
+            return (
+              <Reviews
                 key={popup.key}
                 onCancel={handleClosePopup(popup)}
                 visible

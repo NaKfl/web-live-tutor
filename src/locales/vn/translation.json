@@ -205,6 +205,7 @@
 
   "Profile": {
     "callNow": "Gọi ngay",
+    "showReview": "Xem đánh giá",
     "status": "Trực tuyến",
     "message": "Nhắn tin",
     "favorite": "Yêu thích",
@@ -365,5 +366,8 @@
     "SCHEDULE_DUPLICATE": "Lỗi đăng ký lịch trùng thời gian!",
     "SCHEDULE_INVALID_DATE": "Đăng ký lịch ngày không hợp lệ!",
     "INVALID_REFRESH_TOKEN": "Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại"
+  },
+  "Reviews": {
+    "Title": "Đánh giá"
   }
 }

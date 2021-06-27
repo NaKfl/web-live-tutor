@@ -1,6 +1,6 @@
 import {
   ArrowLeftOutlined,
-  VideoCameraOutlined,
+  StarFilled,
   CalendarOutlined,
   BellOutlined,
   ExclamationCircleOutlined,
@@ -60,6 +60,7 @@ export const TutorDetail = ({ ...rest }) => {
     handleSelectDatePicker,
     handleDisableBtnBook,
     handleBookSchedule,
+    handleShowReviews,
   } = handlers;
 
   const {
@@ -77,7 +78,7 @@ export const TutorDetail = ({ ...rest }) => {
 
   const userInfo = tutorDetail.User ?? {};
 
-  const { avatar, country, name } = userInfo;
+  const { avatar, country, name, feedbacks } = userInfo;
 
   const {
     bio,
@@ -207,13 +208,13 @@ export const TutorDetail = ({ ...rest }) => {
                         </Row>
                       </Col>
                       <Col>
-                        <span className="status">{t('Profile.status')}</span>
                         <Button
-                          icon={<VideoCameraOutlined />}
+                          icon={<StarFilled />}
                           type="accent"
                           className="start-btn"
+                          onClick={() => handleShowReviews(feedbacks)}
                         >
-                          {t('Profile.callNow')}
+                          {t('Profile.showReview')}
                         </Button>
                       </Col>
                     </>
@@ -229,7 +230,6 @@ export const TutorDetail = ({ ...rest }) => {
                     <Row className="mb-4 intro-video-section">
                       <video
                         className="video-tutor"
-                        // TODO: Change example video
                         src={video}
                         controlsList="nodownload"
                         controls
