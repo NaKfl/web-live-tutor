@@ -15,7 +15,9 @@ import { actions } from './slice';
 import { useEffect, useState, useCallback } from 'react';
 import { ACTION_STATUS } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { actions as popupActions } from 'app/containers/Popup/slice';
 import { Form } from 'antd';
+import { POPUP_TYPE } from '../Popup/constants';
 
 const useHooks = () => {
   const { tutorId } = useParams();
@@ -39,6 +41,7 @@ const useHooks = () => {
     getFreeScheduleByTutorId,
     getFreeScheduleByDate,
     showModalBooking,
+    openPopup,
   } = useActions(
     {
       getTutorDetail: actions.getTutorDetail,
@@ -46,8 +49,9 @@ const useHooks = () => {
       getFreeScheduleByDate: actions.getFreeScheduleByDate,
       bookTimeSchedule: actions.bookTimeSchedule,
       showModalBooking: actions.showModalBooking,
+      openPopup: popupActions.openPopup,
     },
-    [actions, actions],
+    [actions, popupActions],
   );
 
   const [scheduleDatesTutor, setScheduleDatesTutor] = useState([]);
@@ -135,6 +139,17 @@ const useHooks = () => {
     [showModalBooking],
   );
 
+  const handleShowReviews = useCallback(
+    reviews => {
+      openPopup({
+        key: 'reviews-modal',
+        type: POPUP_TYPE.REVIEW_MODAL,
+        reviews,
+      });
+    },
+    [openPopup],
+  );
+
   return {
     selectors: {
       tutorDetail,
@@ -156,6 +171,7 @@ const useHooks = () => {
       handleSelectDatePicker,
       handleDisableBtnBook,
       handleBookSchedule,
+      handleShowReviews,
     },
   };
 };
