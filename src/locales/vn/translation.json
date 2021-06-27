@@ -369,5 +369,18 @@
   },
   "Reviews": {
     "Title": "Đánh giá"
+  },
+  "BookingList": {
+    "bookingForTutorTitle": "Lịch được đặt",
+    "bookingForStudentTitle": "Lịch đã đặt",
+    "goToLink": "Vào buổi học",
+    "cancel": "Hủy",
+    "orderNumber": "STT",
+    "studentName": "Học sinh",
+    "tutorName": "Gia sư",
+    "date": "Ngày học",
+    "startPeriod": "Giờ bắt đầu",
+    "endPeriod": "Giờ kết thúc",
+    "action": "Hành động"
   }
 }

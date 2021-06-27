@@ -77,9 +77,23 @@ export const bookTimeSchedule = payload => {
     .catch(handleGeneralError);
 };
 
-export const getBookingList = ({ page = 1, perPage = 10 }) => {
+export const getBookingListForStudent = ({ page = 1, perPage = 10 }) => {
   return request(BASE_URL, {
-    url: '/booking',
+    url: 'booking/list/student',
+    method: 'GET',
+    params: {
+      page,
+      perPage,
+    },
+  })
+    .then(response => response.data)
+    .then(({ data }) => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
+export const getBookingListForTutor = ({ page = 1, perPage = 10 }) => {
+  return request(BASE_URL, {
+    url: 'booking/list/tutor',
     method: 'GET',
     params: {
       page,

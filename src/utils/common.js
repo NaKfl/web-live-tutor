@@ -70,6 +70,8 @@ export const mapBookingListDataSource = data => {
       startPeriod,
       endPeriod,
       canDelete: hours >= 24,
+      studentMeetingLink: item.studentMeetingLink,
+      canGoToMeeting: hours >= 0,
     };
   });
   return result;
