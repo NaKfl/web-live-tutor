@@ -32,7 +32,10 @@ const GroupSelectTime = memo(props => {
       <Checkbox.Group {...rest} style={{ width: '100%' }}>
         {(dataSource || []).map(times => {
           return (
-            <Row className="justify-content-around">
+            <Row
+              className="justify-content-between"
+              style={{ padding: '0px 50px' }}
+            >
               {times.map(time => {
                 return (
                   <Checkbox

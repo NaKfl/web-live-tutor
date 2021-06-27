@@ -103,13 +103,16 @@ export const useForm = (data, handleCancelBooking) => {
       render: (text, record, index) => {
         return (
           <div>
-            <Popconfirm
-              key={record.scheduleDetailId}
-              title="Sure to delete booking?"
-              onConfirm={() => handleCancelBooking(record.scheduleDetailId)}
-            >
-              <Button>Delete</Button>
-            </Popconfirm>
+            {record.canDelete && (
+              <Popconfirm
+                key={record.scheduleDetailId}
+                title="Sure to delete booking?"
+                onConfirm={() => handleCancelBooking(record.scheduleDetailId)}
+              >
+                <Button>Delete</Button>
+              </Popconfirm>
+            )}
+            {!record.canDelete && <span>------</span>}
           </div>
         );
       },

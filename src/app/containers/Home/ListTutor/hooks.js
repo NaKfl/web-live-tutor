@@ -4,7 +4,6 @@ import useActions from 'hooks/useActions';
 import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
 import { useCallback, useEffect } from 'react';
-import { useShowModal } from 'app/containers/AppLayout/hooks';
 
 export const useHooks = () => {
   const history = useHistory();

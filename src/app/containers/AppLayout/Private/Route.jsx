@@ -1,5 +1,4 @@
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
-import Popup from 'app/containers/Popup';
 import { useAuthorization } from 'hooks/useAuthorization';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -21,7 +20,6 @@ const PrivateRoute = ({
       return (
         <Layout {...props}>
           <Component {...props} />
-          <Popup />
         </Layout>
       );
     } else {

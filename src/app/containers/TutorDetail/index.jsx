@@ -45,6 +45,8 @@ import COUNTRIES from 'utils/countries';
 import { ACTION_STATUS } from 'utils/constants';
 import { ModalBookConfirm } from './ModalBookConfirm';
 import LANGUAGES from 'utils/languages';
+import { useControlChatPopup } from 'app/containers/Chat/hooks';
+
 const { Title } = Typography;
 const { Panel } = Collapse;
 
@@ -53,7 +55,7 @@ export const TutorDetail = ({ ...rest }) => {
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
   const { t } = useTranslation();
-
+  const { handleSetNewConversation } = useControlChatPopup();
   const {
     onSelectDate,
     handleBackSelectDate,
@@ -61,6 +63,8 @@ export const TutorDetail = ({ ...rest }) => {
     handleDisableBtnBook,
     handleBookSchedule,
     handleShowReviews,
+    executeScroll,
+    onClickHeart,
   } = handlers;
 
   const {
@@ -74,6 +78,8 @@ export const TutorDetail = ({ ...rest }) => {
     getTutorDetailStatus,
     scheduleTutorByDateStatus,
     scheduleTutorIdStatus,
+    scheduleRef,
+    isFavorite,
   } = selectors;
 
   const userInfo = tutorDetail.User ?? {};
@@ -242,6 +248,7 @@ export const TutorDetail = ({ ...rest }) => {
                       </Title>
                       <Button
                         type="accent"
+                        onClick={() => executeScroll()}
                         className="schedule-btn"
                         icon={<CalendarOutlined style={{ fontWeight: 600 }} />}
                       >
@@ -249,11 +256,39 @@ export const TutorDetail = ({ ...rest }) => {
                       </Button>
                       <Row justify="space-around">
                         <div className="function-icon-group">
-                          <MessageOutlined className="function-icon" />
+                          <MessageOutlined
+                            onClick={() =>
+                              handleSetNewConversation({
+                                userId: tutorDetail.userId,
+                                ...userInfo,
+                              })
+                            }
+                            className="function-icon"
+                          />
                           <span> {t('Profile.message')}</span>
                         </div>
                         <div className="function-icon-group">
-                          <HeartOutlined className="function-icon" />
+                          {isFavorite ? (
+                            <HeartOutlined
+                              style={{
+                                color: 'rgb(255, 98, 81)',
+                              }}
+                              onClick={e => {
+                                e.stopPropagation();
+                                onClickHeart(tutorDetail.userId);
+                              }}
+                              className="function-icon"
+                            />
+                          ) : (
+                            <HeartOutlined
+                              onClick={e => {
+                                e.stopPropagation();
+                                onClickHeart(tutorDetail.userId);
+                              }}
+                              className="function-icon"
+                            />
+                          )}
+
                           <span> {t('Profile.favorite')}</span>
                         </div>
                         <div className="function-icon-group">
@@ -325,7 +360,10 @@ export const TutorDetail = ({ ...rest }) => {
                       </div>
                     </Row>
 
-                    <Row className="intro-schedule flex-column">
+                    <Row
+                      ref={scheduleRef}
+                      className="intro-schedule flex-column"
+                    >
                       <Title className="schedule-title" level={5}>
                         {t('Profile.schedule')}
                       </Title>
