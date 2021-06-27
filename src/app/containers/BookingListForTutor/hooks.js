@@ -1,25 +1,39 @@
-import { useEffect, useCallback, useState } from 'react';
+import Button from 'app/components/Button';
 import useActions from 'hooks/useActions';
+import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import Button from 'app/components/Button';
-import { Popconfirm, Row, Col } from 'antd';
-import { selectBookingList, selectCancelBooking } from './selectors';
-import { ACTION_STATUS } from 'utils/constants';
-import { actions } from './slice';
-import { mapBookingListDataSource } from 'utils/common';
+import { selectBookingListData } from './selectors';
 import { useTranslation } from 'react-i18next';
+import { actions } from './slice';
 
-function useQuery() {
+const useQuery = () => {
   return new URLSearchParams(useLocation().search);
-}
+};
+
+const mapBookingListDataSource = data => {
+  if (data.length > 0)
+    return data.map((item, index) => {
+      const { id, startPeriod, endPeriod, scheduleInfo, bookingInfo } = item;
+      const { date } = scheduleInfo;
+      const { userInfo, tutorMeetingLink } = bookingInfo[0];
+      const { name } = userInfo;
+      return {
+        id,
+        name,
+        date,
+        startPeriod,
+        endPeriod,
+        tutorMeetingLink,
+        stt: index + 1,
+      };
+    });
+};
 
 export const useHooks = () => {
   const history = useHistory();
   const query = useQuery();
-  const selectorBookingList = useSelector(selectBookingList);
-  const selectorCancelBooking = useSelector(selectCancelBooking);
-  const [bookingList, setBookingList] = useState([]);
+  const bookingList = useSelector(selectBookingListData);
   const { getBookingList, cancelBookSchedule } = useActions(
     {
       getBookingList: actions.getBookingList,
@@ -31,19 +45,7 @@ export const useHooks = () => {
   useEffect(() => {
     getBookingList({ page: query.get('page') || 1 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.get('page'), selectorCancelBooking.status]);
-
-  useEffect(() => {
-    if (
-      selectorBookingList &&
-      selectorBookingList.status === ACTION_STATUS.SUCCESS
-    ) {
-      setBookingList(selectorBookingList.data);
-    } else {
-      setBookingList([]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectorBookingList.status]);
+  }, [query.get('page')]);
 
   const onChangePage = useCallback(
     value => {
@@ -67,9 +69,9 @@ export const useHooks = () => {
   };
 };
 
-export const useForm = (data, handleCancelBooking) => {
-  const history = useHistory();
+export const useForm = data => {
   const { t } = useTranslation();
+  const history = useHistory();
   const dataSource = mapBookingListDataSource(data);
   const columnsForStudent = [
     {
@@ -79,7 +81,7 @@ export const useForm = (data, handleCancelBooking) => {
       width: '50px',
     },
     {
-      title: t('BookingList.tutorName'),
+      title: t('BookingList.studentName'),
       dataIndex: 'name',
       key: 'name',
     },
@@ -101,27 +103,16 @@ export const useForm = (data, handleCancelBooking) => {
     {
       title: t('BookingList.action'),
       key: 'action',
-      width: '255px',
+      width: '160px',
       render: (_, record) => {
+        console.log('record', record.tutorMeetingLink);
         return (
-          <Row justify="space-around">
-            <Popconfirm
-              key={record.scheduleDetailId}
-              title="Sure to delete booking?"
-              onConfirm={() => handleCancelBooking(record.scheduleDetailId)}
-            >
-              <Button disabled={!record.canDelete}>
-                {t('BookingList.cancel')}
-              </Button>
-            </Popconfirm>
-            <Button
-              disabled={!record.canGoToMeeting}
-              type="accent"
-              onClick={() => history.push(record?.studentMeetingLink)}
-            >
-              {t('BookingList.goToLink')}
-            </Button>
-          </Row>
+          <Button
+            type="accent"
+            onClick={() => history.push(record?.tutorMeetingLink)}
+          >
+            {t('BookingList.goToLink')}
+          </Button>
         );
       },
     },

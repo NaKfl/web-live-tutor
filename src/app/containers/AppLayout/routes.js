@@ -6,6 +6,7 @@ import { RegisterTutor } from 'app/containers/RegisterTutor/Loadable';
 import { JitsiMeetPage } from 'app/containers/JitsiMeetPage/Loadable';
 import { ScheduleTutor } from 'app/containers/ScheduleTutor/Loadable';
 import { BookingStudent } from 'app/containers/BookingStudent/Loadable';
+import { BookingListForTutor } from 'app/containers/BookingListForTutor/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
@@ -51,6 +52,12 @@ export const privateRoutes = [
     component: BookingStudent,
     key: 'booking-student',
     requiredRoles: [ROLES.STUDENT],
+  },
+  {
+    path: '/booking-tutor',
+    component: BookingListForTutor,
+    key: 'booking-tutor',
+    requiredRoles: [ROLES.TUTOR],
   },
   {
     path: '/courses',

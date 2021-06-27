@@ -371,5 +371,18 @@
   },
   "Reviews": {
     "Title": "Reviews"
+  },
+  "BookingList": {
+    "bookingForTutorTitle": "Booking List",
+    "bookingForStudentTitle": "Schedule",
+    "goToLink": "Go to meeting",
+    "cancel": "Cancel",
+    "orderNumber": "No",
+    "studentName": "Student",
+    "tutorName": "Tutor",
+    "date": "Meeting date",
+    "startPeriod": "Start time",
+    "endPeriod": "End time",
+    "action": "Action"
   }
 }

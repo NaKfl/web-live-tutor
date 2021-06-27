@@ -1,5 +1,5 @@
 import {
-  getBookingList,
+  getBookingListForStudent,
   cancelBookTimeSchedule,
 } from 'fetchers/scheduleFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
@@ -24,7 +24,7 @@ function* getBookingListTask(action) {
 }
 
 function getBookingListAPI(payload) {
-  return getBookingList(payload);
+  return getBookingListForStudent(payload);
 }
 
 function* cancelBookScheduleWatcher() {
