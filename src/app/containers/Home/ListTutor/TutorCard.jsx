@@ -47,9 +47,11 @@ export const TutorCard = memo(props => {
             <div className="header-left">
               <StyledAvatar>
                 <Avatar size={90} src={props?.avatar} />
-                <StyledBadge
-                  color={(props?.isOnline && 'green') || '#D9D9D9'}
-                />
+                {props?.isListOnline && (
+                  <StyledBadge
+                    color={(props?.isOnline && 'green') || '#D9D9D9'}
+                  />
+                )}
               </StyledAvatar>
               <div className="info">
                 <Title level={4} className="info-title">

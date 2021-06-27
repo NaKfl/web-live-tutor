@@ -18,6 +18,7 @@ import TopTutor from './TopTutor';
 import { useTranslation } from 'react-i18next';
 import Pagination from 'app/components/Pagination';
 import { ACTION_STATUS } from 'utils/constants';
+import Divider from 'app/components/Divider';
 
 export const Home = memo(() => {
   const { t } = useTranslation();
@@ -58,18 +59,18 @@ export const Home = memo(() => {
           <Search placeholder={t('Tutors.searchPlaceholder')}></Search>
         </div>
       </StyledSecondPart>
-      <StyledTitle className="available-tutor-title">
-        {t('Tutors.availableTutors')}
-      </StyledTitle>
+      <Divider className="available-tutor-title">
+        <StyledTitle>{t('Tutors.availableTutors')}</StyledTitle>
+      </Divider>
       <ListTutor
         listTutor={onlineTutors}
         onClickHeart={onClickHeart}
         listFavorite={listFavorite}
         isListOnline={true}
       ></ListTutor>
-      <StyledTitle className="available-tutor-title">
-        {t('Tutors.exploreTutor')}
-      </StyledTitle>
+      <Divider className="available-tutor-title">
+        <StyledTitle>{t('Tutors.exploreTutor')}</StyledTitle>
+      </Divider>
       <ListTutor
         listTutor={listTutor}
         onClickHeart={onClickHeart}

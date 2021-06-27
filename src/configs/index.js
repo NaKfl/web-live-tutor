@@ -1,4 +1,5 @@
 export const WEB_API = window._env_.REACT_APP_WEB_API;
+export const NODE_ENV = window._env_.REACT_APP_NODE_ENV;
 export const GOOGLE_ID = window._env_.REACT_APP_GOOGLE_ID;
 export const FACEBOOK_ID = window._env_.REACT_APP_FACEBOOK_ID;
 export const JWT_SECRET = window._env_.REACT_APP_JWT_SECRET;

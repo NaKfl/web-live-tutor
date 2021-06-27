@@ -5,7 +5,6 @@ import {
   BellOutlined,
   ExclamationCircleOutlined,
   MessageOutlined,
-  HeartOutlined,
   CheckOutlined,
 } from '@ant-design/icons';
 import {
@@ -46,6 +45,9 @@ import { ACTION_STATUS } from 'utils/constants';
 import { ModalBookConfirm } from './ModalBookConfirm';
 import LANGUAGES from 'utils/languages';
 import { useControlChatPopup } from 'app/containers/Chat/hooks';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -255,41 +257,54 @@ export const TutorDetail = ({ ...rest }) => {
                         {t('Profile.schedule')}
                       </Button>
                       <Row justify="space-around">
-                        <div className="function-icon-group">
-                          <MessageOutlined
-                            onClick={() =>
-                              handleSetNewConversation({
-                                userId: tutorDetail.userId,
-                                ...userInfo,
-                              })
-                            }
-                            className="function-icon"
-                          />
+                        <div
+                          className="function-icon-group"
+                          onClick={() =>
+                            handleSetNewConversation({
+                              userId: tutorDetail.userId,
+                              ...userInfo,
+                            })
+                          }
+                        >
+                          <MessageOutlined className="function-icon" />
                           <span> {t('Profile.message')}</span>
                         </div>
-                        <div className="function-icon-group">
+                        <div
+                          className="function-icon-group"
+                          onClick={e => {
+                            e.stopPropagation();
+                            onClickHeart(tutorDetail.userId);
+                          }}
+                        >
                           {isFavorite ? (
-                            <HeartOutlined
+                            <FontAwesomeIcon
+                              icon={solidHeart}
                               style={{
+                                fontSize: '31px',
                                 color: 'rgb(255, 98, 81)',
-                              }}
-                              onClick={e => {
-                                e.stopPropagation();
-                                onClickHeart(tutorDetail.userId);
                               }}
                               className="function-icon"
                             />
                           ) : (
-                            <HeartOutlined
-                              onClick={e => {
-                                e.stopPropagation();
-                                onClickHeart(tutorDetail.userId);
+                            <FontAwesomeIcon
+                              style={{
+                                fontSize: '31px',
+                                color: '#6979F8',
                               }}
+                              icon={regularHeart}
                               className="function-icon"
                             />
                           )}
 
-                          <span> {t('Profile.favorite')}</span>
+                          <span
+                            style={{
+                              color: isFavorite
+                                ? 'rgb(255, 98, 81)'
+                                : '#6979F8',
+                            }}
+                          >
+                            {t('Profile.favorite')}
+                          </span>
                         </div>
                         <div className="function-icon-group">
                           <BellOutlined className="function-icon" />

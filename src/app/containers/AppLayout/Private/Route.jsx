@@ -2,7 +2,8 @@ import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { useAuthorization } from 'hooks/useAuthorization';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useLocation } from 'react-router-dom';
+import { ROLES } from 'utils/constants';
 import useHooks from '../hooks';
 
 const PrivateRoute = ({
@@ -15,6 +16,8 @@ const PrivateRoute = ({
   const { isAuthenticated } = selectors;
   const user = useSelector(selectUserInfoAuthenticate);
   const canAccess = useAuthorization(user?.currentRole, requiredRoles);
+  const { pathname } = useLocation();
+
   const renderFn = Component => props => {
     if (canAccess && !!Component && isAuthenticated) {
       return (
@@ -29,6 +32,14 @@ const PrivateRoute = ({
             to={{
               pathname: '/login',
               state: { from: props.location },
+            }}
+          />
+        );
+      else if (pathname === '/' && user?.currentRole === ROLES.TUTOR)
+        return (
+          <Redirect
+            to={{
+              pathname: '/schedule-tutor',
             }}
           />
         );
