@@ -204,6 +204,7 @@
   },
 
   "Profile": {
+    "more": "Khác",
     "callNow": "Gọi ngay",
     "showReview": "Xem đánh giá",
     "status": "Trực tuyến",
@@ -224,7 +225,7 @@
     "country": "Quốc gia",
     "language": "Ngôn ngữ",
     "birthday": "Ngày sinh",
-    "specialties": "Đặc điểm riêng biệt",
+    "specialties": "Chuyên ngành",
     "languages": "Ngôn ngữ",
     "about": "Về bản thân",
     "interests": "Sở thích",
@@ -382,5 +383,14 @@
     "startPeriod": "Giờ bắt đầu",
     "endPeriod": "Giờ kết thúc",
     "action": "Hành động"
+  },
+  "Report": {
+    "cancel": "Hủy",
+    "submit": "Gửi",
+    "title": "Báo cáo",
+    "annoying": "Gia sư này làm phiền tôi",
+    "fake": "Hồ sơ này là giả mạo",
+    "inappropriatePhoto": "Ảnh hồ sơ không phù hợp",
+    "sending": "Đang gửi"
   }
 }

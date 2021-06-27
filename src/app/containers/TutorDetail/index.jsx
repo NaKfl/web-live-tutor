@@ -6,6 +6,7 @@ import {
   ExclamationCircleOutlined,
   MessageOutlined,
   CheckOutlined,
+  MoreOutlined,
 } from '@ant-design/icons';
 import {
   Avatar,
@@ -67,6 +68,7 @@ export const TutorDetail = ({ ...rest }) => {
     handleShowReviews,
     executeScroll,
     onClickHeart,
+    handleOpenReport,
   } = handlers;
 
   const {
@@ -306,13 +308,16 @@ export const TutorDetail = ({ ...rest }) => {
                             {t('Profile.favorite')}
                           </span>
                         </div>
-                        <div className="function-icon-group">
-                          <BellOutlined className="function-icon" />
-                          <span> {t('Profile.follow')}</span>
-                        </div>
-                        <div className="function-icon-group">
+                        <div
+                          className="function-icon-group"
+                          onClick={() => handleOpenReport(tutorDetail)}
+                        >
                           <ExclamationCircleOutlined className="function-icon" />
                           <span> {t('Profile.report')}</span>
+                        </div>
+                        <div className="function-icon-group">
+                          <MoreOutlined className="function-icon" />
+                          <span> {t('Profile.more')}</span>
                         </div>
                       </Row>
                     </div>

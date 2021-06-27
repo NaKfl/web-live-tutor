@@ -160,9 +160,20 @@ const useHooks = () => {
     },
     [openPopup],
   );
+
+  const handleOpenReport = useCallback(
+    tutor => {
+      openPopup({
+        key: 'report-modal',
+        type: POPUP_TYPE.REPORT_MODAL,
+        tutor,
+      });
+    },
+    [openPopup],
+  );
+
   const executeScroll = () => {
     window.scrollTo({ top: scheduleRef.current.offsetTop, behavior: 'smooth' });
-    // scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return {
@@ -191,6 +202,7 @@ const useHooks = () => {
       handleShowReviews,
       executeScroll,
       onClickHeart,
+      handleOpenReport,
     },
   };
 };

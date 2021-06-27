@@ -206,6 +206,7 @@
   },
 
   "Profile": {
+    "more": "More",
     "callNow": "Start Lesson",
     "showReview": "Reviews",
     "status": "Online",
@@ -384,5 +385,14 @@
     "startPeriod": "Start time",
     "endPeriod": "End time",
     "action": "Action"
+  },
+  "Report": {
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "title": "Report",
+    "annoying": "This tutor is annoying me",
+    "fake": "This profile is pretending be someone or is fake",
+    "inappropriatePhoto": "Inappropriate profile photo",
+    "sending": "Sending"
   }
 }
