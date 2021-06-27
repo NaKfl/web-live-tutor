@@ -5,6 +5,7 @@ import useHooks from './hooks';
 
 import Confirm from 'app/components/Modal/Confirm';
 import Reviews from 'app/components/Modal/Reviews';
+import Report from 'app/components/Modal/Report';
 import InfoUser from 'app/components/Modal/InfoUser';
 import CallModal from 'app/components/CallModal';
 import RatingForm from 'app/components/RatingForm';
@@ -104,6 +105,17 @@ export const Popup = memo(() => {
           case POPUP_TYPE.REVIEW_MODAL: {
             return (
               <Reviews
+                key={popup.key}
+                onCancel={handleClosePopup(popup)}
+                visible
+                {...popup}
+              />
+            );
+          }
+
+          case POPUP_TYPE.REPORT_MODAL: {
+            return (
+              <Report
                 key={popup.key}
                 onCancel={handleClosePopup(popup)}
                 visible
