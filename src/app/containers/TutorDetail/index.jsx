@@ -184,11 +184,21 @@ export const TutorDetail = ({ ...rest }) => {
                             <Col className="group-info">
                               <StyledTutorName>{name}</StyledTutorName>
                               {(rating && (
-                                <Rate
-                                  disabled
-                                  value={rating}
-                                  className="rate"
-                                />
+                                <Row align="middle">
+                                  <Rate
+                                    disabled
+                                    value={rating}
+                                    className="rate"
+                                  />
+                                  <span
+                                    style={{
+                                      fontStyle: 'italic',
+                                      color: 'rgb(0 0 0 / 0.6)',
+                                    }}
+                                  >
+                                    {`(${tutorDetail?.User?.feedbacks?.length})`}
+                                  </span>
+                                </Row>
                               )) || (
                                 <span
                                   style={{
@@ -203,7 +213,7 @@ export const TutorDetail = ({ ...rest }) => {
                                 <Image
                                   preview={false}
                                   src={
-                                    'https://www.cambly.com/static/images/country-flag-icons/US.png'
+                                    'https://www.cambly.com/static/images/country-flag-icons/VN.png'
                                   }
                                 />
                                 <Title

@@ -7,6 +7,11 @@ export const StyledChatList = styled.div`
   ${media.custom700px`
     width: unset;
   `}
+
+  ${media.mobile`
+    width: 250px;
+  `}
+
   position: relative;
   display: flex;
   width: 600px;

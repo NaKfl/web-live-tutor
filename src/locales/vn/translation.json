@@ -386,6 +386,8 @@
     "action": "Hành động"
   },
   "Report": {
+    "guide": "Bạn đang gặp phải vấn đề gì",
+    "placeholder": "Vui lòng điền thêm thông tin chi tiết vấn đề bạn gặp phải",
     "cancel": "Hủy",
     "submit": "Gửi",
     "title": "Báo cáo",

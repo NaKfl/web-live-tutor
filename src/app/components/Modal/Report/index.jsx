@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { StyledModal } from './styles';
 import { createReport } from 'fetchers/reportFetcher';
 import { notifySuccess } from 'utils/notify';
+import { ExclamationCircleFilled } from '@ant-design/icons';
 
 const Report = memo(props => {
   const [form] = Form.useForm();
@@ -93,10 +94,14 @@ const Report = memo(props => {
     >
       <Spin spinning={spinning} tip={t('Report.sending')}>
         <Form form={form}>
-          <Form.Item name="suggestions">
+          <Row align="middle" className="guide">
+            <ExclamationCircleFilled className="warn-icon" />
+            <span>{t('Report.guide')}</span>
+          </Row>
+          <Form.Item name="suggestions" className="options">
             <Checkbox.Group>
               {suggestions.map(item => (
-                <Row key={item.id}>
+                <Row key={item.id} className="option">
                   <Checkbox onClick={onClickCheckbox} value={item.id}>
                     {item.content}
                   </Checkbox>
@@ -108,6 +113,7 @@ const Report = memo(props => {
             value={previewNote}
             rows={4}
             onChange={onTextAreaChange}
+            placeholder={t('Report.placeholder')}
           />
         </Form>
       </Spin>

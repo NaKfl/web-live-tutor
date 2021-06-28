@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
 import { media } from 'styles/media';
 
-export const StyledProfile = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 65%;
+export const StyledProfile = styled(Row)`
+  width: 100%;
 `;
 
 export const StyledEditIcon = styled(EditIcon)`
@@ -32,6 +30,8 @@ export const StyledIconEdit = styled.div`
 
 export const StyledAvatar = styled.div`
   display: inline-flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   margin-right: 20px;
   border-radius: 50%;

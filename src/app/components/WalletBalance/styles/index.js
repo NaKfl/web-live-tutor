@@ -4,6 +4,7 @@ import { COLOR } from 'styles/colorPalette';
 export const StyledWalletBalance = styled.div`
   display: flex;
   width: 100%;
+  flex-direction: ${({ isColumn }) => (isColumn ? 'column' : 'row')};
 `;
 
 export const StyledLeftPart = styled.div`
@@ -15,8 +16,8 @@ export const StyledLeftPart = styled.div`
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
   text-align: center;
   flex: 1;
-  margin-right: 15px;
-  padding: 30px 0 38px 0;
+  margin-right: ${({ isColumn }) => (isColumn ? 0 : '15px')};
+  padding: 30px 10px 30px 10px;
   h3 {
     font-size: 24px;
     font-weight: 600;
@@ -38,11 +39,9 @@ export const StyledLeftPart = styled.div`
 `;
 
 export const StyledInOutCome = styled.div`
-  width: 100%;
   text-align: left;
   display: flex;
   align-items: center;
-  padding-left: 70px;
   .wrapper {
     display: flex;
     align-items: flex-end;
@@ -90,6 +89,7 @@ export const StyledRightPart = styled.div`
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
   text-align: center;
   flex: 1;
-  margin-left: 15px;
-  padding: 40px 0 48px 0;
+  margin-left: ${({ isColumn }) => (isColumn ? 0 : '15px')};
+  margin-top: ${({ isColumn }) => (isColumn ? '30px' : 0)};
+  padding: 40px 10px 48px 10px;
 `;
