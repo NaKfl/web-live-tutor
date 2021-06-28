@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Modal } from 'antd';
 import { media } from 'styles/media';
+import { COLOR } from 'styles/colorPalette';
 
 export const StyledModal = styled(Modal)`
   .ant-modal-title {
@@ -22,5 +23,26 @@ export const StyledModal = styled(Modal)`
         display: none;
       }
     `};
+  }
+
+  .guide {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .warn-icon {
+    color: ${COLOR.CORNFLOWER};
+    font-size: 20px;
+    margin-right: 8px;
+  }
+
+  .options {
+    margin-bottom: 10px;
+  }
+
+  .option {
+    margin-left: 20px;
+    margin-top: 4px;
   }
 `;

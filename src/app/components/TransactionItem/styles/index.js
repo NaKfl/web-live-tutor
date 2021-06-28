@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const StyledTransactionItem = styled.div`
   display: flex;
@@ -7,6 +8,9 @@ export const StyledTransactionItem = styled.div`
 `;
 
 export const StyledUpDownIcon = styled.div`
+  ${media.mobile`
+      display: none;
+    `}
   padding: 20px;
   background-color: ${({ isUp }) => (isUp ? '#EEF7F7' : '#FFF0EC')};
   color: ${({ isUp }) => (isUp ? '#55BCB3' : '#FC7067')};

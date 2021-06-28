@@ -9,7 +9,7 @@ export const storeAuthInfo = authInfo => {
 
 export const isValidAuthInfo = authInfo => {
   const expires = get('tokens.access.expires', authInfo);
-  return moment(expires) >= moment().utc();
+  return moment(expires) >= moment();
 };
 
 export const getAuthInfo = () => {

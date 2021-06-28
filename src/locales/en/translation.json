@@ -388,6 +388,8 @@
     "action": "Action"
   },
   "Report": {
+    "guide": "Help us understand what's happening",
+    "placeholder": "Please let us know details about your problem",
     "cancel": "Cancel",
     "submit": "Submit",
     "title": "Report",
