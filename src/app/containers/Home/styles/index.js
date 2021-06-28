@@ -132,7 +132,8 @@ export const StyledSecondPart = styled.div`
   ${media.tablet`
   .search-banner {
     .search-title {
-        font-size: 28px;
+        text-align:center;
+        font-size: 29px;
         font-weight: 700;
         margin-bottom: 20px;
       }

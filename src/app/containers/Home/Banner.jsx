@@ -24,7 +24,7 @@ const StyledCarousel = styled(Carousel)`
 
 const StyledImage = styled(Image)`
   height: 400px;
-  width: 1000px;
+  width: 100%;
 `;
 
 function SamplePrevArrow(props) {
@@ -69,15 +69,16 @@ function SampleNextArrow(props) {
   );
 }
 
-export const Banner = () => {
+export const Banner = (...props) => {
   return (
     <StyledCarousel
-      // autoplay
+      autoplay
       arrows
       effect="scrollx"
       easing="ease-in-out"
       nextArrow={<SampleNextArrow />}
       prevArrow={<SamplePrevArrow />}
+      {...props}
     >
       <StyledImage
         height={400}

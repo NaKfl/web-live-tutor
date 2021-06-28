@@ -275,7 +275,9 @@
     "call": "Gọi",
     "noFeedback": "Chưa có đánh giá",
     "emptyList": "Chưa có gia sư nào",
-    "exploreTutor": "Khám phá thêm gia sư"
+    "exploreTutor": "Khám phá thêm gia sư",
+    "languages": "Ngôn ngữ",
+    "specialties": "Chuyên ngành"
   },
   "Footer": {
     "policy": "Chính sách",

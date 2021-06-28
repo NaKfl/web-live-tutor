@@ -4,7 +4,7 @@ import { media } from 'styles/media';
 export const StyleWrapperSearch = styled.div`
   width: 100%;
   display: flex;
-  height: 64px;
+  height: 55px;
   border-radius: 8px;
   border: 0;
   display: flex;

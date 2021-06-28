@@ -7,9 +7,10 @@ import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import ListTutor from 'app/containers/Home/ListTutor';
 import Pagination from 'app/components/Pagination';
 import saga from './saga';
-import { Empty, Spin } from 'antd';
+import { Divider, Empty, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';
 import Filter from './Filter';
+import Banner from 'app/containers/Home/Banner';
 
 export const Search = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -23,8 +24,9 @@ export const Search = memo(() => {
   const { onChangeFilter, showHideDropDown, onCheckedTag } = handlers;
   return (
     <CoverSearch>
+      <Banner />
       <InputSearch
-        placeholder="Search..."
+        placeholder={t('Tutors.searchPlaceholder')}
         option={option}
         onCheckedTag={onCheckedTag}
         showHideDropDown={showHideDropDown}
@@ -33,9 +35,9 @@ export const Search = memo(() => {
         showHideDropDownState={showHideDropDownState}
       />
       <Filter />
-      <StyledIntro>
-        <div className="title">{t('Search.result')}</div>
-      </StyledIntro>
+      <Divider className="available-tutor-title">
+        <StyledIntro>{t('Search.result')}</StyledIntro>
+      </Divider>
       <Spin spinning={loading} size="large">
         {total === 0 && loading === false && (
           <Empty

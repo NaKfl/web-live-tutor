@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 
 export const StyledRegisterTutor = styled.div`
-  width: 700px;
+  max-width: 700px;
   .ant-steps-item-process .ant-steps-item-icon {
     background: ${COLOR.CORNFLOWER};
     border-color: ${COLOR.CORNFLOWER};
@@ -21,6 +22,9 @@ export const StyledRegisterTutor = styled.div`
       }
     }
   }
+  ${media.tablet`
+    max-width: 450px;
+  `}
 `;
 
 export const StepsContent = styled.div`

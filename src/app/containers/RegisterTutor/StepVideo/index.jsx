@@ -35,7 +35,7 @@ export const StepVideo = ({ selectVideo }) => {
           type="info"
         />
 
-        <VideoUpload selectVideo={selectVideo} />
+        <VideoUpload className="video-upload" selectVideo={selectVideo} />
       </Content>
     </>
   );

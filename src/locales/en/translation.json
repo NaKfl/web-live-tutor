@@ -277,7 +277,9 @@
     "call": "Call",
     "noFeedback": "No reviews yet",
     "emptyList": "No tutor here",
-    "exploreTutor": "Explore more tutors"
+    "exploreTutor": "Explore more tutors",
+    "languages": "Languages",
+    "specialties": "Specialties"
   },
   "Footer": {
     "policy": "Privacy Policy",
