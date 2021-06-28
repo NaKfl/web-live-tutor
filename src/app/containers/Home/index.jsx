@@ -1,24 +1,23 @@
+import Divider from 'app/components/Divider';
+import Pagination from 'app/components/Pagination';
 import React, { memo } from 'react';
-import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
-import { sliceKey, reducer } from './slice';
-import saga from './saga';
-import {
-  StyledHome,
-  StyledTopList,
-  StyledFistPart,
-  StyledTitle,
-  StyledSecondPart,
-  StyledPagination,
-} from './styles';
+import { useTranslation } from 'react-i18next';
+import { ACTION_STATUS } from 'utils/constants';
+import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
+import Banner from './Banner';
 import { useGetMajor, useHooks } from './hooks';
 import ListTutor from './ListTutor';
+import saga from './saga';
 import Search from './Search';
-import Banner from './Banner';
+import { reducer, sliceKey } from './slice';
+import {
+  StyledFistPart,
+  StyledHome,
+  StyledPagination,
+  StyledSecondPart,
+  StyledTitle,
+} from './styles';
 import TopTutor from './TopTutor';
-import { useTranslation } from 'react-i18next';
-import Pagination from 'app/components/Pagination';
-import { ACTION_STATUS } from 'utils/constants';
-import Divider from 'app/components/Divider';
 
 export const Home = memo(() => {
   const { t } = useTranslation();
@@ -40,18 +39,17 @@ export const Home = memo(() => {
     <StyledHome>
       <StyledFistPart>
         <Banner />
-        <StyledTopList>
-          <TopTutor
-            data={topTutor}
-            isLoading={topTutorStatus === ACTION_STATUS.PENDING}
-          />
-        </StyledTopList>
+        <TopTutor
+          className="top-tutor"
+          data={topTutor}
+          isLoading={topTutorStatus === ACTION_STATUS.PENDING}
+        />
       </StyledFistPart>
       <StyledSecondPart>
         <div className="search-banner">
           <h3 className="search-title">{t('Tutors.searchTitle')}</h3>
           <p className="sub-title">
-            {t('Tutors.connect')} <strong>{t('Tutors.totalStudents')}</strong>{' '}
+            {t('Tutors.connect')} <strong>{t('Tutors.totalStudents')}</strong>
             {t('Tutors.studentsTo')}
             <strong>{t('Tutors.totalTutors')}</strong>
             {t('Tutors.tutors')}

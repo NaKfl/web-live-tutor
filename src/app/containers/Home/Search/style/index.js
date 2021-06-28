@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const StyleWrapperSearch = styled.div`
   width: 100%;
@@ -10,6 +11,9 @@ export const StyleWrapperSearch = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 600px;
+  ${media.tablet`
+    height: 48px;
+  `}
 `;
 
 export const StyleWrapperInput = styled.div`
@@ -24,6 +28,11 @@ export const StyleWrapperInput = styled.div`
     font-size: 20px;
     transform: translateX(-8px);
   }
+  ${media.tablet`
+    .icon-search {
+      padding: 15px !important;
+    }
+  `}
 `;
 
 export const StyleSearch = styled.input`
@@ -48,4 +57,9 @@ export const StyleSearch = styled.input`
   &::placeholder {
     color: #5f7d95;
   }
+  ${media.tablet`
+    &::placeholder {
+      font-size: 16px;
+    }
+  `}
 `;

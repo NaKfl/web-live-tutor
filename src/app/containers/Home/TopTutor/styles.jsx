@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 
 export const StyledTopTutor = styled.div`
   border-bottom-right-radius: 5px;
@@ -114,9 +115,6 @@ export const StyledTopTutorItem = styled.div`
     transition: ease 0.2s;
   }
 
-  .partner-avatar {
-  }
-
   .partner-name,
   .last-content {
     max-width: 150px;
@@ -130,6 +128,10 @@ export const StyledTopTutorItem = styled.div`
         margin-right: 2px;
       }
     }
+    ${media.custom400px`
+    white-space: normal;
+    max-width:140px;
+  `}
   }
   .last-content {
     margin-bottom: 0;

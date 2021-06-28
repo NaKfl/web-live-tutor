@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
 
 export const StyledHome = styled.div`
   margin-top: -35px;
@@ -63,9 +64,6 @@ export const StyledCoverSearch = styled.div`
 export const StyledFistPart = styled.div`
   height: 400px;
   display: flex;
-  .ant-carousel {
-    width: 1000px;
-  }
   border-bottom-left-radius: 5px;
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
 
@@ -73,8 +71,24 @@ export const StyledFistPart = styled.div`
     border-bottom-left-radius: 5px;
   }
   .ant-carousel {
+    width: 65%;
     box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
   }
+  .top-tutor {
+    width: 35%;
+  }
+
+  ${media.tablet`
+  height: unset;
+    flex-direction:column;
+    .ant-carousel {
+    width: 100%;
+  }
+  .top-tutor {
+    width: 100%;
+    height: 400px;
+  }
+  `}
 `;
 
 export const StyledSecondPart = styled.div`
@@ -91,7 +105,7 @@ export const StyledSecondPart = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 33px 0 49px 0;
+    padding: 33px 30px 49px 30px;
     color: #0b2239;
     .search-title {
       font-size: 33px;
@@ -105,10 +119,16 @@ export const StyledSecondPart = styled.div`
       margin-bottom: 20px;
     }
   }
-`;
 
-export const StyledTopList = styled.div`
-  flex: 1;
+  ${media.tablet`
+  .search-banner {
+    .search-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+  }
+  `}
 `;
 
 export const StyledTitle = styled.h3`
@@ -118,4 +138,13 @@ export const StyledTitle = styled.h3`
   letter-spacing: 1px;
   text-align: center;
   color: #3c3c3c;
+  ${media.custom600px`
+  font-size: 25px;
+  `}
+  ${media.custom400px`
+  font-size: 20px;
+  `}
+  ${media.smallMobile`
+    white-space: normal;
+  `}
 `;

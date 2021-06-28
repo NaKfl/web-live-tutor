@@ -300,10 +300,14 @@
     "notifyFail": "There are some problems with your verification"
   },
   "Payment": {
-    "depositInApp": "DEPOSIT IN LIVETUTOR",
+    "bankGuide": "Top-up via Internet Banking",
+    "bankFee": "Free recharge",
+    "paypalGuide": "Top-up via Paypal",
+    "paypalFee": "Depends on Paypal policy",
+    "depositInApp": "Choose deposit type",
     "deposit": "Deposit",
     "howMuchMoney": "Amount ({{currency}})",
-    "minMax": "Min money is {{min}} and max money is {{max}}",
+    "minMax": "Please deposit at least {{min}}",
     "transactionsList": "Danh sách các giao dịch"
   },
   "ForgotPassword": {

@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import TopTutorItem from './TopTutorItem';
 import { Empty, Skeleton } from 'antd';
 
-export const TopTutor = ({ data, isLoading }) => {
+export const TopTutor = ({ data, isLoading, ...rest }) => {
   const { t } = useTranslation();
   return (
-    <StyledTopTutor>
+    <StyledTopTutor {...rest}>
       <div className="top-header">
         <p>{t('Tutors.topTutors')}</p>
       </div>
