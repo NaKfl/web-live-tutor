@@ -1,7 +1,7 @@
 import get from 'lodash/fp/get';
 import { createSelector } from 'reselect';
 
-const selectBookingListState = state => state.bookingList;
+const selectBookingListState = state => state.bookingListForTutor;
 
 export const selectBookingListData = createSelector(
   selectBookingListState,
