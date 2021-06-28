@@ -105,7 +105,6 @@ export const useForm = data => {
       key: 'action',
       width: '160px',
       render: (_, record) => {
-        console.log('record', record.tutorMeetingLink);
         return (
           <Button
             type="accent"
