@@ -2,9 +2,11 @@ import { memo } from 'react';
 import { StyledCourseCard, StyledImageCard, StyledContentCard } from './styles';
 import Button from 'app/components/Button';
 import Title from 'app/components/Title';
+import { useHistory } from 'react-router';
 import { Row } from 'antd';
 
 export const CourseCard = memo(({ course }) => {
+  const history = useHistory();
   return (
     <StyledCourseCard>
       <Row className="flex-column h-100">
@@ -23,8 +25,11 @@ export const CourseCard = memo(({ course }) => {
               className="w-100 mt-4 d-flex justify-content-center"
               type="accent"
               size="large"
+              onClick={() => {
+                history.push(`/explore-course/${course.id}`);
+              }}
             >
-              ENROLL
+              KHÁM PHÁ
             </Button>
           </Row>
         </StyledContentCard>

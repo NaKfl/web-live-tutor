@@ -9,6 +9,7 @@ import { BookingStudent } from 'app/containers/BookingStudent/Loadable';
 import { BookingListForTutor } from 'app/containers/BookingListForTutor/Loadable';
 import { CoursePage } from 'app/containers/CoursePage/Loadable';
 import { DetailCourse } from 'app/containers/DetailCourse/Loadable';
+import { ExploreCourse } from 'app/containers/ExploreCourse/Loadable';
 import { History } from 'app/containers/History/Loadable';
 import { TutorDetail } from 'app/containers/TutorDetail/Loadable';
 import { Search } from 'app/containers/Search/Loadable';
@@ -68,6 +69,12 @@ export const privateRoutes = [
   {
     path: '/courses/:id',
     component: DetailCourse,
+    key: 'detailCourse',
+    requiredRoles: [ROLES.STUDENT],
+  },
+  {
+    path: '/explore-course/:id',
+    component: ExploreCourse,
     key: 'detailCourse',
     requiredRoles: [ROLES.STUDENT],
   },

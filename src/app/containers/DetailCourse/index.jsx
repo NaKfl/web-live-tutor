@@ -21,41 +21,35 @@ export const DetailCourse = memo(() => {
         </Col>
         <Col className="detail-course-right p-3">
           <Title level={3} className="fw-nor">
-            Overview
+            Tổng quan
           </Title>
           <Title level={4} className="fw-nor">
-            Why take this course?
+            Tại sao chọn khóa học này?
           </Title>
           <Title level={5} className="fw-nor">
-            It can be intimidating to speak with a foreigner, no matter how much
-            grammar and vocabulary you've mastered. This course is specially
-            designed to help you ease into English conversation.
+            {detailCourse?.reason}
           </Title>
           <Title level={4} className="fw-nor">
-            What will you be able to do?
+            Bạn sẽ học được gì từ khóa học?
           </Title>
           <Title level={5} className="fw-nor">
-            This course covers vocabulary at the CEFR A2 level. You will build
-            confidence while learning to speak about a variety of common,
-            everyday topics. In addition, you will build implicit grammar
-            knowledge as your tutor models correct answers and corrects your
-            mistakes.
+            {detailCourse?.purpose}
           </Title>
           <Title level={4} className="fw-nor">
-            Experience Level
+            Trình độ yêu cầu
           </Title>
           <Title level={5} className="fw-nor">
             {detailCourse.level}
           </Title>
           <Title level={4} className="fw-nor">
-            Course Length
+            Độ dài khóa học
           </Title>
           <Title level={5} className="fw-nor">
-            {`${detailCourse.topics?.length} topics`}
+            {`${detailCourse.topics?.length} chủ đề`}
           </Title>
 
           <Title level={4} className="fw-nor">
-            List Topics
+            Danh sách chủ đề
           </Title>
           {detailCourse.topics?.map((topic, index) => (
             <Row className="mt-4 topic-item" key={index}>

@@ -3,8 +3,7 @@ import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import { sliceKey, reducer } from './slice';
 import saga from './saga';
 import CourseCard from './Course';
-import { Row, Col } from 'antd';
-import { StyledCoursePage } from './styles';
+import { StyledCoursePage, LayoutListCourses } from './styles';
 import useHooks from './hooks';
 import Title from 'app/components/Title';
 
@@ -14,6 +13,7 @@ export const CoursePage = memo(() => {
   const { selectors, handlers } = useHooks();
   const { onSelectCard } = handlers;
   const { coursesList } = selectors;
+
   return (
     <StyledCoursePage>
       <Title level={3} className="fw-nor">
@@ -28,13 +28,11 @@ export const CoursePage = memo(() => {
         everything from the basics of smalltalk to crafting well-formed opinions
         about complex, topical issues.
       </Title>
-      <Row gutter={[30, 30]}>
+      <LayoutListCourses>
         {coursesList.map(course => (
-          <Col key={course.id} className="gutter-row">
-            <CourseCard course={course} onSelectCard={onSelectCard} />
-          </Col>
+          <CourseCard course={course} onSelectCard={onSelectCard} />
         ))}
-      </Row>
+      </LayoutListCourses>
     </StyledCoursePage>
   );
 });
