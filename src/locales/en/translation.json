@@ -237,7 +237,14 @@
     "schedule": "Schedule",
     "account": "Account",
     "settings": "Settings",
-    "accountID": "Account ID"
+    "accountID": "Account ID",
+    "modalUploadAvatar": {
+      "errorNotify": "File not accept or the size greater than 3MB",
+      "title": "Upload avatar",
+      "uploadBtn": "Upload",
+      "cancelBtn": "Cancel",
+      "drag": "Drag 'n' drop some files here, or click to select files"
+    }
   },
   "Favorite": {
     "title": "Favorite tutors",
@@ -389,7 +396,22 @@
     "date": "Meeting date",
     "startPeriod": "Start time",
     "endPeriod": "End time",
-    "action": "Action"
+    "action": "Action",
+    "modalConfirm": {
+      "title": "Booking details",
+      "returnBtn": "Return",
+      "bookBtn": "Book",
+      "doneBtn": "Done",
+      "cancelBtn": "Cancel",
+      "depositBtn": "Deposit",
+      "successSubTitle": "Check your mail's inbox to see detail order",
+      "errorSubTitle": "Your current money is not enough to pay",
+      "successTitle": "Booking success",
+      "errorTitle": "Booking failed",
+      "timeBooked": "Booking Time",
+      "price": "Price",
+      "total": "Total"
+    }
   },
   "Report": {
     "guide": "Help us understand what's happening",

@@ -28,7 +28,10 @@ const colorBackgroundText = type => {
 };
 const TextTimeSchedule = ({ content, color, typeText, ...rest }) => {
   return (
-    <StyledTextTimeSchedule color={colorBackgroundText(typeText).background}>
+    <StyledTextTimeSchedule
+      color={colorBackgroundText(typeText).background}
+      {...rest}
+    >
       <StyledText color={colorBackgroundText(typeText).text}>
         {content}
       </StyledText>
