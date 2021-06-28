@@ -21,7 +21,8 @@
     "done": "Done",
     "backHome": "Back Home",
     "backToHome": "Back to home",
-    "empty": "Empty"
+    "empty": "Empty",
+    "loading": "Loading"
   },
   "Category": {
     "tutor": "Tutor",
@@ -394,5 +395,12 @@
     "fake": "This profile is pretending be someone or is fake",
     "inappropriatePhoto": "Inappropriate profile photo",
     "sending": "Sending"
+  },
+  "Jitsi": {
+    "invalidToken": "Authenticate failed",
+    "backToHome": "Redirecting to home page",
+    "invalidTime": "Meeting will start on {{time}}",
+    "gotToApp": "Join meeting on app",
+    "continueGoToWeb": "Continue on web version"
   }
 }

@@ -5,14 +5,19 @@ import moment from 'moment';
 import queryString from 'query-string';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { notifyError } from 'utils/notify';
 import socket from 'utils/socket';
+import isOnMobileDevice from 'utils/mobileDetect';
+import { useTranslation } from 'react-i18next';
 
 const useHooks = props => {
+  const { t } = useTranslation();
   const { token } = queryString.parse(props.location.search);
   const history = useHistory();
   const [roomInfo, setRoomInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [isContinueWeb, setIsContinueWeb] = useState(false);
+  const isOnMobile = isOnMobileDevice();
   let myTimeOut;
 
   const pushToHome = isTutor => {
@@ -23,6 +28,10 @@ const useHooks = props => {
   };
 
   useEffect(() => {
+    if (!token) {
+      setError(t('Jitsi.invalidToken'));
+      return pushToHome();
+    }
     const { roomName, isTutor, userCall, userBeCalled, startTime } = jwt.verify(
       token,
       JWT_SECRET,
@@ -37,11 +46,10 @@ const useHooks = props => {
         token,
       });
     } else {
-      setIsLoading(true);
-      notifyError(
-        `Video Call will start on ${moment(startTime).format(
-          'DD-MM-YYYY HH:mm',
-        )}`,
+      setError(
+        t('Jitsi.invalidTime', {
+          time: moment(startTime).format('DD-MM-YYYY HH:mm'),
+        }),
       );
       pushToHome(roomInfo.isTutor);
     }
@@ -64,9 +72,13 @@ const useHooks = props => {
     pushToHome(roomInfo.isTutor);
   };
 
+  const continueGoToWeb = () => {
+    setIsContinueWeb(true);
+  };
+
   return {
-    handlers: { handleSomeOneLeave, endCall },
-    selectors: { roomInfo, isLoading },
+    handlers: { handleSomeOneLeave, endCall, continueGoToWeb },
+    selectors: { roomInfo, isLoading, isOnMobile, error, token, isContinueWeb },
   };
 };
 
