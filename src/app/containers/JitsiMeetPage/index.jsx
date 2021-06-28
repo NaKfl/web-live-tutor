@@ -42,7 +42,7 @@ export const JitsiMeetPage = props => {
   if (isOnMobile && !isContinueWeb)
     return (
       <StyledMeetingPage>
-        <a href={`livetutoring://token=${token}`}>
+        <a href={`livetutoring://call?token=${token}`}>
           <Button type="accent">{t('Jitsi.gotToApp')}</Button>
         </a>
         <div>
