@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const Introduction = styled.div`
   display: flex;
@@ -7,6 +8,10 @@ export const Introduction = styled.div`
     height: 117.31px;
     margin-right: 25px;
   }
+
+  ${media.mobile`
+    flex-direction: column;
+  `}
 `;
 
 export const Content = styled.div`
@@ -17,6 +22,12 @@ export const Content = styled.div`
     max-width: 100%;
     input,
     textarea {
+      width: 100%;
+    }
+  }
+  .video-upload {
+    width: 100%;
+    video {
       width: 100%;
     }
   }

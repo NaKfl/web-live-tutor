@@ -2,7 +2,6 @@ import {
   ArrowLeftOutlined,
   StarFilled,
   CalendarOutlined,
-  BellOutlined,
   ExclamationCircleOutlined,
   MessageOutlined,
   CheckOutlined,
@@ -161,7 +160,7 @@ export const TutorDetail = ({ ...rest }) => {
   return (
     <StyledTutorDetail {...rest}>
       <Row justify="center">
-        <Col span={14}>
+        <Col lg={15} md={20} sm={24}>
           <StyledProfile>
             <Row className="profile-form">
               <Affix offsetTop={70} className="w-100">

@@ -7,10 +7,10 @@ export const CoverFilter = styled.div`
   padding: 8px 12px;
   position: relative;
   border: 1px solid #efefef;
-  margin-right: 8px;
   background-color: ${COLOR.CORNFLOWER};
   border-radius: 8px;
   color: ${COLOR.WHITE};
+  transform: translateX(5px);
 `;
 
 export const Filter = styled.div`
@@ -28,7 +28,8 @@ export const Filter = styled.div`
   transition: background-color 200ms ease, outline 200ms ease, color 200ms ease,
     box-shadow 200ms ease, -webkit-box-shadow 200ms ease;
   p {
-    font-size: 18px;
+    margin-left: 3px;
+    font-size: 16px;
     padding: 0;
     margin: 0;
   }

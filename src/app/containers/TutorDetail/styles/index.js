@@ -30,6 +30,7 @@ export const StyledTutorName = styled.h3`
   margin-bottom: 0;
   display: block;
   height: 37px;
+  white-space: nowrap;
 `;
 
 export const StyledTutorTitle = styled.div`
@@ -88,6 +89,18 @@ export const StyledTutorTitle = styled.div`
       }
     }
   }
+  ${media.custom500px`
+      flex-direction: column;
+      align-items: flex-start;
+      .start-btn{
+        margin-top:10px;
+      }
+  `}
+  ${media.custom400px`
+      flex-direction: column;
+      align-items: center;
+      justify-content:center;
+  `}
 `;
 
 export const StyledTutorContent = styled.div`

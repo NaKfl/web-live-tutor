@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { media } from 'styles/media';
 
 export const WrapInputSearch = styled.div`
   max-width: 100%;
-  height: 60px;
+  height: 55px;
   display: flex;
   justify-content: center;
 `;
@@ -11,7 +12,7 @@ export const StyledInput = styled.input`
   width: 100%;
   height: 100%;
   padding: 0;
-  font-size: 18px;
+  font-size: 16px;
   padding-left: 30px;
   padding-right: 38px;
   background-color: #eff3f6;
@@ -24,8 +25,8 @@ export const StyledInput = styled.input`
   color: #0d0c22;
   letter-spacing: 1px;
   border: 1px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
   &::placeholder {
     color: #5f7d95;
   }
@@ -35,12 +36,15 @@ export const CoverInput = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  width: 50%;
+  width: 55%;
   position: relative;
   border-radius: 8px;
   .ant-badge {
     height: 100%;
   }
+  ${media.custom700px`
+    width: unset;
+  `}
 `;
 
 export const StyledClearButton = styled.div`
