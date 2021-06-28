@@ -3,7 +3,7 @@ import useActions from 'hooks/useActions';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import Button from 'app/components/Button';
-import { Popconfirm, Row, Col } from 'antd';
+import { Popconfirm, Row } from 'antd';
 import { selectBookingList, selectCancelBooking } from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';

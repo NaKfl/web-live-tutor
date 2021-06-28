@@ -7,12 +7,15 @@ import { Row, Col } from 'antd';
 import { StyledDetailCourse } from './styles';
 import useHooks from './hooks';
 import Title from 'app/components/Title';
+import { useTranslation } from 'react-i18next';
 
 export const DetailCourse = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors } = useHooks();
   const { detailCourse } = selectors;
+  const { t } = useTranslation();
+
   return (
     <StyledDetailCourse>
       <Row>
@@ -21,35 +24,35 @@ export const DetailCourse = memo(() => {
         </Col>
         <Col className="detail-course-right p-3">
           <Title level={3} className="fw-nor">
-            Tổng quan
+            {t('Course.overview')}
           </Title>
           <Title level={4} className="fw-nor">
-            Tại sao chọn khóa học này?
+            {t('Course.whyTake')}
           </Title>
           <Title level={5} className="fw-nor">
             {detailCourse?.reason}
           </Title>
           <Title level={4} className="fw-nor">
-            Bạn sẽ học được gì từ khóa học?
+            {t('Course.willToDo')}
           </Title>
           <Title level={5} className="fw-nor">
             {detailCourse?.purpose}
           </Title>
           <Title level={4} className="fw-nor">
-            Trình độ yêu cầu
+            {t('Course.level')}
           </Title>
           <Title level={5} className="fw-nor">
             {detailCourse.level}
           </Title>
           <Title level={4} className="fw-nor">
-            Độ dài khóa học
+            {t('Course.courseLength')}
           </Title>
           <Title level={5} className="fw-nor">
-            {`${detailCourse.topics?.length} chủ đề`}
+            {`${detailCourse.topics?.length} ${t('Course.topic')} `}
           </Title>
 
           <Title level={4} className="fw-nor">
-            Danh sách chủ đề
+            {t('Course.listTopics')}
           </Title>
           {detailCourse.topics?.map((topic, index) => (
             <Row className="mt-4 topic-item" key={index}>

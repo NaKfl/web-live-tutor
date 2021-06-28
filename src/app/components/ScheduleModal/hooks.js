@@ -11,6 +11,7 @@ import { ACTION_STATUS } from 'utils/constants';
 import moment from 'moment';
 import { notifyError } from 'utils/notify';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { useTranslation } from 'react-i18next';
 
 export const TIME = {
   startTime: 0,
@@ -29,6 +30,7 @@ export const useHooks = props => {
   const [endTimeSelect, setEndTime] = useState(null);
   const [isRepeated, setRepeated] = useState(false);
   const [endDate, setEndDate] = useState(data.date);
+  const { t } = useTranslation();
 
   const {
     registerSchedule,
@@ -94,7 +96,7 @@ export const useHooks = props => {
           endDate: moment(endDate).format('YYYY-MM-DD'),
         });
       } else {
-        notifyError('Please select valid end date');
+        notifyError(`${t('Notify.validEndDate')}`);
       }
     } else {
       registerSchedule({

@@ -430,5 +430,48 @@
     "invalidTime": "Buổi học sẽ bắt đầu vào {{time}}",
     "gotToApp": "Mở ứng dụng",
     "continueGoToWeb": "Tiếp tục với phiên bản web"
+  },
+  "CallModal": {
+    "outgoingCall": "Cuộc gọi đi",
+    "incomingCall": "Cuộc gọi đến",
+    "isCallingTo": "đang gọi cho",
+    "areCallingTo": "đang gọi cho",
+    "callingStart": "Cuộc gọi sẽ bắt đầu ngay khi",
+    "you": "bạn",
+    "You": "Bạn",
+    "tutor": "gia sư",
+    "answer": "trả lời",
+    "answers": "trả lời",
+    "cancel": "Hủy",
+    "reject": "Từ chối",
+    "accept": "Chấp nhận"
+  },
+  "Review": {
+    "reviews": "đánh giá",
+    "whatIsURating": "Bạn đánh giá gì cho gia sư ",
+    "contentReview": "Nội dung đánh giá"
+  },
+  "Notify": {
+    "reviewSuccess": "Bạn đã đánh giá thành công.",
+    "fillContent": "Nhập nội dung đánh giá và điểm !",
+    "deleteBooking": "Bạn đã hủy đặt lịch thành công.",
+    "changePassword": "Bạn đã đổi mật khẩu thành công.",
+    "validEndDate": "Chọn ngày kết thúc phù hợp!",
+    "tutorBusy": "đang có cuộc gọi khác !",
+    "reject": "đã từ chối !",
+    "upload": "Vui lòng tải ảnh đại diện của bạn"
+  },
+  "Course": {
+    "discoverCourse": "Khám phá các khóa học",
+    "discover": "KHÁM PHÁ",
+    "basicCourse": "Các khóa học cơ bản của hệ thống LiveTutor",
+    "descriptCourse": "LiveTutor đã xây dựng nên các khóa học của các lĩnh vực trong cuộc sống chất lượng, bài bản và khoa học nhất cho những người đang có nhu cầu trau dồi thêm kiến thức về các lĩnh vực.",
+    "overview": "Tổng quan",
+    "whyTake": "Tại sao bạn nên học khóa học này?",
+    "willToDo": "Bạn có thể làm gì?",
+    "level": "Trình độ yêu cầu",
+    "courseLength": "Thời lượng khóa học",
+    "listTopics": "Danh sách chủ đề",
+    "topic": "chủ đề"
   }
 }

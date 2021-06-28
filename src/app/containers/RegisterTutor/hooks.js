@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import useActions from 'hooks/useActions';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -13,6 +14,7 @@ import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 
 export const useHooks = () => {
   const history = useHistory();
+  const { t } = useHistory();
   const user = useSelector(selectUserInfoAuthenticate);
   useEffect(() => {
     if (user?.roles.includes(ROLES.TUTOR))
@@ -54,8 +56,7 @@ export const useHooks = () => {
   const nextStep = useCallback(async () => {
     try {
       if (!avatar) {
-        notifyError('Please upload your avatar');
-        throw new Error('Please upload your avatar');
+        notifyError(`${t('Notify.upload')}`);
       }
       await formProfile.validateFields();
       const values = formProfile.getFieldsValue();

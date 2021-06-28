@@ -21,7 +21,6 @@ export const ExploreCourse = memo(() => {
   const { selectors, handlers } = useHooks();
   const { handleChangeTopic } = handlers;
   const { detailCourse, fileName } = selectors;
-
   const renderToolbar = Toolbar => (
     <Toolbar>
       {slots => {
