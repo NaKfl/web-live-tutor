@@ -20,7 +20,7 @@ export const StyledTutorCard = styled.div`
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
 
   ${media.mobile`
-  height:auto;
+    height:auto;
   `}
 
   .ant-skeleton {
@@ -69,9 +69,16 @@ export const StyledHeader = styled.div`
       }
       &-title {
         margin-bottom: 0px;
-        width: 100%;
+        max-width: 250px;
         font-size: 22px;
         font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        ${media.tablet`
+          max-width: unset;
+          white-space: normal;
+        `}
       }
     }
   }
@@ -130,13 +137,10 @@ export const WrapTutor = styled.div`
   justify-content: center;
   align-items: center;
 
-  ${media.subWide`
+  ${media.wide`
     width: calc(100% / 2);
   `}
-  /* ${media.tablet`
-    width: calc(100%);
-  `} */
-  ${media.mobile`
+  ${media.tablet`
     width: calc(100%);
   `}
 `;

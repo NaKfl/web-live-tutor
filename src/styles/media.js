@@ -2,10 +2,12 @@ import { css } from 'styled-components/macro';
 
 // Update your breakpoints if you want
 export const sizes = {
+  smallMobile: 350,
   mobile: 480,
   tablet: 980,
   wide: 1300,
   subWide: 1142,
+  custom400px: 400,
   custom500px: 500,
   custom600px: 600,
   custom700px: 700,

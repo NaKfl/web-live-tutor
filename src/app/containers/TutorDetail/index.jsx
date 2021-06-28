@@ -212,9 +212,7 @@ export const TutorDetail = ({ ...rest }) => {
                               <Row className="country">
                                 <Image
                                   preview={false}
-                                  src={
-                                    'https://www.cambly.com/static/images/country-flag-icons/VN.png'
-                                  }
+                                  src={`https://www.countryflags.io/${tutorDetail?.User?.country}/flat/32.png`}
                                 />
                                 <Title
                                   level={5}
