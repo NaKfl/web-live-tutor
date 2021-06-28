@@ -1,15 +1,21 @@
 import { memo } from 'react';
 import { Result } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 export const BookingStatus = memo(({ isSuccess = false }) => {
+  const { t } = useTranslation();
   return (
     <Result
       status={isSuccess ? 'success' : 'error'}
-      title={isSuccess ? 'Booking success' : 'Booking failed'}
+      title={
+        isSuccess
+          ? t('BookingList.modalConfirm.successTitle')
+          : t('BookingList.modalConfirm.errorTitle')
+      }
       subTitle={
         isSuccess
-          ? "Check your mail's inbox to see detail order"
-          : 'Your current money is not enough to pay'
+          ? t('BookingList.modalConfirm.successSubTitle')
+          : t('BookingList.modalConfirm.errorSubTitle')
       }
     />
   );
