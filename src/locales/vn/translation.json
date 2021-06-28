@@ -21,7 +21,8 @@
     "done": "Hoàn tất",
     "backHome": "Trang Chủ",
     "backToHome": "Đang trở về trang Chủ",
-    "empty": "Trống"
+    "empty": "Trống",
+    "loading": "Đang tải"
   },
   "Category": {
     "tutor": "Gia sư",
@@ -392,5 +393,12 @@
     "fake": "Hồ sơ này là giả mạo",
     "inappropriatePhoto": "Ảnh hồ sơ không phù hợp",
     "sending": "Đang gửi"
+  },
+  "Jitsi": {
+    "invalidToken": "Xác thực không thành công",
+    "backToHome": "Đang chuyển hướng về trang chủ",
+    "invalidTime": "Buổi học sẽ bắt đầu vào {{time}}",
+    "gotToApp": "Mở ứng dụng",
+    "continueGoToWeb": "Tiếp tục với phiên bản web"
   }
 }
