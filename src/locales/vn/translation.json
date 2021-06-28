@@ -235,7 +235,14 @@
     "schedule": "Đặt lịch",
     "account": "Tài khoản",
     "settings": "Cài đặt",
-    "accountID": "ID"
+    "accountID": "ID",
+    "modalUploadAvatar": {
+      "errorNotify": "Tệp không hợp lệ hoặc vượt quá 3MB",
+      "title": "Tải lên ảnh đại diện",
+      "uploadBtn": "Tải lên",
+      "cancelBtn": "Huỷ",
+      "drag": "Thả tệp vào đây hoặc nhấp vào để tải lên ảnh đại diện"
+    }
   },
   "Favorite": {
     "title": "Gia sư yêu thích",
@@ -387,7 +394,22 @@
     "date": "Ngày học",
     "startPeriod": "Giờ bắt đầu",
     "endPeriod": "Giờ kết thúc",
-    "action": "Hành động"
+    "action": "Hành động",
+    "modalConfirm": {
+      "title": "Chi tiết đặt lịch",
+      "returnBtn": "Quay về",
+      "bookBtn": "Đặt",
+      "doneBtn": "Xong",
+      "cancelBtn": "Huỷ",
+      "depositBtn": "Nạp tiền",
+      "successSubTitle": "Kiểm tra hộp thư của bạn để xem chi tiết lịch đặt.",
+      "errorSubTitle": "Bạn không đủ tiền để thanh toán.",
+      "successTitle": "Đặt lịch thành công",
+      "errorTitle": "Đặt lịch thất bại",
+      "timeBooked": "Thời gian đặt lịch",
+      "price": "Giá",
+      "total": "Tổng cộng"
+    }
   },
   "Report": {
     "guide": "Bạn đang gặp phải vấn đề gì",

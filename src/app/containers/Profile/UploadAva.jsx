@@ -2,13 +2,16 @@ import { useCallback, memo, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Modal, Avatar } from 'antd';
 import { StyledDragImage } from './styles';
+import { notifyError } from 'utils/notify';
 import Button from 'app/components/Button';
+import { useTranslation } from 'react-i18next';
 export const UploadAvatar = memo(
   ({ visible, handleOk, handleCancel, loading }) => {
+    const { t } = useTranslation();
     const [previewImage, setPreviewImage] = useState();
     const [file, setFile] = useState();
     const onDrop = useCallback(acceptedFiles => {
-      if (!!acceptedFiles) {
+      if (acceptedFiles.length > 0) {
         setFile(acceptedFiles[0]);
         setPreviewImage(pre => {
           const a = acceptedFiles.map(file =>
@@ -18,10 +21,13 @@ export const UploadAvatar = memo(
           );
           return a[0];
         });
+      } else {
+        notifyError('File not accept or the size greater than 3MB');
       }
     }, []);
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
       onDrop,
+      maxSize: 3 * 1024 * 1024,
     });
 
     useEffect(() => {
@@ -33,7 +39,7 @@ export const UploadAvatar = memo(
     return (
       <>
         <Modal
-          title="Upload avatar"
+          title={t('Profile.modalUploadAvatar.title')}
           visible={visible}
           onCancel={() => {
             setPreviewImage();
@@ -48,7 +54,7 @@ export const UploadAvatar = memo(
                 handleCancel();
               }}
             >
-              Cancel
+              {t('Profile.modalUploadAvatar.cancelBtn')}
             </Button>,
             <Button
               key="submit"
@@ -58,7 +64,7 @@ export const UploadAvatar = memo(
               }}
               loading={loading}
             >
-              Upload
+              {t('Profile.modalUploadAvatar.uploadBtn')}
             </Button>,
           ]}
         >
@@ -73,11 +79,7 @@ export const UploadAvatar = memo(
           ) : (
             <StyledDragImage {...getRootProps()}>
               <input {...getInputProps()} />
-              {isDragActive ? (
-                <p>Drop the files here ...</p>
-              ) : (
-                <p>Drag 'n' drop some files here, or click to select files</p>
-              )}
+              <p>{t('Profile.modalUploadAvatar.drag')}</p>
             </StyledDragImage>
           )}
         </Modal>

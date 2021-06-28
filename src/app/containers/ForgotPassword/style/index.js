@@ -17,8 +17,7 @@ export const Cover = styled.div`
   }
   width: 340px;
   p {
-    letter-spacing: 1.5px;
-    font-size: 0.8rem;
+    font-size: 14px;
   }
   .form {
     width: 100%;
