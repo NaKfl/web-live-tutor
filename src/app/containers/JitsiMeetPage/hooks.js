@@ -36,7 +36,7 @@ const useHooks = props => {
       token,
       JWT_SECRET,
     );
-    if (moment().isAfter(moment(startTime))) {
+    if (moment().isAfter(moment(startTime).add(-5, 'minutes'))) {
       setRoomInfo({
         userCall,
         roomName,
