@@ -3,6 +3,7 @@ import { getTutorById } from 'fetchers/tutor.service';
 import useActions from 'hooks/useActions';
 import { useEffect, useState } from 'react';
 import { notifyError, notifySuccess } from 'utils/notify';
+import { useTranslation } from 'react-i18next';
 
 export const useHooks = props => {
   const [contentReview, setContentReview] = useState('');
@@ -10,6 +11,8 @@ export const useHooks = props => {
   const { tutor } = props;
   const { sessionId } = tutor;
   const [tutorInfo, setTutorInfo] = useState({});
+  const { t } = useTranslation();
+
   const { reviewTutor } = useActions(
     {
       reviewTutor: actions.reviewTutor,
@@ -42,10 +45,10 @@ export const useHooks = props => {
         rating,
         content: contentReview,
       });
-      notifySuccess('Submit successfully');
+      notifySuccess(`${t('Notify.reviewSuccess')}`);
       props.onCancel();
     } else {
-      notifyError('Please fill content & rating');
+      notifyError(`${t('Notify.fillContent')}`);
     }
   };
   return {

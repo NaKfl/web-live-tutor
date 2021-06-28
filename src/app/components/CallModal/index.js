@@ -6,6 +6,7 @@ import { StyledAvatar, StyledModal } from './styles';
 import ReactAudioPlayer from 'react-audio-player';
 import audioFile from 'assets/mp3/audioCall.mp3';
 import callingFile from 'assets/mp3/calling.m4a';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 
@@ -13,7 +14,7 @@ const CallModal = memo(props => {
   const { handlers } = useHooks(props);
   const { handleAcceptCall, handleRejectCall, handleSelfCancelCall } = handlers;
   const { visible, onCancel, userCall, ...rest } = props;
-
+  const { t } = useTranslation();
   return (
     <StyledModal
       centered
@@ -31,7 +32,9 @@ const CallModal = memo(props => {
       />
       <Row className="flex-column">
         <Title level={3}>
-          {userCall.isReceived ? 'Cuộc gọi đến' : 'Cuộc gọi đi'}
+          {userCall.isReceived
+            ? t('CallModal.incomingCall')
+            : t('CallModal.outgoingCall')}
         </Title>
         <Row className="align-items-center">
           <StyledAvatar>
@@ -45,13 +48,21 @@ const CallModal = memo(props => {
           <Row className="p-2 flex-column">
             <Title className="" level={4}>
               {userCall.isReceived
-                ? `${userCall?.name} đang gọi cho bạn.`
-                : `Bạn đang gọi cho ${userCall?.name}.`}
+                ? `${userCall?.name} ${t('CallModal.isCallingTo')} ${t(
+                    'CallModal.you',
+                  )}.`
+                : `${t('CallModal.You')} ${t('CallModal.areCallingTo')} ${
+                    userCall?.name
+                  }.`}
             </Title>
             <Title className="text-description" level={5}>
               {userCall.isReceived
-                ? `Cuộc gọi sẽ bắt đầu ngay khi bạn trả lời.`
-                : `Cuộc gọi sẽ bắt đầu ngay khi gia sư trả lời.`}
+                ? `${t('CallModal.callingStart')} ${t('CallModal.you')} ${t(
+                    'CallModal.answer',
+                  )}.`
+                : `${t('CallModal.callingStart')} ${t('CallModal.tutor')} ${t(
+                    'CallModal.answers',
+                  )}.`}
             </Title>
           </Row>
         </Row>
@@ -68,7 +79,9 @@ const CallModal = memo(props => {
               onCancel();
             }}
           >
-            {userCall.isReceived ? `Từ chối` : `Hủy`}
+            {userCall.isReceived
+              ? t('CallModal.reject')
+              : t('CallModal.cancel')}
           </Button>
           {userCall.isReceived && (
             <Button
@@ -76,7 +89,7 @@ const CallModal = memo(props => {
               type="accent"
               onClick={() => handleAcceptCall({ userCall })}
             >
-              Chấp nhận
+              {t('CallModal.accept')}
             </Button>
           )}
         </Row>

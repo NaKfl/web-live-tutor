@@ -3,9 +3,11 @@ import { memo, useState, useEffect } from 'react';
 import { StyledCourseCard, StyledImageCard, StyledContentCard } from './styles';
 import Title from 'app/components/Title';
 import { Row } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 export const CourseCard = memo(({ detailCourse, handleChangeTopic }) => {
   const [selectedTopic, setSelectedTopic] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (detailCourse?.topics) {
@@ -34,7 +36,7 @@ export const CourseCard = memo(({ detailCourse, handleChangeTopic }) => {
               {detailCourse?.description}
             </Title>
             <Title className="fw-nor mt-2 description-course" level={4}>
-              {`List Topics`}
+              {t('Course.listTopics')}
             </Title>
           </Row>
           <Row className="flex-column">

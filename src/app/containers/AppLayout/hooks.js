@@ -16,6 +16,7 @@ import jwt from 'jsonwebtoken';
 import { actions as popupActions } from 'app/containers/Popup/slice';
 import socket from 'utils/socket';
 import { notifyError } from 'utils/notify';
+import { useTranslation } from 'react-i18next';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
@@ -38,6 +39,7 @@ export const useHooks = () => {
 export const useListenSocket = () => {
   const { showCallModal, closeCallModal } = useShowModal();
   const history = useHistory();
+  const { t } = useTranslation();
   useEffect(() => {
     socket.on(
       'call:acceptedCall',
@@ -86,14 +88,14 @@ export const useListenSocket = () => {
 
   useEffect(() => {
     socket.on('call:canNotCallTutor', ({ userBeCalled }) => {
-      notifyError(`${userBeCalled.name} đang có một cuộc gọi khác !`);
+      notifyError(`${userBeCalled.name} ${t('Notify.tutorBusy')}`);
     });
   }, []);
 
   useEffect(() => {
     socket.on('call:cancelCalled', ({ userCall, userBeCalled }) => {
       closeCallModal();
-      notifyError(`${userBeCalled.name} rejected`);
+      notifyError(`${userBeCalled.name} ${t('Notify.reject')}`);
     });
   }, []);
 

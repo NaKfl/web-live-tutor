@@ -5,6 +5,7 @@ import useHooks from './hooks';
 import { StarFilled } from '@ant-design/icons';
 import { StyledAvatar, StyledModal, StyledTextHighlight } from './styles';
 import Rate from 'app/components/Rate';
+import { useTranslation } from 'react-i18next';
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -16,6 +17,7 @@ const RatingForm = memo(props => {
     handleChangeContent,
     handleChangeRating,
   } = handlers;
+  const { t } = useTranslation();
   const { tutorInfo } = selectors;
   const { visible, onCancel, values, ...rest } = props;
   return (
@@ -55,7 +57,7 @@ const RatingForm = memo(props => {
         <hr></hr>
         <Row className="flex-column align-items-center">
           <Title className="" level={5}>
-            {`What is your rating for ${tutorInfo?.User?.name}?`}
+            {`${t('Review.whatIsURating')} ${tutorInfo?.User?.name}?`}
           </Title>
           <Rate
             style={{ fontSize: '30px' }}
@@ -63,7 +65,7 @@ const RatingForm = memo(props => {
           ></Rate>
         </Row>
         <TextArea
-          placeholder="Content Review"
+          placeholder={`${t('Review.contentReview')}`}
           autoSize={{ minRows: 2, maxRows: 6 }}
           style={{ marginTop: '20px' }}
           onChange={handleChangeContent}

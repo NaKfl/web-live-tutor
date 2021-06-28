@@ -6,6 +6,7 @@ import CourseCard from './Course';
 import { StyledCoursePage, LayoutListCourses } from './styles';
 import useHooks from './hooks';
 import Title from 'app/components/Title';
+import { useTranslation } from 'react-i18next';
 
 export const CoursePage = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -13,20 +14,17 @@ export const CoursePage = memo(() => {
   const { selectors, handlers } = useHooks();
   const { onSelectCard } = handlers;
   const { coursesList } = selectors;
-
+  const { t } = useTranslation();
   return (
     <StyledCoursePage>
       <Title level={3} className="fw-nor">
-        Discover Courses
+        {t('Course.discoverCourse')}
       </Title>
       <Title level={3} className="fw-nor">
-        Fundamentals of English Fluency
+        {t('Course.basicCourse')}
       </Title>
       <Title level={5} className="fw-nor mt-3 mb-4 fz-18">
-        Gain confidence and fluency in conversational English. There is
-        something for everyone, with courses for all skill levels covering
-        everything from the basics of smalltalk to crafting well-formed opinions
-        about complex, topical issues.
+        {t('Course.descriptCourse')}
       </Title>
       <LayoutListCourses>
         {coursesList.map(course => (

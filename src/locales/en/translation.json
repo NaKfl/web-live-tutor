@@ -432,5 +432,48 @@
     "invalidTime": "Meeting will start on {{time}}",
     "gotToApp": "Join meeting on app",
     "continueGoToWeb": "Continue on web version"
+  },
+  "CallModal": {
+    "outgoingCall": "Outgoing Call",
+    "incomingCall": "Incoming Call",
+    "isCallingTo": "is calling to",
+    "areCallingTo": "are calling to",
+    "callingStart": "Video call will start when",
+    "you": "you",
+    "You": "You",
+    "tutor": "tutor",
+    "answer": "answer",
+    "answers": "answers",
+    "cancel": "Cancel",
+    "reject": "Reject",
+    "accept": "Accept"
+  },
+  "Review": {
+    "reviews": "reviews",
+    "whatIsURating": "What is your rating for ",
+    "contentReview": "Content Review"
+  },
+  "Notify": {
+    "reviewSuccess": "You submitted successfully",
+    "fillContent": "Please fill content & rating",
+    "deleteBooking": "You deleted booking successfully",
+    "changePassword": "You changed password successfully",
+    "validEndDate": "Please select valid end date!",
+    "tutorBusy": "is busy !",
+    "reject": "rejected !",
+    "upload": "Please upload your avatar"
+  },
+  "Course": {
+    "discoverCourse": "Discover Courses",
+    "discover": "DISCOVER",
+    "basicCourse": "Basic Courses of LiveTutor System",
+    "descriptCourse": "LiveTutor has built the most quality, methodical and scientific courses in the fields of life for those who are in need of improving their knowledge of the fields.",
+    "overview": "Overview",
+    "whyTake": "Why take this course?",
+    "willToDo": "What will you be able to do?",
+    "level": "Experience Level",
+    "courseLength": "Course Length",
+    "listTopics": "List Topics",
+    "topic": "topics"
   }
 }

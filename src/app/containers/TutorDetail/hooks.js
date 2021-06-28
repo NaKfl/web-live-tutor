@@ -86,7 +86,7 @@ const useHooks = () => {
         tutorId,
       });
     }
-  }, [dateSelected]);
+  }, [dateSelected, selectorBookTimeSchedule.data]);
 
   useEffect(() => {
     if (selectorScheduleTutorByDate?.status === ACTION_STATUS.SUCCESS) {

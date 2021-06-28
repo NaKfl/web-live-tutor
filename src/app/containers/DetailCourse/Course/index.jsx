@@ -4,9 +4,11 @@ import Button from 'app/components/Button';
 import Title from 'app/components/Title';
 import { useHistory } from 'react-router';
 import { Row } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 export const CourseCard = memo(({ course }) => {
   const history = useHistory();
+  const { t } = useTranslation();
   return (
     <StyledCourseCard>
       <Row className="flex-column h-100">
@@ -29,7 +31,7 @@ export const CourseCard = memo(({ course }) => {
                 history.push(`/explore-course/${course.id}`);
               }}
             >
-              KHÁM PHÁ
+              {t('Course.discover')}
             </Button>
           </Row>
         </StyledContentCard>
