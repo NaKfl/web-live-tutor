@@ -298,10 +298,14 @@
     "notifyFail": "Có một số vấn đề với xác minh của bạn"
   },
   "Payment": {
-    "depositInApp": "NẠP TIỀN VÀO LIVETUTOR",
+    "bankGuide": "Nạp trực tiếp qua Internet Banking",
+    "bankFee": "Miễn phí nạp",
+    "paypalGuide": "Nạp trực tiếp qua Paypal",
+    "paypalFee": "Phí dựa vào chính sách của Paypal",
+    "depositInApp": "Chọn phương thức thanh toán",
     "deposit": "Nạp tiền",
     "howMuchMoney": "Số tiền bạn muốn nạp ({{currency}})",
-    "minMax": "Số tiền nạp tối thiểu là {{min}} và tối đa là {{max}}",
+    "minMax": "Vui lòng nạp tối thiểu {{min}}",
     "transactionsList": "List of transactions"
   },
   "ForgotPassword": {

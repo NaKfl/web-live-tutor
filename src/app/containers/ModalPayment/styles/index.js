@@ -1,16 +1,30 @@
 import styled from 'styled-components';
 import { Modal } from 'antd';
+import { media } from 'styles/media';
 
 export const StyledModal = styled(Modal)`
   width: 600px !important;
   .ant-modal-body {
-    padding: 24px 24px 0px 24px !important;
+    padding: 22px 24px 10px 24px !important;
   }
   .payment-title {
-    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 0;
   }
   p {
     margin: 0;
+  }
+  .ant-modal-content {
+    border-radius: 10px;
+    overflow: auto;
+    max-width: 80vh;
+
+    ${media.mobile`
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    `};
   }
   .payment-collapse {
     .ant-collapse-item {
@@ -50,8 +64,24 @@ export const StyledModal = styled(Modal)`
         input {
           text-align: center;
         }
+        .deposit-button {
+          margin-bottom: 10px;
+        }
+        .ant-form-item-control {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .ant-form-item-control-input {
+            width: 70%;
+          }
+        }
       }
       .payment-form-recharge {
+        width: 361px;
+        margin: 0 auto;
+        input {
+          text-align: center;
+        }
         .deposit-button {
           margin-bottom: 10px;
         }
@@ -65,9 +95,6 @@ export const StyledModal = styled(Modal)`
           .ant-form-item-control-input-content {
             display: flex;
             justify-content: center;
-            > input {
-              text-align: center;
-            }
           }
         }
       }

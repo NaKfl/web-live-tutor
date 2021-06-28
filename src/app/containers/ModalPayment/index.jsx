@@ -7,6 +7,8 @@ import Button from 'app/components/Button';
 import Input from 'app/components/Input';
 import { LeftOutlined } from '@ant-design/icons';
 import ReactDOM from 'react-dom';
+import paypalIcon from 'assets/svg/paypal.svg';
+import cardIcon from 'assets/svg/debit-card.svg';
 
 const { Title } = Typography;
 const { Panel } = Collapse;
@@ -50,7 +52,7 @@ const ModalPayment = memo(props => {
     });
   };
 
-  const _onApprove = async (_, actions) => {
+  const _onApprove = async () => {
     window.location.replace(`/verifyDeposit`);
   };
 
@@ -80,6 +82,7 @@ const ModalPayment = memo(props => {
 
   return (
     <StyledModal
+      title={<h3 className="payment-title">{t('Payment.depositInApp')}</h3>}
       centered
       closable={false}
       visible={visible}
@@ -91,22 +94,18 @@ const ModalPayment = memo(props => {
             onCancel();
           }}
         >
-          Cancel
+          {t('Common.cancel')}
         </Button>,
       ]}
       {...rest}
     >
-      <Title level={4} className="payment-title">
-        {t('Payment.depositInApp')}
-      </Title>
       <Collapse className="payment-collapse" defaultActiveKey={1} accordion>
         <Panel
           showArrow={false}
           header={renderHeader({
-            img:
-              'https://files.playerduo.com/production/static-files/icon/atm-card.png',
-            contentFirst: 'Thanh toán trực tiếp qua Internet Banking',
-            contentSecond: 'Miễn phí nạp',
+            img: cardIcon,
+            contentFirst: t('Payment.bankGuide'),
+            contentSecond: t('Payment.bankFee'),
           })}
           key={1}
         >
@@ -146,31 +145,22 @@ const ModalPayment = memo(props => {
                           if (!value)
                             return Promise.reject(
                               t('Payment.minMax', {
-                                min: '10.000',
-                                max: '100.000.000',
+                                min: '100.000 VND',
                               }),
                             );
-                          if (value >= 10000 && value <= 100000000) {
+                          if (value >= 10000) {
                             return Promise.resolve();
                           }
                           return Promise.reject(
                             t('Payment.minMax', {
-                              min: '10.000',
-                              max: '100.000.000',
+                              min: '100.000 VND',
                             }),
                           );
                         },
                       }),
                     ]}
                   >
-                    <Input
-                      formatter={value =>
-                        `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                      }
-                      placeholder={t('Payment.howMuchMoney', {
-                        currency: 'VND',
-                      })}
-                    />
+                    <Input defaultValue={100000} suffix="VND" />
                   </Form.Item>
 
                   <Form.Item className="deposit-button">
@@ -209,10 +199,9 @@ const ModalPayment = memo(props => {
         <Panel
           showArrow={false}
           header={renderHeader({
-            img:
-              'https://files.playerduo.com/production/static-files/icon/atm-card.png',
-            contentFirst: 'Thanh toán trực tiếp qua Paypal',
-            contentSecond: 'Phí dựa vào chính sách Paypal',
+            img: paypalIcon,
+            contentFirst: t('Payment.paypalGuide'),
+            contentSecond: t('Payment.paypalFee'),
           })}
           key={2}
         >
@@ -233,34 +222,29 @@ const ModalPayment = memo(props => {
                       if (!value)
                         return Promise.reject(
                           t('Payment.minMax', {
-                            min: '5',
-                            max: '100.000',
+                            min: '$5',
                           }),
                         );
-                      if (value >= 5 && value <= 100000) {
+                      if (value >= 5) {
                         return Promise.resolve();
                       }
                       return Promise.reject(
                         t('Payment.minMax', {
-                          min: '5',
-                          max: '100.000',
+                          min: '$5',
                         }),
                       );
                     },
                   }),
                 ]}
               >
-                <Input
-                  formatter={value =>
-                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                  }
-                  placeholder={t('Payment.howMuchMoney', {
-                    currency: 'USD',
-                  })}
-                />
+                <Input suffix="$" />
               </Form.Item>
               <Form.Item className="deposit-button">
                 <PayPalButton
+                  style={{
+                    layout: 'horizontal',
+                    tagline: 'false',
+                  }}
                   createOrder={(data, actions) => _createOrder(data, actions)}
                   onApprove={(data, actions) => _onApprove(data, actions)}
                   onError={(data, actions) => _onError(data, actions)}
