@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Button from 'app/components/Button';
 import { useTranslation } from 'react-i18next';
-export const VideoUpload = ({ selectVideo }) => {
+export const VideoUpload = ({ selectVideo, ...rest }) => {
   const { t } = useTranslation();
   const [preview, setPreview] = useState();
   const onDrop = useCallback(
@@ -28,6 +28,7 @@ export const VideoUpload = ({ selectVideo }) => {
           justifyContent: 'center',
           alignItems: 'center',
         }}
+        {...rest}
       >
         <Button
           type="primary"

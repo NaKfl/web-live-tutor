@@ -1,32 +1,40 @@
 import styled from 'styled-components';
 import { Tag } from 'antd';
 import { COLOR } from 'styles/colorPalette';
+import { media } from 'styles/media';
+
 export const CoverSearch = styled.div`
+  margin-top: -35px;
   width: 100%;
   height: 100%;
   .ant-empty-footer {
     display: flex;
     justify-content: center;
   }
+  .ant-carousel {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
 `;
 
 export const SearchInput = styled.input``;
 
 export const StyledIntro = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 25px 20px;
-  .title {
-    font-size: 36px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-  }
-  .sub-title {
-    font-size: 24px;
-    font-weight: 400;
-  }
+  margin: 10px 0 5px 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #3c3c3c;
+  ${media.custom600px`
+  font-size: 25px;
+  `}
+  ${media.custom400px`
+  font-size: 20px;
+  `}
 `;
 
 export const StyledListTag = styled.div`

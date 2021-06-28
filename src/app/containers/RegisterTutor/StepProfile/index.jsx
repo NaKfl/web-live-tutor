@@ -3,7 +3,7 @@ import { Introduction, Content, StyleMultiSelect } from './styles';
 import Divider from 'app/components/Divider';
 import Form from 'app/components/Form';
 import Alert from 'app/components/Alert';
-import { Select, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import Input from 'app/components/Input';
 import Radio from 'app/components/Radio';
 import Checkbox from 'app/components/Checkbox';
@@ -14,6 +14,7 @@ import { MAJOR_NAMES } from './constants';
 import COUNTRIES from 'utils/countries';
 import LANGUAGES from 'utils/languages';
 import MultiOptions from './MultiOptions';
+import Select from 'app/components/Select';
 
 export const StepProfile = ({
   formProfile,
@@ -48,7 +49,7 @@ export const StepProfile = ({
             {t('Register.Tutor.profile.title')}
           </Divider>
           <Row gutter={16} className="basic-info">
-            <Col span={8} className="basic-info-left no-flex">
+            <Col lg={8} xs={24} className="basic-info-left no-flex">
               <ImageUpload
                 className="avt-uploader"
                 selectAvatar={selectAvatar}
@@ -59,7 +60,7 @@ export const StepProfile = ({
                 type="info"
               />
             </Col>
-            <Col span={16} className="basic-info-right no-flex">
+            <Col lg={16} xs={24} className="basic-info-right no-flex">
               <Col span={24}>
                 <Form.Item
                   label={t('Register.Tutor.profile.lable.name')}

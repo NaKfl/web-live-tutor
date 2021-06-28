@@ -1,5 +1,6 @@
 import { Select } from 'antd';
 import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHooks } from './hooks';
 import { StyledFilterColumn, StyleFilter } from './style';
 
@@ -9,6 +10,7 @@ export const Filter = memo(() => {
   const { selectors, handlers } = useHooks();
   const { filterViewData, showHideDropDownState } = selectors;
   const { onChangeFilter, getOptionDefault } = handlers;
+  const { t } = useTranslation();
 
   return (
     <StyleFilter>
@@ -16,7 +18,7 @@ export const Filter = memo(() => {
         <div className="wrapper">
           {filterViewData.map(type => (
             <StyledFilterColumn key={type.id}>
-              <div className="title">{type.title}</div>
+              <div className="title">{t(`Tutors.${type.title}`)}</div>
               <Select
                 mode="multiple"
                 style={{ width: '100%' }}

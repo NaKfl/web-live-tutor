@@ -32,26 +32,38 @@ const useHooks = props => {
       setError(t('Jitsi.invalidToken'));
       return pushToHome();
     }
-    const { roomName, isTutor, userCall, userBeCalled, startTime } = jwt.verify(
-      token,
-      JWT_SECRET,
-    );
-    if (moment().isAfter(moment(startTime))) {
-      setRoomInfo({
-        userCall,
-        roomName,
-        userBeCalled,
-        isTutor,
-        startTime,
-        token,
-      });
-    } else {
-      setError(
-        t('Jitsi.invalidTime', {
-          time: moment(startTime).format('DD-MM-YYYY HH:mm'),
-        }),
-      );
-      pushToHome(roomInfo.isTutor);
+
+    const data = (() => {
+      try {
+        const decoded = jwt.verify(token, JWT_SECRET);
+        return decoded;
+      } catch (error) {
+        setError(t('Jitsi.invalidToken'));
+        pushToHome();
+        return null;
+      }
+    })();
+
+    if (data) {
+      const { roomName, isTutor, userCall, userBeCalled, startTime } = data;
+
+      if (moment().isAfter(moment(startTime).add(-5, 'minutes'))) {
+        setRoomInfo({
+          userCall,
+          roomName,
+          userBeCalled,
+          isTutor,
+          startTime,
+          token,
+        });
+      } else {
+        setError(
+          t('Jitsi.invalidTime', {
+            time: moment(startTime).format('DD-MM-YYYY HH:mm'),
+          }),
+        );
+        pushToHome(roomInfo.isTutor);
+      }
     }
   }, [token, myTimeOut, roomInfo.isTutor]);
 

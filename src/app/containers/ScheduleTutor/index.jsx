@@ -11,10 +11,12 @@ import useHooks from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
 import { StyledScheduleTutor, StyledCalendar } from './styles';
+import useWindowDimensions from 'hooks/useWindowDimensions';
+import { sizes } from 'styles/media';
+import { MoreOutlined } from '@ant-design/icons';
 
 export const ScheduleTutor = () => {
   const { t } = useTranslation();
-
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
@@ -26,6 +28,8 @@ export const ScheduleTutor = () => {
     handleBackToToday,
   } = handlers;
   const { scheduleTutor, month, scheduleTutorStatus } = selectors;
+
+  const { width } = useWindowDimensions();
 
   const getFreeTimesOfDate = (data, date) => {
     return data[date] || [];
@@ -62,15 +66,24 @@ export const ScheduleTutor = () => {
                   <Skeleton key={index} active paragraph={{ rows: 0 }} />
                 ))) || (
                 <>
-                  {listFreeTime.map(time => {
-                    return (
-                      <TextTimeSchedule
-                        typeText="Purple"
-                        content={`${time.startTime} - ${time.endTime}`}
-                        key={time?.id}
-                      />
-                    );
-                  })}
+                  {width >= sizes.tablet && listFreeTime?.length > 0 && (
+                    <>
+                      {listFreeTime.map(time => {
+                        return (
+                          <TextTimeSchedule
+                            typeText="Purple"
+                            content={`${time.startTime} - ${time.endTime}`}
+                            key={time?.id}
+                          />
+                        );
+                      })}
+                    </>
+                  )}
+                  {width < sizes.tablet && listFreeTime?.length > 0 && (
+                    <Row justify="center">
+                      <MoreOutlined className="more-icon" />
+                    </Row>
+                  )}
                 </>
               )}
             </Row>
@@ -83,28 +96,30 @@ export const ScheduleTutor = () => {
   const headerRender = () => {
     return (
       <div className="header-schedule">
-        <FontAwesomeIcon
-          icon={faAngleLeft}
-          className="arrow arrow-left"
-          onClick={handleDecreaseMonth}
-        />
-        <DatePicker
-          inputReadOnly
-          allowClear={false}
-          suffixIcon={false}
-          format={'MMM YYYY'}
-          onChange={date => {
-            handleChangeMonth(date);
-          }}
-          defaultValue={moment()}
-          picker="month"
-          value={month}
-        />
-        <FontAwesomeIcon
-          icon={faAngleRight}
-          className="arrow arrow-right"
-          onClick={handleIncreaseMonth}
-        />
+        <div>
+          <FontAwesomeIcon
+            icon={faAngleLeft}
+            className="arrow arrow-left"
+            onClick={handleDecreaseMonth}
+          />
+          <DatePicker
+            inputReadOnly
+            allowClear={false}
+            suffixIcon={false}
+            format={'MMM YYYY'}
+            onChange={date => {
+              handleChangeMonth(date);
+            }}
+            defaultValue={moment()}
+            picker="month"
+            value={month}
+          />
+          <FontAwesomeIcon
+            icon={faAngleRight}
+            className="arrow arrow-right"
+            onClick={handleIncreaseMonth}
+          />
+        </div>
         <button onClick={handleBackToToday} className="today-btn">
           {t('ScheduleTutor.toDay')}
         </button>

@@ -9,6 +9,9 @@ export const Introduction = styled.div`
     height: 117.31px;
     margin-right: 25px;
   }
+  ${media.smallMobile`
+    flex-direction: column;
+  `}
 `;
 
 export const Content = styled.div`

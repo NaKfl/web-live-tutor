@@ -160,7 +160,7 @@ const ModalPayment = memo(props => {
                       }),
                     ]}
                   >
-                    <Input defaultValue={100000} suffix="VND" />
+                    <Input suffix="VND" />
                   </Form.Item>
 
                   <Form.Item className="deposit-button">

@@ -71,12 +71,21 @@ export const StyledFistPart = styled.div`
     border-bottom-left-radius: 5px;
   }
   .ant-carousel {
-    width: 65%;
+    width: 70%;
     box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
   }
   .top-tutor {
-    width: 35%;
+    width: 30%;
   }
+
+  ${media.subWide`
+    .ant-carousel {
+      width: 65%;
+    }
+    .top-tutor {
+      width: 35%;
+    }
+  `}
 
   ${media.tablet`
   height: unset;
@@ -123,7 +132,8 @@ export const StyledSecondPart = styled.div`
   ${media.tablet`
   .search-banner {
     .search-title {
-        font-size: 28px;
+        text-align:center;
+        font-size: 29px;
         font-weight: 700;
         margin-bottom: 20px;
       }

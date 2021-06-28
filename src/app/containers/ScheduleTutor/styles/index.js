@@ -56,6 +56,14 @@ export const StyledCalendar = styled(Calendar)`
         width: 145px;
       }
     }
+    ${media.custom500px`
+        flex-direction: column;
+        align-items: flex-start;
+        .today-btn {
+          margin-left: 0;
+          margin-top: 10px;
+        }
+    `}
   }
   .ant-picker-panel {
     .ant-picker-body {
@@ -118,7 +126,17 @@ export const StyledCalendar = styled(Calendar)`
                   margin: 0 0 0 0;
                 }
               }
+              .more-icon {
+                color: ${COLOR.CORNFLOWER};
+                font-size: 30px;
+                font-weight: bold;
+                margin-top: 5px;
+              }
             }
+
+            ${media.mobile`
+              padding:10px 0 0 0;
+           `}
           }
         }
         td.ant-picker-cell-selected {
@@ -154,11 +172,5 @@ export const StyledCalendar = styled(Calendar)`
       border-top: none;
       margin: 0;
     }
-    ${media.mobile`
-      .ant-picker-calendar-date {
-        width: 35px;
-        height: 3.5rem;
-      }
-      `}
   }
 `;
