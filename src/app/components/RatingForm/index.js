@@ -11,6 +11,7 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 const RatingForm = memo(props => {
+  console.log(props);
   const { handlers, selectors } = useHooks(props);
   const {
     handleSubmitReview,

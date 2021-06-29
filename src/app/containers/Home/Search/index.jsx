@@ -14,10 +14,12 @@ export const Search = memo(({ placeholder }) => {
           pathname: '/search',
           search: qs.stringify(
             { search: searchKey },
+            { page: 1 },
             {
               arrayFormat: 'bracket-separator',
               arrayFormatSeparator: '|',
               skipNull: true,
+              encode: true,
             },
           ),
         });

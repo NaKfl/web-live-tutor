@@ -5,11 +5,9 @@ import { useForm } from './hook';
 import historyIcon from 'assets/svg/history.svg';
 import { StyledHeaderTable, StyledTable } from './style';
 import { useTranslation } from 'react-i18next';
-
 export const CallSessionTable = memo(({ totalCount, onChangePage }) => {
   const { t } = useTranslation();
   const form = useForm();
-
   return (
     <StyledTable>
       <StyledHeaderTable>
@@ -22,7 +20,11 @@ export const CallSessionTable = memo(({ totalCount, onChangePage }) => {
       </StyledHeaderTable>
       <Table {...form}></Table>
       {!!totalCount && (
-        <Pagination total={totalCount} onChange={onChangePage}></Pagination>
+        <Pagination
+          total={totalCount}
+          onChange={onChangePage}
+          pageSize={5}
+        ></Pagination>
       )}
     </StyledTable>
   );
