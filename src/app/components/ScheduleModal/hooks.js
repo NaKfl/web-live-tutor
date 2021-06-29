@@ -1,17 +1,17 @@
-import useActions from 'hooks/useActions';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   selectRegisterSchedule,
-  selectUnRegisterSchedule,
   selectScheduleTutorByDate,
+  selectUnRegisterSchedule,
 } from 'app/containers/ScheduleTutor/selectors';
 import { actions } from 'app/containers/ScheduleTutor/slice';
-import { ACTION_STATUS } from 'utils/constants';
+import useActions from 'hooks/useActions';
 import moment from 'moment';
-import { notifyError } from 'utils/notify';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { ACTION_STATUS, DATE_FORMAT, TIME_FORMAT } from 'utils/constants';
+import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { notifyError } from 'utils/notify';
 
 export const TIME = {
   startTime: 0,
@@ -83,8 +83,8 @@ export const useHooks = props => {
   ]);
 
   const handleAddDateSchedule = ({ startTimeSelect, endTimeSelect }) => {
-    const startTime = moment(startTimeSelect).format('HH:mm');
-    const endTime = moment(endTimeSelect).format('HH:mm');
+    const startTime = moment(startTimeSelect).format(TIME_FORMAT);
+    const endTime = moment(endTimeSelect).format(TIME_FORMAT);
     const isValidDate = moment(endDate).isAfter(data.date);
     if (isRepeated) {
       if (isValidDate) {
@@ -93,7 +93,7 @@ export const useHooks = props => {
           endTime,
           isRepeated,
           startDate: data.date,
-          endDate: moment(endDate).format('YYYY-MM-DD'),
+          endDate: moment(endDate).format(DATE_FORMAT),
         });
       } else {
         notifyError(`${t('Notify.validEndDate')}`);

@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
 import isOnMobileDevice from 'utils/mobileDetect';
 import { useTranslation } from 'react-i18next';
+import { DATE_TIME_FORMAT } from 'utils/constants';
 
 const useHooks = props => {
   const { t } = useTranslation();
@@ -62,7 +63,7 @@ const useHooks = props => {
       } else {
         setError(
           t('Jitsi.invalidTime', {
-            time: moment(startTime).format('DD-MM-YYYY HH:mm'),
+            time: moment(startTime).format(DATE_TIME_FORMAT),
           }),
         );
         pushToHome(roomInfo.isTutor);
