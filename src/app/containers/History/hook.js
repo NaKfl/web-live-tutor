@@ -15,15 +15,12 @@ import {
 } from './selectors';
 import { actions } from './slice';
 import Button from 'app/components/Button';
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+import qs from 'query-string';
 
 export const useHook = () => {
   const totalCount = useSelector(makeTutorCount);
-  const query = useQuery();
   const history = useHistory();
+  const location = useLocation();
   const { fetchHistory, changeTargetIsTutor } = useActions(
     {
       fetchHistory: actions.fetchHistory,
@@ -35,9 +32,10 @@ export const useHook = () => {
   const isTutor = user?.currentRole === 'tutor';
 
   useEffect(() => {
-    fetchHistory({ isTutor, page: query.get('page') || 1 });
+    const { page } = qs.parse(location.search);
+    fetchHistory({ isTutor, page: +page || 1 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isTutor, query.get('page')]);
+  }, [location, isTutor]);
 
   const changeCategory = useCallback(
     selected => {
@@ -48,7 +46,7 @@ export const useHook = () => {
 
   const onChangePage = useCallback(
     value => {
-      history.push(`/history?page=${value}`);
+      history.push(`/history?page=${+value}`);
     },
     [history],
   );

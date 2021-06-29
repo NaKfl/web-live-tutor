@@ -36,6 +36,9 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
           isReviewed: value.isReviewed,
           startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
           endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
+          sessionId: value.id,
+          userId: value.studentId,
+          isReviewed: value.isReviewed,
         }
       : {
           key: value.id,
@@ -47,6 +50,9 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
           tutorName: value?.tutorInfo?.name,
           startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
           endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
+          tutorId: value.tutorId,
+          sessionId: value.id,
+          isReviewed: value.isReviewed,
         },
   );
 };
