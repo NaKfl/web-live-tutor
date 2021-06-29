@@ -136,8 +136,8 @@ const ScheduleModal = memo(props => {
                   <StyledRangeTimePicker>
                     <DatePicker
                       disabled={!isRepeated}
-                      disabledDate={currentDate => {
-                        return moment().isAfter(moment(currentDate));
+                      disabledDate={date => {
+                        return moment(currentDate).isAfter(moment(date));
                       }}
                       onChange={onChangeEndDate}
                       suffixIcon={false}

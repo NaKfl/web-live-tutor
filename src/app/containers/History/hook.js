@@ -1,8 +1,9 @@
-import Button from 'app/components/Button';
+import { Tag } from 'antd';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { actions as popupActions } from 'app/containers/Popup/slice';
 import useActions from 'hooks/useActions';
 import { useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { mapHistoryDataSource } from 'utils/common';
@@ -13,6 +14,7 @@ import {
   makeTutorCount,
 } from './selectors';
 import { actions } from './slice';
+import Button from 'app/components/Button';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -64,6 +66,7 @@ export const useHook = () => {
 };
 
 export const useForm = () => {
+  const { t } = useTranslation();
   const historyList = useSelector(makeListHistory);
   const loading = useSelector(makeSelectLoading);
   const user = getUserFromStorage();
@@ -83,97 +86,77 @@ export const useForm = () => {
     [openPopup],
   );
   const datasource = mapHistoryDataSource(historyList, isTutor);
-  const columnsForStudent = [
+  const columns = [
     {
-      key: 'STT',
-      dataIndex: 'stt',
-      title: 'STT',
-      width: '10%',
+      title: <p className="title">{t('History.orderNumber')}</p>,
+      dataIndex: 'no',
+      key: 'no',
+      fixed: 'left',
+      align: 'center',
+      width: '55px',
     },
     {
-      key: isTutor ? 'studentName' : 'tutorName',
+      title: (
+        <p className="title">
+          {t(`History.${isTutor ? 'studentName' : 'tutorName'}`)}
+        </p>
+      ),
       dataIndex: isTutor ? 'studentName' : 'tutorName',
-      title: isTutor ? 'Student Name' : 'Tutor Name',
+      key: 'name',
+      fixed: 'left',
+      ellipsis: true,
+      width: '20%',
     },
     {
-      key: 'startTime',
+      title: <p className="title">{t('History.startTime')}</p>,
       dataIndex: 'startTime',
-      title: 'Start Time',
+      key: 'startTime',
+      render: value => <Tag color="blue">{value}</Tag>,
     },
     {
-      key: 'endTime',
+      title: <p className="title">{t('History.endTime')}</p>,
       dataIndex: 'endTime',
-      title: 'End time',
+      key: 'endTime',
+      render: value => <Tag color="volcano">{value}</Tag>,
     },
     {
+      title: <p className="title">{t('History.during')}</p>,
       key: 'during',
       dataIndex: 'during',
-      title: 'During time',
     },
     {
+      title: <p className="title">{t('History.actions')}</p>,
       key: 'control',
-      dataIndex: 'control',
-      title: 'Control',
-      width: '10%',
-      render: (text, record, index) => {
-        const row = historyList[index];
-        if (row.isReviewed) {
-          return <span>Reviewed</span>;
-        } else {
-          return (
-            <Button
-              size="small"
-              onClick={() => {
-                const tutor = {
-                  userId: row.tutorId,
-                  sessionId: row.id,
-                };
-                showRatingForm(tutor);
-              }}
-            >
-              Review
-            </Button>
-          );
-        }
+      width: '120px',
+      align: 'center',
+      render: (_, record) => {
+        return (
+          <Button
+            style={{ marginRight: 0 }}
+            disabled={record.isReviewed}
+            type="accent"
+            onClick={() => {
+              const tutor = {
+                userId: record.tutorId,
+                sessionId: record.id,
+              };
+              showRatingForm(tutor);
+            }}
+          >
+            {t('History.review')}
+          </Button>
+        );
       },
     },
   ];
 
-  const columnsForTutor = [
-    {
-      key: 'STT',
-      dataIndex: 'stt',
-      title: 'STT',
-      width: '10%',
-    },
-    {
-      key: 'studentName',
-      dataIndex: 'studentName',
-      title: 'Student Name',
-    },
-    {
-      key: 'startTime',
-      dataIndex: 'startTime',
-      title: 'Start Time',
-    },
-    {
-      key: 'endTime',
-      dataIndex: 'endTime',
-      title: 'End time',
-    },
-    {
-      key: 'during',
-      dataIndex: 'during',
-      title: 'During time',
-    },
-  ];
-
   return {
-    dataSource: datasource,
-    columns: isTutor ? columnsForTutor : columnsForStudent,
-    bordered: true,
+    columns,
     loading,
+    dataSource: datasource,
     size: 'small',
     pagination: false,
+    scroll: { x: 850 },
+    bordered: false,
   };
 };

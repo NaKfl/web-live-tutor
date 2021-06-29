@@ -16,7 +16,7 @@ export const BookingStudent = () => {
     <StyledBookingList>
       <BookingListTable
         onChangePage={onChangePage}
-        totalCount={bookingList.length}
+        totalCount={bookingList?.length}
         handleCancelBooking={handleCancelBooking}
         dataSource={bookingList}
       ></BookingListTable>

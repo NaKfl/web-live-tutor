@@ -3,9 +3,11 @@ import useActions from 'hooks/useActions';
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { selectBookingListData } from './selectors';
+import { selectBookingListData, selectBookingListStatus } from './selectors';
 import { useTranslation } from 'react-i18next';
 import { actions } from './slice';
+import { Tag } from 'antd';
+import { ACTION_STATUS } from 'utils/constants';
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -72,38 +74,47 @@ export const useHooks = () => {
 export const useForm = data => {
   const { t } = useTranslation();
   const history = useHistory();
+  const status = useSelector(selectBookingListStatus);
   const dataSource = mapBookingListDataSource(data);
   const columnsForStudent = [
     {
-      title: t('BookingList.orderNumber'),
+      title: <p className="title">{t('BookingList.orderNumber')}</p>,
       dataIndex: 'stt',
       key: 'no',
-      width: '50px',
+      fixed: 'left',
+      align: 'center',
+      width: '55px',
     },
     {
-      title: t('BookingList.studentName'),
+      title: <p className="title">{t('BookingList.studentName')}</p>,
       dataIndex: 'name',
       key: 'name',
+      fixed: 'left',
+      ellipsis: true,
+      width: '20%',
     },
     {
-      title: t('BookingList.date'),
+      title: <p className="title">{t('BookingList.date')}</p>,
       dataIndex: 'date',
       key: 'date',
     },
     {
-      title: t('BookingList.startPeriod'),
+      title: <p className="title">{t('BookingList.startPeriod')}</p>,
       dataIndex: 'startPeriod',
       key: 'startPeriod',
+      render: value => <Tag color="blue">{value}</Tag>,
     },
     {
-      title: t('BookingList.endPeriod'),
+      title: <p className="title">{t('BookingList.endPeriod')}</p>,
       dataIndex: 'endPeriod',
       key: 'endPeriod',
+      render: value => <Tag color="volcano">{value}</Tag>,
     },
     {
-      title: t('BookingList.action'),
+      title: <p className="title">{t('BookingList.action')}</p>,
       key: 'action',
       width: '160px',
+      align: 'center',
       render: (_, record) => {
         return (
           <Button
@@ -120,8 +131,10 @@ export const useForm = data => {
   return {
     dataSource,
     columns: columnsForStudent,
-    bordered: true,
     size: 'small',
     pagination: false,
+    scroll: { x: 650 },
+    bordered: false,
+    loading: status === ACTION_STATUS.PENDING,
   };
 };

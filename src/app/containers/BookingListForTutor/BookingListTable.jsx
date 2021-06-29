@@ -2,20 +2,24 @@ import { memo } from 'react';
 import { Table } from 'antd';
 import { useForm } from './hooks';
 import { StyledTable, StyledHeaderTable } from './styles';
-import Typography from 'app/components/Typography';
 import Pagination from 'app/components/Pagination';
 import { useTranslation } from 'react-i18next';
-
-const { Title } = Typography;
+import calendarCheck from 'assets/svg/calendar-check.svg';
 
 export const BookingListTable = memo(
-  ({ totalCount, onChangePage, handleCancelBooking, dataSource }) => {
+  ({ totalCount, onChangePage, dataSource }) => {
     const { t } = useTranslation();
-    const form = useForm(dataSource, handleCancelBooking);
+    const form = useForm(dataSource);
+
     return (
       <StyledTable>
         <StyledHeaderTable>
-          <Title level={2}>{t('BookingList.bookingForTutorTitle')}</Title>
+          <img className="image" src={calendarCheck} alt="calendar" />
+          <div className="content">
+            <h2>{t('BookingList.bookingForTutorTitle')}</h2>
+            <p>{t('BookingList.guideForTutor')}</p>
+            <p>{t('BookingList.subGuideForTutor')}</p>
+          </div>
         </StyledHeaderTable>
         <Table {...form}></Table>
         {!!totalCount && (

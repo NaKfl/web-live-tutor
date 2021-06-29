@@ -292,7 +292,10 @@
     "schedule": "Schedule",
     "registeredSchedule": "Registered schedule",
     "registerNewSchedule": "Register new schedule",
-    "repeatUtil": "Repeat util"
+    "repeatUtil": "Repeat util",
+    "title": "Schedule Manager",
+    "guide": "You can get, create, remove your schedules",
+    "subGuide": "Students can view and book to the sessions you've added here"
   },
   "Search": {
     "result": "Result",
@@ -413,7 +416,12 @@
       "timeBooked": "Booking Time",
       "price": "Price",
       "total": "Total"
-    }
+    },
+    "guideForTutor": "This is your list of reservations",
+    "subGuideForTutor": "You can keep track that who do book you, when do the meeting start and join meeting by a click",
+    "guideForStudent": "Here is a list of the sessions you have booked",
+    "subGuideForStudent": "You can track when the meeting starts, join the meeting with one click or can cancel the meeting before 24 hours",
+    "cancelQuestion": "Are you sure to cancel this session ?"
   },
   "Report": {
     "guide": "Help us understand what's happening",
@@ -475,5 +483,19 @@
     "courseLength": "Course Length",
     "listTopics": "List Topics",
     "topic": "topics"
+  },
+  "History": {
+    "title": "Call History",
+    "guide": "This is your list of calls",
+    "subGuide": "You can review who you called or who called you, when and how long the call was made",
+    "orderNumber": "No",
+    "studentName": "Student",
+    "tutorName": "Tutor",
+    "startTime": "Start",
+    "endTime": "End",
+    "during": "Duration",
+    "review": "Review",
+    "reviewed": "Reviewed",
+    "actions": "Actions"
   }
 }
