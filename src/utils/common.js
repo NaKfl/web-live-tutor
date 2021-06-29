@@ -1,6 +1,7 @@
 // Create an array from start to end - 1: range(1, 3) --> [1, 2]
 import moment from 'moment';
 import { orderBy } from 'lodash';
+import { DATE_TIME_FORMAT } from './constants';
 export const range = (start, end) => {
   const result = [];
   for (let i = start; i < end; i++) {
@@ -34,11 +35,9 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
           tutorId: value.tutorId,
           sessionId: value.id,
           isReviewed: value.isReviewed,
-          startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
-          endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
-          sessionId: value.id,
+          startTime: moment(value?.startTime).format(DATE_TIME_FORMAT),
+          endTime: moment(value?.endTime).format(DATE_TIME_FORMAT),
           userId: value.studentId,
-          isReviewed: value.isReviewed,
         }
       : {
           key: value.id,
@@ -48,11 +47,8 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
           sessionId: value.id,
           isReviewed: value.isReviewed,
           tutorName: value?.tutorInfo?.name,
-          startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
-          endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
-          tutorId: value.tutorId,
-          sessionId: value.id,
-          isReviewed: value.isReviewed,
+          startTime: moment(value?.startTime).format(DATE_TIME_FORMAT),
+          endTime: moment(value?.endTime).format(DATE_TIME_FORMAT),
         },
   );
 };

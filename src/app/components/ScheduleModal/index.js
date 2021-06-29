@@ -16,6 +16,7 @@ import React, { memo } from 'react';
 import useHooks from './hooks';
 import { StyledModal, StyledRangeTimePicker } from './styles';
 import { useTranslation } from 'react-i18next';
+import { DATE_FORMAT } from 'utils/constants';
 
 const { Title } = Typography;
 const { RangePicker } = TimePicker;
@@ -52,7 +53,7 @@ const ScheduleModal = memo(props => {
       <Row className="flex-column">
         <Title className="title">
           {`${t('ScheduleTutor.schedule')} ${moment(currentDate).format(
-            'DD/MM/YYYY',
+            DATE_FORMAT,
           )}`}
         </Title>
         <h3 className="sub-title">{t('ScheduleTutor.registeredSchedule')}</h3>

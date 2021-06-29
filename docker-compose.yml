@@ -4,6 +4,7 @@ services:
   app:
     image: nakfl/front-end-live-tutor:latest
     environment:
+      TZ: Asia/Ho_Chi_Minh
       REACT_APP_NODE_ENV: production
       REACT_APP_WEB_API: https://api.livetutor.live
       REACT_APP_GOOGLE_ID: 518404312823-1h2kl40fr7nh0sj2q334sk175tcqa9ls.apps.googleusercontent.com

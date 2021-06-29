@@ -41,7 +41,7 @@ import Button from 'app/components/Button';
 import GroupSelectTime from 'app/components/GroupSelectTime';
 import { MAJOR_NAMES } from '../RegisterTutor/StepProfile/constants';
 import COUNTRIES from 'utils/countries';
-import { ACTION_STATUS } from 'utils/constants';
+import { ACTION_STATUS, DATE_FORMAT } from 'utils/constants';
 import { ModalBookConfirm } from './ModalBookConfirm';
 import LANGUAGES from 'utils/languages';
 import { useControlChatPopup } from 'app/containers/Chat/hooks';
@@ -107,11 +107,11 @@ export const TutorDetail = ({ ...rest }) => {
   };
 
   const disabledDate = value => {
-    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    const dateOfCell = moment(value).format(DATE_FORMAT);
     return !Object.keys(scheduleDatesTutor).includes(dateOfCell);
   };
   const datePickerRender = value => {
-    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    const dateOfCell = moment(value).format(DATE_FORMAT);
     const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
     return (
       <div
@@ -124,7 +124,7 @@ export const TutorDetail = ({ ...rest }) => {
     );
   };
   const dateCellRender = value => {
-    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    const dateOfCell = moment(value).format(DATE_FORMAT);
     const dayOfDate = value.date();
     const haveFreeTimes = Object.keys(scheduleDatesTutor).includes(dateOfCell);
     const compareToDateNow = moment(value).diff(moment(), 'days');

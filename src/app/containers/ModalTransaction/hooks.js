@@ -1,4 +1,4 @@
-import { TRANSACTION_TYPES } from 'utils/constants';
+import { DATE_TIME_FORMAT, TRANSACTION_TYPES } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 
@@ -76,7 +76,7 @@ export const useForm = data => {
       dataIndex: 'createdAt',
       title: 'Transaction Time',
       render: (_, record, __) => {
-        const time = moment(record.createdAt).format('YYYY/MM/DD HH:mm');
+        const time = moment(record.createdAt).format(DATE_TIME_FORMAT);
         return <h4>{time}</h4>;
       },
     },

@@ -5,7 +5,7 @@ import TextTimeSchedule from 'app/components/TextTimeSchedule';
 import moment from 'moment';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ACTION_STATUS } from 'utils/constants';
+import { ACTION_STATUS, DATE_FORMAT } from 'utils/constants';
 import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import useHooks from './hooks';
 import saga from './saga';
@@ -40,7 +40,7 @@ export const ScheduleTutor = () => {
     return data[date] || [];
   };
   function dateCellRender(value) {
-    const dateOfCell = moment(value).format('YYYY-MM-DD');
+    const dateOfCell = moment(value).format(DATE_FORMAT);
     const listFreeTime = getFreeTimesOfDate(scheduleTutor, dateOfCell);
     const dayOfDate = value.date();
     const compareToDateNow = moment(value).diff(moment(), 'days');
