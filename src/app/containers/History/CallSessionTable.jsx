@@ -1,36 +1,31 @@
 import { Table } from 'antd';
 import Pagination from 'app/components/Pagination';
-import Typography from 'app/components/Typography';
 import { memo } from 'react';
 import { useForm } from './hook';
+import historyIcon from 'assets/svg/history.svg';
 import { StyledHeaderTable, StyledTable } from './style';
+import { useTranslation } from 'react-i18next';
 
-const { Title } = Typography;
+export const CallSessionTable = memo(({ totalCount, onChangePage }) => {
+  const { t } = useTranslation();
+  const form = useForm();
 
-export const CallSessionTable = memo(
-  ({ changeCategory, totalCount, onChangePage }) => {
-    const form = useForm();
-    return (
-      <StyledTable>
-        <StyledHeaderTable>
-          <Title level={2}>Call session history</Title>
-          {/* <Select
-            defaultValue="Student Role"
-            size="small"
-            style={{ width: 120 }}
-            onChange={changeCategory}
-          >
-            <Select.Option value="student">Student Role</Select.Option>
-            <Select.Option value="tutor">Tutor Role</Select.Option>
-          </Select> */}
-        </StyledHeaderTable>
-        <Table {...form}></Table>
-        {!!totalCount && (
-          <Pagination total={totalCount} onChange={onChangePage}></Pagination>
-        )}
-      </StyledTable>
-    );
-  },
-);
+  return (
+    <StyledTable>
+      <StyledHeaderTable>
+        <img className="image" src={historyIcon} alt="calendar" />
+        <div className="content">
+          <h2>{t('History.title')}</h2>
+          <p>{t('History.guide')}</p>
+          <p>{t('History.subGuide')}</p>
+        </div>
+      </StyledHeaderTable>
+      <Table {...form}></Table>
+      {!!totalCount && (
+        <Pagination total={totalCount} onChange={onChangePage}></Pagination>
+      )}
+    </StyledTable>
+  );
+});
 
 export default CallSessionTable;

@@ -3,8 +3,12 @@ import useActions from 'hooks/useActions';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import Button from 'app/components/Button';
-import { Popconfirm, Row } from 'antd';
-import { selectBookingList, selectCancelBooking } from './selectors';
+import { Popconfirm, Row, Tag } from 'antd';
+import {
+  selectBookingList,
+  selectCancelBooking,
+  selectBookingListStatus,
+} from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';
 import { mapBookingListDataSource } from 'utils/common';
@@ -70,36 +74,44 @@ export const useHooks = () => {
 export const useForm = (data, handleCancelBooking) => {
   const history = useHistory();
   const { t } = useTranslation();
+  const status = useSelector(selectBookingListStatus);
   const dataSource = mapBookingListDataSource(data);
   const columnsForStudent = [
     {
-      title: t('BookingList.orderNumber'),
-      dataIndex: 'stt',
+      title: <p className="title">{t('BookingList.orderNumber')}</p>,
+      dataIndex: 'no',
       key: 'no',
-      width: '50px',
+      fixed: 'left',
+      align: 'center',
+      width: '55px',
     },
     {
-      title: t('BookingList.tutorName'),
+      title: <p className="title">{t('BookingList.tutorName')}</p>,
       dataIndex: 'name',
       key: 'name',
+      fixed: 'left',
+      ellipsis: true,
+      width: '20%',
     },
     {
-      title: t('BookingList.date'),
+      title: <p className="title">{t('BookingList.date')}</p>,
       dataIndex: 'date',
       key: 'date',
     },
     {
-      title: t('BookingList.startPeriod'),
+      title: <p className="title">{t('BookingList.startPeriod')}</p>,
       dataIndex: 'startPeriod',
       key: 'startPeriod',
+      render: value => <Tag color="blue">{value}</Tag>,
     },
     {
-      title: t('BookingList.endPeriod'),
+      title: <p className="title">{t('BookingList.endPeriod')}</p>,
       dataIndex: 'endPeriod',
       key: 'endPeriod',
+      render: value => <Tag color="volcano">{value}</Tag>,
     },
     {
-      title: t('BookingList.action'),
+      title: <p className="title">{t('BookingList.action')}</p>,
       key: 'action',
       width: '255px',
       render: (_, record) => {
@@ -107,7 +119,7 @@ export const useForm = (data, handleCancelBooking) => {
           <Row justify="space-around">
             <Popconfirm
               key={record.scheduleDetailId}
-              title="Sure to delete booking?"
+              title={t('BookingList.cancelQuestion')}
               onConfirm={() => handleCancelBooking(record.scheduleDetailId)}
             >
               <Button disabled={!record.canDelete}>
@@ -130,8 +142,10 @@ export const useForm = (data, handleCancelBooking) => {
   return {
     dataSource,
     columns: columnsForStudent,
-    bordered: true,
     size: 'small',
     pagination: false,
+    scroll: { x: 850 },
+    bordered: false,
+    loading: status === ACTION_STATUS.PENDING,
   };
 };

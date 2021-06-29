@@ -29,7 +29,7 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
       ? {
           key: value.id,
           during: value.during,
-          stt: index + 1,
+          no: index + 1,
           studentName: value?.studentInfo?.name,
           startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
           endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
@@ -37,7 +37,7 @@ export const mapHistoryDataSource = (data, isTutor, perPage = 10, total) => {
       : {
           key: value.id,
           during: value.during,
-          stt: index + 1,
+          no: index + 1,
           tutorName: value?.tutorInfo?.name,
           startTime: moment(value?.startTime).format('DD/MM/YYYY HH:mm:ss'),
           endTime: moment(value?.endTime).format('DD/MM/YYYY HH:mm:ss'),
@@ -62,7 +62,7 @@ export const mapBookingListDataSource = data => {
 
     return {
       scheduleDetailId: item.scheduleDetailId,
-      stt: index + 1,
+      no: index + 1,
       userId: item.userId,
       tutorId: id,
       name,

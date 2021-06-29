@@ -10,10 +10,15 @@ import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import useHooks from './hooks';
 import saga from './saga';
 import { reducer, sliceKey } from './slice';
-import { StyledScheduleTutor, StyledCalendar } from './styles';
+import {
+  StyledScheduleTutor,
+  StyledCalendar,
+  StyledHeaderTable,
+} from './styles';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import { sizes } from 'styles/media';
 import { MoreOutlined } from '@ant-design/icons';
+import calendar from 'assets/svg/calendar.svg';
 
 export const ScheduleTutor = () => {
   const { t } = useTranslation();
@@ -96,33 +101,43 @@ export const ScheduleTutor = () => {
   const headerRender = () => {
     return (
       <div className="header-schedule">
-        <div>
-          <FontAwesomeIcon
-            icon={faAngleLeft}
-            className="arrow arrow-left"
-            onClick={handleDecreaseMonth}
-          />
-          <DatePicker
-            inputReadOnly
-            allowClear={false}
-            suffixIcon={false}
-            format={'MMM YYYY'}
-            onChange={date => {
-              handleChangeMonth(date);
-            }}
-            defaultValue={moment()}
-            picker="month"
-            value={month}
-          />
-          <FontAwesomeIcon
-            icon={faAngleRight}
-            className="arrow arrow-right"
-            onClick={handleIncreaseMonth}
-          />
+        <StyledHeaderTable>
+          <img className="image" src={calendar} alt="calendar" />
+          <div className="content">
+            <h2>{t('ScheduleTutor.title')}</h2>
+            <p>{t('ScheduleTutor.guide')}</p>
+            <p>{t('ScheduleTutor.subGuide')}</p>
+          </div>
+        </StyledHeaderTable>
+        <div className="actions">
+          <div style={{ width: 197 }}>
+            <FontAwesomeIcon
+              icon={faAngleLeft}
+              className="arrow arrow-left"
+              onClick={handleDecreaseMonth}
+            />
+            <DatePicker
+              inputReadOnly
+              allowClear={false}
+              suffixIcon={false}
+              format={'MMM YYYY'}
+              onChange={date => {
+                handleChangeMonth(date);
+              }}
+              defaultValue={moment()}
+              picker="month"
+              value={month}
+            />
+            <FontAwesomeIcon
+              icon={faAngleRight}
+              className="arrow arrow-right"
+              onClick={handleIncreaseMonth}
+            />
+          </div>
+          <button onClick={handleBackToToday} className="today-btn">
+            {t('ScheduleTutor.toDay')}
+          </button>
         </div>
-        <button onClick={handleBackToToday} className="today-btn">
-          {t('ScheduleTutor.toDay')}
-        </button>
       </div>
     );
   };

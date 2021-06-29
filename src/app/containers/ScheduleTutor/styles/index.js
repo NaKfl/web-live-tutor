@@ -4,7 +4,6 @@ import { media } from 'styles/media';
 import { COLOR } from 'styles/colorPalette';
 
 export const StyledScheduleTutor = styled.div`
-  display: flex;
   justify-content: center;
 `;
 
@@ -12,8 +11,16 @@ export const StyledCalendar = styled(Calendar)`
   .header-schedule {
     margin-bottom: 5px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    ${media.custom700px`
+    flex-direction: column;
+    align-items: flex-start;
+  `}
+  }
+  .actions {
     .today-btn {
+      margin-top: 15px;
       margin-left: 40px;
       font-size: 16px;
       font-weight: 600;
@@ -173,4 +180,34 @@ export const StyledCalendar = styled(Calendar)`
       margin: 0;
     }
   }
+`;
+
+export const StyledHeaderTable = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  .image {
+    height: 100px;
+    margin-right: 25px;
+  }
+  .content {
+    max-width: 700px;
+    h2 {
+      font-size: 25px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    p {
+      margin-bottom: 3px;
+      font-size: 15px;
+      color: ${COLOR.NICKEL};
+    }
+  }
+  ${media.smallMobile`
+    flex-direction: column;
+    align-items: flex-start;
+    h2 {
+      margin-top: 5px;
+    }
+  `}
 `;

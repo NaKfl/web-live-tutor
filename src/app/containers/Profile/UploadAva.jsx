@@ -25,7 +25,7 @@ export const UploadAvatar = memo(
         notifyError('File not accept or the size greater than 3MB');
       }
     }, []);
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps, getInputProps } = useDropzone({
       onDrop,
       maxSize: 3 * 1024 * 1024,
     });

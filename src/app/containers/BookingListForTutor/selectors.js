@@ -8,6 +8,11 @@ export const selectBookingListData = createSelector(
   bookingListState => get('bookingList.data', bookingListState),
 );
 
+export const selectBookingListStatus = createSelector(
+  selectBookingListState,
+  bookingListState => get('bookingList.status', bookingListState),
+);
+
 export const selectBookingList = createSelector(
   selectBookingListState,
   bookingListState => get('bookingList', bookingListState),

@@ -290,7 +290,10 @@
     "schedule": "Lịch",
     "registeredSchedule": "Lịch đã đăng ký",
     "registerNewSchedule": "Đăng ký lịch mới",
-    "repeatUtil": "Lặp lại đến"
+    "repeatUtil": "Lặp lại đến",
+    "title": "Quản lý lịch dạy",
+    "guide": "Bạn có thể xem, thêm, xóa lịch dạy ở đây",
+    "subGuide": "Học viên có thể xem và đăng ký những thời gian bạn đã thêm ở đây"
   },
   "Search": {
     "result": "Kết quả",
@@ -411,7 +414,12 @@
       "timeBooked": "Thời gian đặt lịch",
       "price": "Giá",
       "total": "Tổng cộng"
-    }
+    },
+    "guideForTutor": "Đây là danh sách những khung giờ bạn được đặt",
+    "subGuideForTutor": "Bạn có thể theo dõi xem ai đặt lịch của bạn, khi nào cuộc họp bắt đầu và tham gia cuộc họp bằng một cú nhấp chuột",
+    "guideForStudent": "Đây là danh sách những khung giờ bạn đã đặt",
+    "subGuideForStudent": "Bạn có thể theo dõi khi nào cuộc họp bắt đầu, tham gia cuộc họp bằng một cú nhấp chuột hoặc có thể hủy cuộc họp trước 24h",
+    "cancelQuestion": "Bạn có chắc chắn hủy buổi học này ?"
   },
   "Report": {
     "guide": "Bạn đang gặp phải vấn đề gì",
@@ -473,5 +481,19 @@
     "courseLength": "Thời lượng khóa học",
     "listTopics": "Danh sách chủ đề",
     "topic": "chủ đề"
+  },
+  "History": {
+    "title": "Lịch sử cuộc gọi",
+    "guide": "Đây là danh sách các cuộc gọi của bạn",
+    "subGuide": "Bạn có thể xem lại mình đã gọi cho ai hoặc ai gọi cho mình và thời gian thực hiện cuộc gọi",
+    "orderNumber": "STT",
+    "studentName": "Học viên",
+    "tutorName": "Gia sư",
+    "startTime": "Bắt đầu",
+    "endTime": "Kết thúc",
+    "during": "Thời gian",
+    "review": "Đánh giá",
+    "reviewed": "Đã đánh giá",
+    "actions": "Hành động"
   }
 }

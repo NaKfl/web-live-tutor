@@ -12,3 +12,8 @@ export const selectCancelBooking = createSelector(
   selectBookingListState,
   bookingListState => get('cancelBooking', bookingListState),
 );
+
+export const selectBookingListStatus = createSelector(
+  selectBookingListState,
+  bookingListState => get('bookingList.status', bookingListState),
+);
