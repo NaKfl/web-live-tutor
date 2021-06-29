@@ -6,7 +6,6 @@ import {
   StyledContentCard,
   StyledCard,
 } from './styles';
-import Title from 'app/components/Title';
 
 export const CourseCard = memo(({ course, onSelectCard }) => {
   return (
@@ -17,16 +16,16 @@ export const CourseCard = memo(({ course, onSelectCard }) => {
         </StyledImageCard>
         <StyledContentCard className="flex-column w-100">
           <div>
-            <Title className="fw-nor title-course" level={4}>
+            <h3 className="title-course" level={4}>
               {course?.name}
-            </Title>
-            <Title className="fw-nor m-0 description-course" level={5}>
+            </h3>
+            <h3 className="description-course" level={5}>
               {course?.description}
-            </Title>
+            </h3>
           </div>
           <StyledLevelText>
-            {course?.level?.toUpperCase()}&nbsp;•&nbsp;{course?.topics?.length}{' '}
-            TOPICS
+            {course?.level?.toUpperCase()}&nbsp;•&nbsp;{course?.topics?.length}
+            &nbsp;CHỦ ĐỀ
           </StyledLevelText>
         </StyledContentCard>
       </StyledCard>

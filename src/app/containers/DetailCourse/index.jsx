@@ -3,11 +3,16 @@ import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import { sliceKey, reducer } from './slice';
 import saga from './saga';
 import CourseCard from './Course';
-import { Row, Col } from 'antd';
+import { Row, Col, Affix, Divider } from 'antd';
 import { StyledDetailCourse } from './styles';
 import useHooks from './hooks';
 import Title from 'app/components/Title';
 import { useTranslation } from 'react-i18next';
+import {
+  BookOutlined,
+  QuestionCircleOutlined,
+  UsergroupAddOutlined,
+} from '@ant-design/icons';
 
 export const DetailCourse = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -17,56 +22,60 @@ export const DetailCourse = memo(() => {
   const { t } = useTranslation();
 
   return (
-    <StyledDetailCourse>
-      <Row>
-        <Col className="detail-course-left p-3">
-          {detailCourse.name && <CourseCard course={detailCourse} />}
-        </Col>
-        <Col className="detail-course-right p-3">
-          <Title level={3} className="fw-nor">
-            {t('Course.overview')}
-          </Title>
-          <Title level={4} className="fw-nor">
-            {t('Course.whyTake')}
-          </Title>
-          <Title level={5} className="fw-nor">
-            {detailCourse?.reason}
-          </Title>
-          <Title level={4} className="fw-nor">
-            {t('Course.willToDo')}
-          </Title>
-          <Title level={5} className="fw-nor">
-            {detailCourse?.purpose}
-          </Title>
-          <Title level={4} className="fw-nor">
-            {t('Course.level')}
-          </Title>
-          <Title level={5} className="fw-nor">
-            {detailCourse.level}
-          </Title>
-          <Title level={4} className="fw-nor">
-            {t('Course.courseLength')}
-          </Title>
-          <Title level={5} className="fw-nor">
-            {`${detailCourse.topics?.length} ${t('Course.topic')} `}
-          </Title>
-
-          <Title level={4} className="fw-nor">
-            {t('Course.listTopics')}
-          </Title>
-          {detailCourse.topics?.map((topic, index) => (
-            <Row className="mt-4 topic-item" key={index}>
-              <Title level={5} className="fw-nor mt-0 me-3 topic-item-order">
-                {`${index + 1}.`}
-              </Title>
-              <Title level={5} className="fw-nor mt-0 topic-item-name">
-                {topic.name}
-              </Title>
+    <Row justify="center">
+      <Col lg={20} md={22} sm={24}>
+        <StyledDetailCourse justify="center">
+          <Col lg={9} md={11} sm={24} className="detail-course-left p-3">
+            <Affix offsetTop={69} className="w-100">
+              {detailCourse && <CourseCard course={detailCourse} />}
+            </Affix>
+          </Col>
+          <Col lg={15} md={13} sm={24} className="detail-course-right p-3">
+            <Divider orientation="left">
+              <span className="title">{t('Course.overview')}</span>
+            </Divider>
+            <Row align="middle">
+              <QuestionCircleOutlined className="sub-title-icon question" />
+              <h3 className="sub-title">{t('Course.whyTake')}</h3>
             </Row>
-          ))}
-        </Col>
-      </Row>
-    </StyledDetailCourse>
+            <p className="content">{detailCourse?.reason}</p>
+            <Row align="middle">
+              <QuestionCircleOutlined className="sub-title-icon question" />
+              <h3 className="sub-title"> {t('Course.willToDo')}</h3>
+            </Row>
+            <p className="content">{detailCourse?.purpose}</p>
+
+            <Divider orientation="left">
+              <span className="title">{t('Course.level')}</span>
+            </Divider>
+            <Row align="middle">
+              <UsergroupAddOutlined className="sub-title-icon people" />
+              <h3 className="sub-title"> {detailCourse.level}</h3>
+            </Row>
+
+            <Divider orientation="left">
+              <span className="title">{t('Course.courseLength')}</span>
+            </Divider>
+            <Row align="middle">
+              <BookOutlined className="sub-title-icon people" />
+              <h3 className="sub-title">
+                {`${detailCourse.topics?.length} ${t('Course.topic')} `}
+              </h3>
+            </Row>
+
+            <Divider orientation="left">
+              <span className="title">{t('Course.listTopics')}</span>
+            </Divider>
+            {detailCourse.topics?.map((topic, index) => (
+              <Row className="topic-item" key={index}>
+                <h3 className="sub-title topic">{`${index + 1}.`}</h3>
+                <h3 className="sub-title topic">{topic.name}</h3>
+              </Row>
+            ))}
+          </Col>
+        </StyledDetailCourse>
+      </Col>
+    </Row>
   );
 });
 

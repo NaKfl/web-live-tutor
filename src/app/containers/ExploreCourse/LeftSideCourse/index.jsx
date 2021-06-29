@@ -1,24 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { memo, useState, useEffect } from 'react';
-import { StyledCourseCard, StyledImageCard, StyledContentCard } from './styles';
-import Title from 'app/components/Title';
 import { Row } from 'antd';
+import Title from 'app/components/Title';
+import { memo, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { StyledContentCard, StyledCourseCard, StyledImageCard } from './styles';
 
-export const CourseCard = memo(({ detailCourse, handleChangeTopic }) => {
-  const [selectedTopic, setSelectedTopic] = useState(0);
-  const { t } = useTranslation();
+export const CourseCard = memo(
+  ({ detailCourse, handleChangeTopic, ...props }) => {
+    const [selectedTopic, setSelectedTopic] = useState(0);
+    const { t } = useTranslation();
 
-  useEffect(() => {
-    if (detailCourse?.topics) {
-      const fileName = detailCourse?.topics[0].nameFile;
-      handleChangeTopic(fileName);
-    }
-  }, [detailCourse]);
+    useEffect(() => {
+      if (detailCourse?.topics) {
+        const fileName = detailCourse?.topics[0].nameFile;
+        handleChangeTopic(fileName);
+      }
+    }, [detailCourse]);
 
-  return (
-    <StyledCourseCard>
-      <Row className="flex-column h-100">
+    return (
+      <StyledCourseCard {...props}>
         <StyledImageCard>
           <img
             width="100%"
@@ -28,14 +28,14 @@ export const CourseCard = memo(({ detailCourse, handleChangeTopic }) => {
           />
         </StyledImageCard>
         <StyledContentCard className="flex-column w-100">
-          <Title className="fw-nor title-course" level={3}>
+          <Title className=" title-course" level={3}>
             {detailCourse?.name}
           </Title>
           <Row className="flex-column justify-content-between ">
-            <Title className="fw-nor m-0 description-course" level={5}>
+            <Title className="description-course" level={5}>
               {detailCourse?.description}
             </Title>
-            <Title className="fw-nor mt-2 description-course" level={4}>
+            <Title className="title-course" level={4}>
               {t('Course.listTopics')}
             </Title>
           </Row>
@@ -44,30 +44,22 @@ export const CourseCard = memo(({ detailCourse, handleChangeTopic }) => {
               detailCourse?.topics.map((item, index) => (
                 <Row
                   key={item.id}
-                  className={`mt-2 topic-item ${
+                  className={`mt-1 topic ${
                     selectedTopic === index ? 'topic-highlight' : 'topic-normal'
                   }`}
-                  style={{ cursor: 'pointer' }}
                   onClick={() => {
                     setSelectedTopic(index);
                     handleChangeTopic(item?.nameFile);
                   }}
                 >
-                  <Title
-                    level={5}
-                    className="fw-nor mt-0 me-3 topic-item-order"
-                  >
-                    {`${index + 1}.`}
-                  </Title>
-                  <Title level={5} className="fw-nor mt-0 topic-item-name">
-                    {item?.name}
-                  </Title>
+                  <h3 className="topic-item-name">{`${index + 1}.`}</h3>
+                  <h3 className="topic-item-content">{item?.name}</h3>
                 </Row>
               ))}
           </Row>
         </StyledContentCard>
-      </Row>
-    </StyledCourseCard>
-  );
-});
+      </StyledCourseCard>
+    );
+  },
+);
 export default CourseCard;

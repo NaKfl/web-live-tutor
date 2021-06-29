@@ -10,6 +10,7 @@ export const sizes = {
   custom400px: 400,
   custom500px: 500,
   custom600px: 600,
+  custom768px: 767,
   custom700px: 700,
 };
 

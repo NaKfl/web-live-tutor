@@ -3,10 +3,10 @@ import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import { sliceKey, reducer } from './slice';
 import saga from './saga';
 import CourseCard from './Course';
-import { StyledCoursePage, LayoutListCourses } from './styles';
+import { StyledCoursePage, LayoutListCourses, StyledHeader } from './styles';
 import useHooks from './hooks';
-import Title from 'app/components/Title';
 import { useTranslation } from 'react-i18next';
+import courseIcon from 'assets/svg/course.svg';
 
 export const CoursePage = memo(() => {
   useInjectSaga({ key: sliceKey, saga });
@@ -17,15 +17,14 @@ export const CoursePage = memo(() => {
   const { t } = useTranslation();
   return (
     <StyledCoursePage>
-      <Title level={3} className="fw-nor">
-        {t('Course.discoverCourse')}
-      </Title>
-      <Title level={3} className="fw-nor">
-        {t('Course.basicCourse')}
-      </Title>
-      <Title level={5} className="fw-nor mt-3 mb-4 fz-18">
-        {t('Course.descriptCourse')}
-      </Title>
+      <StyledHeader>
+        <img className="image" src={courseIcon} alt="calendar" />
+        <div className="content">
+          <h2>{t('Course.discoverCourse')}</h2>
+          <p>{t('Course.basicCourse')}</p>
+          <p>{t('Course.descriptCourse')}</p>
+        </div>
+      </StyledHeader>
       <LayoutListCourses>
         {coursesList.map(course => (
           <CourseCard course={course} onSelectCard={onSelectCard} />

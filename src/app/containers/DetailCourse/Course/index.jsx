@@ -16,15 +16,15 @@ export const CourseCard = memo(({ course }) => {
           <img width="100%" height="auto" alt="img" src={course.imageUrl} />
         </StyledImageCard>
         <StyledContentCard className="flex-column w-100">
-          <Title className="fw-nor title-course" level={2}>
+          <Title className="title-course" level={2}>
             {course?.name}
           </Title>
           <Row className="flex-column justify-content-between ">
-            <Title className="fw-nor m-0 description-course" level={5}>
+            <Title className="m-0 description-course" level={5}>
               {course?.description}
             </Title>
             <Button
-              className="w-100 mt-4 d-flex justify-content-center"
+              className="w-100 mt-4 d-flex justify-content-center explore-btn"
               type="accent"
               size="large"
               onClick={() => {
