@@ -130,22 +130,28 @@ export const useForm = () => {
       width: '120px',
       align: 'center',
       render: (_, record) => {
-        return (
-          <Button
-            style={{ marginRight: 0 }}
-            disabled={record.isReviewed}
-            type="accent"
-            onClick={() => {
-              const tutor = {
-                userId: record.tutorId,
-                sessionId: record.id,
-              };
-              showRatingForm(tutor);
-            }}
-          >
-            {t('History.review')}
-          </Button>
-        );
+        if (!isTutor) {
+          return !record.isReviewed ? (
+            <Button
+              style={{ marginRight: 0 }}
+              disabled={record.isReviewed}
+              type="accent"
+              onClick={() => {
+                const tutor = {
+                  userId: record.tutorId,
+                  sessionId: record.id,
+                };
+                showRatingForm(tutor);
+              }}
+            >
+              {t('History.review')}
+            </Button>
+          ) : (
+            <Tag color="blue">{t('History.reviewed')}</Tag>
+          );
+        } else {
+          return <Tag color="blue">---</Tag>;
+        }
       },
     },
   ];
