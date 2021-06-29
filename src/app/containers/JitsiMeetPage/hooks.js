@@ -72,12 +72,25 @@ const useHooks = props => {
 
   const handleSomeOneLeave = field => {
     const { userCall, userBeCalled, startTime } = field;
-    socket.emit('call:endCall', {
-      userCall,
-      userBeCalled,
-      startTime,
-      endTime: moment().format('YYYY-MM-DD HH:mm:ss'),
-    });
+    const endTime = moment();
+    if (roomInfo.isTutor) {
+      socket.emit('call:endCall', {
+        userCall,
+        userBeCalled,
+        startTime,
+        endTime,
+      });
+    } else {
+      setTimeout(() => {
+        socket.emit('call:endCall', {
+          userCall,
+          userBeCalled,
+          startTime,
+          endTime,
+        });
+      }, 1000);
+    }
+
     setIsLoading(true);
     pushToHome(roomInfo.isTutor);
   };
