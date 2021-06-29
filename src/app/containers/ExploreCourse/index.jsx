@@ -111,12 +111,14 @@ export const ExploreCourse = memo(() => {
   });
   return (
     <StyledExploreCourse>
-      <StyledLayoutExplore>
+      <StyledLayoutExplore justify="center">
         <LeftSideCourse
+          md={8}
+          sm={24}
           detailCourse={detailCourse}
           handleChangeTopic={handleChangeTopic}
         />
-        <StyledRightExplore>
+        <StyledRightExplore md={16} sm={24}>
           <div className="container-pdf" style={{ height: '50rem' }}>
             <div
               style={{
