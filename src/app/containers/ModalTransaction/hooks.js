@@ -1,6 +1,7 @@
 import { DATE_TIME_FORMAT, TRANSACTION_TYPES } from 'utils/constants';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import { Tag } from 'antd';
 
 export const useHooks = () => {
   return {
@@ -13,71 +14,76 @@ export const useForm = data => {
   const { t } = useTranslation();
   const columnsForTransaction = [
     {
-      key: 'STT',
-      dataIndex: 'id',
-      title: 'STT',
-      width: '10%',
+      title: <p className="title">{t('Wallet.orderNumber')}</p>,
+      key: 'no',
+      width: '55px',
+      fixed: 'left',
+      align: 'center',
       render: (_, __, index) => {
-        return <h4>{index}</h4>;
+        return index + 1;
       },
     },
     {
-      key: 'Type',
-      dataIndex: 'Type',
-      title: 'Type',
-      width: '10%',
-      render: (_, record, __) => {
+      title: <p className="title">{t('Wallet.time')}</p>,
+      key: 'time',
+      dataIndex: 'createdAt',
+      render: (_, record) => {
+        const time = moment(record.createdAt).format(DATE_TIME_FORMAT);
+        return <Tag color="blue">{time}</Tag>;
+      },
+    },
+    {
+      title: <p className="title">{t('Wallet.type')}</p>,
+      key: 'type',
+      width: '150px',
+      render: (_, record) => {
         return (
-          <h4>
-            {record.type === TRANSACTION_TYPES.DEPOSIT &&
-              `${t('Wallet.deposit')}`}
-            {record.type === TRANSACTION_TYPES.BUY && `${t('Wallet.book')} `}
-            {record.type === TRANSACTION_TYPES.SELL && `${t('Wallet.bookBy')}`}
-            {record.type === TRANSACTION_TYPES.CANCEL &&
-              `${t('Wallet.cancelBook')}`}
-            {record.type === TRANSACTION_TYPES.RETURN &&
-              `${t('Wallet.returnBook')}`}
-          </h4>
+          <span>
+            {record.type === TRANSACTION_TYPES.DEPOSIT && (
+              <Tag color="geekblue">{`${t('Wallet.deposit')}`}</Tag>
+            )}
+            {record.type === TRANSACTION_TYPES.BUY && (
+              <Tag color="green">{`${t('Wallet.book')} `}</Tag>
+            )}
+            {record.type === TRANSACTION_TYPES.SELL && (
+              <Tag color="gold">{`${t('Wallet.bookBy')}`}</Tag>
+            )}
+            {record.type === TRANSACTION_TYPES.CANCEL && (
+              <Tag color="red">{`${t('Wallet.cancelBook')}`}</Tag>
+            )}
+            {record.type === TRANSACTION_TYPES.RETURN && (
+              <Tag color="cyan">{`${t('Wallet.returnBook')}`}</Tag>
+            )}
+          </span>
         );
       },
     },
     {
+      title: <p className="title">{t('Wallet.price')}</p>,
       key: 'price',
       dataIndex: 'price',
-      title: 'Price',
-      render: (_, record, __) => {
+      render: (_, record) => {
         const price = new Intl.NumberFormat('vi-VN', {
           style: 'currency',
           currency: 'VND',
         }).format(record.price);
-        return <h4>{price}</h4>;
+        return <span>{price}</span>;
       },
     },
     {
       key: 'tutor',
-      dataIndex: 'createdAt',
-      title: 'Tutor',
-      render: (_, record, __) => {
+      title: <p className="title">{t('Wallet.tutor')}</p>,
+      render: (_, record) => {
         const tutorInfo = record?.bookingInfo?.scheduleDetailInfo?.tutorInfo;
-        return <h4>{tutorInfo?.name ?? '-----'}</h4>;
+        return <span>{tutorInfo?.name ?? '-'}</span>;
       },
     },
     {
+      title: <p className="title">{t('Wallet.student')}</p>,
       key: 'student',
-      dataIndex: 'createdAt',
-      title: 'Student',
       render: (_, record, __) => {
         const studentInfo = record?.bookingInfo?.userInfo;
-        return <h4>{studentInfo?.name ?? '-----'}</h4>;
-      },
-    },
-    {
-      key: 'Transaction Time',
-      dataIndex: 'createdAt',
-      title: 'Transaction Time',
-      render: (_, record, __) => {
-        const time = moment(record.createdAt).format(DATE_TIME_FORMAT);
-        return <h4>{time}</h4>;
+        return <span>{studentInfo?.name ?? '-'}</span>;
       },
     },
   ];
@@ -85,7 +91,12 @@ export const useForm = data => {
   return {
     dataSource: data,
     columns: columnsForTransaction,
-    bordered: true,
     pagination: { pageSize: 5 },
+    size: 'small',
+    scroll: { x: 850 },
+    bordered: false,
+    locale: {
+      emptyText: t('Common.empty'),
+    },
   };
 };

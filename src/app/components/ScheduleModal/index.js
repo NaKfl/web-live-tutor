@@ -98,7 +98,7 @@ const ScheduleModal = memo(props => {
                 })) || (
                 <Empty
                   image={Empty.PRESENTED_IMAGE_SIMPLE}
-                  description="Empty"
+                  description={<span>{t('Common.empty')}</span>}
                 />
               )}
             </>

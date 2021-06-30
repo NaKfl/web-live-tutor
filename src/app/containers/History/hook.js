@@ -162,5 +162,8 @@ export const useForm = () => {
     pagination: false,
     scroll: { x: 850 },
     bordered: false,
+    locale: {
+      emptyText: t('Common.empty'),
+    },
   };
 };

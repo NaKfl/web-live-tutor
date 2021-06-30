@@ -147,5 +147,8 @@ export const useForm = (data, handleCancelBooking) => {
     scroll: { x: 850 },
     bordered: false,
     loading: status === ACTION_STATUS.PENDING,
+    locale: {
+      emptyText: t('Common.empty'),
+    },
   };
 };

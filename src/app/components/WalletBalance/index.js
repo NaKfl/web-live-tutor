@@ -46,34 +46,38 @@ const WalletBalance = ({
         </ButtonAntd>
       </StyledLeftPart>
       <StyledRightPart isColumn={isColumn}>
-        <StyledInOutCome className="mb-4">
-          <div className="wrapper">
-            {!isColumn && <UpCircleOutlined className="icon income-icon" />}
-            <div className="amount">
-              <p>{t('Wallet.income')}</p>
-              <h3 className="income">
-                {new Intl.NumberFormat('vi-VN', {
-                  style: 'currency',
-                  currency: 'VND',
-                }).format(income)}
-              </h3>
+        <div>
+          <StyledInOutCome className="mb-4">
+            <div className="wrapper">
+              {!isColumn && <UpCircleOutlined className="icon income-icon" />}
+              <div className="amount">
+                <p>{t('Wallet.income')}</p>
+                <h3 className="income">
+                  {new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                  }).format(income)}
+                </h3>
+              </div>
             </div>
-          </div>
-        </StyledInOutCome>
-        <StyledInOutCome>
-          <div className="wrapper">
-            {!isColumn && <DownCircleOutlined className="icon outcome-icon" />}
-            <div className="amount">
-              <p>{t('Wallet.outcome')}</p>
-              <h3 className="outcome">
-                {new Intl.NumberFormat('vi-VN', {
-                  style: 'currency',
-                  currency: 'VND',
-                }).format(outcome)}
-              </h3>
+          </StyledInOutCome>
+          <StyledInOutCome>
+            <div className="wrapper">
+              {!isColumn && (
+                <DownCircleOutlined className="icon outcome-icon" />
+              )}
+              <div className="amount">
+                <p>{t('Wallet.outcome')}</p>
+                <h3 className="outcome">
+                  {new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                  }).format(outcome)}
+                </h3>
+              </div>
             </div>
-          </div>
-        </StyledInOutCome>
+          </StyledInOutCome>
+        </div>
       </StyledRightPart>
     </StyledWalletBalance>
   );
