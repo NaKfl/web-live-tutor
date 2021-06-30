@@ -12,23 +12,26 @@ import { actions } from './slice';
 import qs from 'query-string';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router';
-import { debounce } from 'lodash';
 import { useGetMajor } from '../Home/hooks';
 import { useMemo } from 'react';
+import isEqual from 'lodash/fp/isEqual';
 
 export const useHook = () => {
+  const [prevQuery, setPrevQuery] = useState(null);
   const show = useSelector(makeSelectedShowHideDropDown);
   const option = useSelector(makeSelectedOption);
   const location = useLocation();
   const loading = useSelector(makeLoading);
   const history = useHistory();
   useGetMajor();
+
   const {
     showHideDropDown,
     hideDropDown,
     optionFromUrl,
     resetState,
     getFilter,
+    updateOption,
   } = useActions(
     {
       getFilter: actions.getFilter,
@@ -36,28 +39,35 @@ export const useHook = () => {
       hideDropDown: actions.hideDropDown,
       optionFromUrl: actions.optionFromUrl,
       resetState: actions.resetState,
+      updateOption: actions.updateOption,
     },
     [actions],
   );
 
+  const query = qs.parse(location.search, {
+    arrayFormat: 'bracket-separator',
+    arrayFormatSeparator: '|',
+    skipNull: true,
+    encode: true,
+  });
+  if (!isEqual(query, prevQuery)) {
+    updateOption(query);
+    setPrevQuery(query);
+    optionFromUrl({ ...option });
+  }
+
   useEffect(() => {
-    const urlParse = qs.parse(location.search, {
+    const query = qs.stringify(option, {
       arrayFormat: 'bracket-separator',
       arrayFormatSeparator: '|',
       skipNull: true,
       encode: true,
     });
-    debounceSearch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.search]);
+    history.push({
+      search: query,
+    });
+  }, [history, option]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debounceSearch = useCallback(
-    debounce(urlParse => {
-      if (!!option) optionFromUrl({ ...urlParse });
-    }, 200),
-    [],
-  );
   useEffect(() => {
     getFilter();
     return () => {
@@ -152,6 +162,17 @@ export const usePagination = () => {
     current: parseInt(current),
     onChange,
   };
+};
+
+export const useUpdateOptionSearch = () => {
+  const { updateOption } = useActions(
+    {
+      updateOption: actions.updateOption,
+    },
+    [actions],
+  );
+
+  return { updateOption };
 };
 
 export default useHook;

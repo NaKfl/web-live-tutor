@@ -160,7 +160,7 @@ export const TutorDetail = ({ ...rest }) => {
   return (
     <StyledTutorDetail {...rest}>
       <Row justify="center">
-        <Col lg={15} md={20} sm={24}>
+        <Col lg={16} md={20} sm={24}>
           <StyledProfile>
             <Row className="profile-form">
               <Affix offsetTop={70} className="w-100">

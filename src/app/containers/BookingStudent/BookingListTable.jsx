@@ -4,7 +4,7 @@ import { useForm } from './hooks';
 import { StyledTable, StyledHeaderTable } from './styles';
 import Pagination from 'app/components/Pagination';
 import { useTranslation } from 'react-i18next';
-import greenCal from 'assets/svg/greenCal.svg';
+import calendarCheck from 'assets/svg/calendar-check.svg';
 
 export const BookingListTable = memo(
   ({ totalCount, onChangePage, handleCancelBooking, dataSource }) => {
@@ -14,7 +14,7 @@ export const BookingListTable = memo(
     return (
       <StyledTable>
         <StyledHeaderTable>
-          <img className="image" src={greenCal} alt="calendar" />
+          <img className="image" src={calendarCheck} alt="calendar" />
           <div className="content">
             <h2>{t('BookingList.bookingForStudentTitle')}</h2>
             <p>{t('BookingList.guideForStudent')}</p>

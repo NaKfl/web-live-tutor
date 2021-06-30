@@ -28,10 +28,7 @@ const searchSlice = createSlice({
     },
 
     optionFromUrl: (state, action) => {
-      return flow(
-        set('option', { ...state.option, ...action.payload }),
-        set('loading', true),
-      )(state);
+      return flow(set('loading', true))(state);
     },
 
     searchTutor: state => {
@@ -82,6 +79,10 @@ const searchSlice = createSlice({
     onChangeFilter(state, action) {
       const { category, tag } = action.payload;
       return flow(set(`option.${category}`, tag))(state);
+    },
+
+    updateOption(state, action) {
+      return set('option', { ...state.option, ...action.payload })(state);
     },
   },
 });
