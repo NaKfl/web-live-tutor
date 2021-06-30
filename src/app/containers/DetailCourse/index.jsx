@@ -6,7 +6,6 @@ import CourseCard from './Course';
 import { Row, Col, Affix, Divider } from 'antd';
 import { StyledDetailCourse } from './styles';
 import useHooks from './hooks';
-import Title from 'app/components/Title';
 import { useTranslation } from 'react-i18next';
 import {
   BookOutlined,

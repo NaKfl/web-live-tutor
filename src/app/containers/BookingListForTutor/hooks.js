@@ -136,5 +136,8 @@ export const useForm = data => {
     scroll: { x: 650 },
     bordered: false,
     loading: status === ACTION_STATUS.PENDING,
+    locale: {
+      emptyText: t('Common.empty'),
+    },
   };
 };

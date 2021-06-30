@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { actions } from './slice';
 import useActions from 'hooks/useActions';
 
-const useHooks = props => {
+const useHooks = () => {
   const historyStatus = useSelector(selectGetHistoryStatus);
   const historyData = useSelector(selectGetHistoryData);
   const statisticsStatus = useSelector(getStatisticsStatus);

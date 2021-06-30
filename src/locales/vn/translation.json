@@ -354,7 +354,14 @@
     "balance": "Số dư",
     "income": "Tiền vào",
     "outcome": "Tiền ra",
-    "chartTitle": "Phân tích"
+    "chartTitle": "Phân tích",
+    "orderNumber": "STT",
+    "type": "Phân loại",
+    "price": "Giá",
+    "tutor": "Gia sư",
+    "student": "Học viên",
+    "time": "Thời gian",
+    "title": "Danh sách giao dịch"
   },
   "VerifyDeposit": {
     "notifySuccess": "Nạp tiền thành công",

@@ -356,7 +356,14 @@
     "balance": "Balance",
     "income": "Income",
     "outcome": "Outcome",
-    "chartTitle": "Analytic"
+    "chartTitle": "Analytic",
+    "orderNumber": "No",
+    "type": "Type",
+    "price": "Price",
+    "tutor": "Tutor",
+    "student": "Student",
+    "time": "Time",
+    "title": "Transaction List"
   },
   "VerifyDeposit": {
     "notifySuccess": "Deposit successfully",

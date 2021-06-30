@@ -1,11 +1,8 @@
-import { Typography } from 'antd';
 import Button from 'app/components/Button';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StyledModal } from './styles';
 import TransactionListTable from './TransactionListTable';
-
-const { Title } = Typography;
 
 const ModalTransaction = memo(props => {
   const { visible, onCancel, transactions, ...rest } = props;
@@ -13,6 +10,7 @@ const ModalTransaction = memo(props => {
   return (
     <StyledModal
       centered
+      title={<h3 className="payment-title">{t('Wallet.title')}</h3>}
       closable={false}
       visible={visible}
       onCancel={onCancel}
@@ -23,14 +21,11 @@ const ModalTransaction = memo(props => {
             onCancel();
           }}
         >
-          Cancel
+          {t('Common.cancel')}
         </Button>,
       ]}
       {...rest}
     >
-      <Title level={4} className="payment-title">
-        {t('Payment.transactionsList')}
-      </Title>
       <TransactionListTable
         totalCount={transactions.length}
         dataSource={transactions}
