@@ -1,5 +1,5 @@
 import useActions from 'hooks/useActions';
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   makeFilter,
@@ -7,15 +7,14 @@ import {
   makeSelectedShowHideDropDown,
 } from '../selector';
 import { actions } from '../slice';
-import { useHistory } from 'react-router-dom';
-import qs from 'query-string';
 import get from 'lodash/fp/get';
 
 export const useHooks = () => {
+  const isChoosing = useRef(null);
+  const [chosenFilters, setChosenFilters] = useState({});
   const filter = useSelector(makeFilter);
   const option = useSelector(makeSelectedOption);
   const showHideDropDownState = useSelector(makeSelectedShowHideDropDown);
-  const history = useHistory();
   const filterViewData = useMemo(() => {
     if (filter?.length === 0) {
       return [];
@@ -37,29 +36,23 @@ export const useHooks = () => {
     [option],
   );
 
-  const onSelectFilter = useCallback(
-    (category, tag) => {
-      onChangeFilter({ category, tag });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [onChangeFilter, option],
-  );
+  const onSelectFilter = useCallback((category, tag) => {
+    setChosenFilters({ category, tag });
+  }, []);
 
   useEffect(() => {
-    const directTo = qs.stringify(option, {
-      arrayFormat: 'bracket-separator',
-      arrayFormatSeparator: '|',
-      skipNull: true,
-    });
-    history.push({
-      search: directTo,
-    });
+    if (isChoosing.current) clearTimeout(isChoosing.current);
+    isChoosing.current = setTimeout(() => {
+      onChangeFilter(chosenFilters);
+    }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [option]);
+  }, [chosenFilters]);
 
   return {
     selectors: {
-      showHideDropDownState,
+      showHideDropDownState:
+        showHideDropDownState ||
+        filter.some(type => option[type?.title]?.length > 0),
       filterViewData,
     },
     handlers: { onChangeFilter: onSelectFilter, getOptionDefault },

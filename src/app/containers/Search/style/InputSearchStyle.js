@@ -33,6 +33,7 @@ export const StyledInput = styled.input`
 `;
 
 export const CoverInput = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   height: 100%;
@@ -48,6 +49,10 @@ export const CoverInput = styled.div`
 `;
 
 export const StyledClearButton = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
   height: 100%;
   display: flex;
   justify-content: center;

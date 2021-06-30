@@ -1,28 +1,25 @@
-import { memo, useEffect, useState, useCallback } from 'react';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useUpdateOptionSearch } from 'app/containers/Search/hook';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
-  WrapInputSearch,
-  StyledInput,
   CoverInput,
   StyledClearButton,
+  StyledInput,
+  WrapInputSearch,
 } from '../style/InputSearchStyle';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Filter from './Filter';
-import { debounce } from 'lodash';
-import { useHistory } from 'react-router-dom';
-import qs from 'query-string';
-import { useTranslation } from 'react-i18next';
 
 export const InputSearch = memo(
   ({ placeholder, showHideDropDown, option, searchValue }) => {
+    const { updateOption } = useUpdateOptionSearch();
     const [inputValue, setValue] = useState(searchValue || '');
-    const history = useHistory();
-    const [changeLocation, setLocation] = useState(false);
     const { t } = useTranslation();
+    const isTyping = useRef(null);
 
-    const ClearContent = useCallback(() => {
+    const clearContent = useCallback(() => {
       setValue('');
-      setLocation(true);
     }, []);
 
     useEffect(() => {
@@ -32,32 +29,15 @@ export const InputSearch = memo(
     }, [searchValue]);
 
     useEffect(() => {
-      if (changeLocation) {
-        onConfirmSearch();
-      }
+      if (isTyping.current) clearTimeout(isTyping.current);
+      isTyping.current = setTimeout(() => {
+        updateOption({ ...option, search: inputValue });
+      }, 500);
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [changeLocation, inputValue, ClearContent]);
-
-    const onConfirmSearch = useCallback(
-      searchKey => {
-        return debounce(() => {
-          history.push({
-            pathname: '/search',
-            search: qs.stringify({
-              ...option,
-              search: searchKey || inputValue,
-            }),
-          });
-          setLocation(false);
-        }, 100)();
-      },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      [inputValue],
-    );
+    }, [inputValue]);
 
     const onChangeValueSearch = useCallback(event => {
       setValue(event.target.value);
-      setLocation(true);
     }, []);
 
     return (
@@ -65,16 +45,13 @@ export const InputSearch = memo(
         <CoverInput>
           <Filter showHideDropDown={showHideDropDown}></Filter>
           <StyledInput
-            placeholder={placeholder || t('Search.search')}
             value={inputValue}
+            placeholder={placeholder || t('Search.search')}
             onChange={onChangeValueSearch}
           ></StyledInput>
-          {inputValue !== '' && (
-            <StyledClearButton>
-              <FontAwesomeIcon
-                icon={faTimes}
-                onClick={() => ClearContent()}
-              ></FontAwesomeIcon>
+          {inputValue && (
+            <StyledClearButton onClick={clearContent}>
+              <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
             </StyledClearButton>
           )}
         </CoverInput>

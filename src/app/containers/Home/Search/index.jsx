@@ -9,12 +9,11 @@ export const Search = memo(({ placeholder }) => {
   const history = useHistory();
   const onEnterSearch = useCallback(
     event => {
-      if (event.key === 'Enter') {
+      if (searchKey && event.key === 'Enter') {
         history.push({
           pathname: '/search',
           search: qs.stringify(
-            { search: searchKey },
-            { page: 1 },
+            { search: searchKey, page: 1 },
             {
               arrayFormat: 'bracket-separator',
               arrayFormatSeparator: '|',
