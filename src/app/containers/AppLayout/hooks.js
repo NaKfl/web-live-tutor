@@ -17,6 +17,7 @@ import { actions as popupActions } from 'app/containers/Popup/slice';
 import socket from 'utils/socket';
 import { notifyError } from 'utils/notify';
 import { useTranslation } from 'react-i18next';
+import { requestFirebaseNotificationPermission } from 'utils/firebase';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
@@ -34,6 +35,12 @@ export const useHooks = () => {
       currentRole: user?.currentRole,
     },
   };
+};
+
+export const useNotify = () => {
+  useEffect(() => {
+    requestFirebaseNotificationPermission();
+  }, []);
 };
 
 export const useListenSocket = () => {

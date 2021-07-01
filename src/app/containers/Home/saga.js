@@ -50,7 +50,7 @@ function* getListWatcher() {
 }
 
 function* fetchListTask(action) {
-  const { response, error } = yield call(getListTutorAPI, {
+  const { response } = yield call(getListTutorAPI, {
     search: null,
     page: 1,
     perPage: 9,
@@ -66,7 +66,6 @@ function* fetchListTask(action) {
       yield put(actions.fetchRequestSuccess());
     }
   } else {
-    console.log(error);
     yield put(actions.fetchRequestFailure());
   }
 }
@@ -80,16 +79,11 @@ function* manageFavoriteTutorWatcher() {
 }
 
 function* manageFavoriteTutorTask(action) {
-  const { response, error } = yield call(
-    manageFavoriteTutorAPI,
-    action.payload,
-  );
+  const { response } = yield call(manageFavoriteTutorAPI, action.payload);
   if (response.result === 1) {
     yield put(actions.removeFavoriteTutorFromList(action.payload));
   } else if (response.result !== 1) {
     yield put(actions.pushFavoriteTutorToList(response.result));
-  } else {
-    console.log(error);
   }
 }
 
@@ -106,7 +100,6 @@ function* fetchFavoriteTutorTask() {
   if (response) {
     yield put(actions.fetchFavoriteListSuccess(response));
   } else {
-    console.log({ error });
     yield put(actions.fetchFavoriteListFailed(error));
   }
 }
