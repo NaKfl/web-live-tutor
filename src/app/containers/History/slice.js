@@ -10,6 +10,16 @@ export const initialState = {
   status: null,
   error: null,
   isTutor: false,
+  allFeedbacks: {
+    data: [],
+    status: '',
+    error: null,
+  },
+  feedbackSession: {
+    data: [],
+    status: '',
+    error: null,
+  },
 };
 
 const historySlice = createSlice({
@@ -38,6 +48,48 @@ const historySlice = createSlice({
         set('error', action.payload),
         set('load', false),
         set('status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    getAllFeedbacks(state) {
+      return flow(
+        set('allFeedbacks.error', null),
+        set('allFeedbacks.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getAllFeedbacksSuccess(state, action) {
+      return flow(
+        set('allFeedbacks.data', action.payload),
+        set('allFeedbacks.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getAllFeedbacksFailed(state, action) {
+      return flow(
+        set('allFeedbacks.error', action.payload),
+        set('allFeedbacks.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    getFeedbackSession(state) {
+      return flow(
+        set('feedbackSession.error', null),
+        set('allFeedbacks.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getFeedbackSessionSuccess(state, action) {
+      return flow(
+        set('feedbackSession.data', action.payload),
+        set('feedbackSession.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getFeedbackSessionFailed(state, action) {
+      return flow(
+        set('feedbackSession.error', action.payload),
+        set('feedbackSession.status', ACTION_STATUS.FAILED),
       )(state);
     },
 

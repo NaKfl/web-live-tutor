@@ -1,10 +1,13 @@
 import { WEB_API as BASE_URL } from 'configs';
 import request, { handleGeneralError } from './index';
 
-export const getProfile = () => {
+export const getProfile = payload => {
+  const url = payload ? `user/info/${payload}` : 'user/info';
+
   return request(BASE_URL, {
-    url: `user/info`,
+    url,
     method: 'GET',
+    data: payload,
   })
     .then(response => response.data)
     .then(data => ({ response: data }))

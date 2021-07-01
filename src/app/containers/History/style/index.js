@@ -18,12 +18,20 @@ export const StyledTable = styled.div`
 
 export const StyledHeaderTable = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 20px;
+
+  .left-header {
+    display: flex;
+    align-items: center;
+  }
+
   .image {
     height: 100px;
     margin-right: 25px;
   }
+
   ${media.smallMobile`
     flex-direction: column;
     align-items:flex-start;

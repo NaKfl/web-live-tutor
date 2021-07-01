@@ -4,10 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Comment, Tooltip, List, Rate, Empty } from 'antd';
 import moment from 'moment';
 import { DATE_TIME_FORMAT } from 'utils/constants';
+import useHook from './hook';
 
 const Reviews = memo(props => {
   const { t } = useTranslation();
-  const { visible, onCancel, tutor, reviews, ...rest } = props;
+  const { selectors } = useHook(props);
+  const { reviews } = selectors;
+  const { visible, onCancel, ...rest } = props;
 
   const formattedReviews = reviews?.map(item => ({
     author: item.firstInfo?.name,

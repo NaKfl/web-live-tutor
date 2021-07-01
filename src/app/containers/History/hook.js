@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Tag } from 'antd';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { actions as popupActions } from 'app/containers/Popup/slice';
@@ -12,19 +13,30 @@ import {
   makeListHistory,
   makeSelectLoading,
   makeTutorCount,
+  selectAllFeedbacks,
 } from './selectors';
+import { selectReviewTutor } from 'app/containers/Home/selectors';
 import { actions } from './slice';
 import Button from 'app/components/Button';
 import qs from 'query-string';
 
 export const useHook = () => {
   const totalCount = useSelector(makeTutorCount);
+  const selectorAllFeedbacks = useSelector(selectAllFeedbacks);
+  const selectorReview = useSelector(selectReviewTutor);
   const history = useHistory();
   const location = useLocation();
-  const { fetchHistory, changeTargetIsTutor } = useActions(
+  const {
+    fetchHistory,
+    changeTargetIsTutor,
+    getAllFeedbacks,
+    openPopup,
+  } = useActions(
     {
       fetchHistory: actions.fetchHistory,
       changeTargetIsTutor: actions.changeTargetIsTutor,
+      getAllFeedbacks: actions.getAllFeedbacks,
+      openPopup: popupActions.openPopup,
     },
     [actions],
   );
@@ -34,8 +46,11 @@ export const useHook = () => {
   useEffect(() => {
     const { page } = qs.parse(location.search);
     fetchHistory({ isTutor, page: +page || 1 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location, isTutor]);
+  }, [selectorReview.data]);
+
+  useEffect(() => {
+    getAllFeedbacks(user.id);
+  }, [user.id]);
 
   const changeCategory = useCallback(
     selected => {
@@ -51,14 +66,27 @@ export const useHook = () => {
     [history],
   );
 
+  const handleShowReviews = useCallback(
+    reviews => {
+      openPopup({
+        key: 'reviews-modal',
+        type: POPUP_TYPE.REVIEW_MODAL,
+        reviews,
+      });
+    },
+    [openPopup],
+  );
+
   return {
     selectors: {
       isTutor,
       totalCount,
+      allFeedbacks: selectorAllFeedbacks.data,
     },
     handles: {
       changeCategory,
       onChangePage,
+      handleShowReviews,
     },
   };
 };
@@ -79,6 +107,16 @@ export const useForm = () => {
         key: 'showRatingForm',
         type: POPUP_TYPE.RATING_MODAL,
         tutor,
+      });
+    },
+    [openPopup],
+  );
+  const handleShowReviews = useCallback(
+    reviews => {
+      openPopup({
+        key: 'reviews-modal',
+        type: POPUP_TYPE.REVIEW_MODAL,
+        reviews,
       });
     },
     [openPopup],
@@ -128,28 +166,37 @@ export const useForm = () => {
       width: '120px',
       align: 'center',
       render: (_, record) => {
-        if (!isTutor) {
-          return !record.isReviewed ? (
-            <Button
-              style={{ marginRight: 0 }}
-              disabled={record.isReviewed}
-              type="accent"
-              onClick={() => {
-                const tutor = {
-                  userId: record.tutorId,
-                  sessionId: record.id,
-                };
-                showRatingForm(tutor);
-              }}
-            >
-              {t('History.review')}
-            </Button>
-          ) : (
-            <Tag color="blue">{t('History.reviewed')}</Tag>
-          );
-        } else {
-          return <Tag color="blue">---</Tag>;
-        }
+        const showBtnReviewed = isTutor
+          ? record.isTutorReviewed
+          : record.isReviewed;
+
+        return showBtnReviewed ? (
+          <Button
+            style={{ marginRight: 0, justifyContent: 'center', width: '100px' }}
+            onClick={() => {
+              handleShowReviews({
+                sessionId: record.sessionId,
+              });
+            }}
+          >
+            {t('History.view')}
+          </Button>
+        ) : (
+          <Button
+            style={{ marginRight: 0, justifyContent: 'center', width: '100px' }}
+            type="accent"
+            onClick={() => {
+              const tutor = {
+                userId: isTutor ? record.studentId : record.tutorId,
+                sessionId: record.sessionId,
+                isTutor,
+              };
+              showRatingForm(tutor);
+            }}
+          >
+            {t('History.review')}
+          </Button>
+        );
       },
     },
   ];

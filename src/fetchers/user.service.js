@@ -72,3 +72,25 @@ export const resetPassword = ({ email, token, password }) => {
     .then(data => ({ response: data }))
     .catch(handleGeneralError);
 };
+
+export const getAllFeedbacks = payload => {
+  return request(WEB_API, {
+    url: `feedback/${payload}`,
+  })
+    .then(data => data.data)
+    .then(({ data }) => {
+      return { response: data };
+    })
+    .catch(handleGeneralError);
+};
+
+export const getFeedbackSession = payload => {
+  return request(WEB_API, {
+    url: `feedback/session/${payload}`,
+  })
+    .then(data => data.data)
+    .then(({ data }) => {
+      return { response: data };
+    })
+    .catch(handleGeneralError);
+};

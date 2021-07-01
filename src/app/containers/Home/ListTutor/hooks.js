@@ -12,11 +12,18 @@ export const useHooks = () => {
   ]);
 
   useEffect(() => {
-    socket.on('call:endedCall', ({ userCall, tutor, session }) => {
-      const tutorInfo = tutor?.tutor;
+    socket.on('call:endedCall', ({ userBeCalled, session }) => {
       showRatingForm({
-        userId: tutorInfo.userId,
+        userId: userBeCalled.id,
         sessionId: session.id,
+      });
+    });
+
+    socket.on('call:endedCallTutor', ({ userCall, session }) => {
+      showRatingForm({
+        userId: userCall.id,
+        sessionId: session.id,
+        isTutor: true,
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
