@@ -42,7 +42,7 @@ export const Profile = () => {
 
   return (
     <StyledProfile justify="center">
-      <Col span={20}>
+      <Col lg={16} md={20} xs={24}>
         <StyledBasicInfo>
           {(getStatus === ACTION_STATUS.PENDING && (
             <Skeleton avatar active paragraph={{ rows: 1 }} />
@@ -145,19 +145,17 @@ export const Profile = () => {
                       </Form.Item>
                     </Col>
                   </Form>
-                  <Row>
-                    <Col span={4} offset={16}>
-                      <Row justify="end">
-                        <Button
-                          form="profile-form"
-                          className="submit-btn"
-                          type="accent"
-                          htmlType="submit"
-                          loading={loading}
-                        >
-                          {t('Profile.btnSave')}
-                        </Button>
-                      </Row>
+                  <Row justify="end">
+                    <Col>
+                      <Button
+                        form="profile-form"
+                        className="submit-btn"
+                        type="accent"
+                        htmlType="submit"
+                        loading={loading}
+                      >
+                        {t('Profile.btnSave')}
+                      </Button>
                     </Col>
                   </Row>
                 </>

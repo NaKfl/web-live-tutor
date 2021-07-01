@@ -200,6 +200,9 @@ export const StyledContent = styled(Content)`
     justify-content: center;
     display: flex;
     margin-top: 70px;
+    ${media.custom600px`
+      padding: 35px 10px;
+    `}
   }
 `;
 

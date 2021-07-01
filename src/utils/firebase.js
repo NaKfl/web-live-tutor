@@ -19,23 +19,33 @@ if (!firebase.apps.length) {
   firebase.app();
 }
 
-const messaging = firebase.messaging();
+const firebaseUtils = {};
 
-messaging.onMessage(payload => {
-  const { title, body } = payload.data;
-  notifySuccess(title, body);
-});
+if (firebase.messaging.isSupported()) {
+  const messaging = firebase.messaging();
 
-export const requestFirebaseNotificationPermission = async () => {
-  if (Notification.permission === 'granted') {
-    const token = await messaging.getToken();
-    return registerToken(token);
-  }
-  if (Notification.permission === 'denied') {
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
+  messaging.onMessage(payload => {
+    const { title, body } = payload.data;
+    notifySuccess(title, body);
+  });
+
+  const requestFirebaseNotificationPermission = async () => {
+    if (Notification.permission === 'granted') {
       const token = await messaging.getToken();
       return registerToken(token);
     }
-  }
-};
+    if (Notification.permission === 'denied') {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        const token = await messaging.getToken();
+        return registerToken(token);
+      }
+    }
+  };
+
+  firebaseUtils.messaging = messaging;
+  firebaseUtils.isSupported = firebase.messaging.isSupported();
+  firebaseUtils.requestFirebaseNotificationPermission = requestFirebaseNotificationPermission;
+}
+
+export default firebaseUtils;

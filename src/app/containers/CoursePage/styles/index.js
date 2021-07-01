@@ -14,9 +14,9 @@ export const StyledCoursePage = styled.div`
 `;
 export const LayoutListCourses = styled.div`
   width: calc(100% + 16px);
-  margin: -8px;
   height: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 10px;
 `;

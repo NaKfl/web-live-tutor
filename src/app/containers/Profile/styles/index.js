@@ -87,6 +87,11 @@ export const StyledDetailInfo = styled(Row)`
     .ant-collapse-header {
       background-color: ${COLOR.BROWN_F5};
     }
+    .ant-collapse-content {
+      .ant-collapse-content-box {
+        padding: 25px 35px;
+      }
+    }
   }
   .profile-form {
     & > div {

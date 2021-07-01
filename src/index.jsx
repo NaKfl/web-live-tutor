@@ -15,6 +15,7 @@ import { isAuthenticated, getUser } from 'utils/localStorageUtils';
 import './locales/i18n';
 
 import { registerServiceWorker } from './serviceWorker';
+import firebaseUtils from 'utils/firebase';
 
 const initialState = {
   authentication: {
@@ -50,4 +51,4 @@ if (module.hot) {
 
 render(App);
 
-registerServiceWorker();
+if (firebaseUtils.isSupported) registerServiceWorker();

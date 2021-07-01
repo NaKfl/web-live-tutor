@@ -25,6 +25,24 @@ export const StyledHeaderTable = styled.div`
   .left-header {
     display: flex;
     align-items: center;
+    margin-right: 30px;
+    ${media.smallMobile`
+    flex-direction: column;
+    align-items:flex-start;
+  `}
+    .content {
+      max-width: 700px;
+      h2 {
+        font-size: 25px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      p {
+        margin-bottom: 3px;
+        font-size: 15px;
+        color: ${COLOR.NICKEL};
+      }
+    }
   }
 
   .image {
@@ -32,21 +50,12 @@ export const StyledHeaderTable = styled.div`
     margin-right: 25px;
   }
 
-  ${media.smallMobile`
+  ${media.custom600px`
     flex-direction: column;
     align-items:flex-start;
+    .left-header{
+      margin-right:unset;
+      margin-bottom:20px;
+    }
   `}
-  .content {
-    max-width: 700px;
-    h2 {
-      font-size: 25px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    p {
-      margin-bottom: 3px;
-      font-size: 15px;
-      color: ${COLOR.NICKEL};
-    }
-  }
 `;
