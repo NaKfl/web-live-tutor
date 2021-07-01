@@ -19,7 +19,6 @@ const RatingForm = memo(props => {
   } = handlers;
   const { t } = useTranslation();
   const { tutorInfo } = selectors;
-  console.log('tutorInfo', tutorInfo);
   const { visible, onCancel, values, ...rest } = props;
   return (
     <StyledModal

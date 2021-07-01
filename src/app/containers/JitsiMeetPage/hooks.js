@@ -3,7 +3,7 @@ import { JWT_SECRET } from 'configs';
 import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import queryString from 'query-string';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
 import isOnMobileDevice from 'utils/mobileDetect';
@@ -19,10 +19,10 @@ const useHooks = props => {
   const [error, setError] = useState('');
   const [isContinueWeb, setIsContinueWeb] = useState(false);
   const isOnMobile = isOnMobileDevice();
-  let myTimeOut;
+  const refEndCall = useRef(true);
 
   const pushToHome = isTutor => {
-    myTimeOut = setTimeout(() => {
+    setTimeout(() => {
       if (isTutor) history.push('/schedule-tutor');
       else history.push('/');
     }, 3000);
@@ -69,32 +69,24 @@ const useHooks = props => {
         pushToHome(roomInfo.isTutor);
       }
     }
-  }, [token, myTimeOut, roomInfo.isTutor]);
+  }, []);
 
-  const handleSomeOneLeave = field => {
+  const handleSomeOneLeave = useCallback(field => {
     const { userCall, userBeCalled, startTime } = field;
     const endTime = moment();
-    if (roomInfo.isTutor) {
+    if (refEndCall.current === true) {
+      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
       socket.emit('call:endCall', {
         userCall,
         userBeCalled,
         startTime,
         endTime,
       });
-    } else {
-      setTimeout(() => {
-        socket.emit('call:endCall', {
-          userCall,
-          userBeCalled,
-          startTime,
-          endTime,
-        });
-      }, 1000);
+      refEndCall.current = false;
     }
-
     setIsLoading(true);
     pushToHome(roomInfo.isTutor);
-  };
+  }, []);
 
   const endCall = () => {
     setIsLoading(true);

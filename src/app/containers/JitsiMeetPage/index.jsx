@@ -2,16 +2,11 @@ import { Spin, Button as ButtonAntd } from 'antd';
 import { JitsiMeet } from 'app/components/JitsiMeet';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useInjectReducer, useInjectSaga } from 'utils/reduxInjectors';
 import useHooks from './hooks';
-import saga from './saga';
-import { reducer, sliceKey } from './slice';
 import { StyledMeetingPage } from './styles';
 import Button from 'app/components/Button';
 
 export const JitsiMeetPage = props => {
-  useInjectSaga({ key: sliceKey, saga });
-  useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks(props);
   const {
     roomInfo,
@@ -23,7 +18,6 @@ export const JitsiMeetPage = props => {
   } = selectors;
   const { handleSomeOneLeave, endCall, continueGoToWeb } = handlers;
   const { t } = useTranslation();
-
   if (error)
     return (
       <Spin

@@ -18,14 +18,6 @@ export const useHooks = () => {
         sessionId: session.id,
       });
     });
-
-    socket.on('call:endedCallTutor', ({ userCall, session }) => {
-      showRatingForm({
-        userId: userCall.id,
-        sessionId: session.id,
-        isTutor: true,
-      });
-    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
