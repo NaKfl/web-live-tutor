@@ -8,6 +8,7 @@ const initialState = {
     status: '',
     error: null,
     data: [],
+    total: 0,
   },
   cancelBooking: {
     status: '',
@@ -27,8 +28,10 @@ const bookingSlice = createSlice({
     },
 
     getBookingListSuccess(state, action) {
+      const { rows, count } = action.payload;
       return flow(
-        set('bookingList.data', action.payload),
+        set('bookingList.data', rows),
+        set('bookingList.total', count),
         set('bookingList.status', ACTION_STATUS.SUCCESS),
       )(state);
     },

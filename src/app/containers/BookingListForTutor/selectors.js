@@ -17,3 +17,7 @@ export const selectBookingList = createSelector(
   selectBookingListState,
   bookingListState => get('bookingList', bookingListState),
 );
+
+export const selectTotal = createSelector(selectBookingListState, total =>
+  get('bookingList.total', total),
+);

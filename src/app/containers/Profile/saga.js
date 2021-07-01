@@ -2,9 +2,10 @@ import { getProfile, editProfile } from 'fetchers/profileFetcher';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 import { actions as loginActions } from 'app/containers/Login/slice';
-import { notifySuccess } from 'utils/notify';
+import { notifySuccess, notifyError } from 'utils/notify';
 import i18n from 'locales/i18n';
 import { uploadAvatar } from 'fetchers/user.service';
+import { errorCode } from 'utils/constants';
 
 function* getProfileWatcher() {
   yield takeLatest(actions.getProfile, getProfileTask);
@@ -53,6 +54,7 @@ function* uploadAvatarTask(action) {
     notifySuccess(i18n.t('Profile.uploadAvatarSuccess'));
   } else {
     yield put(actions.uploadAvatarFailed(error));
+    notifyError(i18n(`Error_code.${errorCode[error.code]}`));
   }
 }
 function uploadAvatarAPI(payload) {

@@ -90,6 +90,7 @@ const profileSlice = createSlice({
     uploadAvatarFailed(state, action) {
       return flow(
         set('upload.status', ACTION_STATUS.FAILED),
+        set('upload.loading', false),
         set('upload.error', action.payload),
       )(state);
     },

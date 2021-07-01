@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import { makeSelectStep, makeSelectStatus } from './selectors';
 import { actions } from './slice';
 import useActions from 'hooks/useActions';
-import { useQuery } from 'utils/common';
 import { useLocation } from 'react-router-dom';
+import qs from 'query-string';
 
 export const useHook = () => {
+  const location = useLocation();
   const step = useSelector(makeSelectStep);
   const status = useSelector(makeSelectStatus);
-  const query = useQuery(useLocation());
   const {
     submitEmail,
     changeToThirdStep,
@@ -25,11 +25,11 @@ export const useHook = () => {
     [actions],
   );
   useEffect(() => {
-    const token = query.get('token');
+    const { token } = qs.parse(location.search);
     if (token) {
       changeToThirdStep();
     }
-  }, [changeToThirdStep, query]);
+  }, [changeToThirdStep, location.search]);
 
   useEffect(() => {
     return () => {
@@ -47,10 +47,10 @@ export const useHook = () => {
   const onResetPassword = useCallback(
     data => {
       const { email, password } = data;
-      const token = query.get('token');
+      const { token } = qs.parse(location.search);
       resetPassword({ email, password, token });
     },
-    [query, resetPassword],
+    [location.search, resetPassword],
   );
 
   return {
