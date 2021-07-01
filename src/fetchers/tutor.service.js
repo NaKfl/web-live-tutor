@@ -37,11 +37,11 @@ export const getTopTutor = () => {
     .catch(handleGeneralError);
 };
 
-export const reviewTutor = ({ sessionId, tutorId, rating, content }) => {
+export const reviewTutor = payload => {
   return request(WEB_API, {
     url: 'user/feedbackTutor',
     method: 'POST',
-    data: { sessionId, tutorId, rating, content },
+    data: payload,
   })
     .then(response => response.data)
     .then(({ data }) => ({ response: data }))

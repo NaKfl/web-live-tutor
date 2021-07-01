@@ -1,5 +1,5 @@
 import { actions } from 'app/containers/Home/slice';
-import { getTutorById } from 'fetchers/tutor.service';
+import { getProfile } from 'fetchers/profileFetcher';
 import useActions from 'hooks/useActions';
 import { useEffect, useState } from 'react';
 import { notifyError, notifySuccess } from 'utils/notify';
@@ -9,7 +9,7 @@ export const useHooks = props => {
   const [contentReview, setContentReview] = useState('');
   const [rating, setRating] = useState(0);
   const { tutor } = props;
-  const { sessionId } = tutor;
+  const { sessionId, isTutor } = tutor;
   const [tutorInfo, setTutorInfo] = useState({});
   const { t } = useTranslation();
 
@@ -20,9 +20,9 @@ export const useHooks = props => {
     [actions],
   );
 
-  const fetchTutorById = tutorId => {
-    getTutorById({ tutorId }).then(data => {
-      setTutorInfo(data);
+  const fetchTutorById = userId => {
+    getProfile(userId).then(({ response }) => {
+      setTutorInfo(response.user);
     });
   };
 
@@ -37,13 +37,14 @@ export const useHooks = props => {
   const handleChangeRating = value => {
     setRating(value);
   };
-  const handleSubmitReview = ({ tutor }) => {
+  const handleSubmitReview = ({ user }) => {
     if (contentReview && rating) {
       reviewTutor({
         sessionId,
-        tutorId: tutor.userId,
+        userId: user.id,
         rating,
         content: contentReview,
+        isTutor,
       });
       notifySuccess(`${t('Notify.reviewSuccess')}`);
       props.onCancel();

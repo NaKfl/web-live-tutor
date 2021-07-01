@@ -229,7 +229,11 @@ export const TutorDetail = ({ ...rest }) => {
                           icon={<StarFilled />}
                           type="accent"
                           className="start-btn"
-                          onClick={() => handleShowReviews(feedbacks)}
+                          onClick={() =>
+                            handleShowReviews({
+                              feedbacks,
+                            })
+                          }
                         >
                           {t('Profile.showReview')}
                         </Button>

@@ -11,7 +11,6 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 const RatingForm = memo(props => {
-  console.log(props);
   const { handlers, selectors } = useHooks(props);
   const {
     handleSubmitReview,
@@ -20,6 +19,7 @@ const RatingForm = memo(props => {
   } = handlers;
   const { t } = useTranslation();
   const { tutorInfo } = selectors;
+  console.log('tutorInfo', tutorInfo);
   const { visible, onCancel, values, ...rest } = props;
   return (
     <StyledModal
@@ -34,9 +34,7 @@ const RatingForm = memo(props => {
         <Row className="align-items-center">
           <StyledAvatar>
             <Avatar
-              src={
-                'https://www.alliancerehabmed.com/wp-content/uploads/icon-avatar-default.png'
-              }
+              src={tutorInfo?.avatar}
               shape="circle"
               size={80}
               className="avatar"
@@ -44,21 +42,23 @@ const RatingForm = memo(props => {
           </StyledAvatar>
           <Row className="p-2 flex-column">
             <Title className="tutor-name" level={5}>
-              {`${tutorInfo?.User?.name}`}
+              {`${tutorInfo?.name}`}
             </Title>
             <Row>
               <StyledTextHighlight>
-                <span className="average-rating">{tutorInfo.avgRating} </span>
+                <span className="average-rating">
+                  {tutorInfo?.avgRating?.toFixed(2)}
+                </span>
                 <StarFilled className="d-flex align-items-center" />
               </StyledTextHighlight>
-              <span className="d-flex align-items-center">{`${tutorInfo?.User?.feedbacks?.length} Reviews`}</span>
+              <span className="d-flex align-items-center">{`${tutorInfo?.feedbacks?.length} Reviews`}</span>
             </Row>
           </Row>
         </Row>
         <hr></hr>
         <Row className="flex-column align-items-center">
           <Title className="" level={5}>
-            {`${t('Review.whatIsURating')} ${tutorInfo?.User?.name}?`}
+            {`${t('Review.whatIsURating')} ${tutorInfo?.name}?`}
           </Title>
           <Rate
             style={{ fontSize: '30px' }}
@@ -78,7 +78,7 @@ const RatingForm = memo(props => {
           <Button
             key="accept"
             type="accent"
-            onClick={() => handleSubmitReview({ tutor: tutorInfo })}
+            onClick={() => handleSubmitReview({ user: tutorInfo })}
           >
             Submit
           </Button>

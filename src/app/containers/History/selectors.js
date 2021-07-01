@@ -18,3 +18,13 @@ export const makeSelectIsTutor = createSelector(selectHistoryState, isTutor =>
 export const makeTutorCount = createSelector(selectHistoryState, totalCount =>
   get('totalCount', totalCount),
 );
+
+export const selectAllFeedbacks = createSelector(
+  selectHistoryState,
+  allFeedbacks => get('allFeedbacks', allFeedbacks),
+);
+
+export const selectFeedbackSession = createSelector(
+  selectHistoryState,
+  allFeedbacks => get('feedbackSession', allFeedbacks),
+);

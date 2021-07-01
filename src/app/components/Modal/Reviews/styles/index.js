@@ -10,6 +10,8 @@ export const StyledModal = styled(Modal)`
 
   .ant-modal-body {
     padding: 10px 24px;
+    max-height: 500px;
+    overflow: auto;
   }
 
   .ant-modal-content {

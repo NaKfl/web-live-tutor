@@ -463,7 +463,7 @@
   },
   "Review": {
     "reviews": "đánh giá",
-    "whatIsURating": "Bạn đánh giá gì cho gia sư ",
+    "whatIsURating": "Bạn đánh giá gì cho ",
     "contentReview": "Nội dung đánh giá"
   },
   "Notify": {
@@ -501,6 +501,7 @@
     "during": "Thời gian",
     "review": "Đánh giá",
     "reviewed": "Đã đánh giá",
-    "actions": "Hành động"
+    "actions": "Hành động",
+    "view": "Xem lại"
   }
 }
