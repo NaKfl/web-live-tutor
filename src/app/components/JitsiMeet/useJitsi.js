@@ -57,6 +57,7 @@ const useJitsi = props => {
       client.addEventListener('participantLeft', onSomeOneLeave);
 
     onMeetingEnd && client.addEventListener('readyToClose', onMeetingEnd);
+
     return () => jitsi && jitsi.dispose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.JitsiMeetExternalAPI]);

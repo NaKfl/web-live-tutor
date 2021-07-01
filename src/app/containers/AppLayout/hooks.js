@@ -44,7 +44,7 @@ export const useNotify = () => {
 };
 
 export const useListenSocket = () => {
-  const { showCallModal, closeCallModal } = useShowModal();
+  const { showCallModal, closeCallModal, showRatingForm } = useShowModal();
   const history = useHistory();
   const { t } = useTranslation();
   useEffect(() => {
@@ -109,6 +109,16 @@ export const useListenSocket = () => {
   useEffect(() => {
     socket.on('call:selfCancelCalled', () => {
       closeCallModal();
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('call:endedCallTutor', ({ userCall, session }) => {
+      showRatingForm({
+        userId: userCall.id,
+        sessionId: session.id,
+        isTutor: true,
+      });
     });
   }, []);
 };
@@ -213,6 +223,17 @@ export const useShowModal = () => {
     [openPopup],
   );
 
+  const showRatingForm = useCallback(
+    tutor => {
+      openPopup({
+        key: 'showRatingForm',
+        type: POPUP_TYPE.RATING_MODAL,
+        tutor,
+      });
+    },
+    [openPopup],
+  );
+
   const showCallModal = useCallback(
     userCall => {
       openPopup({
@@ -247,6 +268,7 @@ export const useShowModal = () => {
     showTransactionModal,
     showCallModal,
     closeCallModal,
+    showRatingForm,
   };
 };
 
