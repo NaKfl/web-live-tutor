@@ -27,7 +27,7 @@ export const UploadAvatar = memo(
     }, []);
     const { getRootProps, getInputProps } = useDropzone({
       onDrop,
-      maxSize: 3 * 1024 * 1024,
+      maxSize: 5 * 1024 * 1024,
     });
 
     useEffect(() => {

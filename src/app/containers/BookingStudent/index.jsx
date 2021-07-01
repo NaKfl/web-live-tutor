@@ -10,13 +10,13 @@ export const BookingStudent = () => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors, handlers } = useHooks();
-  const { bookingList } = selectors;
+  const { bookingList, total } = selectors;
   const { onChangePage, handleCancelBooking } = handlers;
   return (
     <StyledBookingList>
       <BookingListTable
         onChangePage={onChangePage}
-        totalCount={bookingList?.length}
+        totalCount={total}
         handleCancelBooking={handleCancelBooking}
         dataSource={bookingList}
       ></BookingListTable>

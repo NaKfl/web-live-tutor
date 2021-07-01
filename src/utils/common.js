@@ -63,34 +63,33 @@ export const mapBookingListDataSource = data => {
     ['scheduleDetailInfo.scheduleInfo.date', 'scheduleDetailInfo.startPeriod'],
     ['desc', 'desc'],
   );
-  const result = sortData.map((item, index) => {
-    const { startPeriod, endPeriod, scheduleInfo } = item.scheduleDetailInfo;
-    const { date, tutorInfo } = scheduleInfo;
-    const { id, name } = tutorInfo;
-    let durationDelete = moment.duration(
-      moment().diff(moment(`${date} ${startPeriod}`, 'YYYY-MM-DD HH:mm')),
-    );
-    let durationGotoMeeting = moment.duration(
-      moment().diff(moment(`${date} ${endPeriod}`, 'YYYY-MM-DD HH:mm')),
-    );
-    let hoursCanDelete = durationDelete.asHours();
-    let hoursGotoMeeting = durationGotoMeeting.asHours();
+  if (data.length > 0) {
+    const result = sortData.map((item, index) => {
+      const { startPeriod, endPeriod, scheduleInfo } = item.scheduleDetailInfo;
+      const { date, tutorInfo } = scheduleInfo;
+      const { id, name } = tutorInfo;
+      let duration = moment.duration(
+        moment(`${date} ${startPeriod}`, 'YYYY-MM-DD HH:mm').diff(moment()),
+      );
+      let hours = duration.asHours();
 
-    return {
-      scheduleDetailId: item.scheduleDetailId,
-      no: index + 1,
-      userId: item.userId,
-      tutorId: id,
-      name,
-      date,
-      startPeriod,
-      endPeriod,
-      canDelete: hoursCanDelete < 24,
-      studentMeetingLink: item.studentMeetingLink,
-      canGoToMeeting: hoursGotoMeeting < 0,
-    };
-  });
-  return result;
+      return {
+        scheduleDetailId: item.scheduleDetailId,
+        no: index + 1,
+        userId: item.userId,
+        tutorId: id,
+        name,
+        date,
+        startPeriod,
+        endPeriod,
+        canDelete: hours >= 24,
+        studentMeetingLink: item.studentMeetingLink,
+        canGoToMeeting: hours >= 0,
+      };
+    });
+    return result;
+  }
+  return [];
 };
 
 export const useQuery = useLocation => {

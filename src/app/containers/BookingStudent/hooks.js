@@ -8,21 +8,20 @@ import {
   selectBookingList,
   selectCancelBooking,
   selectBookingListStatus,
+  selectTotal,
 } from './selectors';
 import { ACTION_STATUS } from 'utils/constants';
 import { actions } from './slice';
 import { mapBookingListDataSource } from 'utils/common';
 import { useTranslation } from 'react-i18next';
-
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
+import qs from 'query-string';
 
 export const useHooks = () => {
+  const location = useLocation();
   const history = useHistory();
-  const query = useQuery();
   const selectorBookingList = useSelector(selectBookingList);
   const selectorCancelBooking = useSelector(selectCancelBooking);
+  const total = useSelector(selectTotal);
   const [bookingList, setBookingList] = useState([]);
   const { getBookingList, cancelBookSchedule } = useActions(
     {
@@ -33,9 +32,10 @@ export const useHooks = () => {
   );
 
   useEffect(() => {
-    getBookingList({ page: query.get('page') || 1 });
+    const { page } = qs.parse(location.search);
+    getBookingList({ page: page || 1 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.get('page'), selectorCancelBooking.status]);
+  }, [selectorCancelBooking.status, location.search]);
 
   useEffect(() => {
     if (
@@ -66,12 +66,13 @@ export const useHooks = () => {
   );
 
   return {
-    selectors: { bookingList },
+    selectors: { bookingList, total },
     handlers: { onChangePage, handleCancelBooking },
   };
 };
 
 export const useForm = (data, handleCancelBooking) => {
+  console.log(data);
   const history = useHistory();
   const { t } = useTranslation();
   const status = useSelector(selectBookingListStatus);

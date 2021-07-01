@@ -390,7 +390,9 @@
     "PERIOD_DIVISIABLE_30": "Tổng thời gian phải chia hết cho 30!",
     "SCHEDULE_DUPLICATE": "Lỗi đăng ký lịch trùng thời gian!",
     "SCHEDULE_INVALID_DATE": "Đăng ký lịch ngày không hợp lệ!",
-    "INVALID_REFRESH_TOKEN": "Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại"
+    "INVALID_REFRESH_TOKEN": "Phiên đăng nhập hết hạn. Vui lòng đăng nhập lại",
+    "FILE_SIZE_OVER_LIMIT_AVATAR": "Ảnh đại diện vượt quá kích thước cho phép (5MB)",
+    "FILE_SIZE_OVER_LIMIT_VIDEO": "Video vượt quá kích thước cho phép (50MB)"
   },
   "Reviews": {
     "Title": "Đánh giá"

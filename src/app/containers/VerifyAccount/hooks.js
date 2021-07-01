@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 import { actions } from './slice';
 import useActions from 'hooks/useActions';
 import { useLocation } from 'react-router-dom';
-import { useQuery } from 'utils/common';
+import qs from 'query-string';
 
 const useHooks = () => {
   const status = useSelector(selectConfirmStatus);
-  const query = useQuery(useLocation());
+  const location = useLocation();
   const { confirmVerifyAccount } = useActions(
     {
       confirmVerifyAccount: actions.confirmVerifyAccount,
@@ -17,7 +17,7 @@ const useHooks = () => {
   );
 
   useEffect(() => {
-    const token = query.get('token');
+    const { token } = qs.parse(location.search);
     confirmVerifyAccount(token);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

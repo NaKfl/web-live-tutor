@@ -3,15 +3,16 @@ import useActions from 'hooks/useActions';
 import { useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { selectBookingListData, selectBookingListStatus } from './selectors';
+import {
+  selectBookingListData,
+  selectBookingListStatus,
+  selectTotal,
+} from './selectors';
 import { useTranslation } from 'react-i18next';
 import { actions } from './slice';
 import { Tag } from 'antd';
 import { ACTION_STATUS } from 'utils/constants';
-
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
+import qs from 'query-string';
 
 const mapBookingListDataSource = data => {
   if (data?.length > 0)
@@ -34,8 +35,9 @@ const mapBookingListDataSource = data => {
 
 export const useHooks = () => {
   const history = useHistory();
-  const query = useQuery();
+  const location = useLocation();
   const bookingList = useSelector(selectBookingListData);
+  const total = useSelector(selectTotal);
   const { getBookingList, cancelBookSchedule } = useActions(
     {
       getBookingList: actions.getBookingList,
@@ -45,13 +47,13 @@ export const useHooks = () => {
   );
 
   useEffect(() => {
-    getBookingList({ page: query.get('page') || 1 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.get('page')]);
+    const { page } = qs.parse(location.search);
+    getBookingList({ page: page || 1 });
+  }, [getBookingList, location.search]);
 
   const onChangePage = useCallback(
     value => {
-      history.push(`/booking-student?page=${value}`);
+      history.push(`/booking-tutor?page=${value}`);
     },
     [history],
   );
@@ -66,7 +68,7 @@ export const useHooks = () => {
   );
 
   return {
-    selectors: { bookingList },
+    selectors: { bookingList, total },
     handlers: { onChangePage, handleCancelBooking },
   };
 };
