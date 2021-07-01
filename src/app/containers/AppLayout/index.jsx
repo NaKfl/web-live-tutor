@@ -18,6 +18,7 @@ import {
   useAuthenticatedRedirect,
   useRefreshToken,
   useListenSocket,
+  useNotify,
 } from './hooks';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from 'app/containers/Login/saga';
@@ -38,6 +39,7 @@ export const AppLayout = () => {
   useAuthenticatedRedirect();
   useRefreshToken();
   useListenSocket();
+  useNotify();
 
   return (
     <>

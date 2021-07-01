@@ -14,6 +14,8 @@ import { configureAppStore } from 'store/configureStore';
 import { isAuthenticated, getUser } from 'utils/localStorageUtils';
 import './locales/i18n';
 
+import { registerServiceWorker } from './serviceWorker';
+
 const initialState = {
   authentication: {
     isAuthenticated: isAuthenticated(),
@@ -47,3 +49,5 @@ if (module.hot) {
 }
 
 render(App);
+
+registerServiceWorker();

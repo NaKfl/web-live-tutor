@@ -9,12 +9,11 @@ function* submitEmailWatcher() {
 }
 
 function* submitEmailTask(action) {
-  const { response, error } = yield call(submitEmailAPI, action.payload);
+  const { response } = yield call(submitEmailAPI, action.payload);
   if (response) {
     yield put(actions.submitEmailSuccess());
   } else {
     yield put(actions.submitEmailFailed());
-    console.log(error);
   }
 }
 
@@ -32,7 +31,6 @@ function* resetPasswordTask(action) {
     notifySuccess(i18n.t(`Notify.changePassword`));
   } else {
     yield put(actions.resetPasswordFailed(error));
-    console.log(error);
   }
 }
 function resetPasswordAPI(payload) {
