@@ -151,6 +151,10 @@
           "accent": "Phương ngữ/Giọng tiếng Anh"
         }
       },
+      "price": {
+        "title": "Mức lương",
+        "expectedPrice": "Mức lương mỗi 30 phút (VND)"
+      },
       "teach": {
         "alertMessage": "Đây là điều đầu tiên mà học viên nhìn thấy khi tìm kiếm gia sư.",
         "title": "Về việc dạy",
@@ -215,6 +219,7 @@
     "report": "Báo cáo",
     "title": "Hồ sơ",
     "notifyEditSuccess": "Chỉnh sửa hồ sơ thành công",
+    "notifyEditTutorSuccess": "Chỉnh sửa thông tin gia sư thành công",
     "requiredName": "Vui lòng nhập tên!",
     "requiredEmail": "Vui lòng nhập email!",
     "invalidEmail": "Email nhập vào không hợp lệ!",
@@ -242,7 +247,9 @@
       "uploadBtn": "Tải lên",
       "cancelBtn": "Huỷ",
       "drag": "Thả tệp vào đây hoặc nhấp vào để tải lên ảnh đại diện"
-    }
+    },
+    "tutorInfo": "Thông tin gia sư",
+    "nothingChanged": "Không có sự thay đổi"
   },
   "Favorite": {
     "title": "Gia sư yêu thích",

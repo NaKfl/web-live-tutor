@@ -55,6 +55,21 @@ export const getTutorById = ({ tutorId }) => {
   }).then(response => response.data);
 };
 
+export const editTutor = data => {
+  return request(
+    WEB_API,
+    {
+      url: `/tutor`,
+      method: 'POST',
+      data,
+    },
+    1,
+  )
+    .then(response => response.data)
+    .then(data => ({ response: data }))
+    .catch(handleGeneralError);
+};
+
 export const getTutorDetail = payload => {
   return request(WEB_API, {
     url: `tutor/${payload}`,

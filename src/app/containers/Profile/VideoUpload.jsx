@@ -2,9 +2,10 @@ import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Button from 'app/components/Button';
 import { useTranslation } from 'react-i18next';
-export const VideoUpload = ({ selectVideo, ...rest }) => {
+
+export const VideoUpload = ({ selectVideo, existedVideo, ...rest }) => {
   const { t } = useTranslation();
-  const [preview, setPreview] = useState();
+  const [preview, setPreview] = useState(existedVideo);
   const onDrop = useCallback(
     acceptFiles => {
       if (!!acceptFiles) {

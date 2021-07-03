@@ -1,121 +1,39 @@
-import ProfileTutor from 'assets/tutor-profile.png';
-import { Introduction, Content, StyleMultiSelect } from './styles';
+import { Col, Row, Skeleton } from 'antd';
+import Alert from 'app/components/Alert';
+import Button from 'app/components/Button';
+import Checkbox from 'app/components/Checkbox';
 import Divider from 'app/components/Divider';
 import Form from 'app/components/Form';
-import Alert from 'app/components/Alert';
-import { Col, Row } from 'antd';
 import Input from 'app/components/Input';
 import Radio from 'app/components/Radio';
-import Checkbox from 'app/components/Checkbox';
-import DatePicker from 'app/components/DatePicker';
-import ImageUpload from './ImageUpload';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MAJOR_NAMES } from './constants';
-import COUNTRIES from 'utils/countries';
 import LANGUAGES from 'utils/languages';
+import { MAJOR_NAMES } from './constants';
 import MultiOptions from './MultiOptions';
-import Select from 'app/components/Select';
+import { Content, StyleMultiSelect } from './styles/tutorInfo';
+import { useTutorInfo } from './hooks';
+import VideoUpload from './VideoUpload';
 import InputNumber from 'app/components/InputNumber';
 
-export const StepProfile = ({
-  formProfile,
-  tutorFormValues,
-  onChangeNextStep,
-  selectAvatar,
-  avatar,
-}) => {
+const TutorInfo = () => {
   const { t } = useTranslation();
+  const { handlers, selectors } = useTutorInfo();
+  const { tutor, form, loading, loadingEdit } = selectors;
+  const { selectVideo, onFinish } = handlers;
 
   return (
-    <>
-      <Introduction>
-        <img className="intro-image" src={ProfileTutor} alt="intro-profile" />
-        <div className="intro-content">
-          <h2>{t('Register.Tutor.profile.setup')}</h2>
-          <p>{t('Register.Tutor.profile.intro1')}</p>
-          <p>{t('Register.Tutor.profile.intro2')}</p>
-        </div>
-      </Introduction>
-      <Content>
+    <Content>
+      {(loading && <Skeleton active paragraph={{ rows: 10 }} />) || (
         <Form
-          className="profile-form"
-          form={formProfile}
-          onFinish={onChangeNextStep}
-          initialValues={tutorFormValues}
+          id="tutor-info-form"
+          form={form}
+          onFinish={onFinish}
+          initialValues={tutor || {}}
           requiredMark={false}
           layout="vertical"
         >
-          {/*PROFILE  */}
-          <Divider orientation="left">
-            {t('Register.Tutor.profile.title')}
-          </Divider>
-          <Row gutter={16} className="basic-info">
-            <Col lg={8} xs={24} className="basic-info-left no-flex">
-              <ImageUpload
-                className="avt-uploader"
-                selectAvatar={selectAvatar}
-              />
-              <p>{t('Register.Tutor.profile.btnClickEdit')}</p>
-              <Alert
-                message={t('Register.Tutor.profile.alertUploadMessage')}
-                type="info"
-              />
-            </Col>
-            <Col lg={16} xs={24} className="basic-info-right no-flex">
-              <Col span={24}>
-                <Form.Item
-                  label={t('Register.Tutor.profile.lable.name')}
-                  name="name"
-                  rules={[
-                    {
-                      required: true,
-                      message: t('Register.Tutor.profile.rule.name'),
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <Form.Item
-                  label={t('Register.Tutor.profile.lable.country')}
-                  name="country"
-                  rules={[
-                    {
-                      required: true,
-                      message: t('Register.Tutor.profile.rule.country'),
-                    },
-                  ]}
-                >
-                  <Select>
-                    {Object.entries(COUNTRIES).map(([key, value]) => (
-                      <Select.Option value={key} key={key}>
-                        {value}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <Form.Item
-                  label={t('Register.Tutor.profile.lable.birthday')}
-                  name="birthday"
-                  rules={[
-                    {
-                      required: true,
-                      message: t('Register.Tutor.profile.rule.birthday'),
-                    },
-                  ]}
-                >
-                  <DatePicker />
-                </Form.Item>
-              </Col>
-            </Col>
-          </Row>
-          {/*CV  */}
-          <Divider orientation="left" className="mt-5">
-            {t('Register.Tutor.cv.title')}
-          </Divider>
+          <Divider orientation="left">{t('Register.Tutor.cv.title')}</Divider>
           <p>{t('Register.Tutor.cv.info')}</p>
           <Alert message={t('Register.Tutor.cv.alertMessage')} type="info" />
           <Row className="mt-3">
@@ -316,10 +234,48 @@ export const StepProfile = ({
               </Form.Item>
             </Col>
           </Row>
+          {/*VIDEO  */}
+          <Divider orientation="left">
+            {t('Register.Tutor.video.title')}
+          </Divider>
+          <Alert
+            style={{ marginBottom: 30 }}
+            message={
+              <>
+                <span>{t('Register.Tutor.video.tip.title')}</span>
+                <ol style={{ marginBottom: 0, marginLeft: 20 }}>
+                  <li>{t('Register.Tutor.video.tip.t1')}</li>
+                  <li>{t('Register.Tutor.video.tip.t2')}</li>
+                  <li>{t('Register.Tutor.video.tip.t3')}</li>
+                  <li>{t('Register.Tutor.video.tip.t4')}</li>
+                  <li>{t('Register.Tutor.video.tip.t5')}</li>
+                </ol>
+              </>
+            }
+            type="info"
+          />
+          <Row justify="center">
+            <VideoUpload
+              className="video-upload"
+              selectVideo={selectVideo}
+              existedVideo={tutor?.video}
+            />
+          </Row>
+          <Row justify="end" className="mt-4">
+            <Button
+              form="tutor-info-form"
+              className="submit-btn"
+              type="accent"
+              htmlType="submit"
+              loading={loadingEdit}
+            >
+              {t('Profile.btnSave')}
+            </Button>
+          </Row>
         </Form>
-      </Content>
-    </>
+      )}
+    </Content>
   );
 };
 
-export default StepProfile;
+export default memo(TutorInfo);

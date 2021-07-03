@@ -151,6 +151,10 @@
           "accent": "English Dialect/Accent"
         }
       },
+      "price": {
+        "title": "Wages",
+        "expectedPrice": "Wages per 30 minutes (VND)"
+      },
       "teach": {
         "alertMessage": "This is the first thing students will see when looking for tutors.",
         "title": "Who I teach",
@@ -217,6 +221,7 @@
     "report": "Report",
     "title": "Profile",
     "notifyEditSuccess": "Edit profile successful",
+    "notifyEditTutorSuccess": "Edit tutor info successful",
     "requiredName": "Please input your name!",
     "requiredEmail": "Please input your email!",
     "invalidEmail": "The input is not valid email!",
@@ -244,7 +249,9 @@
       "uploadBtn": "Upload",
       "cancelBtn": "Cancel",
       "drag": "Drag 'n' drop some files here, or click to select files"
-    }
+    },
+    "tutorInfo": "Tutor Info",
+    "nothingChanged": "Nothing changed"
   },
   "Favorite": {
     "title": "Favorite tutors",

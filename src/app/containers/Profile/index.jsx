@@ -22,7 +22,8 @@ import { useTranslation } from 'react-i18next';
 import UploadAvatar from './UploadAva';
 import COUNTRIES from 'utils/countries';
 import moment from 'moment';
-import { ACTION_STATUS, DEFAULT_PICKER_VALUE } from 'utils/constants';
+import { ACTION_STATUS, DEFAULT_PICKER_VALUE, ROLES } from 'utils/constants';
+import TutorInfo from './TutorInfo';
 const { Panel } = Collapse;
 
 export const Profile = () => {
@@ -37,6 +38,7 @@ export const Profile = () => {
     avatarUploadVisible,
     loadingUpload,
     getStatus,
+    currentRole,
   } = selectors;
   const { t } = useTranslation();
 
@@ -74,7 +76,7 @@ export const Profile = () => {
         </StyledBasicInfo>
 
         <StyledDetailInfo>
-          <Collapse className="collapse" defaultActiveKey={['1']}>
+          <Collapse className="collapse" defaultActiveKey={['1']} accordion>
             <Panel
               className="align-center-panel"
               showArrow={false}
@@ -161,11 +163,18 @@ export const Profile = () => {
                 </>
               )}
             </Panel>
-            <Panel
-              showArrow={false}
-              header={t('Profile.settings')}
-              key="2"
-            ></Panel>
+            {currentRole === ROLES.TUTOR && (
+              <Panel
+                className="align-center-panel"
+                showArrow={false}
+                header={t('Profile.tutorInfo')}
+                key="2"
+              >
+                {(getStatus === ACTION_STATUS.PENDING && (
+                  <Skeleton active paragraph={{ rows: 4 }} />
+                )) || <TutorInfo />}
+              </Panel>
+            )}
           </Collapse>
         </StyledDetailInfo>
       </Col>
