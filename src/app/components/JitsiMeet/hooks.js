@@ -28,8 +28,13 @@ const useHooks = props => {
     jitsi.executeCommand('hangup');
   };
 
+  const getNumberOfParticipants = () => {
+    const numberOfParticipants = jitsi.getNumberOfParticipants();
+    return numberOfParticipants;
+  };
+
   return {
-    handlers: { onError, onJitsi, executeEndCall },
+    handlers: { onError, onJitsi, executeEndCall, getNumberOfParticipants },
     selectors: {
       loading,
       error,

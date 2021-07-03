@@ -2,6 +2,8 @@ export const AUTH_INFO_KEY = 'AuthenticationInfo';
 
 export const TRANSACTION_TOKEN = 'TransactionToken';
 
+export const PARTICIPANT_JOIN = 'ParticipantJoin';
+
 export const ACTION_STATUS = {
   PENDING: 'PENDING',
   SUCCESS: 'SUCCESS',
@@ -13,6 +15,8 @@ export const COMMON_PROPERTIES = {
   data: null,
   error: null,
 };
+
+export const TIME_IN_ROOM = 5 * 60;
 
 export const ROLES = {
   GUEST: 'guest',

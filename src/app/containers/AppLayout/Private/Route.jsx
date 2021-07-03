@@ -4,7 +4,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, useLocation } from 'react-router-dom';
 import { ROLES } from 'utils/constants';
-import useHooks from '../hooks';
+import useHooks, { useRemoveParticipantJoin } from '../hooks';
 
 const PrivateRoute = ({
   component,
@@ -13,6 +13,7 @@ const PrivateRoute = ({
   ...rest
 }) => {
   const { selectors } = useHooks();
+  useRemoveParticipantJoin();
   const { isAuthenticated } = selectors;
   const user = useSelector(selectUserInfoAuthenticate);
   const canAccess = useAuthorization(user?.currentRole, requiredRoles);

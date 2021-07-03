@@ -7,8 +7,11 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
-import { ROLES } from 'utils/constants';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { ROLES, TIME_IN_ROOM } from 'utils/constants';
+import {
+  getUser as getUserFromStorage,
+  removeParticipantJoin,
+} from 'utils/localStorageUtils';
 import { REFRESH_TOKEN_INTERVAL_MINUTES } from 'configs';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { JWT_SECRET } from 'configs';
@@ -45,6 +48,10 @@ export const useNotify = () => {
   }, []);
 };
 
+export const useRemoveParticipantJoin = () => {
+  removeParticipantJoin();
+};
+
 export const useListenSocket = () => {
   const { showCallModal, closeCallModal, showRatingForm } = useShowModal();
   const history = useHistory();
@@ -74,7 +81,7 @@ export const useListenSocket = () => {
           issuer: 'livetutor',
           subject: 'https://meet.livetutor.live',
           audience: 'livetutor',
-          expiresIn: `30s`,
+          expiresIn: `${TIME_IN_ROOM}s`,
         });
         closeCallModal();
         history.push(`/call/?token=${token}`);
@@ -123,6 +130,13 @@ export const useListenSocket = () => {
         userId: userCall.id,
         sessionId: session.id,
         isTutor: true,
+      });
+    });
+
+    socket.on('call:endedCall', ({ userBeCalled, session }) => {
+      showRatingForm({
+        userId: userBeCalled.id,
+        sessionId: session.id,
       });
     });
   }, []);

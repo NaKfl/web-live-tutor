@@ -3,23 +3,13 @@ import { actions as popupActions } from 'app/containers/Popup/slice';
 import useActions from 'hooks/useActions';
 import { useHistory } from 'react-router-dom';
 import socket from 'utils/socket';
-import { useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 
 export const useHooks = () => {
   const history = useHistory();
   const { openPopup } = useActions({ openPopup: popupActions.openPopup }, [
     popupActions,
   ]);
-
-  useEffect(() => {
-    socket.on('call:endedCall', ({ userBeCalled, session }) => {
-      showRatingForm({
-        userId: userBeCalled.id,
-        sessionId: session.id,
-      });
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const showRatingForm = useCallback(
     tutor => {

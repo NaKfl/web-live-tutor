@@ -8,6 +8,8 @@ const useJitsi = props => {
     displayName,
     onMeetingEnd,
     onSomeOneLeave,
+    onParticipantJoin,
+    onVideoConferenceJoin,
     ...options
   } = props;
   const [loading, setLoading] = useState(true);
@@ -37,18 +39,9 @@ const useJitsi = props => {
 
     subject && client.executeCommand('subject', subject);
 
-    client.addEventListener('videoConferenceJoined', () => {
-      password && client.executeCommand('password', password);
-      displayName && client.executeCommand('displayName', displayName);
-    });
+    client.addEventListener('videoConferenceJoined', onVideoConferenceJoin);
 
-    client.addEventListener('participantJoined', () => {
-      displayName && client.executeCommand('displayName', displayName);
-    });
-
-    client.addEventListener('participantJoined', () => {
-      displayName && client.executeCommand('displayName', displayName);
-    });
+    client.addEventListener('participantJoined', onParticipantJoin);
 
     client.addEventListener('passwordRequired', () => {
       password && client.executeCommand('password', password);
