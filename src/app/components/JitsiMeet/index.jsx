@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, forwardRef, useImperativeHandle } from 'react';
 import useHooks from './hooks';
-export const JitsiMeet = props => {
-  const { selectors } = useHooks(props);
+
+export const JitsiMeet = forwardRef((props, ref) => {
+  const { selectors, handlers } = useHooks(props);
   const {
     loadingComponent,
     errorComponent,
@@ -10,6 +11,14 @@ export const JitsiMeet = props => {
     containerStyles,
     jitsiContainerStyles,
   } = selectors;
+  const { executeEndCall } = handlers;
+
+  useImperativeHandle(ref, () => ({
+    exeEndCall() {
+      executeEndCall();
+    },
+  }));
+
   return (
     <div style={{ ...{ width: '100%', height: '100%' }, ...containerStyles }}>
       {error && (errorComponent || <p>{error}</p>)}
@@ -27,6 +36,6 @@ export const JitsiMeet = props => {
       />
     </div>
   );
-};
+});
 
 export default memo(JitsiMeet);

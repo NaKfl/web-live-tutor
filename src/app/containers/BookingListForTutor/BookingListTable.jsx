@@ -8,7 +8,6 @@ import calendarCheck from 'assets/svg/calendar-check.svg';
 
 export const BookingListTable = memo(
   ({ totalCount, onChangePage, dataSource }) => {
-    console.log(totalCount);
     const { t } = useTranslation();
     const form = useForm(dataSource);
 

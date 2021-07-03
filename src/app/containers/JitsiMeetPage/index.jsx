@@ -1,10 +1,12 @@
 import { Spin, Button as ButtonAntd } from 'antd';
 import { JitsiMeet } from 'app/components/JitsiMeet';
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import useHooks from './hooks';
-import { StyledMeetingPage } from './styles';
+import { StyledMeetingPage, StyledCountDown } from './styles';
 import Button from 'app/components/Button';
+import Countdown, { zeroPad } from 'react-countdown';
+import { Progress } from 'antd';
 
 export const JitsiMeetPage = props => {
   const { handlers, selectors } = useHooks(props);
@@ -18,6 +20,26 @@ export const JitsiMeetPage = props => {
   } = selectors;
   const { handleSomeOneLeave, endCall, continueGoToWeb } = handlers;
   const { t } = useTranslation();
+  const childRef = useRef();
+
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    // Render a countdown
+    const totalSecond = parseFloat(roomInfo?.timeInRoom);
+    const current = parseInt(minutes) * 60.0 + parseInt(seconds);
+    const percent = 100.0 - (current * 100.0) / totalSecond;
+    return (
+      <StyledCountDown>
+        <Progress
+          type="circle"
+          width={50}
+          strokeColor={'#6979F8'}
+          percent={percent}
+          format={() => ` ${zeroPad(minutes)}:${zeroPad(seconds)}`}
+        />
+      </StyledCountDown>
+    );
+  };
+
   if (error)
     return (
       <Spin
@@ -52,9 +74,20 @@ export const JitsiMeetPage = props => {
       spinning={isLoading}
       tip={<p style={{ marginTop: 20 }}>{t('Jitsi.backToHome')}</p>}
     >
+      {roomInfo?.timeInRoom && (
+        <Countdown
+          date={Date.now() + parseInt(roomInfo?.timeInRoom) * 1000}
+          onComplete={() => {
+            childRef.current.exeEndCall();
+          }}
+          renderer={renderer}
+        />
+      )}
+
       <StyledMeetingPage isTutor={roomInfo.isTutor}>
         {roomInfo.roomName && (
           <JitsiMeet
+            ref={childRef}
             roomName={roomInfo.roomName}
             jwt={roomInfo?.token}
             disableInviteFunctions={true}

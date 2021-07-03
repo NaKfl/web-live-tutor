@@ -22,6 +22,7 @@ const useHooks = props => {
   const refEndCall = useRef(true);
 
   const pushToHome = isTutor => {
+    setIsLoading(true);
     setTimeout(() => {
       if (isTutor) history.push('/schedule-tutor');
       else history.push('/');
@@ -46,7 +47,14 @@ const useHooks = props => {
     })();
 
     if (data) {
-      const { roomName, isTutor, userCall, userBeCalled, startTime } = data;
+      const {
+        roomName,
+        isTutor,
+        userCall,
+        userBeCalled,
+        startTime,
+        timeInRoom,
+      } = data;
 
       if (moment().isAfter(moment(startTime).add(-5, 'minutes'))) {
         socket.emit('call:setStatusCalling', {
@@ -59,6 +67,7 @@ const useHooks = props => {
           isTutor,
           startTime,
           token,
+          timeInRoom,
         });
       } else {
         setError(
@@ -75,7 +84,6 @@ const useHooks = props => {
     const { userCall, userBeCalled, startTime } = field;
     const endTime = moment();
     if (refEndCall.current === true) {
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
       socket.emit('call:endCall', {
         userCall,
         userBeCalled,
@@ -84,12 +92,10 @@ const useHooks = props => {
       });
       refEndCall.current = false;
     }
-    setIsLoading(true);
     pushToHome(roomInfo.isTutor);
   }, []);
 
   const endCall = () => {
-    setIsLoading(true);
     pushToHome(roomInfo.isTutor);
   };
 
@@ -98,7 +104,7 @@ const useHooks = props => {
   };
 
   return {
-    handlers: { handleSomeOneLeave, endCall, continueGoToWeb },
+    handlers: { handleSomeOneLeave, endCall, continueGoToWeb, pushToHome },
     selectors: { roomInfo, isLoading, isOnMobile, error, token, isContinueWeb },
   };
 };

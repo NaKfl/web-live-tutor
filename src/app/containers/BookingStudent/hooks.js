@@ -72,7 +72,6 @@ export const useHooks = () => {
 };
 
 export const useForm = (data, handleCancelBooking) => {
-  console.log(data);
   const history = useHistory();
   const { t } = useTranslation();
   const status = useSelector(selectBookingListStatus);
@@ -130,7 +129,10 @@ export const useForm = (data, handleCancelBooking) => {
             <Button
               disabled={!record.canGoToMeeting}
               type="accent"
-              onClick={() => history.push(record?.studentMeetingLink)}
+              onClick={() =>
+                record?.studentMeetingLink &&
+                history.push(record?.studentMeetingLink)
+              }
             >
               {t('BookingList.goToLink')}
             </Button>

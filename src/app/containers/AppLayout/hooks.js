@@ -7,7 +7,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
-import { ROLES } from 'utils/constants';
+import { ROLES, TIME_IN_ROOM } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { REFRESH_TOKEN_INTERVAL_MINUTES } from 'configs';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
@@ -66,11 +66,13 @@ export const useListenSocket = () => {
           userBeCalled,
           isTutor: user.currentRole === ROLES.TUTOR,
           startTime,
+          timeInRoom: TIME_IN_ROOM,
         };
         const token = jwt.sign(obj, JWT_SECRET, {
           issuer: 'livetutor',
           subject: 'https://meet.livetutor.live',
           audience: 'livetutor',
+          expiresIn: `${TIME_IN_ROOM}s`,
         });
         closeCallModal();
         history.push(`/call/?token=${token}`);

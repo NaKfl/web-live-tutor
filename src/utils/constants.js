@@ -14,6 +14,8 @@ export const COMMON_PROPERTIES = {
   error: null,
 };
 
+export const TIME_IN_ROOM = 5 * 60; // 5 phut
+
 export const ROLES = {
   GUEST: 'guest',
   STUDENT: 'student',

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 export const useHooks = props => {
   const selectorFeedbackSession = useSelector(selectFeedbackSession);
   const { reviews } = props;
-  console.log('selectorFeedbackSession', selectorFeedbackSession);
   const { getFeedbackSession } = useActions(
     {
       getFeedbackSession: actions.getFeedbackSession,
