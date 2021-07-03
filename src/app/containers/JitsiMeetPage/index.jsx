@@ -24,7 +24,7 @@ export const JitsiMeetPage = props => {
 
   const renderer = ({ hours, minutes, seconds, completed }) => {
     // Render a countdown
-    const totalSecond = parseFloat(roomInfo?.timeInRoom);
+    const totalSecond = parseFloat(roomInfo?.remainTime);
     const current = parseInt(minutes) * 60.0 + parseInt(seconds);
     const percent = 100.0 - (current * 100.0) / totalSecond;
     return (
@@ -74,9 +74,9 @@ export const JitsiMeetPage = props => {
       spinning={isLoading}
       tip={<p style={{ marginTop: 20 }}>{t('Jitsi.backToHome')}</p>}
     >
-      {roomInfo?.timeInRoom && (
+      {roomInfo?.remainTime && (
         <Countdown
-          date={Date.now() + parseInt(roomInfo?.timeInRoom) * 1000}
+          date={Date.now() + parseInt(roomInfo?.remainTime) * 1000}
           onComplete={() => {
             childRef.current.exeEndCall();
           }}

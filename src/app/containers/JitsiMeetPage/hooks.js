@@ -53,13 +53,15 @@ const useHooks = props => {
         userCall,
         userBeCalled,
         startTime,
-        timeInRoom,
+        endSession,
       } = data;
 
       if (moment().isAfter(moment(startTime).add(-5, 'minutes'))) {
         socket.emit('call:setStatusCalling', {
           userId: userBeCalled.id,
         });
+        let duration = moment.duration(moment(endSession).diff(moment()));
+        let remainTime = duration.asSeconds();
         setRoomInfo({
           userCall,
           roomName,
@@ -67,7 +69,7 @@ const useHooks = props => {
           isTutor,
           startTime,
           token,
-          timeInRoom,
+          remainTime,
         });
       } else {
         setError(
