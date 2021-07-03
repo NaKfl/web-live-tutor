@@ -33,5 +33,20 @@ export const selectUploadStatus = createSelector(
 
 export const selectGetStatus = createSelector(
   selectProfileState,
-  loadingUpload => get('get.status', loadingUpload),
+  tutorProfile => get('get.status', tutorProfile),
+);
+
+export const selectGetTutorInfoStatus = createSelector(
+  selectProfileState,
+  tutorProfile => get('getTutorInfo.status', tutorProfile),
+);
+
+export const selectGetTutorInfoData = createSelector(
+  selectProfileState,
+  tutorProfile => get('getTutorInfo.data', tutorProfile),
+);
+
+export const selectEditTutorInfoStatus = createSelector(
+  selectProfileState,
+  tutorProfile => get('editTutorInfo.status', tutorProfile),
 );

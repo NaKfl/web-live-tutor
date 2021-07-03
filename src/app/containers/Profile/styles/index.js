@@ -1,3 +1,4 @@
+import Modal from 'antd/lib/modal/Modal';
 import EditIcon from 'app/components/EditIcon';
 import { Row } from 'app/components/Grid';
 import styled from 'styled-components';
@@ -121,5 +122,16 @@ export const StyledDetailInfo = styled(Row)`
           justify-content: center;
       `}
     }
+  }
+`;
+
+export const StyledProfileUploadModal = styled(Modal)`
+  .ant-modal-title {
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .ant-modal-content {
+    border-radius: 10px;
+    overflow: hidden;
   }
 `;

@@ -1,4 +1,5 @@
 import { getProfile, editProfile } from 'fetchers/profileFetcher';
+import { getTutorById, editTutor } from 'fetchers/tutor.service';
 import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { actions } from './slice';
 import { actions as loginActions } from 'app/containers/Login/slice';
@@ -60,10 +61,49 @@ function* uploadAvatarTask(action) {
 function uploadAvatarAPI(payload) {
   return uploadAvatar(payload);
 }
+
+function* getTutorInfoWatcher() {
+  yield takeLatest(actions.getTutorInfo, getTutorInfoTask);
+}
+
+function* getTutorInfoTask(action) {
+  const response = yield call(getTutorInfoAPI, action.payload);
+  if (response) {
+    yield put(actions.getTutorInfoSuccess(response));
+  } else {
+    yield put(actions.getTutorInfoFailed());
+  }
+}
+
+function getTutorInfoAPI(payload) {
+  return getTutorById({ tutorId: payload });
+}
+
+function* editTutorInfoWatcher() {
+  yield takeLatest(actions.editTutorInfo, editTutorInfoTask);
+}
+
+function* editTutorInfoTask(action) {
+  const { response } = yield call(editTutorInfoAPI, action.payload);
+  if (response) {
+    yield put(actions.editTutorInfoSuccess());
+    yield put(actions.getTutorInfo(response?.data?.userId));
+    notifySuccess(i18n.t('Profile.notifyEditTutorSuccess'));
+  } else {
+    yield put(actions.editTutorInfoFailed());
+  }
+}
+
+function editTutorInfoAPI(payload) {
+  return editTutor(payload);
+}
+
 export default function* defaultSaga() {
   yield all([
     fork(getProfileWatcher),
     fork(editProfileWatcher),
     fork(uploadAvatarWatcher),
+    fork(getTutorInfoWatcher),
+    fork(editTutorInfoWatcher),
   ]);
 }

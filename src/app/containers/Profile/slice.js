@@ -19,6 +19,15 @@ const initialState = {
     visibleModal: false,
     loading: false,
   },
+  getTutorInfo: {
+    data: {},
+    status: '',
+    error: null,
+  },
+  editTutorInfo: {
+    status: '',
+    error: null,
+  },
 };
 
 const profileSlice = createSlice({
@@ -44,6 +53,48 @@ const profileSlice = createSlice({
       return flow(
         set('get.error', action.payload),
         set('get.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    getTutorInfo(state) {
+      return flow(
+        set('getTutorInfo.error', null),
+        set('getTutorInfo.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getTutorInfoSuccess(state, action) {
+      return flow(
+        set('getTutorInfo.data', action.payload),
+        set('getTutorInfo.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getTutorInfoFailed(state, action) {
+      return flow(
+        set('getTutorInfo.error', action.payload),
+        set('getTutorInfo.status', ACTION_STATUS.FAILED),
+      )(state);
+    },
+
+    editTutorInfo(state) {
+      return flow(
+        set('editTutorInfo.error', null),
+        set('editTutorInfo.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    editTutorInfoSuccess(state, action) {
+      return flow(
+        set('editTutorInfo.data', action.payload),
+        set('editTutorInfo.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    editTutorInfoFailed(state, action) {
+      return flow(
+        set('editTutorInfo.error', action.payload),
+        set('editTutorInfo.status', ACTION_STATUS.FAILED),
       )(state);
     },
 

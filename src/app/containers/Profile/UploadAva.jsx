@@ -1,7 +1,7 @@
 import { useCallback, memo, useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Modal, Avatar } from 'antd';
-import { StyledDragImage } from './styles';
+import { Avatar } from 'antd';
+import { StyledDragImage, StyledProfileUploadModal } from './styles';
 import { notifyError } from 'utils/notify';
 import Button from 'app/components/Button';
 import { useTranslation } from 'react-i18next';
@@ -38,7 +38,7 @@ export const UploadAvatar = memo(
 
     return (
       <>
-        <Modal
+        <StyledProfileUploadModal
           title={t('Profile.modalUploadAvatar.title')}
           visible={visible}
           onCancel={() => {
@@ -58,7 +58,7 @@ export const UploadAvatar = memo(
             </Button>,
             <Button
               key="submit"
-              type="primary"
+              type="accent"
               onClick={() => {
                 handleOk(file);
               }}
@@ -82,7 +82,7 @@ export const UploadAvatar = memo(
               <p>{t('Profile.modalUploadAvatar.drag')}</p>
             </StyledDragImage>
           )}
-        </Modal>
+        </StyledProfileUploadModal>
       </>
     );
   },
