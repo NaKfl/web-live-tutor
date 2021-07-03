@@ -169,13 +169,23 @@ export const TutorDetail = ({ ...rest }) => {
                     <Skeleton avatar active paragraph={{ rows: 2 }} />
                   )) || (
                     <>
+                      <div class="ribbon ribbon-top-left">
+                        <div>
+                          <span>
+                            {new Intl.NumberFormat('vi-VN', {
+                              style: 'currency',
+                              currency: 'VND',
+                            }).format(tutorDetail?.price)}
+                          </span>
+                        </div>
+                      </div>
                       <Col>
                         <Row className="tutor-info">
                           <StyledAvatar>
                             <Avatar
                               src={avatar}
                               shape="circle"
-                              size={100}
+                              size={110}
                               className="avatar"
                             />
                           </StyledAvatar>

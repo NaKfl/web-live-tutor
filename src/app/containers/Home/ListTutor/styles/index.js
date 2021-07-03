@@ -12,7 +12,7 @@ export const StyledTutorCard = styled.div`
   background-color: #fff;
   position: relative;
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 20px 20px;
   .w-100 {
     width: 100%;
   }
@@ -29,6 +29,60 @@ export const StyledTutorCard = styled.div`
         margin-top: 25px;
       }
     }
+  }
+  .ribbon {
+    width: 96px;
+    height: 96px;
+    overflow: hidden;
+    z-index: 10;
+
+    position: absolute;
+  }
+  .ribbon::before,
+  .ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #be52f2;
+  }
+  .ribbon div {
+    position: absolute;
+    display: block;
+    width: 175px;
+    padding: 8px 0;
+    background-color: #be52f2;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font: 700 14px/1 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+    span {
+      margin-left: 10px;
+    }
+  }
+  .ribbon-top-left {
+    top: -10px;
+    left: -10px;
+  }
+  .ribbon-top-left::before,
+  .ribbon-top-left::after {
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  .ribbon-top-left::before {
+    top: 0;
+    right: 0;
+  }
+  .ribbon-top-left::after {
+    bottom: 0;
+    left: 0;
+  }
+  .ribbon-top-left div {
+    right: -25px;
+    top: 30px;
+    transform: rotate(-45deg);
   }
 `;
 
@@ -102,6 +156,7 @@ export const StyledMain = styled.div`
       color: rgb(119, 119, 119);
     }
     height: 43px;
+    margin-top: 15px;
     overflow: hidden;
   }
   .control-layout {
