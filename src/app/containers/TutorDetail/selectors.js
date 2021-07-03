@@ -75,7 +75,7 @@ export const selectModalIdsSelected = createSelector(
 
 export const selectPriceOneOfPrice = createSelector(
   selectTutorDetailState,
-  price => get('modalControl.price', price),
+  price => get('getTutorDetail.data.price', price),
 );
 
 export const selectSelectedKeys = createSelector(

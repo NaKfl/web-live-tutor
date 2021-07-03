@@ -310,7 +310,7 @@ export const StepProfile = ({
               >
                 <InputNumber
                   formatter={value =>
-                    value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                    `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
                   }
                 />
               </Form.Item>
