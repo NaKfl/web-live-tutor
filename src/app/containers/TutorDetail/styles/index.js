@@ -40,7 +40,7 @@ export const StyledTutorTitle = styled.div`
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   background-color: ${COLOR.WHITE};
-  padding: 12px 0;
+  padding: 8px 0 12px 0;
   .status {
     color: rgba(0, 0, 0, 0.54);
   }
@@ -87,7 +87,65 @@ export const StyledTutorTitle = styled.div`
           font-weight: normal;
         }
       }
+      .price {
+        font-size: 14px;
+        font-weight: 600;
+      }
     }
+  }
+  .ribbon {
+    width: 90px;
+    height: 89px;
+    overflow: hidden;
+    z-index: 10;
+
+    position: absolute;
+  }
+  .ribbon::before,
+  .ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #be52f2;
+  }
+  .ribbon div {
+    position: absolute;
+    display: block;
+    width: 179px;
+    padding: 8px 0;
+    background-color: #be52f2;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    font: 700 14px/1 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    text-align: center;
+    span {
+      margin-left: 20px;
+    }
+  }
+  .ribbon-top-left {
+    top: -10px;
+    left: -10px;
+  }
+  .ribbon-top-left::before,
+  .ribbon-top-left::after {
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  .ribbon-top-left::before {
+    top: 0;
+    right: 0;
+  }
+  .ribbon-top-left::after {
+    bottom: 0;
+    left: 0;
+  }
+  .ribbon-top-left div {
+    right: -25px;
+    top: 30px;
+    transform: rotate(-45deg);
   }
   ${media.custom500px`
       flex-direction: column;
