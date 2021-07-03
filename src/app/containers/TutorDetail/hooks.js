@@ -143,9 +143,7 @@ const useHooks = () => {
 
   const handleBookSchedule = useCallback(
     values => {
-      const ids = Object.values(values).flat();
-      const scheduleDetailIds = ids.filter(item => item != null);
-      showModalBooking(scheduleDetailIds);
+      showModalBooking(values);
     },
     [showModalBooking],
   );
