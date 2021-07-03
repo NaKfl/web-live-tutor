@@ -68,11 +68,14 @@ export const mapBookingListDataSource = data => {
       const { startPeriod, endPeriod, scheduleInfo } = item.scheduleDetailInfo;
       const { date, tutorInfo } = scheduleInfo;
       const { id, name } = tutorInfo;
-      let duration = moment.duration(
-        moment(`${date} ${startPeriod}`, 'YYYY-MM-DD HH:mm').diff(moment()),
+      let durationDelete = moment.duration(
+        moment().diff(moment(`${date} ${startPeriod}`, 'YYYY-MM-DD HH:mm')),
       );
-      let hours = duration.asHours();
-
+      let durationGotoMeeting = moment.duration(
+        moment().diff(moment(`${date} ${endPeriod}`, 'YYYY-MM-DD HH:mm')),
+      );
+      let hoursCanDelete = durationDelete.asHours();
+      let hoursGotoMeeting = durationGotoMeeting.asHours();
       return {
         scheduleDetailId: item.scheduleDetailId,
         no: index + 1,
@@ -82,9 +85,9 @@ export const mapBookingListDataSource = data => {
         date,
         startPeriod,
         endPeriod,
-        canDelete: hours >= 24,
+        canDelete: hoursCanDelete < 24,
         studentMeetingLink: item.studentMeetingLink,
-        canGoToMeeting: hours >= 0,
+        canGoToMeeting: hoursGotoMeeting < 0,
       };
     });
     return result;

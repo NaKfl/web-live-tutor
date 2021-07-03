@@ -24,8 +24,12 @@ const useHooks = props => {
     if (error && onError) onError(error);
   }, [error, onError]);
 
+  const executeEndCall = () => {
+    jitsi.executeCommand('hangup');
+  };
+
   return {
-    handlers: { onError, onJitsi },
+    handlers: { onError, onJitsi, executeEndCall },
     selectors: {
       loading,
       error,

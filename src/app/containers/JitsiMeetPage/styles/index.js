@@ -16,3 +16,15 @@ export const StyledMeetingPage = styled.div`
     margin: auto 0;
   }
 `;
+
+export const StyledCountDown = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 234px;
+  top: 40px;
+  .ant-progress-text {
+    color: white;
+  }
+`;
