@@ -5,12 +5,14 @@ import {
   selectModalIdsSelected,
   selectScheduleTutorByDateData,
   selectPriceOneOfPrice,
+  selectSelectedKeys,
 } from '../selectors';
 import { useTranslation } from 'react-i18next';
 
 export const useTables = () => {
   const { t } = useTranslation();
   const scheduleData = useSelector(selectScheduleTutorByDateData);
+  const idsSelectedKey = useSelector(selectSelectedKeys);
   const idsSelected = useSelector(selectModalIdsSelected);
   const priceOfOneSession = useSelector(selectPriceOneOfPrice);
 
@@ -47,8 +49,13 @@ export const useTables = () => {
 
   const dataSource = useMemo(() => {
     if (scheduleData) {
-      const scheduleDataDetails = scheduleData[0].scheduleDetails;
-      const res = scheduleDataDetails
+      const mapScheduleDetails = scheduleData
+        .filter(sched => {
+          return idsSelectedKey.indexOf(sched.id);
+        })
+        .map(value => value.scheduleDetails)
+        .flat();
+      const res = mapScheduleDetails
         .filter(item => idsSelected.includes(item.id))
         .map((value, i) => ({
           key: i,
@@ -64,7 +71,7 @@ export const useTables = () => {
       return res;
     }
     return [];
-  }, [idsSelected, priceOfOneSession, scheduleData]);
+  }, [idsSelected, idsSelectedKey, priceOfOneSession, scheduleData]);
 
   const footer = () => {
     return (

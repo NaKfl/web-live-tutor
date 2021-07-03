@@ -33,6 +33,7 @@ const initialState = {
     status: '',
     isModalVisible: false,
     idsSelected: [],
+    idsSelectedKey: [],
   },
 };
 
@@ -146,9 +147,14 @@ const tutorDetailSlice = createSlice({
     },
 
     showModalBooking(state, action) {
+      const values = action.payload;
+      const ids = Object.values(values).flat();
+      const scheduleDetailIds = ids.filter(item => item != null);
+      const idsSelectedKey = Object.keys(values);
       return flow(
         set('modalControl.isModalVisible', true),
-        set('modalControl.idsSelected', action.payload || []),
+        set('modalControl.idsSelected', scheduleDetailIds || []),
+        set('idsSelectedKey', idsSelectedKey),
       )(state);
     },
 
