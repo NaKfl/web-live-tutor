@@ -7,7 +7,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
 import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import { actions as loginActions } from 'app/containers/Login/slice';
-import { ROLES, TIME_IN_ROOM } from 'utils/constants';
+import { ROLES } from 'utils/constants';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { REFRESH_TOKEN_INTERVAL_MINUTES } from 'configs';
 import { POPUP_TYPE } from 'app/containers/Popup/constants';
@@ -18,6 +18,7 @@ import socket from 'utils/socket';
 import { notifyError } from 'utils/notify';
 import { useTranslation } from 'react-i18next';
 import firebaseUtils from 'utils/firebase';
+import moment from 'moment';
 
 export const useHooks = () => {
   const isAuthenticated = useSelector(makeSelectIsAuthenticated);
@@ -53,6 +54,7 @@ export const useListenSocket = () => {
       'call:acceptedCall',
       ({ userCall, userBeCalled, startTime, roomName }) => {
         const user = getUserFromStorage();
+        const endSession = moment(startTime).add(5, 'minutes');
         const obj = {
           context: {
             user: {
@@ -66,13 +68,13 @@ export const useListenSocket = () => {
           userBeCalled,
           isTutor: user.currentRole === ROLES.TUTOR,
           startTime,
-          timeInRoom: TIME_IN_ROOM,
+          endSession,
         };
         const token = jwt.sign(obj, JWT_SECRET, {
           issuer: 'livetutor',
           subject: 'https://meet.livetutor.live',
           audience: 'livetutor',
-          expiresIn: `${TIME_IN_ROOM}s`,
+          expiresIn: `30s`,
         });
         closeCallModal();
         history.push(`/call/?token=${token}`);
