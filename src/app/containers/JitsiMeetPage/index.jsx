@@ -17,14 +17,19 @@ export const JitsiMeetPage = props => {
     error,
     token,
     isContinueWeb,
+    childJitsiRef,
   } = selectors;
-  const { handleSomeOneLeave, endCall, continueGoToWeb } = handlers;
+  const {
+    handleSomeOneLeave,
+    endCall,
+    continueGoToWeb,
+    handleParticipantJoin,
+  } = handlers;
   const { t } = useTranslation();
-  const childRef = useRef();
 
   const renderer = ({ hours, minutes, seconds, completed }) => {
     // Render a countdown
-    const totalSecond = parseFloat(roomInfo?.remainTime);
+    const totalSecond = roomInfo.totalTime;
     const current = parseInt(minutes) * 60.0 + parseInt(seconds);
     const percent = 100.0 - (current * 100.0) / totalSecond;
     return (
@@ -78,7 +83,7 @@ export const JitsiMeetPage = props => {
         <Countdown
           date={Date.now() + parseInt(roomInfo?.remainTime) * 1000}
           onComplete={() => {
-            childRef.current.exeEndCall();
+            childJitsiRef.current.exeEndCall();
           }}
           renderer={renderer}
         />
@@ -87,11 +92,15 @@ export const JitsiMeetPage = props => {
       <StyledMeetingPage isTutor={roomInfo.isTutor}>
         {roomInfo.roomName && (
           <JitsiMeet
-            ref={childRef}
+            ref={childJitsiRef}
             roomName={roomInfo.roomName}
             jwt={roomInfo?.token}
             disableInviteFunctions={true}
-            onMeetingEnd={() => endCall()}
+            onMeetingEnd={() => endCall(roomInfo)}
+            onVideoConferenceJoin={() => {}}
+            onParticipantJoin={() => {
+              handleParticipantJoin();
+            }}
             onSomeOneLeave={() => handleSomeOneLeave(roomInfo)}
             loadingComponent={<p>{t('Common.loading')}</p>}
           />

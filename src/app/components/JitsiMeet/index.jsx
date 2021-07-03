@@ -11,11 +11,14 @@ export const JitsiMeet = forwardRef((props, ref) => {
     containerStyles,
     jitsiContainerStyles,
   } = selectors;
-  const { executeEndCall } = handlers;
+  const { executeEndCall, getNumberOfParticipants } = handlers;
 
   useImperativeHandle(ref, () => ({
     exeEndCall() {
       executeEndCall();
+    },
+    getNumberOfPersons() {
+      return getNumberOfParticipants();
     },
   }));
 

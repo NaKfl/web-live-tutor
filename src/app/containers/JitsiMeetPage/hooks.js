@@ -9,6 +9,11 @@ import socket from 'utils/socket';
 import isOnMobileDevice from 'utils/mobileDetect';
 import { useTranslation } from 'react-i18next';
 import { DATE_TIME_FORMAT } from 'utils/constants';
+import {
+  storeParticipantJoin,
+  getValueParticipantJoin,
+  removeParticipantJoin,
+} from 'utils/localStorageUtils';
 
 const useHooks = props => {
   const { t } = useTranslation();
@@ -19,10 +24,11 @@ const useHooks = props => {
   const [error, setError] = useState('');
   const [isContinueWeb, setIsContinueWeb] = useState(false);
   const isOnMobile = isOnMobileDevice();
-  const refEndCall = useRef(true);
+  const childJitsiRef = useRef();
 
   const pushToHome = isTutor => {
     setIsLoading(true);
+    removeParticipantJoin();
     setTimeout(() => {
       if (isTutor) history.push('/schedule-tutor');
       else history.push('/');
@@ -62,6 +68,9 @@ const useHooks = props => {
         });
         let duration = moment.duration(moment(endSession).diff(moment()));
         let remainTime = duration.asSeconds();
+        let totalTime = moment
+          .duration(moment(endSession).diff(moment(startTime)))
+          .asSeconds();
         setRoomInfo({
           userCall,
           roomName,
@@ -70,6 +79,7 @@ const useHooks = props => {
           startTime,
           token,
           remainTime,
+          totalTime,
         });
       } else {
         setError(
@@ -82,22 +92,28 @@ const useHooks = props => {
     }
   }, []);
 
+  const handleParticipantJoin = () => {
+    storeParticipantJoin(true);
+  };
+
   const handleSomeOneLeave = useCallback(field => {
+    console.log('Participant leave!');
+  }, []);
+
+  const endCall = field => {
     const { userCall, userBeCalled, startTime } = field;
     const endTime = moment();
-    if (refEndCall.current === true) {
+    const number = childJitsiRef.current.getNumberOfPersons();
+    const isParticipantJoin = getValueParticipantJoin();
+
+    if (number === 0 && isParticipantJoin) {
       socket.emit('call:endCall', {
         userCall,
         userBeCalled,
         startTime,
         endTime,
       });
-      refEndCall.current = false;
     }
-    pushToHome(roomInfo.isTutor);
-  }, []);
-
-  const endCall = () => {
     pushToHome(roomInfo.isTutor);
   };
 
@@ -106,8 +122,22 @@ const useHooks = props => {
   };
 
   return {
-    handlers: { handleSomeOneLeave, endCall, continueGoToWeb, pushToHome },
-    selectors: { roomInfo, isLoading, isOnMobile, error, token, isContinueWeb },
+    handlers: {
+      handleSomeOneLeave,
+      endCall,
+      continueGoToWeb,
+      pushToHome,
+      handleParticipantJoin,
+    },
+    selectors: {
+      roomInfo,
+      isLoading,
+      isOnMobile,
+      error,
+      token,
+      isContinueWeb,
+      childJitsiRef,
+    },
   };
 };
 
