@@ -22,3 +22,13 @@ export const makeSelectAuthenticationError = createSelector(
   selectAuthenticationState,
   authentication => get('error', authentication),
 );
+
+export const selectRefreshingTokenStatus = createSelector(
+  selectAuthenticationState,
+  authentication => get('refreshingToken.status', authentication),
+);
+
+export const selectRefreshingTokenIsShowLoading = createSelector(
+  selectAuthenticationState,
+  authentication => get('refreshingToken.isShowLoading', authentication),
+);

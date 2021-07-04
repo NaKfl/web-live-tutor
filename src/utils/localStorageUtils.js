@@ -41,7 +41,7 @@ export const getRefreshToken = () => {
 
 export const getUser = () => {
   const authInfo = getAuthInfo();
-  return get('user', authInfo);
+  return get('user', authInfo) || null;
 };
 
 export const isAuthenticated = () => {

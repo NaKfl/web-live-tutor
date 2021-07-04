@@ -11,18 +11,12 @@ import { App } from 'app';
 import { HelmetProvider } from 'react-helmet-async';
 import { configureAppStore } from 'store/configureStore';
 
-import { isAuthenticated, getUser } from 'utils/localStorageUtils';
 import './locales/i18n';
 
 import { registerServiceWorker } from './serviceWorker';
 import firebaseUtils from 'utils/firebase';
 
-const initialState = {
-  authentication: {
-    isAuthenticated: isAuthenticated(),
-    info: getUser(),
-  },
-};
+const initialState = {};
 
 export const store = configureAppStore(initialState);
 const MOUNT_NODE = document.getElementById('root');

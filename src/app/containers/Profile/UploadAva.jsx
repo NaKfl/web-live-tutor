@@ -5,29 +5,34 @@ import { StyledDragImage, StyledProfileUploadModal } from './styles';
 import { notifyError } from 'utils/notify';
 import Button from 'app/components/Button';
 import { useTranslation } from 'react-i18next';
+
 export const UploadAvatar = memo(
   ({ visible, handleOk, handleCancel, loading }) => {
     const { t } = useTranslation();
     const [previewImage, setPreviewImage] = useState();
     const [file, setFile] = useState();
-    const onDrop = useCallback(acceptedFiles => {
-      if (acceptedFiles.length > 0) {
-        setFile(acceptedFiles[0]);
-        setPreviewImage(pre => {
-          const a = acceptedFiles.map(file =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            }),
-          );
-          return a[0];
-        });
-      } else {
-        notifyError('File not accept or the size greater than 3MB');
-      }
-    }, []);
+    const onDrop = useCallback(
+      acceptedFiles => {
+        if (acceptedFiles.length > 0) {
+          setFile(acceptedFiles[0]);
+          setPreviewImage(pre => {
+            const a = acceptedFiles.map(file =>
+              Object.assign(file, {
+                preview: URL.createObjectURL(file),
+              }),
+            );
+            return a[0];
+          });
+        } else {
+          notifyError(t('Profile.modalUploadAvatar.errorNotify'));
+        }
+      },
+      [t],
+    );
     const { getRootProps, getInputProps } = useDropzone({
       onDrop,
       maxSize: 5 * 1024 * 1024,
+      accept: 'image/jpeg, image/png',
     });
 
     useEffect(() => {

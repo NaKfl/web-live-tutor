@@ -5,11 +5,25 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <!-- Linkedin -->
     <meta name="description" content="Live online tutoring platform" />
-    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://livetutor.live/" />
-    <meta property="og:image" content="https://livetutor.live/logo192.png" />
     <meta property="og:description" content="Live online tutoring platform" />
+    <!-- Facebook -->
+    <meta property="author" content="HCMUS" />
+    <meta property="og:site_name" content="livetutor.live" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://livetutor.live/logo192.png" />
+    <!-- Twitter -->
+    <meta property="twitter:site" content="livetutor.live" />
+    <meta property="twitter:domain" content="livetutor.live" />
+    <meta property="twitter:creator" content="HCMUS" />
+    <meta property="twitter:card" content="summary" />
+    <meta
+      property="twitter:image:src"
+      content="https://livetutor.live/logo192.png"
+    />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap"
@@ -38,10 +52,51 @@
     <title>Live Tutor</title>
     <script src="%PUBLIC_URL%/env-config.js"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AWFFIzkxOpHEm-f9Q52wkTpoHMABoPgYVL7Cnv94RfBnVYYDYnAWnag56-cASeg--gZRDJtiFqDXyTqQ&currency=USD"></script>
+    <style>
+      #root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loader {
+        transform: translateY(300px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .loader img {
+        width: 200px;
+      }
+      .loader .live-tutor {
+        margin-top: -10px;
+      }
+      .loader span {
+        font-family: 'Open Sans';
+        white-space: nowrap;
+        font-size: 30px;
+        letter-spacing: 2.8px;
+        font-weight: 600;
+      }
+      .loader .live {
+        color: #c840f6;
+      }
+      .loader .tutor {
+        color: #4767f6;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="loader">
+        <img src="/spinner.gif" alt="spinner" class="spinner" />
+        <div class="live-tutor">
+          <span class="live">Live</span>
+          <span class="tutor">Tutor</span>
+        </div>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

@@ -19,6 +19,7 @@ import {
   useRefreshToken,
   useListenSocket,
   useNotify,
+  useLoginLogoutSocket,
 } from './hooks';
 import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import saga from 'app/containers/Login/saga';
@@ -34,12 +35,13 @@ import { Worker } from '@react-pdf-viewer/core';
 
 export const AppLayout = () => {
   useInjectSaga({ key: sliceKey, saga });
-  useInjectReducer({ key: depositSliceKey, reducer: depositReducer });
-  useInjectSaga({ key: depositSliceKey, saga: sagaDeposit });
-  useAuthenticatedRedirect();
   useRefreshToken();
+  useLoginLogoutSocket();
+  useAuthenticatedRedirect();
   useListenSocket();
   useNotify();
+  useInjectReducer({ key: depositSliceKey, reducer: depositReducer });
+  useInjectSaga({ key: depositSliceKey, saga: sagaDeposit });
 
   return (
     <>

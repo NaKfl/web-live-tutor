@@ -3,11 +3,19 @@ import flow from 'lodash/fp/flow';
 import set from 'lodash/fp/set';
 import { updateUserInfo, getUser } from 'utils/localStorageUtils';
 import { ACTION_STATUS } from 'utils/constants';
+import {
+  getUser as getUserFromStorage,
+  isAuthenticated,
+} from 'utils/localStorageUtils';
+
 export const initialState = {
-  info: null,
-  isAuthenticated: false,
+  info: getUserFromStorage(),
+  isAuthenticated: isAuthenticated(),
   status: '',
   error: null,
+  refreshingToken: {
+    status: '',
+  },
 };
 
 const authenticationSlice = createSlice({
@@ -107,7 +115,15 @@ const authenticationSlice = createSlice({
     },
 
     refreshToken(state) {
-      return state;
+      return set('refreshingToken.status', ACTION_STATUS.PENDING)(state);
+    },
+
+    refreshTokenSuccess(state) {
+      return set('refreshingToken.status', ACTION_STATUS.SUCCESS)(state);
+    },
+
+    refreshTokenFailed(state) {
+      return set('refreshingToken.status', ACTION_STATUS.FAILED)(state);
     },
   },
 });
