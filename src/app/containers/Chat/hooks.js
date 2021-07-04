@@ -9,25 +9,18 @@ const useHooks = () => {
   const isShow = useSelector(selectIsShow);
   const unreadCount = useSelector(selectUnreadCount);
 
-  const { toggleChatPopup, setUnreadCount, setRecentList } = useActions(
+  const { toggleChatPopup } = useActions(
     {
       toggleChatPopup: actions.toggleChatPopup,
-      setUnreadCount: actions.setUnreadCount,
-      setRecentList: actions.setRecentList,
     },
     [actions],
   );
 
   useEffect(() => {
-    socket.emit('chat:getRecentList');
+    setTimeout(() => {
+      socket.emit('chat:getRecentList');
+    }, 1000);
   }, []);
-
-  useEffect(() => {
-    socket.on('chat:returnRecentList', ({ recentList, unreadCount }) => {
-      setRecentList(recentList);
-      setUnreadCount(unreadCount);
-    });
-  }, [setUnreadCount, setRecentList]);
 
   const handleShowHidePopup = useCallback(() => {
     toggleChatPopup();

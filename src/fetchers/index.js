@@ -1,12 +1,10 @@
 import axios from 'axios';
-import isNil from 'lodash/fp/isNil';
+import i18n from 'locales/i18n';
 import get from 'lodash/fp/get';
+import isNil from 'lodash/fp/isNil';
+import { errorCode } from 'utils/constants';
 import { getAccessToken } from 'utils/localStorageUtils';
 import { notifyError } from 'utils/notify';
-import i18n from 'locales/i18n';
-import { errorCode } from 'utils/constants';
-import { actions } from 'app/containers/Login/slice';
-import { store } from '../index';
 
 const createClient = (baseURL, isMultipart = 0) => {
   if (!isMultipart) {
@@ -56,10 +54,6 @@ export const handleGeneralError = error => {
 const handleShowError = error => {
   const message = get('data.message', error);
   const statusCode = get('data.statusCode', error);
-  if (statusCode === 21 || statusCode === 1) {
-    store.dispatch(actions.logout());
-    return;
-  }
   const messaseShow = i18n.t(`Error_code.${errorCode[statusCode]}`);
   if (statusCode && errorCode[statusCode] && message) notifyError(messaseShow);
 };

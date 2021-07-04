@@ -22,6 +22,7 @@ import {
 } from 'utils/localStorageUtils';
 import { notifyError } from 'utils/notify';
 import socket from 'utils/socket';
+import { actions as chatActions } from 'app/containers/Chat/slice';
 
 export const useLoginLogoutSocket = () => {
   const user = getUserFromStorage();
@@ -47,6 +48,28 @@ export const useListenSocket = () => {
   const { showCallModal, closeCallModal, showRatingForm } = useShowModal();
   const history = useHistory();
   const { t } = useTranslation();
+  const { setUnreadCount, setRecentList } = useActions(
+    {
+      toggleChatPopup: chatActions.toggleChatPopup,
+      setUnreadCount: chatActions.setUnreadCount,
+      setRecentList: chatActions.setRecentList,
+    },
+    [chatActions],
+  );
+
+  useEffect(() => {
+    socket.on('chat:returnRecentList', ({ recentList, unreadCount }) => {
+      setRecentList(recentList);
+      setUnreadCount(unreadCount);
+    });
+  }, []);
+
+  useEffect(() => {
+    socket.on('chat:joinOrLeave', () => {
+      socket.emit('chat:getRecentList');
+    });
+  }, []);
+
   useEffect(() => {
     socket.on(
       'call:acceptedCall',

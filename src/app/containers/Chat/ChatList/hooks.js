@@ -1,13 +1,13 @@
-import { useCallback, useEffect } from 'react';
+import useActions from 'hooks/useActions';
+import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
+import socket from 'utils/socket';
 import {
-  selectRecentList,
   selectActivatedConversation,
   selectNewConversation,
+  selectRecentList,
 } from '../selectors';
-import useActions from 'hooks/useActions';
 import { actions } from '../slice';
-import socket from 'utils/socket';
 
 const useHooks = () => {
   const recentList = useSelector(selectRecentList);
@@ -21,12 +21,6 @@ const useHooks = () => {
     },
     [actions],
   );
-
-  useEffect(() => {
-    socket.on('chat:joinOrLeave', () => {
-      socket.emit('chat:getRecentList');
-    });
-  }, []);
 
   const handleChangeConversation = useCallback(
     conversation => {

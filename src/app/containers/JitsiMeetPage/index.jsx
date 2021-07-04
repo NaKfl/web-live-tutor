@@ -1,12 +1,11 @@
-import { Spin, Button as ButtonAntd } from 'antd';
+import { Button as ButtonAntd, Progress, Spin } from 'antd';
+import Button from 'app/components/Button';
 import { JitsiMeet } from 'app/components/JitsiMeet';
-import React, { memo, useRef } from 'react';
+import React, { memo } from 'react';
+import Countdown, { zeroPad } from 'react-countdown';
 import { useTranslation } from 'react-i18next';
 import useHooks from './hooks';
-import { StyledMeetingPage, StyledCountDown } from './styles';
-import Button from 'app/components/Button';
-import Countdown, { zeroPad } from 'react-countdown';
-import { Progress } from 'antd';
+import { StyledCountDown, StyledMeetingPage } from './styles';
 
 export const JitsiMeetPage = props => {
   const { handlers, selectors } = useHooks(props);

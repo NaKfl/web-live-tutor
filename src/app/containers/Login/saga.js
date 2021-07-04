@@ -102,7 +102,7 @@ export function* refreshTokenTask() {
       : ROLES.STUDENT;
     yield call(storeAuthInfo, response);
     yield put(actions.refreshTokenSuccess());
-    yield put(actions.getMeSuccess(response));
+    yield put(actions.getMe());
   } else {
     yield put(actions.refreshTokenFailed());
     yield put(actions.logout());
