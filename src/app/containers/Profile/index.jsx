@@ -4,7 +4,7 @@ import Form from 'app/components/Form';
 import Input from 'app/components/Input';
 import DatePicker from 'app/components/DatePicker';
 import Select from 'app/components/Select';
-import { Avatar, Collapse, Skeleton } from 'antd';
+import { Avatar, Collapse, Skeleton, Typography } from 'antd';
 import { Row, Col } from 'app/components/Grid';
 import useHooks from './hooks';
 import saga from './saga';
@@ -30,7 +30,7 @@ export const Profile = () => {
   useInjectSaga({ key: sliceKey, saga });
   useInjectReducer({ key: sliceKey, reducer });
   const { handlers, selectors } = useHooks();
-  const { onFinish, openModal, modalControl } = handlers;
+  const { onFinish, openModal, modalControl, handleShowReviews } = handlers;
   const {
     info,
     form,
@@ -39,6 +39,7 @@ export const Profile = () => {
     loadingUpload,
     getStatus,
     currentRole,
+    allFeedbacks,
   } = selectors;
   const { t } = useTranslation();
 
@@ -66,10 +67,18 @@ export const Profile = () => {
                 </Row>
               </Col>
               <Col md={15} xs={24} className="group-info">
-                <h3 level={3}>{info?.name || 'Anonymous'}</h3>
-                <span level={5}>{`${t('Profile.accountID')}: ${
-                  info?.id
-                }`}</span>
+                <h3>{info?.name || 'Anonymous'}</h3>
+                <span>{`${t('Profile.accountID')}: ${info?.id}`}</span>
+                <Typography.Link
+                  href={false}
+                  onClick={() =>
+                    handleShowReviews({
+                      feedbacks: allFeedbacks,
+                    })
+                  }
+                >
+                  {t('Profile.showOthersReview')}
+                </Typography.Link>
               </Col>
             </Row>
           )}

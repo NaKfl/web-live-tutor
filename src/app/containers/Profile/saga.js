@@ -1,12 +1,12 @@
-import { getProfile, editProfile } from 'fetchers/profileFetcher';
-import { getTutorById, editTutor } from 'fetchers/tutor.service';
-import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
-import { actions } from './slice';
 import { actions as loginActions } from 'app/containers/Login/slice';
-import { notifySuccess, notifyError } from 'utils/notify';
+import { editProfile, getProfile } from 'fetchers/profileFetcher';
+import { editTutor, getTutorById } from 'fetchers/tutor.service';
+import { getAllFeedbacks, uploadAvatar } from 'fetchers/user.service';
 import i18n from 'locales/i18n';
-import { uploadAvatar } from 'fetchers/user.service';
+import { all, call, fork, put, takeLatest } from 'redux-saga/effects';
 import { errorCode } from 'utils/constants';
+import { notifyError, notifySuccess } from 'utils/notify';
+import { actions } from './slice';
 
 function* getProfileWatcher() {
   yield takeLatest(actions.getProfile, getProfileTask);
@@ -98,6 +98,20 @@ function editTutorInfoAPI(payload) {
   return editTutor(payload);
 }
 
+function* getAllFeedbacksWatcher() {
+  yield takeLatest(actions.getAllFeedbacks, getAllFeedbacksTask);
+}
+
+function* getAllFeedbacksTask(action) {
+  const { response, error } = yield call(getAllFeedbacks, action.payload);
+  if (response) {
+    const { feedbacks } = response;
+    yield put(actions.getAllFeedbacksSuccess(feedbacks));
+  } else {
+    yield put(actions.getAllFeedbacksFailed(error.data));
+  }
+}
+
 export default function* defaultSaga() {
   yield all([
     fork(getProfileWatcher),
@@ -105,5 +119,6 @@ export default function* defaultSaga() {
     fork(uploadAvatarWatcher),
     fork(getTutorInfoWatcher),
     fork(editTutorInfoWatcher),
+    fork(getAllFeedbacksWatcher),
   ]);
 }

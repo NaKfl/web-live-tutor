@@ -5,8 +5,6 @@ import { useForm } from './hook';
 import historyIcon from 'assets/svg/history.svg';
 import { StyledHeaderTable, StyledTable } from './style';
 import { useTranslation } from 'react-i18next';
-import { StarFilled } from '@ant-design/icons';
-import Button from 'app/components/Button';
 
 export const CallSessionTable = memo(
   ({ totalCount, onChangePage, handleShowReviews }) => {
@@ -23,14 +21,6 @@ export const CallSessionTable = memo(
               <p>{t('History.subGuide')}</p>
             </div>
           </div>
-          <Button
-            icon={<StarFilled />}
-            type="accent"
-            className="start-btn"
-            onClick={() => handleShowReviews()}
-          >
-            {t('Profile.showReview')}
-          </Button>
         </StyledHeaderTable>
         <Table {...form}></Table>
         {!!totalCount && (

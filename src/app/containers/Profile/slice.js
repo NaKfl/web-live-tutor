@@ -28,6 +28,11 @@ const initialState = {
     status: '',
     error: null,
   },
+  allFeedbacks: {
+    data: [],
+    status: '',
+    error: null,
+  },
 };
 
 const profileSlice = createSlice({
@@ -143,6 +148,27 @@ const profileSlice = createSlice({
         set('upload.status', ACTION_STATUS.FAILED),
         set('upload.loading', false),
         set('upload.error', action.payload),
+      )(state);
+    },
+
+    getAllFeedbacks(state) {
+      return flow(
+        set('allFeedbacks.error', null),
+        set('allFeedbacks.status', ACTION_STATUS.PENDING),
+      )(state);
+    },
+
+    getAllFeedbacksSuccess(state, action) {
+      return flow(
+        set('allFeedbacks.data', action.payload),
+        set('allFeedbacks.status', ACTION_STATUS.SUCCESS),
+      )(state);
+    },
+
+    getAllFeedbacksFailed(state, action) {
+      return flow(
+        set('allFeedbacks.error', action.payload),
+        set('allFeedbacks.status', ACTION_STATUS.FAILED),
       )(state);
     },
   },

@@ -50,3 +50,8 @@ export const selectEditTutorInfoStatus = createSelector(
   selectProfileState,
   tutorProfile => get('editTutorInfo.status', tutorProfile),
 );
+
+export const selectAllFeedbacks = createSelector(
+  selectProfileState,
+  allFeedbacks => get('allFeedbacks', allFeedbacks),
+);

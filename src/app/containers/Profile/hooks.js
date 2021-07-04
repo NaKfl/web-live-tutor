@@ -14,10 +14,13 @@ import {
   selectGetTutorInfoStatus,
   selectGetTutorInfoData,
   selectEditTutorInfoStatus,
+  selectAllFeedbacks,
 } from './selectors';
 import { actions } from './slice';
 import { useTranslation } from 'react-i18next';
 import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
+import { actions as popupActions } from 'app/containers/Popup/slice';
+import { POPUP_TYPE } from '../Popup/constants';
 
 const useHooks = () => {
   const [form] = Form.useForm();
@@ -27,6 +30,7 @@ const useHooks = () => {
   const loadingUpload = useSelector(selectLoadingUpload);
   const getStatus = useSelector(selectGetStatus);
   const currentRole = getUserFromStorage()?.currentRole;
+  const selectorAllFeedbacks = useSelector(selectAllFeedbacks);
 
   const {
     getProfile,
@@ -34,6 +38,8 @@ const useHooks = () => {
     uploadAvatar,
     hideModal,
     showModal,
+    getAllFeedbacks,
+    openPopup,
   } = useActions(
     {
       getProfile: actions.getProfile,
@@ -41,9 +47,17 @@ const useHooks = () => {
       uploadAvatar: actions.uploadAvatar,
       hideModal: actions.hideModal,
       showModal: actions.showModal,
+      getAllFeedbacks: actions.getAllFeedbacks,
+      openPopup: popupActions.openPopup,
     },
     [actions],
   );
+
+  const user = getUserFromStorage();
+
+  useEffect(() => {
+    getAllFeedbacks(user.id);
+  }, [getAllFeedbacks, user.id]);
 
   const processedInfo = {
     ...info,
@@ -79,9 +93,21 @@ const useHooks = () => {
       hideModal();
     }, [hideModal]),
   };
+
+  const handleShowReviews = useCallback(
+    reviews => {
+      openPopup({
+        key: 'reviews-modal',
+        type: POPUP_TYPE.REVIEW_MODAL,
+        reviews,
+      });
+    },
+    [openPopup],
+  );
   return {
-    handlers: { onFinish, openModal, modalControl },
+    handlers: { onFinish, openModal, modalControl, handleShowReviews },
     selectors: {
+      allFeedbacks: selectorAllFeedbacks.data,
       loading: statusUpdate === ACTION_STATUS.PENDING,
       info: processedInfo,
       form,
