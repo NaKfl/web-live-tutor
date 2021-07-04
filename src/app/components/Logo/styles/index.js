@@ -14,7 +14,6 @@ export const StyledLogo = styled.div`
     color: ${COLOR.CORNFLOWER};
     font-size: 28px;
     margin-left: 5px;
-    letter-spacing: 1px;
     letter-spacing: 2.8px;
   }
   ${media.mobile`

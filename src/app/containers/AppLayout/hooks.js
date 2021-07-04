@@ -1,44 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import {
+  makeSelectIsAuthenticated,
+  selectUserInfoAuthenticate,
+} from 'app/containers/Login/selectors';
+import { actions as loginActions } from 'app/containers/Login/slice';
+import { POPUP_TYPE } from 'app/containers/Popup/constants';
+import { actions as popupActions } from 'app/containers/Popup/slice';
+import { JWT_SECRET, REFRESH_TOKEN_INTERVAL_MINUTES } from 'configs';
 import useActions from 'hooks/useActions';
-import { makeSelectIsAuthenticated } from 'app/containers/Login/selectors';
+import jwt from 'jsonwebtoken';
+import moment from 'moment';
 import { useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { emitConnectionLogin, emitDisconnectionLogout } from './socket';
-import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
-import { actions as loginActions } from 'app/containers/Login/slice';
 import { ROLES, TIME_IN_ROOM } from 'utils/constants';
+import firebaseUtils from 'utils/firebase';
 import {
   getUser as getUserFromStorage,
   removeParticipantJoin,
 } from 'utils/localStorageUtils';
-import { REFRESH_TOKEN_INTERVAL_MINUTES } from 'configs';
-import { POPUP_TYPE } from 'app/containers/Popup/constants';
-import { JWT_SECRET } from 'configs';
-import jwt from 'jsonwebtoken';
-import { actions as popupActions } from 'app/containers/Popup/slice';
-import socket from 'utils/socket';
 import { notifyError } from 'utils/notify';
-import { useTranslation } from 'react-i18next';
-import firebaseUtils from 'utils/firebase';
-import moment from 'moment';
+import socket from 'utils/socket';
 
-export const useHooks = () => {
-  const isAuthenticated = useSelector(makeSelectIsAuthenticated);
-  const user = useSelector(selectUserInfoAuthenticate);
-
-  if (isAuthenticated) {
-    emitConnectionLogin(user);
+export const useLoginLogoutSocket = () => {
+  const user = getUserFromStorage();
+  if (user) {
+    socket.emit('connection:login', { user });
   } else {
-    emitDisconnectionLogout();
+    socket.emit('disconnection:logout');
   }
-
-  return {
-    selectors: {
-      isAuthenticated,
-      currentRole: user?.currentRole,
-    },
-  };
 };
 
 export const useNotify = () => {
@@ -158,13 +149,6 @@ export const useAuthenticatedRedirect = () => {
 
 export const useGetUserInfo = () => {
   const user = useSelector(selectUserInfoAuthenticate);
-
-  const { getMe } = useActions({ getMe: loginActions.getMe }, [loginActions]);
-
-  useEffect(() => {
-    getMe();
-  }, [getMe]);
-
   return { user };
 };
 
@@ -291,4 +275,4 @@ export const useShowModal = () => {
   };
 };
 
-export default useHooks;
+export default useLoginLogoutSocket;

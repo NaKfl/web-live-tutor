@@ -101,7 +101,10 @@ export function* refreshTokenTask() {
       ? authInfo.user.currentRole
       : ROLES.STUDENT;
     yield call(storeAuthInfo, response);
+    yield put(actions.refreshTokenSuccess());
+    yield put(actions.getMeSuccess(response));
   } else {
+    yield put(actions.refreshTokenFailed());
     yield put(actions.logout());
   }
 }
