@@ -23,6 +23,8 @@ export const useHooks = props => {
       reviews: reviews.sessionId
         ? selectorFeedbackSession.data
         : reviews.feedbacks,
+      userName: reviews.userName ? reviews.userName : '',
+      selectorFeedbackSession,
     },
   };
 };

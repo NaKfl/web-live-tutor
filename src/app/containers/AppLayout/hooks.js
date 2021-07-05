@@ -101,7 +101,7 @@ export const useListenSocket = () => {
         history.push(`/call/?token=${token}`);
       },
     );
-  }, [history]);
+  }, []);
 
   useEffect(() => {
     socket.on('call:notifyCall', ({ userCall }) => {
@@ -117,7 +117,7 @@ export const useListenSocket = () => {
     socket.on('call:canCallTutor', ({ userBeCalled }) => {
       showCallModal(userBeCalled);
     });
-  }, [showCallModal]);
+  }, []);
 
   useEffect(() => {
     socket.on('call:canNotCallTutor', ({ userBeCalled }) => {

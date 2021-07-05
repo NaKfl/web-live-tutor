@@ -2,7 +2,6 @@ import { POPUP_TYPE } from 'app/containers/Popup/constants';
 import { actions as popupActions } from 'app/containers/Popup/slice';
 import useActions from 'hooks/useActions';
 import { useHistory } from 'react-router-dom';
-import socket from 'utils/socket';
 import { useCallback } from 'react';
 
 export const useHooks = () => {
@@ -22,8 +21,19 @@ export const useHooks = () => {
     [openPopup],
   );
 
+  const showConfirmCallModal = useCallback(
+    tutor => {
+      openPopup({
+        key: 'showConfirmCallModal',
+        type: POPUP_TYPE.CONFIRM_CALL_VIDEO,
+        tutor,
+      });
+    },
+    [openPopup],
+  );
+
   const handleCallTutor = tutor => {
-    socket.emit('call:callVideo', { userId: tutor.userId });
+    showConfirmCallModal(tutor);
   };
 
   const redirectToDetailTutor = useCallback(

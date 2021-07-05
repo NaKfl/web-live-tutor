@@ -65,6 +65,7 @@ const useHooks = props => {
       if (moment().isAfter(moment(startTime).add(-5, 'minutes'))) {
         socket.emit('call:setStatusCalling', {
           userId: userBeCalled.id,
+          status: true,
         });
         let duration = moment.duration(moment(endSession).diff(moment()));
         let remainTime = duration.asSeconds();
@@ -112,6 +113,12 @@ const useHooks = props => {
         userBeCalled,
         startTime,
         endTime,
+      });
+    }
+    if (roomInfo.isTutor) {
+      socket.emit('call:setStatusCalling', {
+        userId: userBeCalled.id,
+        status: false,
       });
     }
     pushToHome(roomInfo.isTutor);

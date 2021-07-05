@@ -3,7 +3,7 @@ import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import { sliceKey, reducer } from './slice';
 import saga from './saga';
 import CourseCard from './Course';
-import { Row, Col, Affix, Divider } from 'antd';
+import { Row, Col, Divider } from 'antd';
 import { StyledDetailCourse } from './styles';
 import useHooks from './hooks';
 import { useTranslation } from 'react-i18next';
@@ -25,9 +25,7 @@ export const DetailCourse = memo(() => {
       <Col lg={20} md={22} sm={24}>
         <StyledDetailCourse justify="center">
           <Col lg={9} md={11} sm={24} className="detail-course-left p-3">
-            <Affix offsetTop={69} className="w-100">
-              {detailCourse && <CourseCard course={detailCourse} />}
-            </Affix>
+            {detailCourse && <CourseCard course={detailCourse} />}
           </Col>
           <Col lg={15} md={13} sm={24} className="detail-course-right p-3">
             <Divider orientation="left">

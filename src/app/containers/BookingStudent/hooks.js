@@ -3,7 +3,7 @@ import useActions from 'hooks/useActions';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import Button from 'app/components/Button';
-import { Popconfirm, Row, Tag } from 'antd';
+import { Popconfirm, Tag } from 'antd';
 import {
   selectBookingList,
   selectCancelBooking,
@@ -111,21 +111,28 @@ export const useForm = (data, handleCancelBooking) => {
       render: value => <Tag color="volcano">{value}</Tag>,
     },
     {
-      title: <p className="title">{t('BookingList.action')}</p>,
-      key: 'action',
-      width: '255px',
+      title: <p className="title">{t('BookingList.cancel')}</p>,
+      key: 'cancel',
       render: (_, record) => {
-        return (
-          <Row justify="space-around">
+        if (record.canDelete)
+          return (
             <Popconfirm
               key={record.scheduleDetailId}
               title={t('BookingList.cancelQuestion')}
               onConfirm={() => handleCancelBooking(record.scheduleDetailId)}
             >
-              <Button disabled={!record.canDelete}>
-                {t('BookingList.cancel')}
-              </Button>
+              <Button>{t('BookingList.cancel')}</Button>
             </Popconfirm>
+          );
+        else return <span>---------</span>;
+      },
+    },
+    {
+      title: <p className="title">{t('BookingList.goToLink')}</p>,
+      key: 'gotoMeeting',
+      render: (_, record) => {
+        if (record.canGoToMeeting)
+          return (
             <Button
               disabled={!record.canGoToMeeting}
               type="accent"
@@ -136,8 +143,8 @@ export const useForm = (data, handleCancelBooking) => {
             >
               {t('BookingList.goToLink')}
             </Button>
-          </Row>
-        );
+          );
+        else return <span>---------</span>;
       },
     },
   ];

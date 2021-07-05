@@ -161,7 +161,7 @@ export const useForm = () => {
       dataIndex: 'during',
     },
     {
-      title: <p className="title">{t('History.actions')}</p>,
+      title: <p className="title">{t('History.review')}</p>,
       key: 'control',
       width: '120px',
       align: 'center',
@@ -174,8 +174,10 @@ export const useForm = () => {
           <Button
             style={{ marginRight: 0, justifyContent: 'center', width: '100px' }}
             onClick={() => {
+              const userName = isTutor ? record.studentName : record.tutorName;
               handleShowReviews({
                 sessionId: record.sessionId,
+                userName,
               });
             }}
           >

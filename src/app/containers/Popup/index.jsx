@@ -8,6 +8,7 @@ import Reviews from 'app/components/Modal/Reviews';
 import Report from 'app/components/Modal/Report';
 import InfoUser from 'app/components/Modal/InfoUser';
 import CallModal from 'app/components/CallModal';
+import ConfirmCallModal from 'app/components/ConfirmCallModal';
 import RatingForm from 'app/components/RatingForm';
 import ScheduleModal from 'app/components/ScheduleModal';
 import ModalPayment from 'app/containers/ModalPayment';
@@ -50,6 +51,17 @@ export const Popup = memo(() => {
           case POPUP_TYPE.CALL_VIDEO: {
             return (
               <CallModal
+                key={popup.key}
+                onCancel={handleClosePopup(popup)}
+                visible
+                {...popup}
+              />
+            );
+          }
+
+          case POPUP_TYPE.CONFIRM_CALL_VIDEO: {
+            return (
+              <ConfirmCallModal
                 key={popup.key}
                 onCancel={handleClosePopup(popup)}
                 visible
