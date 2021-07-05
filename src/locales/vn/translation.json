@@ -493,7 +493,7 @@
   },
   "Course": {
     "discoverCourse": "Khám phá các khóa học",
-    "discover": "KHÁM PHÁ",
+    "discover": "Khám phá",
     "basicCourse": "Các khóa học cơ bản của hệ thống LiveTutor",
     "descriptCourse": "LiveTutor đã xây dựng nên các khóa học của các lĩnh vực trong cuộc sống chất lượng, bài bản và khoa học nhất cho những người đang có nhu cầu trau dồi thêm kiến thức về các lĩnh vực.",
     "overview": "Tổng quan",
@@ -502,7 +502,9 @@
     "level": "Trình độ yêu cầu",
     "courseLength": "Thời lượng khóa học",
     "listTopics": "Danh sách chủ đề",
-    "topic": "chủ đề"
+    "topic": "Chủ đề",
+    "tutorAdd": "Thêm vào khóa học gợi ý của tôi",
+    "tutorRemove": "Xóa khỏi khóa học gợi ý của tôi"
   },
   "History": {
     "title": "Lịch sử cuộc gọi",

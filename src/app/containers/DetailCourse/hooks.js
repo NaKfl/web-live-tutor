@@ -3,15 +3,23 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { ACTION_STATUS } from 'utils/constants';
-import { selectDetailCourse } from './selectors';
+import {
+  selectDetailCourse,
+  selectTutorAddCourse,
+  selectTutorRemoveCourse,
+} from './selectors';
 import { actions } from './slice';
 
 const useHooks = () => {
   const { id: courseId } = useParams();
   const selectorDetailCourse = useSelector(selectDetailCourse);
-  const { getDetailCourse } = useActions(
+  const selectorTutorAddCourse = useSelector(selectTutorAddCourse);
+  const selectorTutorRemoveCourse = useSelector(selectTutorRemoveCourse);
+  const { getDetailCourse, tutorAddCourse, tutorRemoveCourse } = useActions(
     {
       getDetailCourse: actions.getDetailCourse,
+      tutorAddCourse: actions.tutorAddCourse,
+      tutorRemoveCourse: actions.tutorRemoveCourse,
     },
     [actions],
   );
@@ -19,7 +27,12 @@ const useHooks = () => {
 
   useEffect(() => {
     getDetailCourse(courseId);
-  }, [courseId, getDetailCourse]);
+  }, [
+    courseId,
+    getDetailCourse,
+    selectorTutorAddCourse.data,
+    selectorTutorRemoveCourse.data,
+  ]);
 
   useEffect(() => {
     if (
@@ -33,8 +46,14 @@ const useHooks = () => {
   }, [selectorDetailCourse]);
 
   return {
-    handlers: {},
-    selectors: { detailCourse },
+    handlers: { tutorAddCourse, tutorRemoveCourse },
+    selectors: {
+      detailCourse,
+      loading:
+        detailCourse.status === ACTION_STATUS.PENDING ||
+        selectorTutorAddCourse.status === ACTION_STATUS.PENDING ||
+        selectorTutorRemoveCourse.status === ACTION_STATUS.PENDING,
+    },
   };
 };
 

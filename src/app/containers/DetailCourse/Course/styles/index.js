@@ -29,5 +29,6 @@ export const StyledContentCard = styled.div`
   }
   .explore-btn {
     padding: 15px 20px !important;
+    white-space: normal;
   }
 `;
