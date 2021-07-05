@@ -64,19 +64,19 @@ export const privateRoutes = [
     path: '/courses',
     component: CoursePage,
     key: 'coursePage',
-    requiredRoles: [ROLES.STUDENT],
+    requiredRoles: [ROLES.STUDENT, ROLES.TUTOR],
   },
   {
     path: '/courses/:id',
     component: DetailCourse,
     key: 'detailCourse',
-    requiredRoles: [ROLES.STUDENT],
+    requiredRoles: [ROLES.STUDENT, ROLES.TUTOR],
   },
   {
     path: '/explore-course/:id',
     component: ExploreCourse,
     key: 'detailCourse',
-    requiredRoles: [ROLES.STUDENT],
+    requiredRoles: [ROLES.STUDENT, ROLES.TUTOR],
   },
   {
     path: '/history',
@@ -94,7 +94,7 @@ export const privateRoutes = [
     path: '/search',
     component: Search,
     key: 'search',
-    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
+    requiredRoles: [ROLES.STUDENT],
   },
   {
     path: '/my-wallet',

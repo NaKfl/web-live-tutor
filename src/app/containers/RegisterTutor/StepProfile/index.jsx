@@ -16,6 +16,8 @@ import LANGUAGES from 'utils/languages';
 import MultiOptions from './MultiOptions';
 import Select from 'app/components/Select';
 import InputNumber from 'app/components/InputNumber';
+import { DEFAULT_PICKER_VALUE } from 'utils/constants';
+import moment from 'moment';
 
 export const StepProfile = ({
   formProfile,
@@ -107,7 +109,9 @@ export const StepProfile = ({
                     },
                   ]}
                 >
-                  <DatePicker />
+                  <DatePicker
+                    defaultPickerValue={moment(DEFAULT_PICKER_VALUE)}
+                  />
                 </Form.Item>
               </Col>
             </Col>

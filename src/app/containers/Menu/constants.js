@@ -49,6 +49,6 @@ export const MenuBarListItems = [
     icon: props => <FontAwesomeIcon icon={faGraduationCap} {...props} />,
     title: 'Category.courses',
     path: '/courses',
-    requiredRoles: [ROLES.STUDENT],
+    requiredRoles: [ROLES.TUTOR, ROLES.STUDENT],
   },
 ];

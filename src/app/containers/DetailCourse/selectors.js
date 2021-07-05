@@ -7,3 +7,13 @@ export const selectDetailCourse = createSelector(
   selectDetailCourseState,
   detailCourse => get('detailCourse', detailCourse),
 );
+
+export const selectTutorAddCourse = createSelector(
+  selectDetailCourseState,
+  detailCourse => get('tutorAddCourse', detailCourse),
+);
+
+export const selectTutorRemoveCourse = createSelector(
+  selectDetailCourseState,
+  detailCourse => get('tutorRemoveCourse', detailCourse),
+);

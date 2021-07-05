@@ -252,7 +252,9 @@
       "drag": "Drag 'n' drop some files here, or click to select files"
     },
     "tutorInfo": "Tutor Info",
-    "nothingChanged": "Nothing changed"
+    "nothingChanged": "Nothing changed",
+    "courses": "Suggested courses",
+    "goToCourse": "Link"
   },
   "Favorite": {
     "title": "Favorite tutors",
@@ -493,7 +495,7 @@
   },
   "Course": {
     "discoverCourse": "Discover Courses",
-    "discover": "DISCOVER",
+    "discover": "Discover",
     "basicCourse": "Basic Courses of LiveTutor System",
     "descriptCourse": "LiveTutor has built the most quality, methodical and scientific courses in the fields of life for those who are in need of improving their knowledge of the fields.",
     "overview": "Overview",
@@ -502,7 +504,9 @@
     "level": "Experience Level",
     "courseLength": "Course Length",
     "listTopics": "List Topics",
-    "topic": "topics"
+    "topic": "topics",
+    "tutorAdd": "Add to my suggested courses",
+    "tutorRemove": "Remove from my suggested courses"
   },
   "History": {
     "title": "Call History",
