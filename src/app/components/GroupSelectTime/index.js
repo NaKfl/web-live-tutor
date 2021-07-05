@@ -1,5 +1,6 @@
 import { CheckSquareFilled } from '@ant-design/icons';
 import { Checkbox, Row } from 'antd';
+import moment from 'moment';
 import React, { memo } from 'react';
 import TextTimeSchedule from '../TextTimeSchedule';
 import { StyledGroupSelectTime } from './styles';
@@ -24,8 +25,9 @@ const mapDataScheduleTo2Rows = scheduleDetails => {
 };
 
 const GroupSelectTime = memo(props => {
-  const { scheduleDetails, ...rest } = props;
+  const { scheduleDetails, dateSelected, ...rest } = props;
   const dataSource = mapDataScheduleTo2Rows(scheduleDetails);
+  const dateFormat = moment(dateSelected).format('YYYY-MM-DD');
 
   return (
     <StyledGroupSelectTime>
@@ -42,14 +44,32 @@ const GroupSelectTime = memo(props => {
                     value={time.id}
                     key={time.id}
                     checked={false}
-                    disabled={time.isBooked}
+                    disabled={
+                      time.isBooked ||
+                      !moment(
+                        `${dateFormat} ${time.startPeriod}`,
+                        'YYYY-MM-DD HH:mm',
+                      ).isAfter(moment())
+                    }
                   >
-                    {time.isBooked && (
+                    {(time.isBooked ||
+                      !moment(
+                        `${dateFormat} ${time.startPeriod}`,
+                        'YYYY-MM-DD HH:mm',
+                      ).isAfter(moment())) && (
                       <CheckSquareFilled className="icon-checked" />
                     )}
                     <TextTimeSchedule
                       className="time-select"
-                      typeText={time.isBooked ? 'Gray' : 'Purple'}
+                      typeText={
+                        time.isBooked ||
+                        !moment(
+                          `${dateFormat} ${time.startPeriod}`,
+                          'YYYY-MM-DD HH:mm',
+                        ).isAfter(moment())
+                          ? 'Gray'
+                          : 'Purple'
+                      }
                       content={`${time.startPeriod} - ${time.endPeriod}`}
                     />
                   </Checkbox>

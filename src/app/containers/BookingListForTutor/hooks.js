@@ -11,16 +11,27 @@ import {
 import { useTranslation } from 'react-i18next';
 import { actions } from './slice';
 import { Tag } from 'antd';
-import { ACTION_STATUS } from 'utils/constants';
+import { ACTION_STATUS, DATE_TIME_FORMAT } from 'utils/constants';
 import qs from 'query-string';
+import moment from 'moment';
+import { orderBy } from 'lodash';
 
 const mapBookingListDataSource = data => {
+  const sortData = orderBy(
+    data,
+    ['scheduleInfo.date', 'startPeriod'],
+    ['desc', 'asc'],
+  );
   if (data?.length > 0)
-    return data.map((item, index) => {
+    return sortData.map((item, index) => {
       const { id, startPeriod, endPeriod, scheduleInfo, bookingInfo } = item;
       const { date } = scheduleInfo;
       const { userInfo, tutorMeetingLink } = bookingInfo[0];
       const { name } = userInfo;
+      let durationGotoMeeting = moment.duration(
+        moment().diff(moment(`${date} ${endPeriod}`, DATE_TIME_FORMAT)),
+      );
+      let hoursGotoMeeting = durationGotoMeeting.asHours();
       return {
         id,
         name,
@@ -28,6 +39,7 @@ const mapBookingListDataSource = data => {
         startPeriod,
         endPeriod,
         tutorMeetingLink,
+        canGoToMeeting: hoursGotoMeeting <= 0,
         stt: index + 1,
       };
     });
@@ -118,14 +130,20 @@ export const useForm = data => {
       width: '160px',
       align: 'center',
       render: (_, record) => {
-        return (
-          <Button
-            type="accent"
-            onClick={() => history.push(record?.tutorMeetingLink)}
-          >
-            {t('BookingList.goToLink')}
-          </Button>
-        );
+        if (record.canGoToMeeting)
+          return (
+            <Button
+              disabled={!record.canGoToMeeting}
+              type="accent"
+              onClick={() =>
+                record?.tutorMeetingLink &&
+                history.push(record?.tutorMeetingLink)
+              }
+            >
+              {t('BookingList.goToLink')}
+            </Button>
+          );
+        else return <span>---------</span>;
       },
     },
   ];

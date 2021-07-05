@@ -476,6 +476,7 @@ export const TutorDetail = ({ ...rest }) => {
                                                 scheduleDetails={
                                                   time.scheduleDetails
                                                 }
+                                                dateSelected={dateSelected}
                                               />
                                             </Form.Item>
                                           </Panel>

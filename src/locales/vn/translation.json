@@ -403,7 +403,8 @@
     "FILE_SIZE_OVER_LIMIT_VIDEO": "Video vượt quá kích thước cho phép (50MB)"
   },
   "Reviews": {
-    "Title": "Đánh giá"
+    "youReviewed": "Bạn đã đánh giá",
+    "showOthersReview": "Người khác đánh giá"
   },
   "BookingList": {
     "bookingForTutorTitle": "Lịch được đặt",
@@ -474,7 +475,9 @@
   "Review": {
     "reviews": "đánh giá",
     "whatIsURating": "Bạn đánh giá gì cho ",
-    "contentReview": "Nội dung đánh giá"
+    "contentReview": "Nội dung đánh giá",
+    "later": "Đánh giá sau",
+    "submit": "Đánh giá"
   },
   "Notify": {
     "reviewSuccess": "Bạn đã đánh giá thành công.",
@@ -513,5 +516,12 @@
     "reviewed": "Đã đánh giá",
     "actions": "Hành động",
     "view": "Xem lại"
+  },
+  "ConfirmCall": {
+    "title": "Lưu ý",
+    "guide": "Đây là cuộc gọi miễn phí",
+    "subGuide": "Bạn chi có thể gọi gia sư trong vòng 5 phút.",
+    "cancel": "Hủy",
+    "call": "Gọi"
   }
 }

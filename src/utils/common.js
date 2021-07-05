@@ -61,20 +61,21 @@ export const mapBookingListDataSource = data => {
   const sortData = orderBy(
     data,
     ['scheduleDetailInfo.scheduleInfo.date', 'scheduleDetailInfo.startPeriod'],
-    ['desc', 'desc'],
+    ['desc', 'asc'],
   );
   if (data.length > 0) {
     const result = sortData.map((item, index) => {
       const { startPeriod, endPeriod, scheduleInfo } = item.scheduleDetailInfo;
       const { date, tutorInfo } = scheduleInfo;
       const { id, name } = tutorInfo;
-      let durationDelete = moment.duration(
-        moment().diff(moment(`${date} ${startPeriod}`, 'YYYY-MM-DD HH:mm')),
+      let duration = moment.duration(
+        moment(`${date} ${startPeriod}`, DATE_TIME_FORMAT).diff(moment()),
       );
+      let canCancelBook = duration.asHours();
+
       let durationGotoMeeting = moment.duration(
-        moment().diff(moment(`${date} ${endPeriod}`, 'YYYY-MM-DD HH:mm')),
+        moment().diff(moment(`${date} ${endPeriod}`, DATE_TIME_FORMAT)),
       );
-      let hoursCanDelete = durationDelete.asHours();
       let hoursGotoMeeting = durationGotoMeeting.asHours();
       return {
         scheduleDetailId: item.scheduleDetailId,
@@ -85,9 +86,9 @@ export const mapBookingListDataSource = data => {
         date,
         startPeriod,
         endPeriod,
-        canDelete: hoursCanDelete < 24,
+        canDelete: canCancelBook >= 24,
         studentMeetingLink: item.studentMeetingLink,
-        canGoToMeeting: hoursGotoMeeting < 0,
+        canGoToMeeting: hoursGotoMeeting <= 0,
       };
     });
     return result;

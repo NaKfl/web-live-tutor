@@ -405,7 +405,8 @@
     "FILE_SIZE_OVER_LIMIT_VIDEO": "Video size is over than limit (50MB)"
   },
   "Reviews": {
-    "Title": "Reviews"
+    "youReviewed": "You reviewed",
+    "showOthersReview": "Others review"
   },
   "BookingList": {
     "bookingForTutorTitle": "Booking List",
@@ -476,7 +477,9 @@
   "Review": {
     "reviews": "reviews",
     "whatIsURating": "What is your rating for ",
-    "contentReview": "Content Review"
+    "contentReview": "Content Review",
+    "later": "Later",
+    "submit": "Submit"
   },
   "Notify": {
     "reviewSuccess": "You submitted successfully",
@@ -515,5 +518,12 @@
     "reviewed": "Reviewed",
     "actions": "Actions",
     "view": "View"
+  },
+  "ConfirmCall": {
+    "title": "Notification",
+    "guide": "This is your free call",
+    "subGuide": "You can only call with tutor in 5 minutes",
+    "cancel": "Cancel",
+    "call": "Call"
   }
 }

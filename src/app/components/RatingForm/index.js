@@ -50,7 +50,9 @@ const RatingForm = memo(props => {
                 </span>
                 <StarFilled className="d-flex align-items-center" />
               </StyledTextHighlight>
-              <span className="d-flex align-items-center">{`${tutorInfo?.feedbacks?.length} Reviews`}</span>
+              <span className="d-flex align-items-center">{`${
+                tutorInfo?.feedbacks?.length
+              } ${t('Review.reviews')}`}</span>
             </Row>
           </Row>
         </Row>
@@ -72,14 +74,14 @@ const RatingForm = memo(props => {
         />
         <Row className="mt-3 justify-content-end">
           <Button className="me-2" key="cancel" onClick={onCancel}>
-            Later
+            {t('Review.later')}
           </Button>
           <Button
             key="accept"
             type="accent"
             onClick={() => handleSubmitReview({ user: tutorInfo })}
           >
-            Submit
+            {t('Review.submit')}
           </Button>
         </Row>
       </Row>
