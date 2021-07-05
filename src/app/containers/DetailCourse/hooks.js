@@ -1,3 +1,4 @@
+import { selectUserInfoAuthenticate } from 'app/containers/Login/selectors';
 import useActions from 'hooks/useActions';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,6 +13,7 @@ import { actions } from './slice';
 
 const useHooks = () => {
   const { id: courseId } = useParams();
+  const user = useSelector(selectUserInfoAuthenticate);
   const selectorDetailCourse = useSelector(selectDetailCourse);
   const selectorTutorAddCourse = useSelector(selectTutorAddCourse);
   const selectorTutorRemoveCourse = useSelector(selectTutorRemoveCourse);
@@ -27,12 +29,7 @@ const useHooks = () => {
 
   useEffect(() => {
     getDetailCourse(courseId);
-  }, [
-    courseId,
-    getDetailCourse,
-    selectorTutorAddCourse.data,
-    selectorTutorRemoveCourse.data,
-  ]);
+  }, [courseId, getDetailCourse]);
 
   useEffect(() => {
     if (
@@ -49,10 +46,11 @@ const useHooks = () => {
     handlers: { tutorAddCourse, tutorRemoveCourse },
     selectors: {
       detailCourse,
-      loading:
-        detailCourse.status === ACTION_STATUS.PENDING ||
+      user,
+      tutorActionLoading:
         selectorTutorAddCourse.status === ACTION_STATUS.PENDING ||
         selectorTutorRemoveCourse.status === ACTION_STATUS.PENDING,
+      loading: detailCourse.status === ACTION_STATUS.PENDING,
     },
   };
 };

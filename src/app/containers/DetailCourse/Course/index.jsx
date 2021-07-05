@@ -5,14 +5,12 @@ import Title from 'app/components/Title';
 import { useHistory } from 'react-router';
 import { Row, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 import { ROLES } from 'utils/constants';
 
 export const CourseCard = memo(
-  ({ course, tutorAddCourse, tutorRemoveCourse, tutorActionLoading }) => {
+  ({ course, tutorAddCourse, tutorRemoveCourse, user, tutorActionLoading }) => {
     const history = useHistory();
     const { t } = useTranslation();
-    const user = getUserFromStorage();
     return (
       <StyledCourseCard>
         <Row className="flex-column h-100">
@@ -37,27 +35,29 @@ export const CourseCard = memo(
               >
                 {t('Course.discover')}
               </Button>
-              {user?.currentRole === ROLES.TUTOR &&
-                !user?.courses?.find(item => item?.id === course.id) && (
-                  <Button
-                    className="w-100 mt-2 d-flex justify-content-center explore-btn"
-                    type="primary"
-                    size="large"
-                    onClick={() => tutorAddCourse(course.id)}
-                  >
-                    {t('Course.tutorAdd')}
-                  </Button>
-                )}
-              {user?.currentRole === ROLES.TUTOR &&
-                user?.courses?.find(item => item?.id === course.id) && (
-                  <Button
-                    className="w-100 mt-2 d-flex justify-content-center explore-btn"
-                    size="large"
-                    onClick={() => tutorRemoveCourse(course.id)}
-                  >
-                    {t('Course.tutorRemove')}
-                  </Button>
-                )}
+              <Spin spinning={tutorActionLoading}>
+                {user?.currentRole === ROLES.TUTOR &&
+                  !user?.courses?.find(item => item?.id === course.id) && (
+                    <Button
+                      className="w-100 mt-2 d-flex justify-content-center explore-btn"
+                      type="primary"
+                      size="large"
+                      onClick={() => tutorAddCourse(course.id)}
+                    >
+                      {t('Course.tutorAdd')}
+                    </Button>
+                  )}
+                {user?.currentRole === ROLES.TUTOR &&
+                  user?.courses?.find(item => item?.id === course.id) && (
+                    <Button
+                      className="w-100 mt-2 d-flex justify-content-center explore-btn"
+                      size="large"
+                      onClick={() => tutorRemoveCourse(course.id)}
+                    >
+                      {t('Course.tutorRemove')}
+                    </Button>
+                  )}
+              </Spin>
             </Row>
           </StyledContentCard>
         </Row>

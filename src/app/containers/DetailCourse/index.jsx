@@ -18,7 +18,7 @@ export const DetailCourse = memo(() => {
   useInjectReducer({ key: sliceKey, reducer });
   const { selectors, handlers } = useHooks();
   const { tutorAddCourse, tutorRemoveCourse } = handlers;
-  const { detailCourse, loading } = selectors;
+  const { detailCourse, loading, user, tutorActionLoading } = selectors;
   const { t } = useTranslation();
 
   return (
@@ -29,9 +29,11 @@ export const DetailCourse = memo(() => {
             <Col lg={9} md={11} sm={24} className="detail-course-left p-3">
               {detailCourse && (
                 <CourseCard
+                  user={user}
                   course={detailCourse}
                   tutorAddCourse={tutorAddCourse}
                   tutorRemoveCourse={tutorRemoveCourse}
+                  tutorActionLoading={tutorActionLoading}
                 />
               )}
             </Col>
