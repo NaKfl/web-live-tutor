@@ -250,7 +250,9 @@
       "drag": "Thả tệp vào đây hoặc nhấp vào để tải lên ảnh đại diện"
     },
     "tutorInfo": "Thông tin gia sư",
-    "nothingChanged": "Không có sự thay đổi"
+    "nothingChanged": "Không có sự thay đổi",
+    "courses": "Khóa học tham khảo",
+    "goToCourse": "Tìm hiểu"
   },
   "Favorite": {
     "title": "Gia sư yêu thích",

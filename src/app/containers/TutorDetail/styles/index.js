@@ -217,6 +217,10 @@ export const StyledTutorContent = styled.div`
         margin-top: 10px;
         margin-left: 20px;
       }
+      .part-content-link {
+        margin-top: 12px;
+        margin-left: 5px;
+      }
     }
     .last-part {
       margin-bottom: 0;

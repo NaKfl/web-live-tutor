@@ -87,7 +87,7 @@ export const TutorDetail = ({ ...rest }) => {
 
   const userInfo = tutorDetail.User ?? {};
 
-  const { avatar, country, name, feedbacks } = userInfo;
+  const { avatar, country, name, feedbacks, courses } = userInfo;
 
   const {
     bio,
@@ -383,6 +383,28 @@ export const TutorDetail = ({ ...rest }) => {
                           ))}
                         </Row>
                       </div>
+                      {courses?.length > 0 && (
+                        <div className="part">
+                          <Title className="part-title" level={5}>
+                            {t('Profile.courses')}
+                          </Title>
+                          {courses.map(item => (
+                            <Row>
+                              <Title className="part-content" level={5}>
+                                {`${item.name}:`}
+                              </Title>
+                              <Typography.Link
+                                className="part-content-link"
+                                level={5}
+                                href={`/courses/${item.id}`}
+                                target="_blank"
+                              >
+                                {t('Profile.goToCourse')}
+                              </Typography.Link>
+                            </Row>
+                          ))}
+                        </div>
+                      )}
                       <div className="part">
                         <Title className="part-title" level={5}>
                           {t('Profile.interests')}

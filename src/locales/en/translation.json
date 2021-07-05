@@ -252,7 +252,9 @@
       "drag": "Drag 'n' drop some files here, or click to select files"
     },
     "tutorInfo": "Tutor Info",
-    "nothingChanged": "Nothing changed"
+    "nothingChanged": "Nothing changed",
+    "courses": "Reference courses",
+    "goToCourse": "Link"
   },
   "Favorite": {
     "title": "Favorite tutors",
