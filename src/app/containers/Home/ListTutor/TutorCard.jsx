@@ -43,7 +43,7 @@ export const TutorCard = memo(props => {
       {props.isLoading && <Skeleton active avatar paragraph={{ rows: 5 }} />}
       {!props.isLoading && (
         <>
-          <div class="ribbon ribbon-top-left">
+          <div className="ribbon ribbon-top-left">
             <div>
               <span>
                 {new Intl.NumberFormat('vi-VN', {
