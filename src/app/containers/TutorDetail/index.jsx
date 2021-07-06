@@ -169,7 +169,7 @@ export const TutorDetail = ({ ...rest }) => {
                     <Skeleton avatar active paragraph={{ rows: 2 }} />
                   )) || (
                     <>
-                      <div class="ribbon ribbon-top-left">
+                      <div className="ribbon ribbon-top-left">
                         <div>
                           <span>
                             {new Intl.NumberFormat('vi-VN', {

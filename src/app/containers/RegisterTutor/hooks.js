@@ -36,6 +36,16 @@ export const useHooks = () => {
 
   const status = useSelector(makeSelectRegisterTutorStatus);
 
+  useEffect(() => {
+    if (!!user) {
+      formProfile.setFieldsValue({
+        name: user.name,
+        country: user.country,
+        birthday: moment(user.birthday),
+      });
+    }
+  }, [user]);
+
   //upload avatar
   const selectAvatar = useCallback(file => setAvatar(file), []);
   const selectVideo = useCallback(file => setVideo(file), []);
