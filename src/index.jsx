@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { App } from 'app';
 import { HelmetProvider } from 'react-helmet-async';
 import { configureAppStore } from 'store/configureStore';
+import ErrorBoundary from 'app/components/ErrorBoundary';
 
 import './locales/i18n';
 
@@ -25,7 +26,9 @@ const ConnectedApp = ({ Component }) => (
   <Provider store={store}>
     <HelmetProvider>
       <React.StrictMode>
-        <Component />
+        <ErrorBoundary>
+          <Component />
+        </ErrorBoundary>
       </React.StrictMode>
     </HelmetProvider>
   </Provider>

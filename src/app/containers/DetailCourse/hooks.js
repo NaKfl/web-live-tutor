@@ -29,7 +29,12 @@ const useHooks = () => {
 
   useEffect(() => {
     getDetailCourse(courseId);
-  }, [courseId, getDetailCourse]);
+  }, [
+    courseId,
+    getDetailCourse,
+    selectorTutorAddCourse.data,
+    selectorTutorRemoveCourse.data,
+  ]);
 
   useEffect(() => {
     if (

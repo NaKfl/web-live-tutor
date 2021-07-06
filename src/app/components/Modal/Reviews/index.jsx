@@ -28,7 +28,7 @@ const Reviews = memo(props => {
     ),
   }));
 
-  if (selectorFeedbackSession.status === ACTION_STATUS.PENDING)
+  if (selectorFeedbackSession?.status === ACTION_STATUS.PENDING)
     return <Spin spinning />;
   else
     return (

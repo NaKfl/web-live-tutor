@@ -3,7 +3,7 @@ import { useInjectSaga, useInjectReducer } from 'utils/reduxInjectors';
 import { sliceKey, reducer } from './slice';
 import saga from './saga';
 import CourseCard from './Course';
-import { Row, Col, Divider, Spin } from 'antd';
+import { Row, Col, Divider, Spin, Typography } from 'antd';
 import { StyledDetailCourse } from './styles';
 import useHooks from './hooks';
 import { useTranslation } from 'react-i18next';
@@ -79,6 +79,28 @@ export const DetailCourse = memo(() => {
                   <h3 className="sub-title topic">{topic.name}</h3>
                 </Row>
               ))}
+
+              {detailCourse?.users?.length > 0 && (
+                <>
+                  <Divider orientation="left">
+                    <span className="title">{t('Course.suggestedTutors')}</span>
+                  </Divider>
+                  {detailCourse.users?.map(item => (
+                    <Row className="topic-item" key={item?.id} align="middle">
+                      <h3 className="mb-0 mx-2">{item?.name}</h3>
+                      {user.id !== item.id && (
+                        <Typography.Link
+                          level={5}
+                          href={`/tutor/${item?.id}`}
+                          target="_blank"
+                        >
+                          {t('Course.goToTutor')}
+                        </Typography.Link>
+                      )}
+                    </Row>
+                  ))}
+                </>
+              )}
             </Col>
           </StyledDetailCourse>
         </Col>
