@@ -33,6 +33,7 @@ function* editProfileTask(action) {
   const { response, error } = yield call(editProfileAPI, action.payload);
   if (response) {
     yield put(actions.editProfileSuccess(response));
+    yield put(loginActions.getMe());
     notifySuccess(i18n.t('Profile.notifyEditSuccess'));
   } else {
     yield put(actions.editProfileFailed(error.data));
