@@ -8,13 +8,21 @@ import { StyledAvatar, StyledTopTutorItem } from './styles';
 import goldMedal from 'assets/svg//goldMedal.svg';
 import silverMedal from 'assets/svg//silverMedal.svg';
 import bronzeMedal from 'assets/svg//bronzeMedal.svg';
+import { getUser as getUserFromStorage } from 'utils/localStorageUtils';
 
 export const TopTutorItem = ({ no, info }) => {
   const { handleSetNewConversation } = useControlChatPopup();
   const { showInfoTutor } = useShowInfoTutor();
+  const user = getUserFromStorage();
+
   return (
     <StyledTopTutorItem>
-      <div className="info-group" onClick={() => showInfoTutor(info)}>
+      <div
+        className="info-group"
+        onClick={() => {
+          if (user.id !== info.userId) showInfoTutor(info);
+        }}
+      >
         <StyledAvatar className="partner-avatar">
           {(no === 1 && (
             <img className="medal" src={goldMedal} alt="goldMedal" />
@@ -41,12 +49,14 @@ export const TopTutorItem = ({ no, info }) => {
         </div>
       </div>
       <div className="btn-group">
-        <MessageFilled
-          className="message-btn"
-          onClick={() =>
-            handleSetNewConversation({ userId: info.userId, ...info?.User })
-          }
-        />
+        {user.id !== info.userId && (
+          <MessageFilled
+            className="message-btn"
+            onClick={() =>
+              handleSetNewConversation({ userId: info.userId, ...info?.User })
+            }
+          />
+        )}
       </div>
     </StyledTopTutorItem>
   );
