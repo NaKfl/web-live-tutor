@@ -41,7 +41,7 @@ export const useHooks = () => {
       formProfile.setFieldsValue({
         name: user.name,
         country: user.country,
-        birthday: moment(user.birthday),
+        birthday: user.birthday ? moment(user.birthday) : '',
       });
     }
   }, [user]);
