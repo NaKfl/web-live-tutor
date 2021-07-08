@@ -7,7 +7,7 @@ import { StyledAvatar, StyledModal, StyledTextHighlight } from './styles';
 import Rate from 'app/components/Rate';
 import { useTranslation } from 'react-i18next';
 import { useInjectSaga } from 'utils/reduxInjectors';
-import saga from 'app/containers/Home/sage';
+import saga from 'app/containers/Home/saga';
 import { sliceKey } from 'app/containers/Home/slice';
 
 const { Title } = Typography;
