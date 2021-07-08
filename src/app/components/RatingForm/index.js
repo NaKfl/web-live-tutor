@@ -6,11 +6,15 @@ import { StarFilled } from '@ant-design/icons';
 import { StyledAvatar, StyledModal, StyledTextHighlight } from './styles';
 import Rate from 'app/components/Rate';
 import { useTranslation } from 'react-i18next';
+import { useInjectSaga } from 'utils/reduxInjectors';
+import saga from 'app/containers/Home/sage';
+import { sliceKey } from 'app/containers/Home/slice';
 
 const { Title } = Typography;
 const { TextArea } = Input;
 
 const RatingForm = memo(props => {
+  useInjectSaga({ key: sliceKey, saga });
   const { handlers, selectors } = useHooks(props);
   const {
     handleSubmitReview,
