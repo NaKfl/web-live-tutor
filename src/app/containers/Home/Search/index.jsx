@@ -4,12 +4,15 @@ import { SearchOutlined } from '@ant-design/icons';
 import Button from 'app/components/Button';
 import { useHistory } from 'react-router-dom';
 import qs from 'query-string';
+import { useTranslation } from 'react-i18next';
+
 export const Search = memo(({ placeholder }) => {
+  const { t } = useTranslation();
   const [searchKey, setSearch] = useState('');
   const history = useHistory();
   const onEnterSearch = useCallback(
     event => {
-      if (searchKey && event.key === 'Enter') {
+      if (event.key === 'Enter') {
         history.push({
           pathname: '/search',
           search: qs.stringify(
@@ -30,18 +33,19 @@ export const Search = memo(({ placeholder }) => {
   return (
     <StyleWrapperSearch>
       <StyleWrapperInput>
-        <StyleSearch
+        {/* <StyleSearch
           value={searchKey}
           onChange={e => setSearch(e.target.value)}
           placeholder={placeholder || 'Searching...'}
           onKeyDown={onEnterSearch}
-        />
+        /> */}
         <Button
           className="icon-search"
           type="accent"
           onClick={() => onEnterSearch({ key: 'Enter' })}
         >
           <SearchOutlined />
+          {t('Common.search')}
         </Button>
       </StyleWrapperInput>
     </StyleWrapperSearch>
